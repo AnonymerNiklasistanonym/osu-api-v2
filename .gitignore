@@ -1,0 +1,8 @@
+# Ignore local node modules
+node_modules
+# Ignore files compiled with Typescript
+lib
+bin
+
+# Ignore files that a declared as a secret
+*.secret.*
