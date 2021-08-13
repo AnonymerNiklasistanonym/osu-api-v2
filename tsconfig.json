@@ -2,9 +2,11 @@
     "compilerOptions": {
         "declaration": true,
         "module": "CommonJS",
+        "esModuleInterop": true,
         "outDir": "./lib",
         "strict": true,
-        "target": "ES6"
+        "target": "ES6",
+        "moduleResolution": "node"
     },
     "exclude": ["node_modules", "**/__tests__/*"],
     "include": ["src"]
