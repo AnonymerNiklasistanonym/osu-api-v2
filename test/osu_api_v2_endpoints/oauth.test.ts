@@ -3,10 +3,10 @@ import type { OAuthCredentials } from "./read_oauth_credentials"
 import { before, describe, it } from "mocha"
 import { expect } from "chai"
 
-import osuApiV2 from "../src/index"
+import osuApiV2 from "../../src/index"
 import { readOauthCredentials } from "./read_oauth_credentials"
 
-describe("oauth", async () => {
+describe("osu-api-v2-oauth", async () => {
     let oauthCredentials: OAuthCredentials
 
     before("before all test cases in oauth block", async () => {

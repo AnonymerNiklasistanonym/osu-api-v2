@@ -1,13 +1,13 @@
-import type { OAuthAccessToken } from "../src/types/oauth_access_token"
+import type { OAuthAccessToken } from "../../src/types/oauth_access_token"
 
 import { before, describe, it } from "mocha"
 import { expect } from "chai"
 
-import osuApiV2 from "../src/index"
+import osuApiV2 from "../../src/index"
 import { readOauthCredentials } from "./read_oauth_credentials"
-import { GameMode } from "../src/types/game_mode"
+import { GameMode } from "../../src/types/game_mode"
 
-describe("beatmaps", async () => {
+describe("osu-api-v2-beatmaps", async () => {
     let oauthAccessToken: OAuthAccessToken
 
     before("before all test cases in oauth block", async () => {

@@ -1,34 +1,52 @@
-# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# This workflow will check if the current version can be built and conforms in
+# respect to defined formatting, linting standards and if all test cases are
+# as expected.
 
 name: Node.js CI
 
+# When is the workflow executed:
 on:
+  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  # This allows to manually trigger the workflow from the Actions tab ON GitHub
+  workflow_dispatch:
 
+# The following jobs are defined:
 jobs:
+  # The build job tries to built the api library and checks formatting, linting
+  # and test results
   build:
-
+    # Run the job on the latest Ubuntu runner
     runs-on: ubuntu-latest
-
+    # Specify the node versions that should be checked
     strategy:
       matrix:
         node-version: [14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+    # The following steps should be sequentially executed:
     steps:
+    # Checkout the current repository
     - uses: actions/checkout@v2
+    # Activate the NodeJs plugin with the previously defined versions and cache it
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build
-    # Don't run tests because they require osu api secret credentials
-    #- run: npm test
-    - run: npm run lint
-    - run: npm run prettify
+    # Install the exact dependencies specified in the package-lock.json file
+    - name: Install dependencies
+      run: npm ci
+    # Build the library which means compile the Typescript code to JavaScript
+    # with Typescript type definitions
+    - name: Compile Typescript library to JavaScript with type definitions
+      run: npm run build
+    # Run tests that do not require osu-api-v2 requests which need private
+    # credentials
+    - name: Verify tests (no osu-api-v2 requests)
+      run: npm run test-without-osu-api-v2-requests
+    - name: Lint code for errors/warnings
+      run: npm run lint
+    - name: Check code for formatting errors
+      run: npm run format

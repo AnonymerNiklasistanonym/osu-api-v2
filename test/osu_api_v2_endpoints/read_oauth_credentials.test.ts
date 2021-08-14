@@ -3,7 +3,7 @@ import { expect } from "chai"
 
 import { readOauthCredentials } from "./read_oauth_credentials"
 
-describe("readOauthCredentials", async () => {
+describe("osu-api-v2-readOauthCredentials", async () => {
     it("readOauthCredentials", async () => {
         const oauthCredentials = await readOauthCredentials()
         expect(oauthCredentials.clientId).to.be.a("number")

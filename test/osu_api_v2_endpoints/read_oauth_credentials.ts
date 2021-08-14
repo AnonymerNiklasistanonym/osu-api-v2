@@ -14,6 +14,7 @@ export interface OAuthCredentials {
 export const defaultOauthCredentialsFilePath = path.join(
     __dirname,
     "..",
+    "..",
     "authentication.secret.json",
 )
 
