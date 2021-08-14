@@ -111,7 +111,7 @@ npm run build
 npm start
 ```
 
-## Manage NPM package
+## Manage npm package
 
 ### Preview package content
 
@@ -122,6 +122,13 @@ npm pack --dry-run
 ### Update/Publish package
 
 ```sh
+# Login to your npm account
 npm login
+# [Optional]: Commit all changes to the git repository
+git add -A && git commit
+# [Optional]: Increase the patch version of the package
+#             which automatically creates a new commit
+npm version patch
+# Push the new package
 npm publish
 ```
