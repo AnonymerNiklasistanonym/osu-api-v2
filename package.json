@@ -30,8 +30,8 @@
         "lint-fix": "eslint --fix src test",
         "format": "prettier --check src test .prettierrc.js .eslintrc.js",
         "format-fix": "prettier --write src test .prettierrc.js .eslintrc.js",
-        "test": "mocha --require ts-node/register test/**/*.ts test/*.test.ts",
-        "test-without-osu-api-v2-requests": "mocha --require ts-node/register --invert --grep ^osu-api-v2- test/**/*.ts test/*.test.ts"
+        "test": "mocha --require ts-node/register test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
+        "test-without-osu-api-v2-requests": "mocha --require ts-node/register --invert --grep ^osu-api-v2- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts"
     },
     "repository": {
         "type": "git",
