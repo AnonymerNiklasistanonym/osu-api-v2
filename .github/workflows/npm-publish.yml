@@ -3,9 +3,11 @@
 
 name: Node.js Package
 
+# When a new tag is created run this workflow
 on:
-  release:
-    types: [created]
+  push:
+    tags:
+    - '*'
 
 jobs:
   build:
