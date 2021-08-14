@@ -173,3 +173,16 @@ npm version patch
 # Push the new package
 npm publish
 ```
+
+In the github repository is also a [github workflow](.github/workflows/npm-publish.yml) that publishes the package when pushing a new tag:
+
+```sh
+# [...]
+npm version patch
+# Push the changes to github
+git push
+# If not automatically push the created tag(s)
+git push --tags
+# Now the workflow should be triggered too and automatically
+# publish a new version of the package to npm
+```
