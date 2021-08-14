@@ -1,2 +1,15 @@
-# .npmignore - the files to not push to NPM
-src/
+# List files that should be ingored when publishing
+# (it respects the .gitignore list)
+
+# Ignore github CI/CD
+.github
+# Ignore source files
+src
+# Ignore tests
+test
+# Ignore ESlint configuration
+.eslintrc.js
+# Ignore Prettier configuration
+.prettierrc.js
+# Ignore authentication schema
+authentication.schema.json
