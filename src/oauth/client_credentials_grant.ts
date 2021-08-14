@@ -24,6 +24,15 @@ export const clientCredentialsGrant = async (
         if (res.status !== 200) {
             throw Error(`Bad request (${res.status}, ${JSON.stringify(res)})`)
         }
+        if (res.status !== 200) {
+            throw Error(
+                `Bad request (${res.status}, url=${
+                    res.url
+                }, headers=${JSON.stringify(
+                    res.headers,
+                )}, body=${JSON.stringify(res.body)}})`,
+            )
+        }
 
         const oauthAccessToken: OAuthAccessToken = await res.json()
         return oauthAccessToken

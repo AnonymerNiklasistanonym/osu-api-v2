@@ -81,6 +81,16 @@ export interface BeatmapsetCompactNominations {
     nominations?: number
 }
 
+export enum RankedStatus {
+    graveyard = -2,
+    wip = -1,
+    pending = 0,
+    ranked = 1,
+    approved = 2,
+    qualified = 3,
+    loved = 4,
+}
+
 export interface Beatmapset extends BeatmapsetCompactBase {
     availability: BeatmapsetCompactAvailability
     /** float */
@@ -99,10 +109,8 @@ export interface Beatmapset extends BeatmapsetCompactBase {
     nominations: BeatmapsetCompactNominations
     /**
      * See Rank status for list of possible values
-     *
-     * integer
      */
-    ranked?: number
+    ranked?: RankedStatus
     ranked_date?: Timestamp
     source?: string
     storyboard: boolean

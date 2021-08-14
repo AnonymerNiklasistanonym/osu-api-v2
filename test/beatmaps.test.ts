@@ -31,13 +31,16 @@ describe("beatmaps", async () => {
 
     describe("scores", async () => {
         it("users", async () => {
-            const beatmapUserScore = await osuApiV2.beatmaps.scores.users(
+            const beatmapUserScore1 = await osuApiV2.beatmaps.scores.users(
                 oauthAccessToken,
                 1095534,
                 18508852,
                 GameMode.osu,
             )
-            expect(beatmapUserScore).to.be.a("object")
+            expect(beatmapUserScore1).to.be.a("object")
+            expect(beatmapUserScore1.score.mode).to.equal(
+                GameMode[GameMode.osu],
+            )
 
             const beatmapUserScore2 = await osuApiV2.beatmaps.scores.users(
                 oauthAccessToken,
@@ -46,6 +49,23 @@ describe("beatmaps", async () => {
                 GameMode.osu,
             )
             expect(beatmapUserScore2).to.be.a("object")
+            expect(beatmapUserScore2.score.mode).to.equal(
+                GameMode[GameMode.osu],
+            )
+
+            // Check if the request throws an error when a graveyard map is requested
+            let errorGraveyardMap = null
+            try {
+                await osuApiV2.beatmaps.scores.users(
+                    oauthAccessToken,
+                    1718102,
+                    18508852,
+                    GameMode.osu,
+                )
+            } catch (err) {
+                errorGraveyardMap = err
+            }
+            expect(errorGraveyardMap).to.be.an("Error")
         })
     })
 })

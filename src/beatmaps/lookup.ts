@@ -18,7 +18,11 @@ export const lookup = async (
             method: "get",
         })
         if (res.status !== 200) {
-            throw Error(`Bad request (${res.status}, ${JSON.stringify(res)})`)
+            throw Error(
+                `Bad request (${res.status}, url=${
+                    res.url
+                }, headers=${JSON.stringify(res.headers)})`,
+            )
         }
 
         const beatmap: Beatmap = await res.json()
