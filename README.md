@@ -2,6 +2,8 @@
 
 An easy way to use the [osu!api v2](https://osu.ppy.sh/docs/index.html).
 
+**Attention: This is only a prototype that is currently aimed at providing beatmap information for another project and *NOT* a complete implementation of this api!**
+
 ## Getting started
 
 ### Acquire osu! OAuth credentials
@@ -109,6 +111,45 @@ Run:
 ```sh
 npm run build
 npm start
+```
+
+## Testing and Linting
+
+### Testing
+
+To run the existing tests you need to create/provide a file `authentication.secret.json` that contains your OAuth client ID and secret.
+
+`authentication.secret.json`:
+
+```json
+{
+	"$schema": "./authentication.schema.json",
+	"osuOAuthClientId": 1234,
+	"osuOAuthClientSecret": "YourClientSecret"
+}
+```
+
+Then you can run:
+
+
+```sh
+npm run test
+```
+
+### Linting and Formatting
+
+To format and lint the source code (and automatically fix fixable problems) run:
+
+```sh
+npm run lint-fix
+npm run prettify-fix
+```
+
+To only check if the source code fulfills the requirements run:
+
+```sh
+npm run lint
+npm run prettify
 ```
 
 ## Manage npm package

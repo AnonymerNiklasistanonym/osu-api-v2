@@ -1,7 +1,7 @@
 {
     "name": "osu-api-v2",
     "version": "0.0.3",
-    "description": "",
+    "description": "An easy way to use the osu!api v2",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "directories": {
@@ -36,7 +36,13 @@
         "type": "git",
         "url": "git+https://github.com/AnonymerNiklasistanonym/osu-api-v2.git"
     },
-    "keywords": [],
+    "keywords": [
+        "api",
+        "osu",
+        "async",
+        "promise",
+        "typescript"
+    ],
     "author": {
         "name": "AnonymerNiklasistanonym"
     },
