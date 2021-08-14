@@ -13,7 +13,7 @@ You need to acquire a client ID and client secret to use the [osu!api v2](https:
 3. Scroll to the section called `OAuth`
 4. Create a new OAuth service and copy the client ID and the client secret from there
 
-## Use it in a Node.js project
+### Use it in a Node.js project
 
 `package.json`:
 
@@ -51,7 +51,7 @@ Run:
 npm start
 ```
 
-## Use it in a Typescript project
+### Use it in a Typescript project
 
 `package.json`:
 
@@ -109,4 +109,19 @@ Run:
 ```sh
 npm run build
 npm start
+```
+
+## Manage NPM package
+
+### Preview package content
+
+```sh
+npm pack --dry-run
+```
+
+### Update/Publish package
+
+```sh
+npm login
+npm publish
 ```
