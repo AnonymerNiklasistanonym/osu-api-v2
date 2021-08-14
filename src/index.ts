@@ -1,8 +1,8 @@
-import { beatmap } from "./beatmap/beatmap"
+import { beatmaps } from "./beatmaps/beatmaps"
 import { oauth } from "./oauth/oauth"
 
 const osuApiV2 = {
-    beatmap,
+    beatmaps,
     oauth,
 }
 

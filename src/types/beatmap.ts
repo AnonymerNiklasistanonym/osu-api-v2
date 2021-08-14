@@ -1,13 +1,115 @@
-import type { GameMode } from "./game_mode"
 import type { Failtimes } from "./failtimes"
 import type { Timestamp } from "./timestamp"
+import type { User } from "./user"
 
-export interface BeatmapsetCompact {
-    a: string
+import { GameMode } from "./game_mode"
+
+export interface Covers {
+    cover: string
+    "cover@2x": string
+    card: string
+    "card@2x": string
+    list: string
+    "list@2x": string
+    slimcover: string
+    "slimcover@2x": string
 }
 
-export interface Beatmapset extends BeatmapsetCompact {
-    b: string
+/**
+ * Represents a beatmapset
+ *
+ * https://osu.ppy.sh/docs/index.html#beatmapsetcompact
+ */
+export interface BeatmapsetCompactBase {
+    artist: string
+    artist_unicode: string
+    covers: Covers
+    creator: string
+    favourite_count: number
+    id: number
+    nsfw: boolean
+    play_count: number
+    preview_url: string
+    status: string
+    title: string
+    title_unicode: string
+    user_id: number
+    video: string
+    // Optional:
+    beatmaps?: Beatmap[]
+    converts?: unknown
+    current_user_attributes?: unknown
+    description?: unknown
+    discussions?: unknown
+    events?: unknown
+    genre?: unknown
+    language?: unknown
+    nominations?: unknown
+    ratings?: unknown
+    recent_favourites?: unknown
+    related_users?: unknown
+    user?: User
+}
+
+/**
+ * Represents a beatmapset
+ *
+ * https://osu.ppy.sh/docs/index.html#beatmapsetcompact
+ */
+export interface BeatmapsetCompact extends BeatmapsetCompactBase {
+    source: string
+    /** Always included in Betmapset */
+    has_favourited?: boolean
+}
+
+export interface BeatmapsetCompactAvailability {
+    download_disabled: boolean
+    more_information?: string
+}
+
+export interface BeatmapsetCompactHype {
+    /** integer */
+    current?: number
+    /** integer */
+    required?: number
+}
+
+export interface BeatmapsetCompactNominations {
+    /** integer */
+    current?: number
+    /** integer */
+    nominations?: number
+}
+
+export interface Beatmapset extends BeatmapsetCompactBase {
+    availability: BeatmapsetCompactAvailability
+    /** float */
+    bpm: number
+    can_be_hyped: boolean
+    /**
+     * Username of the mapper at the time of beatmapset creation
+     */
+    creator: string
+    discussion_enabled: boolean
+    discussion_locked: boolean
+    hype: BeatmapsetCompactHype
+    is_scoreable: boolean
+    last_updated: Timestamp
+    legacy_thread_url?: string
+    nominations: BeatmapsetCompactNominations
+    /**
+     * See Rank status for list of possible values
+     *
+     * integer
+     */
+    ranked?: number
+    ranked_date?: Timestamp
+    source?: string
+    storyboard: boolean
+    submitted_date?: Timestamp
+    tags: string
+
+    has_favourited: boolean
 }
 
 /**
