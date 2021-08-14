@@ -25,7 +25,7 @@ You need to acquire a client ID and client secret to use the [osu!api v2](https:
         "start": "node index.js"
     },
     "dependencies": {
-        "osu-api-v2": "^0.0.1"
+        "osu-api-v2": "^0.0.3"
     }
 }
 ```
@@ -64,7 +64,7 @@ npm start
         "start": "node dist/index.js"
     },
     "dependencies": {
-        "osu-api-v2": "^0.0.1"
+        "osu-api-v2": "^0.0.3"
     },
     "devDependencies": {
         "typescript": "^4.3.5"
