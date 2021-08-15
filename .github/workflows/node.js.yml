@@ -44,8 +44,8 @@ jobs:
       run: npm run build
     # Run tests that do not require osu-api-v2 requests which need private
     # credentials
-    - name: Verify tests (no osu-api-v2 requests)
-      run: npm run test-without-osu-api-v2-requests
+    - name: Verify tests (no osu-api-v2)
+      run: npm run test-without-osu-api-v2
     - name: Lint code for errors/warnings
       run: npm run lint
     - name: Check code for formatting errors

@@ -17,12 +17,12 @@ module.exports = {
     },
     plugins: ["@typescript-eslint", "prettier"],
     rules: {
-        "prettier/prettier": "error",
         "linebreak-style": ["error", "unix"],
+        "prettier/prettier": "error",
         "sort-keys": [
             "error",
             "asc",
-            { caseSensitive: true, natural: true, minKeys: 2 },
+            { caseSensitive: true, minKeys: 2, natural: true },
         ],
     },
 }

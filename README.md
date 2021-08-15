@@ -27,7 +27,7 @@ You need to acquire a client ID and client secret to use the [osu!api v2](https:
         "start": "node index.js"
     },
     "dependencies": {
-        "osu-api-v2": "^0.0.3"
+        "osu-api-v2": "^0.0.6"
     }
 }
 ```
@@ -66,7 +66,7 @@ npm start
         "start": "node dist/index.js"
     },
     "dependencies": {
-        "osu-api-v2": "^0.0.3"
+        "osu-api-v2": "^0.0.6"
     },
     "devDependencies": {
         "typescript": "^4.3.5"
@@ -136,20 +136,27 @@ Then you can run:
 npm run test
 ```
 
+Some test can be run without providing this information:
+
+
+```sh
+npm run test-without-osu-api-v2
+```
+
 ### Linting and Formatting
 
 To format and lint the source code (and automatically fix fixable problems) run:
 
 ```sh
 npm run lint-fix
-npm run prettify-fix
+npm run format-fix
 ```
 
 To only check if the source code fulfills the requirements run:
 
 ```sh
 npm run lint
-npm run prettify
+npm run format
 ```
 
 ## Manage npm package
