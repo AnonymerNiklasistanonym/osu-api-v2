@@ -5,11 +5,11 @@
  */
 export enum GameMode {
     /** osu!catch */
-    fruits,
+    fruits = 2,
     /** osu!mania */
-    mania,
+    mania = 1,
     /** osu!standard */
-    osu,
+    osu = 0,
     /** osu!taiko */
-    taiko,
+    taiko = 3,
 }

@@ -130,7 +130,7 @@ export interface BeatmapCompact {
     difficulty_rating: number
     /** integer */
     id: number
-    mode: GameMode
+    mode: string
     /**
      * See Rank status for list of possible values.
      */
@@ -192,6 +192,6 @@ export interface Beatmap extends BeatmapCompact {
      *
      * integer
      */
-    ranked: number
+    ranked: RankedStatus
     url: string
 }

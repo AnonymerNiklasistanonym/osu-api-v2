@@ -20,10 +20,10 @@ export const oauthTestSuite = (): Suite =>
                     oauthCredentials.clientId,
                     oauthCredentials.clientSecret,
                 )
-            expect(oauthAccessToken.access_token).to.be.a("string")
-            expect(oauthAccessToken.access_token.length).to.be.above(0)
+            expect(oauthAccessToken.access_token)
+                .to.be.a("string")
+                .with.a.lengthOf.greaterThan(0)
             expect(oauthAccessToken.token_type).to.equal("Bearer")
-            expect(oauthAccessToken.expires_in).to.be.a("number")
-            expect(oauthAccessToken.expires_in).to.be.above(0)
+            expect(oauthAccessToken.expires_in).to.be.a("number").above(0)
         })
     })
