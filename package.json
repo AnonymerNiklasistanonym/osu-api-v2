@@ -10,18 +10,19 @@
     "devDependencies": {
         "@types/chai": "^4.2.21",
         "@types/mocha": "^9.0.0",
-        "@types/node": "^16.6.1",
+        "@types/node": "^16.7.1",
         "@types/node-fetch": "^2.5.12",
-        "@typescript-eslint/eslint-plugin": "^4.29.1",
-        "@typescript-eslint/parser": "^4.29.1",
+        "@typescript-eslint/eslint-plugin": "^4.29.2",
+        "@typescript-eslint/parser": "^4.29.2",
         "chai": "^4.3.4",
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-prettier": "^3.4.0",
-        "mocha": "^9.0.3",
+        "eslint-plugin-prettier": "^3.4.1",
+        "mocha": "^9.1.0",
         "moment": "^2.29.1",
+        "nyc": "^15.1.0",
         "prettier": "^2.3.2",
-        "ts-node": "^10.2.0",
+        "ts-node": "^10.2.1",
         "typescript": "^4.3.5"
     },
     "scripts": {
@@ -33,7 +34,8 @@
         "format": "prettier --check src test .prettierrc.js .eslintrc.js",
         "format-fix": "prettier --write src test .prettierrc.js .eslintrc.js",
         "test": "mocha --require ts-node/register test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
-        "test-without-osu-api-v2": "mocha --require ts-node/register --invert --grep ^osu-api-v2 test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts"
+        "test-without-osu-api-v2": "mocha --require ts-node/register --invert --grep ^osu-api-v2 test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
+        "nyc": "nyc --reporter=html --reporter=text mocha --require ts-node/register test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts"
     },
     "repository": {
         "type": "git",

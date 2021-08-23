@@ -34,7 +34,7 @@ export interface BeatmapsetCompactBase {
     title: string
     title_unicode: string
     user_id: number
-    video: string
+    video: boolean
     // Optional:
     beatmaps?: Beatmap[]
     converts?: unknown
@@ -45,7 +45,7 @@ export interface BeatmapsetCompactBase {
     genre?: unknown
     language?: unknown
     nominations?: unknown
-    ratings?: unknown
+    ratings?: number[]
     recent_favourites?: unknown
     related_users?: unknown
     user?: User
@@ -74,11 +74,11 @@ export interface BeatmapsetCompactHype {
     required?: number
 }
 
-export interface BeatmapsetCompactNominations {
+export interface BeatmapsetCompactNominationsSummary {
     /** integer */
     current?: number
     /** integer */
-    nominations?: number
+    required?: number
 }
 
 export enum RankedStatus {
@@ -102,11 +102,11 @@ export interface Beatmapset extends BeatmapsetCompactBase {
     creator: string
     discussion_enabled: boolean
     discussion_locked: boolean
-    hype: BeatmapsetCompactHype
+    hype: null | BeatmapsetCompactHype
     is_scoreable: boolean
     last_updated: Timestamp
     legacy_thread_url?: string
-    nominations: BeatmapsetCompactNominations
+    nominations_summary: BeatmapsetCompactNominationsSummary
     /**
      * See Rank status for list of possible values
      */
@@ -143,7 +143,7 @@ export interface BeatmapCompact {
      * BeatmapCompact object. null if the beatmap doesn't
      * have associated beatmapset (e.g. deleted).
      */
-    beatmapset?: null | BeatmapsetCompact | Beatmapset
+    beatmapset?: null | Beatmapset // | BeatmapCompact
     checksum?: string
     failtimes?: Failtimes
     /** integer */

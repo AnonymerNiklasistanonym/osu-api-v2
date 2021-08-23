@@ -1,6 +1,23 @@
 import { describe, it } from "mocha"
 import { expect } from "chai"
+import { promises as fsp } from "fs"
+import path from "path"
+
 import { urlParameterGenerator } from "../src/helpers/url_parameter_generator"
+
+export const saveOsuResponseObjectAsFile = async (
+    fileName: string,
+    jsonObject: any,
+): Promise<void> => {
+    const outputDir = path.join(__dirname, "..", "cached-osu-api-responses")
+    await fsp.mkdir(outputDir, {
+        recursive: true,
+    })
+    const outputFile = path.join(outputDir, `${fileName}.json`)
+    await fsp.writeFile(outputFile, JSON.stringify(jsonObject, undefined, 4), {
+        encoding: "utf8",
+    })
+}
 
 describe("helper", async () => {
     it("urlParameterGenerator", async () => {

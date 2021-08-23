@@ -108,3 +108,6 @@ lib
 
 # Ignore files that a declared as a secret
 *.secret.*
+
+# Ignore files that are declared as cached
+cached-osu-api-responses

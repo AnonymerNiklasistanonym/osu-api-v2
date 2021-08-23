@@ -1,11 +1,17 @@
 import { expect } from "chai"
 import moment from "moment"
-import { Beatmap, RankedStatus } from "../../../../src/types/beatmap"
+import {
+    Beatmap,
+    BeatmapsetCompactAvailability,
+    RankedStatus,
+} from "../../../../src/types/beatmap"
 import { GameMode } from "../../../../src/types/game_mode"
+import { saveOsuResponseObjectAsFile } from "../../../helper.test"
 import { checkBeatmapsetObject } from "./check_beatmapset"
 
 export interface CheckBeatmapObjectOptions {
-    checkId?: number
+    checkBeatmapId?: number
+    checkBeatmapsetId?: number
     checkGameMode?: GameMode
     checkRankedStatus?: RankedStatus
 }
@@ -14,17 +20,22 @@ export const checkBeatmapObject = (
     beatmap: Beatmap,
     options: CheckBeatmapObjectOptions = {},
 ): void => {
+    saveOsuResponseObjectAsFile(`beatmap_${beatmap?.id}`, beatmap)
     expect(beatmap).to.be.an("object")
     expect(beatmap.accuracy).to.be.a("number").greaterThanOrEqual(0)
     expect(beatmap.ar).to.be.a("number").greaterThanOrEqual(0)
-    expect(beatmap.beatmapset).an("object")
-    if (beatmap.beatmapset !== undefined && beatmap.beatmapset !== null) {
-        checkBeatmapsetObject(beatmap.beatmapset)
+    if (beatmap.beatmapset !== undefined && beatmap.beatmapset != null) {
+        checkBeatmapsetObject(beatmap.beatmapset, {
+            checkBeatmapsetId: options.checkBeatmapsetId,
+        })
     }
     expect(beatmap.beatmapset_id)
         .to.be.a("number")
         .greaterThanOrEqual(0)
         .that.satisfies(Number.isInteger)
+    if (options.checkBeatmapsetId !== undefined) {
+        expect(beatmap.beatmapset_id).to.be.equal(options.checkBeatmapsetId)
+    }
     expect(beatmap.bpm).to.be.a("number").greaterThanOrEqual(0)
     if (beatmap.checksum !== undefined) {
         expect(beatmap.checksum)
@@ -45,7 +56,7 @@ export const checkBeatmapObject = (
         .greaterThanOrEqual(0)
         .that.satisfies(Number.isInteger)
     expect(beatmap.cs).to.be.a("number").greaterThanOrEqual(0)
-    if (beatmap.deleted_at !== undefined && beatmap.deleted_at !== null) {
+    if (beatmap.deleted_at !== undefined && beatmap.deleted_at != null) {
         expect(beatmap.deleted_at)
             .to.be.a("string")
             .with.a.lengthOf.greaterThan(0)
@@ -73,8 +84,8 @@ export const checkBeatmapObject = (
         .greaterThanOrEqual(0)
         .that.satisfies(Number.isInteger)
     expect(beatmap.id).to.be.a("number").greaterThan(0)
-    if (options.checkId !== undefined) {
-        expect(beatmap.id).to.be.equal(options.checkId)
+    if (options.checkBeatmapId !== undefined) {
+        expect(beatmap.id).to.be.equal(options.checkBeatmapId)
     }
     expect(beatmap.is_scoreable).to.be.a("boolean")
     expect(beatmap.last_updated)
