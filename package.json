@@ -1,6 +1,6 @@
 {
     "name": "osu-api-v2",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "An easy way to use the osu!api v2",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
