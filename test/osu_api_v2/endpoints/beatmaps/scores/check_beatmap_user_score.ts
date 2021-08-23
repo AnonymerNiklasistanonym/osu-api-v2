@@ -1,6 +1,5 @@
 import { expect } from "chai"
 import moment from "moment"
-import { RankedStatus } from "../../../../../src/types/beatmap"
 import { GameMode } from "../../../../../src/types/game_mode"
 import { GameMods } from "../../../../../src/types/game_mods"
 import { BeatmapUserScore, Score } from "../../../../../src/types/score"

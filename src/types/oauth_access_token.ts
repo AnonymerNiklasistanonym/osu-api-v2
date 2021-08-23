@@ -12,5 +12,5 @@ export interface OAuthAccessToken {
      *
      * (this should always be Bearer for ClientCredentialsGrant)
      */
-     token_type: string
+    token_type: string
 }

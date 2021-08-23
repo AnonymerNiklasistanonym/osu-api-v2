@@ -8,7 +8,7 @@ import { OsuApiV2WebRequestError } from "../src/helpers/custom_errors"
 
 export const saveOsuResponseObjectAsFile = async (
     fileName: string,
-    jsonObject: any,
+    jsonObject: unknown,
 ): Promise<void> => {
     const outputDir = path.join(__dirname, "..", "cached-osu-api-responses")
     await fsp.mkdir(outputDir, {

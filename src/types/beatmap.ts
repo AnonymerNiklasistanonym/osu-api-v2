@@ -2,8 +2,6 @@ import type { Failtimes } from "./failtimes"
 import type { Timestamp } from "./timestamp"
 import type { User } from "./user"
 
-import { GameMode } from "./game_mode"
-
 export interface Covers {
     cover: string
     "cover@2x": string

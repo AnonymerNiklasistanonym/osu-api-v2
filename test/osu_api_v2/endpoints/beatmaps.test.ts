@@ -1,5 +1,4 @@
 import { before, describe, it, Suite } from "mocha"
-import { expect } from "chai"
 
 import osuApiV2 from "../../../src/index"
 import { readOauthCredentials } from "./../read_oauth_credentials"
