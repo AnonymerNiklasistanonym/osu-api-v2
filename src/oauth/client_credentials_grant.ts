@@ -15,19 +15,25 @@ export const clientCredentialsGrant = async (
         grant_type: "client_credentials",
         scope: "public",
     }
+    const method = "post"
+    const headers = { "Content-Type": "application/json" }
+    const body = JSON.stringify(requestBody)
     // eslint-disable-next-line no-useless-catch
     try {
         const res = await fetch(`${baseUrl}/oauth/token`, {
-            body: JSON.stringify(requestBody),
-            headers: { "Content-Type": "application/json" },
-            method: "post",
+            body,
+            headers,
+            method,
         })
         if (res.status !== 200) {
             throw new OsuApiV2WebRequestError(
+                `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
                 res.status,
                 res.statusText,
                 res.url,
-                `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
+                method,
+                headers,
+                body,
             )
         }
 

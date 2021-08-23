@@ -85,7 +85,7 @@ export const beatmapsTestSuite = (): Suite =>
                 errorInvalidBeatmapId,
                 OsuApiV2WebRequestErrorType.NOT_FOUND,
             )
-        })
+        }).timeout(4000)
 
         scoresTestSuite()
     })
