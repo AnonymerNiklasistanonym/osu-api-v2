@@ -8,6 +8,11 @@ import { OAuthAccessToken } from "../../../src/types/oauth_access_token"
 import { RankedStatus } from "../../../src/types/beatmap"
 import { checkBeatmapObject } from "./beatmaps/check_beatmap"
 import { scoresTestSuite } from "./beatmaps/scores.test"
+import { OsuApiV2WebRequestError } from "../../../src/helpers/custom_errors"
+import {
+    checkOsuApiV2WebRequestError,
+    OsuApiV2WebRequestErrorType,
+} from "../../helper.test"
 
 export const beatmapsTestSuite = (): Suite =>
     describe("beatmaps", async () => {
@@ -23,6 +28,25 @@ export const beatmapsTestSuite = (): Suite =>
         })
 
         it("lookup", async () => {
+            // Check if the request throws an error when the access token is invalid
+            let errorInvalidAccessToken: OsuApiV2WebRequestError | null = null
+            try {
+                await osuApiV2.beatmaps.lookup(
+                    {
+                        access_token: "",
+                        expires_in: 100,
+                        token_type: "",
+                    },
+                    112385,
+                )
+            } catch (err) {
+                errorInvalidAccessToken = err
+            }
+            checkOsuApiV2WebRequestError(
+                errorInvalidAccessToken,
+                OsuApiV2WebRequestErrorType.UNAUTHORIZED,
+            )
+
             const beatmapRankedOsu = await osuApiV2.beatmaps.lookup(
                 oauthAccessToken,
                 3086537,
@@ -50,6 +74,18 @@ export const beatmapsTestSuite = (): Suite =>
                 checkGameMode: GameMode.osu,
                 checkRankedStatus: RankedStatus.loved,
             })
+
+            // Check if the request throws an error when the id is invalid
+            let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
+            try {
+                await osuApiV2.beatmaps.lookup(oauthAccessToken, -112385)
+            } catch (err) {
+                errorInvalidBeatmapId = err
+            }
+            checkOsuApiV2WebRequestError(
+                errorInvalidBeatmapId,
+                OsuApiV2WebRequestErrorType.NOT_FOUND,
+            )
         })
 
         scoresTestSuite()

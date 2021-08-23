@@ -3,6 +3,7 @@ import type { OAuthAccessToken } from "../types/oauth_access_token"
 
 import fetch from "node-fetch"
 import { baseUrl } from "../types/api_info"
+import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 
 export const clientCredentialsGrant = async (
     client_id: number,
@@ -22,10 +23,11 @@ export const clientCredentialsGrant = async (
             method: "post",
         })
         if (res.status !== 200) {
-            throw Error(
-                `Bad request (${res.status}, url=${res.url}, ${JSON.stringify(
-                    res,
-                )})`,
+            throw new OsuApiV2WebRequestError(
+                res.status,
+                res.statusText,
+                res.url,
+                `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
             )
         }
 

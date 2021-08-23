@@ -4,6 +4,7 @@ import { promises as fsp } from "fs"
 import path from "path"
 
 import { urlParameterGenerator } from "../src/helpers/url_parameter_generator"
+import { OsuApiV2WebRequestError } from "../src/helpers/custom_errors"
 
 export const saveOsuResponseObjectAsFile = async (
     fileName: string,
@@ -17,6 +18,36 @@ export const saveOsuResponseObjectAsFile = async (
     await fsp.writeFile(outputFile, JSON.stringify(jsonObject, undefined, 4), {
         encoding: "utf8",
     })
+}
+
+export enum OsuApiV2WebRequestErrorType {
+    NOT_FOUND,
+    UNAUTHORIZED,
+}
+
+export const checkOsuApiV2WebRequestError = (
+    error: OsuApiV2WebRequestError | null,
+    errorType?: OsuApiV2WebRequestErrorType,
+): void => {
+    expect(error).to.be.an("Error")
+    if (error == null) {
+        return
+    }
+    expect(error.statusCode).to.be.a("number")
+    expect(error.statusText).to.be.a("string")
+
+    switch (errorType) {
+        case OsuApiV2WebRequestErrorType.NOT_FOUND:
+            expect(error.statusCode).equal(404)
+            expect(error.statusText).equal("Not Found")
+            break
+        case OsuApiV2WebRequestErrorType.UNAUTHORIZED:
+            expect(error.statusCode).equal(401)
+            expect(error.statusText).equal("Unauthorized")
+            break
+        default:
+            break
+    }
 }
 
 describe("helper", async () => {

@@ -3,6 +3,7 @@ import type { OAuthAccessToken } from "../types/oauth_access_token"
 
 import fetch from "node-fetch"
 import { baseUrlApiV2 } from "../types/api_info"
+import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 
 export const lookup = async (
     oauthAccessToken: OAuthAccessToken,
@@ -18,10 +19,11 @@ export const lookup = async (
             method: "get",
         })
         if (res.status !== 200) {
-            throw Error(
-                `Bad request (${res.status}, url=${
-                    res.url
-                }, headers=${JSON.stringify(res.headers)})`,
+            throw new OsuApiV2WebRequestError(
+                res.status,
+                res.statusText,
+                res.url,
+                `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
             )
         }
 

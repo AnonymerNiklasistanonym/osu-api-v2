@@ -1,16 +1,16 @@
 export interface OAuthAccessToken {
     /**
-     * The type of token
-     *
-     * (this should always be Bearer for ClientCredentialsGrant)
+     * The access token
      */
-    token_type: string
+    access_token: string
     /**
      * The number of seconds the token will be valid for
      */
     expires_in: number
     /**
-     * The access token
+     * The type of token
+     *
+     * (this should always be Bearer for ClientCredentialsGrant)
      */
-    access_token: string
+     token_type: string
 }

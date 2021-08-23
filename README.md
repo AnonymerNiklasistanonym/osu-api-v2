@@ -572,6 +572,18 @@ Some test can be run without providing this information:
 npm run test-without-osu-api-v2
 ```
 
+#### Coverage
+
+To see which parts (branches and functions) of the code are covered by the tests you can run:
+
+```sh
+npm run nyc
+```
+
+This does the same thing as running `npm run test` but tracks the test coverage.
+
+You can see the results either in the console or by opening the created `./coverage/index.html` file.
+
 ### Linting and Formatting
 
 To format and lint the source code (and automatically fix fixable problems) run:

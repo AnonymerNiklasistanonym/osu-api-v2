@@ -1,10 +1,6 @@
 import { expect } from "chai"
 import moment from "moment"
-import {
-    Beatmap,
-    BeatmapsetCompactAvailability,
-    RankedStatus,
-} from "../../../../src/types/beatmap"
+import { Beatmap, RankedStatus } from "../../../../src/types/beatmap"
 import { GameMode } from "../../../../src/types/game_mode"
 import { saveOsuResponseObjectAsFile } from "../../../helper.test"
 import { checkBeatmapsetObject } from "./check_beatmapset"

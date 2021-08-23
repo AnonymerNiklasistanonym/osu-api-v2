@@ -1,7 +1,6 @@
 import { expect } from "chai"
 import {
     Beatmapset,
-    BeatmapsetCompact,
     BeatmapsetCompactAvailability,
     BeatmapsetCompactHype,
     BeatmapsetCompactNominationsSummary,
