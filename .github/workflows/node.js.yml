@@ -43,8 +43,8 @@ jobs:
     - name: Compile Typescript library to JavaScript with type definitions
       run: npm run build
     # Run tests using github secrets
-    - name: Verify tests (no osu-api-v2)
-      run: npm run test
+    - name: Verify tests and get coverage
+      run: npm run nyc
       env:
         OSU_OAUTH_CLIENT_ID: ${{ secrets.OSU_OAUTH_CLIENT_ID }}
         OSU_OAUTH_CLIENT_SECRET: ${{ secrets.OSU_OAUTH_CLIENT_SECRET }}

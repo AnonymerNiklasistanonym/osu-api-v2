@@ -443,7 +443,7 @@ const beatmapRankedOsu = await osuApiV2.beatmaps.lookup(
 
 ### `osuApiV2.beatmaps.scores`
 
-### `osuApiV2.beatmaps.scores.users()`
+#### `osuApiV2.beatmaps.scores.users()`
 
 
 ```ts
