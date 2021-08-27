@@ -39,7 +39,7 @@ export const beatmapsTestSuite = (): Suite =>
                     112385,
                 )
             } catch (err) {
-                errorInvalidAccessToken = err
+                errorInvalidAccessToken = err as OsuApiV2WebRequestError
             }
             checkOsuApiV2WebRequestError(
                 errorInvalidAccessToken,
@@ -79,7 +79,7 @@ export const beatmapsTestSuite = (): Suite =>
             try {
                 await osuApiV2.beatmaps.lookup(oauthAccessToken, -112385)
             } catch (err) {
-                errorInvalidBeatmapId = err
+                errorInvalidBeatmapId = err as OsuApiV2WebRequestError
             }
             checkOsuApiV2WebRequestError(
                 errorInvalidBeatmapId,

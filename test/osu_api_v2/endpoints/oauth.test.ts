@@ -29,7 +29,7 @@ export const oauthTestSuite = (): Suite =>
                     oauthCredentials.clientSecret,
                 )
             } catch (err) {
-                errorInvalidClientId = err
+                errorInvalidClientId = err as OsuApiV2WebRequestError
             }
             checkOsuApiV2WebRequestError(
                 errorInvalidClientId,
@@ -44,7 +44,7 @@ export const oauthTestSuite = (): Suite =>
                     "abc",
                 )
             } catch (err) {
-                errorInvalidClientSecret = err
+                errorInvalidClientSecret = err as OsuApiV2WebRequestError
             }
             checkOsuApiV2WebRequestError(
                 errorInvalidClientSecret,

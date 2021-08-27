@@ -39,7 +39,7 @@ export const scoresTestSuite = (): Suite =>
                     GameMode.osu,
                 )
             } catch (err) {
-                errorInvalidAccessToken = err
+                errorInvalidAccessToken = err as OsuApiV2WebRequestError
             }
             checkOsuApiV2WebRequestError(
                 errorInvalidAccessToken,
@@ -104,7 +104,7 @@ export const scoresTestSuite = (): Suite =>
                     GameMode.osu,
                 )
             } catch (err) {
-                errorInvalidBeatmapId = err
+                errorInvalidBeatmapId = err as OsuApiV2WebRequestError
             }
             checkOsuApiV2WebRequestError(
                 errorInvalidBeatmapId,
@@ -121,7 +121,7 @@ export const scoresTestSuite = (): Suite =>
                     GameMode.osu,
                 )
             } catch (err) {
-                errorInvalidUserId = err
+                errorInvalidUserId = err as OsuApiV2WebRequestError
             }
             checkOsuApiV2WebRequestError(
                 errorInvalidUserId,
