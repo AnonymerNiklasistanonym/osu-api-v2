@@ -1,5 +1,4 @@
 import type { Timestamp } from "./timestamp"
-
 import { GameMode } from "./game_mode"
 
 export interface UserCompactCover {

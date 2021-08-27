@@ -20,7 +20,7 @@ export const saveOsuResponseObjectAsFile = async (
     })
 }
 
-export enum OsuApiV2WebRequestErrorType {
+export const enum OsuApiV2WebRequestErrorType {
     NOT_FOUND,
     UNAUTHORIZED,
 }

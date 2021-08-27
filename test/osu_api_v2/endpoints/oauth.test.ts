@@ -1,10 +1,11 @@
 import { before, describe, it, Suite } from "mocha"
 import { expect } from "chai"
 
-import osuApiV2 from "../../../src/index"
-import { readOauthCredentials } from "../read_oauth_credentials"
-import type { OAuthCredentials } from "../read_oauth_credentials"
-import { OsuApiV2WebRequestError } from "../../../src/helpers/custom_errors"
+import osuApiV2, { OsuApiV2WebRequestError } from "../../../src/index"
+import {
+    OAuthCredentials,
+    readOauthCredentials,
+} from "../read_oauth_credentials"
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
@@ -60,5 +61,5 @@ export const oauthTestSuite = (): Suite =>
                 .with.a.lengthOf.greaterThan(0)
             expect(oauthAccessToken.token_type).to.equal("Bearer")
             expect(oauthAccessToken.expires_in).to.be.a("number").above(0)
-        })
+        }).timeout(8000)
     })

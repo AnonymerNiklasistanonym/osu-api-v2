@@ -5,7 +5,7 @@ import {
     BeatmapsetCompactHype,
     BeatmapsetCompactNominationsSummary,
     Covers,
-} from "../../../../src/types/beatmap"
+} from "../../../../src/index"
 import { saveOsuResponseObjectAsFile } from "../../../helper.test"
 import { checkBeatmapObject } from "./check_beatmap"
 

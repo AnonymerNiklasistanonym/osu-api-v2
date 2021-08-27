@@ -127,5 +127,5 @@ export const scoresTestSuite = (): Suite =>
                 errorInvalidUserId,
                 OsuApiV2WebRequestErrorType.NOT_FOUND,
             )
-        }).timeout(4000)
+        }).timeout(8000)
     })

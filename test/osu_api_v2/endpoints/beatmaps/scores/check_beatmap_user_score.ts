@@ -1,8 +1,11 @@
 import { expect } from "chai"
 import moment from "moment"
-import { GameMode } from "../../../../../src/types/game_mode"
-import { GameMods } from "../../../../../src/types/game_mods"
-import { BeatmapUserScore, Score } from "../../../../../src/types/score"
+import {
+    BeatmapUserScore,
+    GameMode,
+    GameMods,
+    Score,
+} from "../../../../../src/index"
 import { saveOsuResponseObjectAsFile } from "../../../../helper.test"
 import { checkBeatmapObject } from "../check_beatmap"
 

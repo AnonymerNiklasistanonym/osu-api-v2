@@ -1,13 +1,13 @@
 import { before, describe, it, Suite } from "mocha"
-
-import osuApiV2 from "../../../src/index"
+import osuApiV2, {
+    GameMode,
+    OAuthAccessToken,
+    RankedStatus,
+    OsuApiV2WebRequestError,
+} from "../../../src/index"
 import { readOauthCredentials } from "./../read_oauth_credentials"
-import { GameMode } from "../../../src/types/game_mode"
-import { OAuthAccessToken } from "../../../src/types/oauth_access_token"
-import { RankedStatus } from "../../../src/types/beatmap"
 import { checkBeatmapObject } from "./beatmaps/check_beatmap"
 import { scoresTestSuite } from "./beatmaps/scores.test"
-import { OsuApiV2WebRequestError } from "../../../src/helpers/custom_errors"
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
@@ -85,7 +85,7 @@ export const beatmapsTestSuite = (): Suite =>
                 errorInvalidBeatmapId,
                 OsuApiV2WebRequestErrorType.NOT_FOUND,
             )
-        }).timeout(4000)
+        }).timeout(8000)
 
         scoresTestSuite()
     })
