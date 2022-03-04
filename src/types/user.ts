@@ -49,6 +49,41 @@ export interface UserCompactCountry {
     name: string
 }
 
+export interface UserCompactStatisticsLevel {
+    current: number
+    progress: number
+}
+
+export interface UserCompactStatisticsGradeCounts {
+    ss: number
+    ssh: number
+    s: number
+    sh: number
+    a: number
+}
+
+export interface UserCompactStatisticsRank {
+    country: number
+}
+
+export interface UserCompactStatistics {
+    level: UserCompactStatisticsLevel
+    global_rank: number
+    pp: number
+    ranked_score: number
+    hit_accuracy: number
+    play_count: number
+    play_time: number
+    total_score: number
+    total_hits: number
+    maximum_combo: number
+    replays_watched_by_others: number
+    is_ranked: true
+    grade_counts: UserCompactStatisticsGradeCounts
+    country_rank: number
+    rank: UserCompactStatisticsRank
+}
+
 /**
  * Mainly used for embedding in certain responses to save additional api lookups.
  *
@@ -126,7 +161,7 @@ export interface UserCompactBase {
     scores_best_count?: number
     scores_first_count?: number
     scores_recent_count?: number
-    statistics?: unknown
+    statistics?: UserCompactStatistics
     statistics_rulesets: UserStatisticsRulesets
     support_level?: unknown
     unread_pm_count?: unknown
@@ -151,6 +186,11 @@ export interface UserCompact extends UserCompactBase {
 export interface UserCompactKusodo {
     available: number
     total: number
+}
+
+export interface UserCompactCountry {
+    name: string
+    code: string
 }
 
 /**
@@ -201,6 +241,6 @@ export interface User extends UserCompactBase {
     website?: string
 
     cover: UserCompactCover
-    country: unknown
+    country: UserCompactCountry
     is_restricted: boolean
 }
