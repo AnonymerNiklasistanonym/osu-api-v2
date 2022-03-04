@@ -3,6 +3,7 @@ import type { Timestamp } from "./timestamp"
 import type { User } from "./user"
 
 import { GameMode } from "./game_mode"
+import { Beatmapset } from ".."
 
 /**
  * https://osu.ppy.sh/docs/index.html#score
@@ -52,7 +53,7 @@ export interface Score {
     replay: boolean
     // Optional:
     beatmap?: Beatmap
-    //beatmapset?: unknown
+    beatmapset?: Beatmapset
     //rank_country?: unknown
     //rank_global?: unknown
     //weight?: unknown
