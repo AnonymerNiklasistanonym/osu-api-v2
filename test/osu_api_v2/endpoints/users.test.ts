@@ -1,6 +1,14 @@
 import { before, describe, it, Suite } from "mocha"
-import osuApiV2, { GameMode, OAuthAccessToken } from "../../../src/index"
+import osuApiV2, {
+    GameMode,
+    OAuthAccessToken,
+    OsuApiV2WebRequestError,
+} from "../../../src/index"
 import { ScoresType } from "../../../src/users/scores"
+import {
+    checkOsuApiV2WebRequestError,
+    OsuApiV2WebRequestErrorType,
+} from "../../helper.test"
 import { readOauthCredentials } from "../read_oauth_credentials"
 
 export const usersTestSuite = (): Suite =>
@@ -17,15 +25,54 @@ export const usersTestSuite = (): Suite =>
         })
 
         it("id", async () => {
+            // Check if the request throws an error when the id is invalid
+            let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
+            try {
+                await osuApiV2.users.id(oauthAccessToken, -9096716)
+            } catch (err) {
+                errorInvalidBeatmapId = err as OsuApiV2WebRequestError
+            }
+            checkOsuApiV2WebRequestError(
+                errorInvalidBeatmapId,
+                OsuApiV2WebRequestErrorType.NOT_FOUND,
+            )
+
             await osuApiV2.users.id(oauthAccessToken, 9096716)
             await osuApiV2.users.id(oauthAccessToken, 9096716, GameMode.osu)
             await osuApiV2.users.id(oauthAccessToken, 9096716, GameMode.mania)
         }).timeout(8000)
-        it("recent_activity", async () => {
+        it("recentActivity", async () => {
+            // Check if the request throws an error when the id is invalid
+            let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
+            try {
+                await osuApiV2.users.recentActivity(oauthAccessToken, -9096716)
+            } catch (err) {
+                errorInvalidBeatmapId = err as OsuApiV2WebRequestError
+            }
+            checkOsuApiV2WebRequestError(
+                errorInvalidBeatmapId,
+                OsuApiV2WebRequestErrorType.NOT_FOUND,
+            )
+
             await osuApiV2.users.recentActivity(oauthAccessToken, 9096716)
         }).timeout(8000)
-
         it("scores", async () => {
+            // Check if the request throws an error when the id is invalid
+            let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
+            try {
+                await osuApiV2.users.scores(
+                    oauthAccessToken,
+                    -9096716,
+                    ScoresType.Recent,
+                )
+            } catch (err) {
+                errorInvalidBeatmapId = err as OsuApiV2WebRequestError
+            }
+            checkOsuApiV2WebRequestError(
+                errorInvalidBeatmapId,
+                OsuApiV2WebRequestErrorType.NOT_FOUND,
+            )
+
             await osuApiV2.users.scores(
                 oauthAccessToken,
                 9096716,
