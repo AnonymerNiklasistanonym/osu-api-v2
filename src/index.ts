@@ -35,10 +35,12 @@ export { RankedStatus } from "./types/ranked_status"
 
 import { beatmaps } from "./beatmaps/beatmaps"
 import { oauth } from "./oauth/oauth"
+import { users } from "./users/users"
 
 const osuApiV2 = {
     beatmaps,
     oauth,
+    users,
 }
 
 // Typescript default export (import osuApiV2 from "osuApiV2")
