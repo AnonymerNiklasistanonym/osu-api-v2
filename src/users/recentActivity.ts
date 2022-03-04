@@ -1,5 +1,4 @@
 import type { OAuthAccessToken } from "../types/oauth_access_token"
-import type { UserCompact } from "../types/user"
 
 import fetch, { HeaderInit } from "node-fetch"
 import { baseUrlApiV2 } from "../types/api_info"
