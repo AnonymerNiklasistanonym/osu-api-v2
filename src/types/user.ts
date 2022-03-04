@@ -84,6 +84,11 @@ export interface UserCompactStatistics {
     rank: UserCompactStatisticsRank
 }
 
+export interface UserAchievement {
+    achieved_at: Timestamp
+    achievement_id: number
+}
+
 /**
  * Mainly used for embedding in certain responses to save additional api lookups.
  *
@@ -165,7 +170,7 @@ export interface UserCompactBase {
     statistics_rulesets: UserStatisticsRulesets
     support_level?: unknown
     unread_pm_count?: unknown
-    user_achievements?: unknown
+    user_achievements?: UserAchievement[]
     user_preferences?: unknown
 }
 
