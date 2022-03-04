@@ -1,5 +1,7 @@
 # osu-api-v2
 
+*UNOFFICIAL!*
+
 An easy way to use the [osu!api v2](https://osu.ppy.sh/docs/index.html).
 
 **Attention: This is only a prototype that is currently aimed at providing beatmap information for another project and *NOT* a complete implementation of this api!**
@@ -11,8 +13,12 @@ An easy way to use the [osu!api v2](https://osu.ppy.sh/docs/index.html).
 - [Endpoints](#endpoints)
   - [`osuApiV2.beatmaps`](#osuapiv2beatmaps)
     - [`osuApiV2.beatmaps.lookup()`](#osuapiv2beatmapslookup)
-  - [`osuApiV2.beatmaps.scores`](#osuapiv2beatmapsscores)
-    - [`osuApiV2.beatmaps.scores.users()`](#osuapiv2beatmapsscoresusers)
+    - [`osuApiV2.beatmaps.scores`](#osuapiv2beatmapsscores)
+      - [`osuApiV2.beatmaps.scores.users()`](#osuapiv2beatmapsscoresusers)
+  - [`osuApiV2.users`](#osuapiv2users)
+    - [`osuApiV2.users.id()`](#osuapiv2usersid)
+    - [`osuApiV2.users.recentActivity()`](#osuapiv2usersrecentactivity)
+    - [`osuApiV2.users.scores()`](#osuapiv2usersscores)
 - [Testing and Linting](#testing-and-linting)
   - [Testing](#testing)
     - [Coverage](#coverage)
@@ -50,7 +56,6 @@ You need to acquire a client ID and client secret to use the [osu!api v2](https:
 ```
 
 `index.js`:
-
 
 ```js
 const osuApiV2 = require("osu-api-v2").default
@@ -110,7 +115,6 @@ npm start
 
 `index.ts`:
 
-
 ```js
 import osuApiV2 from "osu-api-v2"
 
@@ -137,7 +141,7 @@ npm start
 #### `osuApiV2.beatmaps.lookup()`
 
 ```ts
-const beatmapRankedOsu = await osuApiV2.beatmaps.lookup(
+const beatmap = await osuApiV2.beatmaps.lookup(
     oauthAccessToken,
     112385,
 )
@@ -442,13 +446,12 @@ const beatmapRankedOsu = await osuApiV2.beatmaps.lookup(
 }
 ```
 
-### `osuApiV2.beatmaps.scores`
+#### `osuApiV2.beatmaps.scores`
 
-#### `osuApiV2.beatmaps.scores.users()`
-
+##### `osuApiV2.beatmaps.scores.users()`
 
 ```ts
-const beatmapUserScore2 = await osuApiV2.beatmaps.scores.users(
+const beatmapScoreOfUser = await osuApiV2.beatmaps.scores.users(
     oauthAccessToken,
     744305,
     18508852,
@@ -543,6 +546,374 @@ const beatmapUserScore2 = await osuApiV2.beatmaps.scores.users(
 }
 ```
 
+### `osuApiV2.users`
+
+#### `osuApiV2.users.id()`
+
+```ts
+const user = await osuApiV2.users.id(
+    oauthAccessToken,
+    18508852,
+)
+```
+
+```json
+{
+  avatar_url: 'https://a.ppy.sh/18508852?1645894068.jpeg',
+  country_code: 'DE',
+  default_group: 'default',
+  id: 18508852,
+  is_active: true,
+  is_bot: false,
+  is_deleted: false,
+  is_online: false,
+  is_supporter: true,
+  last_visit: null,
+  pm_friends_only: false,
+  profile_colour: null,
+  username: 'niklas616',
+  cover_url: 'https://osu.ppy.sh/images/headers/profile-covers/c6.jpg',
+  discord: null,
+  has_supported: true,
+  interests: 'you',
+  join_date: '2020-09-14T06:21:20+00:00',
+  kudosu: { total: 0, available: 0 },
+  location: 'Baden-Württemberg',
+  max_blocks: 100,
+  max_friends: 500,
+  occupation: 'making the world cute',
+  playmode: 'osu',
+  playstyle: [ 'mouse', 'keyboard' ],
+  post_count: 0,
+  profile_order: [
+    'me',
+    'recent_activity',
+    'historical',
+    'beatmaps',
+    'top_ranks',
+    'medals',
+    'kudosu'
+  ],
+  title: null,
+  title_url: null,
+  twitter: null,
+  website: null,
+  country: { code: 'DE', name: 'Germany' },
+  cover: {
+    custom_url: 'https://assets.ppy.sh/user-profile-covers/18508852/3df97ae511407a7ee96204b2d602edb6b2bd1f5f94c5d9ee89d468c4aae4cab4.jpeg',
+    url: 'https://osu.ppy.sh/images/headers/profile-covers/c6.jpg',
+    id: '6'
+  },
+  account_history: [],
+  active_tournament_banner: null,
+  badges: [],
+  beatmap_playcounts_count: 4898,
+  comments_count: 5,
+  favourite_beatmapset_count: 290,
+  follower_count: 54,
+  graveyard_beatmapset_count: 0,
+  groups: [],
+  loved_beatmapset_count: 0,
+  mapping_follower_count: 2,
+  monthly_playcounts: [
+    { start_date: '2020-12-01', count: 655 },
+    { start_date: '2021-01-01', count: 2237 },
+    { start_date: '2021-02-01', count: 1668 },
+    { start_date: '2021-03-01', count: 1581 },
+    { start_date: '2021-04-01', count: 2149 },
+    { start_date: '2021-05-01', count: 2150 },
+    { start_date: '2021-06-01', count: 1458 },
+    { start_date: '2021-07-01', count: 2728 },
+    { start_date: '2021-08-01', count: 2275 },
+    { start_date: '2021-09-01', count: 1151 },
+    { start_date: '2021-10-01', count: 1113 },
+    { start_date: '2021-11-01', count: 912 },
+    { start_date: '2021-12-01', count: 2022 },
+    { start_date: '2022-01-01', count: 3853 },
+    { start_date: '2022-02-01', count: 2388 }
+  ],
+  page: {
+    html: '<div class....',
+    raw: '...'
+  },
+  pending_beatmapset_count: 0,
+  previous_usernames: [],
+  ranked_beatmapset_count: 0,
+  replays_watched_counts: [
+    { start_date: '2021-03-01', count: 1 },
+    { start_date: '2021-05-01', count: 2 },
+    { start_date: '2021-07-01', count: 3 },
+    { start_date: '2021-08-01', count: 3 },
+    { start_date: '2021-10-01', count: 1 },
+    { start_date: '2021-12-01', count: 2 },
+    { start_date: '2022-02-01', count: 2 }
+  ],
+  scores_best_count: 100,
+  scores_first_count: 0,
+  scores_pinned_count: 6,
+  scores_recent_count: 0,
+  statistics: {
+    level: { current: 100, progress: 17 },
+    global_rank: 185405,
+    pp: 2871.9,
+    ranked_score: 16110251737,
+    hit_accuracy: 98.7294,
+    play_count: 27931,
+    play_time: 2132125,
+    total_score: 44643804191,
+    total_hits: 5537643,
+    maximum_combo: 2860,
+    replays_watched_by_others: 14,
+    is_ranked: true,
+    grade_counts: { ss: 73, ssh: 659, s: 1397, sh: 928, a: 475 },
+    country_rank: 10160,
+    rank: { country: 10160 }
+  },
+  support_level: 2,
+  user_achievements: [
+    { achieved_at: '2022-02-23T22:53:18+00:00', achievement_id: 60 },
+    { achieved_at: '2022-01-26T18:35:56+00:00', achievement_id: 22 },
+    { achieved_at: '2022-01-21T16:25:44+00:00', achievement_id: 134 },
+    { achieved_at: '2020-12-17T21:07:37+00:00', achievement_id: 57 }
+  ],
+  rankHistory: {
+    mode: 'osu',
+    data: [
+      186527, 186692, 186907, 187165, 187338, 187516, 187756,
+      187422, 185809, 185997, 185365, 185597, 185809, 186045,
+      186269, 186447, 186647, 186856, 186965, 187190, 187314,
+      187560, 186361, 186534, 186755, 186909, 187081, 187289,
+      186141, 186324, 186416, 186589, 186718, 186843, 186657,
+      186767, 186324, 186409, 186565, 186756, 186922, 187135,
+      187356, 185432, 185501, 185662, 184621, 184784, 184951,
+      185069, 185214, 185281, 185411, 185154, 185233, 185043,
+      185074, 185253, 185456, 185597, 184610, 184725, 184891,
+      185092, 185201, 184652, 184793, 184966, 185108, 185302,
+      185510, 185682, 185830, 185987, 186178, 186343, 186520,
+      186594, 185536, 185685, 185843, 185043, 185134, 185274,
+      184648, 184784, 184917, 185076, 185230, 185405
+    ]
+  },
+  rank_history: {
+    mode: 'osu',
+    data: [
+      186527, 186692, 186907, 187165, 187338, 187516, 187756,
+      187422, 185809, 185997, 185365, 185597, 185809, 186045,
+      186269, 186447, 186647, 186856, 186965, 187190, 187314,
+      187560, 186361, 186534, 186755, 186909, 187081, 187289,
+      186141, 186324, 186416, 186589, 186718, 186843, 186657,
+      186767, 186324, 186409, 186565, 186756, 186922, 187135,
+      187356, 185432, 185501, 185662, 184621, 184784, 184951,
+      185069, 185214, 185281, 185411, 185154, 185233, 185043,
+      185074, 185253, 185456, 185597, 184610, 184725, 184891,
+      185092, 185201, 184652, 184793, 184966, 185108, 185302,
+      185510, 185682, 185830, 185987, 186178, 186343, 186520,
+      186594, 185536, 185685, 185843, 185043, 185134, 185274,
+      184648, 184784, 184917, 185076, 185230, 185405
+    ]
+  },
+  ranked_and_approved_beatmapset_count: 0,
+  unranked_beatmapset_count: 0
+}
+```
+
+#### `osuApiV2.users.scores()`
+
+```ts
+const recent2ScoresWithFails = await osuApiV2.users.scores(
+    oauthAccessToken,
+    9096716,
+    ScoresType.Recent,
+    GameMode.osu,
+    2,
+    0,
+    true,
+)
+```
+
+```json
+[
+  {
+    id: 19641312990,
+    user_id: 9096716,
+    accuracy: 0.9367816091954023,
+    mods: [ 'HD', 'NC' ],
+    score: 138805,
+    max_combo: 78,
+    passed: false,
+    perfect: false,
+    statistics: {
+      count_50: 0,
+      count_100: 1,
+      count_300: 54,
+      count_geki: 11,
+      count_katu: 1,
+      count_miss: 3
+    },
+    rank: 'F',
+    created_at: '2022-03-04T05:02:09+00:00',
+    best_id: null,
+    pp: null,
+    mode: 'osu',
+    mode_int: 0,
+    replay: false,
+    current_user_attributes: { pin: null },
+    beatmap: {
+      beatmapset_id: 1244123,
+      difficulty_rating: 5.09,
+      id: 2587891,
+      mode: 'osu',
+      status: 'ranked',
+      total_length: 108,
+      user_id: 4378277,
+      version: "browiec's Extra",
+      accuracy: 8.6,
+      ar: 9,
+      bpm: 175.4,
+      convert: false,
+      count_circles: 252,
+      count_sliders: 142,
+      count_spinners: 1,
+      cs: 3,
+      deleted_at: null,
+      drain: 5.2,
+      hit_length: 107,
+      is_scoreable: true,
+      last_updated: '2020-08-27T22:27:03+00:00',
+      mode_int: 0,
+      passcount: 188761,
+      playcount: 1816723,
+      ranked: 1,
+      url: 'https://osu.ppy.sh/beatmaps/2587891',
+      checksum: '896ee6e6ecd52efa5d6624fbe2b2a1e1'
+    },
+    beatmapset: {
+      artist: 'chano & 40mP',
+      artist_unicode: 'シャノ & 40mP',
+      covers: [Object],
+      creator: 'Log Off Now',
+      favourite_count: 809,
+      hype: null,
+      id: 1244123,
+      nsfw: false,
+      play_count: 5147556,
+      preview_url: '//b.ppy.sh/preview/1244123.mp3',
+      source: '',
+      status: 'ranked',
+      title: 'Natsukoi Hanabi (Sped Up Ver.)',
+      title_unicode: '夏恋花火 (Sped Up Ver.)',
+      track_id: null,
+      user_id: 4378277,
+      video: false
+    },
+    user: {
+      avatar_url: 'https://a.ppy.sh/9096716?1645156821.png',
+      country_code: 'US',
+      default_group: 'default',
+      id: 9096716,
+      is_active: true,
+      is_bot: false,
+      is_deleted: false,
+      is_online: false,
+      is_supporter: true,
+      last_visit: null,
+      pm_friends_only: false,
+      profile_colour: null,
+      username: 'Ooi'
+    }
+  },
+  {
+    id: 19641311692,
+    user_id: 9096716,
+    accuracy: 0.9617486338797814,
+    mods: [ 'HD', 'NC' ],
+    score: 147663,
+    max_combo: 80,
+    passed: false,
+    perfect: false,
+    statistics: {
+      count_50: 0,
+      count_100: 2,
+      count_300: 58,
+      count_geki: 14,
+      count_katu: 1,
+      count_miss: 1
+    },
+    rank: 'F',
+    created_at: '2022-03-04T05:01:55+00:00',
+    best_id: null,
+    pp: null,
+    mode: 'osu',
+    mode_int: 0,
+    replay: false,
+    current_user_attributes: { pin: null },
+    beatmap: {
+      beatmapset_id: 1244123,
+      difficulty_rating: 5.09,
+      id: 2587891,
+      mode: 'osu',
+      status: 'ranked',
+      total_length: 108,
+      user_id: 4378277,
+      version: "browiec's Extra",
+      accuracy: 8.6,
+      ar: 9,
+      bpm: 175.4,
+      convert: false,
+      count_circles: 252,
+      count_sliders: 142,
+      count_spinners: 1,
+      cs: 3,
+      deleted_at: null,
+      drain: 5.2,
+      hit_length: 107,
+      is_scoreable: true,
+      last_updated: '2020-08-27T22:27:03+00:00',
+      mode_int: 0,
+      passcount: 188761,
+      playcount: 1816723,
+      ranked: 1,
+      url: 'https://osu.ppy.sh/beatmaps/2587891',
+      checksum: '896ee6e6ecd52efa5d6624fbe2b2a1e1'
+    },
+    beatmapset: {
+      artist: 'chano & 40mP',
+      artist_unicode: 'シャノ & 40mP',
+      covers: [Object],
+      creator: 'Log Off Now',
+      favourite_count: 809,
+      hype: null,
+      id: 1244123,
+      nsfw: false,
+      play_count: 5147556,
+      preview_url: '//b.ppy.sh/preview/1244123.mp3',
+      source: '',
+      status: 'ranked',
+      title: 'Natsukoi Hanabi (Sped Up Ver.)',
+      title_unicode: '夏恋花火 (Sped Up Ver.)',
+      track_id: null,
+      user_id: 4378277,
+      video: false
+    },
+    user: {
+      avatar_url: 'https://a.ppy.sh/9096716?1645156821.png',
+      country_code: 'US',
+      default_group: 'default',
+      id: 9096716,
+      is_active: true,
+      is_bot: false,
+      is_deleted: false,
+      is_online: false,
+      is_supporter: true,
+      last_visit: null,
+      pm_friends_only: false,
+      profile_colour: null,
+      username: 'Ooi'
+    }
+  }
+]
+```
+
 ## Testing and Linting
 
 ### Testing
@@ -553,21 +924,19 @@ To run the existing tests you need to create/provide a file `authentication.secr
 
 ```json
 {
-	"$schema": "./authentication.schema.json",
-	"osuOAuthClientId": 1234,
-	"osuOAuthClientSecret": "YourClientSecret"
+    "$schema": "./authentication.schema.json",
+    "osuOAuthClientId": 1234,
+    "osuOAuthClientSecret": "YourClientSecret"
 }
 ```
 
 Then you can run:
-
 
 ```sh
 npm run test
 ```
 
 Some test can be run without providing this information:
-
 
 ```sh
 npm run test-without-osu-api-v2
