@@ -1,5 +1,6 @@
 import { before, describe, it, Suite } from "mocha"
 import osuApiV2, { GameMode, OAuthAccessToken } from "../../../src/index"
+import { ScoresType } from "../../../src/users/scores"
 import { readOauthCredentials } from "../read_oauth_credentials"
 
 export const usersTestSuite = (): Suite =>
@@ -22,5 +23,41 @@ export const usersTestSuite = (): Suite =>
         }).timeout(8000)
         it("recent_activity", async () => {
             await osuApiV2.users.recentActivity(oauthAccessToken, 9096716)
+        }).timeout(8000)
+
+        it("scores", async () => {
+            await osuApiV2.users.scores(
+                oauthAccessToken,
+                9096716,
+                ScoresType.Recent,
+            )
+            await osuApiV2.users.scores(
+                oauthAccessToken,
+                9096716,
+                ScoresType.Best,
+            )
+            await osuApiV2.users.scores(
+                oauthAccessToken,
+                9096716,
+                ScoresType.FirstPlace,
+            )
+            await osuApiV2.users.scores(
+                oauthAccessToken,
+                9096716,
+                ScoresType.Recent,
+                GameMode.osu,
+                3,
+                0,
+                true,
+            )
+            await osuApiV2.users.scores(
+                oauthAccessToken,
+                9096716,
+                ScoresType.Recent,
+                undefined,
+                undefined,
+                undefined,
+                false,
+            )
         }).timeout(8000)
     })
