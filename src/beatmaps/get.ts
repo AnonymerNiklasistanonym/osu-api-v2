@@ -3,20 +3,12 @@ import type { OAuthAccessToken } from "../types/oauth_access_token"
 
 import fetch, { HeaderInit } from "node-fetch"
 import { baseUrlApiV2 } from "../types/api_info"
-import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 
-export const lookup = async (
+export const get = async (
     oauthAccessToken: OAuthAccessToken,
-    checksum?: string,
-    filename?: string,
-    id?: number,
+    beatmapId: number,
 ): Promise<Beatmap> => {
-    const params = urlParameterGenerator([
-        { name: "checksum", value: checksum },
-        { name: "filename", value: filename },
-        { name: "id", value: id !== undefined ? `${id}` : undefined },
-    ])
     const method = "get"
     const headers: HeaderInit = {
         Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
@@ -24,7 +16,7 @@ export const lookup = async (
     }
     // eslint-disable-next-line no-useless-catch
     try {
-        const res = await fetch(`${baseUrlApiV2}/beatmaps/lookup${params}`, {
+        const res = await fetch(`${baseUrlApiV2}/beatmaps/${beatmapId}`, {
             headers,
             method,
         })

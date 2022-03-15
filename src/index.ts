@@ -34,11 +34,13 @@ export { GameMods } from "./types/game_mods"
 export { RankedStatus } from "./types/ranked_status"
 
 import { beatmaps } from "./beatmaps/beatmaps"
+import { beatmapsets } from "./beatmapsets/beatmapsets"
 import { oauth } from "./oauth/oauth"
 import { users } from "./users/users"
 
 const osuApiV2 = {
     beatmaps,
+    beatmapsets,
     oauth,
     users,
 }

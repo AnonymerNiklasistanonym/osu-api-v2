@@ -1,20 +1,16 @@
 import { before, describe, it, Suite } from "mocha"
 import osuApiV2, {
-    GameMode,
     OAuthAccessToken,
-    RankedStatus,
     OsuApiV2WebRequestError,
 } from "../../../src/index"
-import { readOauthCredentials } from "./../read_oauth_credentials"
-import { checkBeatmapObject } from "./beatmaps/check_beatmap"
-import { scoresTestSuite } from "./beatmaps/scores.test"
+import { readOauthCredentials } from "../read_oauth_credentials"
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
 } from "../../helper.test"
 
-export const beatmapsTestSuite = (): Suite =>
-    describe("beatmaps", async () => {
+export const beatmapsetsTestSuite = (): Suite =>
+    describe("beatmapsets", async () => {
         let oauthAccessToken: OAuthAccessToken
 
         before("before all test cases", async () => {
@@ -30,13 +26,13 @@ export const beatmapsTestSuite = (): Suite =>
             // Check if the request throws an error when the access token is invalid
             let errorInvalidAccessToken: OsuApiV2WebRequestError | null = null
             try {
-                await osuApiV2.beatmaps.get(
+                await osuApiV2.beatmapsets.get(
                     {
                         access_token: "",
                         expires_in: 100,
                         token_type: "",
                     },
-                    112385,
+                    1196347,
                 )
             } catch (err) {
                 errorInvalidAccessToken = err as OsuApiV2WebRequestError
@@ -46,38 +42,44 @@ export const beatmapsTestSuite = (): Suite =>
                 OsuApiV2WebRequestErrorType.UNAUTHORIZED,
             )
 
-            const beatmapRankedOsu = await osuApiV2.beatmaps.get(
+            /*const beatmapRankedOsu =*/ await osuApiV2.beatmapsets.get(
                 oauthAccessToken,
-                3086537,
+                1196347,
             )
+            /*
             checkBeatmapObject(beatmapRankedOsu, {
                 checkBeatmapId: 3086537,
                 checkGameMode: GameMode.osu,
                 checkRankedStatus: RankedStatus.ranked,
             })
-            const beatmapGraveyardOsu = await osuApiV2.beatmaps.get(
+            */
+            /*const beatmapGraveyardOsu =*/ await osuApiV2.beatmapsets.get(
                 oauthAccessToken,
-                1718102,
+                819456,
             )
+            /*
             checkBeatmapObject(beatmapGraveyardOsu, {
                 checkBeatmapId: 1718102,
                 checkGameMode: GameMode.osu,
                 checkRankedStatus: RankedStatus.graveyard,
             })
-            const beatmapLovedOsu = await osuApiV2.beatmaps.get(
+            */
+            /*const beatmapLovedOsu =*/ await osuApiV2.beatmapsets.get(
                 oauthAccessToken,
-                112385,
+                34256,
             )
+            /*
             checkBeatmapObject(beatmapLovedOsu, {
                 checkBeatmapId: 112385,
                 checkGameMode: GameMode.osu,
                 checkRankedStatus: RankedStatus.loved,
             })
+            */
 
             // Check if the request throws an error when the id is invalid
             let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
             try {
-                await osuApiV2.beatmaps.get(oauthAccessToken, -112385)
+                await osuApiV2.beatmapsets.get(oauthAccessToken, -112385)
             } catch (err) {
                 errorInvalidBeatmapId = err as OsuApiV2WebRequestError
             }
@@ -87,19 +89,17 @@ export const beatmapsTestSuite = (): Suite =>
             )
         }).timeout(8000)
 
-        it("lookup", async () => {
+        it("search", async () => {
             // Check if the request throws an error when the access token is invalid
             let errorInvalidAccessToken: OsuApiV2WebRequestError | null = null
             try {
-                await osuApiV2.beatmaps.lookup(
+                await osuApiV2.beatmapsets.search(
                     {
                         access_token: "",
                         expires_in: 100,
                         token_type: "",
                     },
-                    undefined,
-                    undefined,
-                    112385,
+                    "Nekojarashi",
                 )
             } catch (err) {
                 errorInvalidAccessToken = err as OsuApiV2WebRequestError
@@ -109,57 +109,20 @@ export const beatmapsTestSuite = (): Suite =>
                 OsuApiV2WebRequestErrorType.UNAUTHORIZED,
             )
 
-            const beatmapRankedOsu = await osuApiV2.beatmaps.lookup(
+            /*const beatmapsetRankedOsu =*/ await osuApiV2.beatmapsets.search(
                 oauthAccessToken,
-                undefined,
-                undefined,
-                3086537,
+                "Nekojarashi",
             )
-            checkBeatmapObject(beatmapRankedOsu, {
-                checkBeatmapId: 3086537,
-                checkGameMode: GameMode.osu,
-                checkRankedStatus: RankedStatus.ranked,
-            })
-            const beatmapGraveyardOsuId = await osuApiV2.beatmaps.lookup(
-                oauthAccessToken,
-                undefined,
-                undefined,
-                1718102,
-            )
-            checkBeatmapObject(beatmapGraveyardOsuId, {
-                checkBeatmapId: 1718102,
-                checkGameMode: GameMode.osu,
-                checkRankedStatus: RankedStatus.graveyard,
-            })
-            const beatmapLovedOsuId = await osuApiV2.beatmaps.lookup(
-                oauthAccessToken,
-                undefined,
-                undefined,
-                112385,
-            )
-            checkBeatmapObject(beatmapLovedOsuId, {
-                checkBeatmapId: 112385,
-                checkGameMode: GameMode.osu,
-                checkRankedStatus: RankedStatus.loved,
-            })
+            /*
+            console.log(beatmapsetRankedOsu)
+            */
 
-            // Check if the request throws an error when the id is invalid
-            let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
-            try {
-                await osuApiV2.beatmaps.lookup(
-                    oauthAccessToken,
-                    undefined,
-                    undefined,
-                    -112385,
-                )
-            } catch (err) {
-                errorInvalidBeatmapId = err as OsuApiV2WebRequestError
-            }
-            checkOsuApiV2WebRequestError(
-                errorInvalidBeatmapId,
-                OsuApiV2WebRequestErrorType.NOT_FOUND,
+            /*const beatmapsetRankedOsu2 =*/ await osuApiV2.beatmapsets.search(
+                oauthAccessToken,
+                "Singularity - Au5",
             )
+            /*
+            console.log(beatmapsetRankedOsu2)
+            */
         }).timeout(8000)
-
-        scoresTestSuite()
     })
