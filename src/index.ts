@@ -35,6 +35,7 @@ export { RankedStatus } from "./types/ranked_status"
 
 import { beatmaps } from "./beatmaps/beatmaps"
 import { beatmapsets } from "./beatmapsets/beatmapsets"
+import { search } from "./search/search"
 import { oauth } from "./oauth/oauth"
 import { users } from "./users/users"
 
@@ -42,6 +43,7 @@ const osuApiV2 = {
     beatmaps,
     beatmapsets,
     oauth,
+    search,
     users,
 }
 
