@@ -13,8 +13,15 @@ export interface BeatmapsetSearchResult {
 export const search = async (
     oauthAccessToken: OAuthAccessToken,
     query: string,
+    onlyBeatmapsetWithLeaderboard = true,
 ): Promise<BeatmapsetSearchResult> => {
-    const params = urlParameterGenerator([{ name: "query", value: query }])
+    const params = urlParameterGenerator([
+        { name: "query", value: query },
+        {
+            name: "s",
+            value: onlyBeatmapsetWithLeaderboard === false ? "any" : undefined,
+        },
+    ])
     const method = "get"
     const headers: HeaderInit = {
         Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
