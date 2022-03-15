@@ -7,7 +7,7 @@ import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 
 export interface UserSearchResult {
-    users: UserSearchResultUserSection
+    user: UserSearchResultUserSection
 }
 
 export interface UserSearchResultUserSection {
