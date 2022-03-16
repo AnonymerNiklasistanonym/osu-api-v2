@@ -226,7 +226,7 @@ export interface User extends UserCompactBase {
     /**
      * Device choices of the user
      */
-    playstyle: string[]
+    playstyle: null | string[]
     /**
      * number of forum posts
      *
