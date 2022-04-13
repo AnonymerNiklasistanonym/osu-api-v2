@@ -1,7 +1,7 @@
 import type { OAuthAccessToken } from "../../../types/oauth_access_token"
 import type { BeatmapUserScore } from "../../../types/score"
 
-import fetch, { HeaderInit } from "node-fetch"
+import fetch, { HeadersInit } from "node-fetch"
 import { baseUrlApiV2 } from "../../../types/api_info"
 import { GameMode } from "../../../types/game_mode"
 import { urlParameterGenerator } from "../../../helpers/url_parameter_generator"
@@ -22,7 +22,7 @@ export const users = async (
         { name: "mods", value: mods },
     ])
     const method = "get"
-    const headers: HeaderInit = {
+    const headers: HeadersInit = {
         Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
         "Content-Type": "application/json",
     }
@@ -46,7 +46,7 @@ export const users = async (
             )
         }
 
-        const beatmapUserScore: BeatmapUserScore = await res.json()
+        const beatmapUserScore = (await res.json()) as BeatmapUserScore
         return beatmapUserScore
     } catch (err) {
         throw err

@@ -37,7 +37,7 @@ export const clientCredentialsGrant = async (
             )
         }
 
-        const oauthAccessToken: OAuthAccessToken = await res.json()
+        const oauthAccessToken = (await res.json()) as OAuthAccessToken
         return oauthAccessToken
     } catch (err) {
         throw err

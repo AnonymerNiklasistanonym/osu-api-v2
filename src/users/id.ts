@@ -1,7 +1,7 @@
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 import type { User } from "../types/user"
 
-import fetch, { HeaderInit } from "node-fetch"
+import fetch, { HeadersInit } from "node-fetch"
 import { baseUrlApiV2 } from "../types/api_info"
 import { GameMode } from "../types/game_mode"
 import { urlParameterGenerator } from "../helpers/url_parameter_generator"
@@ -19,7 +19,7 @@ export const id = async (
         },
     ])
     const method = "get"
-    const headers: HeaderInit = {
+    const headers: HeadersInit = {
         Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
         "Content-Type": "application/json",
     }
@@ -40,7 +40,7 @@ export const id = async (
             )
         }
 
-        const user: User = await res.json()
+        const user = (await res.json()) as User
         return user
     } catch (err) {
         throw err

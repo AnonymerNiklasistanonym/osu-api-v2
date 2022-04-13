@@ -1,7 +1,7 @@
 import type { User } from "../types/user"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 
-import fetch, { HeaderInit } from "node-fetch"
+import fetch, { HeadersInit } from "node-fetch"
 import { baseUrlApiV2 } from "../types/api_info"
 import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
@@ -24,7 +24,7 @@ export const user = async (
         { name: "query", value: query },
     ])
     const method = "get"
-    const headers: HeaderInit = {
+    const headers: HeadersInit = {
         Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
         "Content-Type": "application/json",
     }
@@ -45,7 +45,7 @@ export const user = async (
             )
         }
 
-        const userSearchResult: UserSearchResult = await res.json()
+        const userSearchResult = (await res.json()) as UserSearchResult
         return userSearchResult
     } catch (err) {
         throw err

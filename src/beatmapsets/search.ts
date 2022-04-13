@@ -1,7 +1,7 @@
 import type { Beatmapset } from "../types/beatmap"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 
-import fetch, { HeaderInit } from "node-fetch"
+import fetch, { HeadersInit } from "node-fetch"
 import { baseUrlApiV2 } from "../types/api_info"
 import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
@@ -23,7 +23,7 @@ export const search = async (
         },
     ])
     const method = "get"
-    const headers: HeaderInit = {
+    const headers: HeadersInit = {
         Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
         "Content-Type": "application/json",
     }
@@ -47,7 +47,8 @@ export const search = async (
             )
         }
 
-        const beatmapsetSearchResult: BeatmapsetSearchResult = await res.json()
+        const beatmapsetSearchResult =
+            (await res.json()) as BeatmapsetSearchResult
         return beatmapsetSearchResult
     } catch (err) {
         throw err

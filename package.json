@@ -57,6 +57,6 @@
     },
     "homepage": "https://github.com/AnonymerNiklasistanonym/osu-api-v2#readme",
     "dependencies": {
-        "node-fetch": "^2.6.1"
+        "node-fetch": "^2.6.7"
     }
 }

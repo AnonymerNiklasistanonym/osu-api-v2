@@ -1,7 +1,7 @@
 import type { Beatmapset } from "../types/beatmap"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 
-import fetch, { HeaderInit } from "node-fetch"
+import fetch, { HeadersInit } from "node-fetch"
 import { baseUrlApiV2 } from "../types/api_info"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 
@@ -10,7 +10,7 @@ export const get = async (
     beatmapsetId: number,
 ): Promise<Beatmapset> => {
     const method = "get"
-    const headers: HeaderInit = {
+    const headers: HeadersInit = {
         Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
         "Content-Type": "application/json",
     }
@@ -31,7 +31,7 @@ export const get = async (
             )
         }
 
-        const beatmapset: Beatmapset = await res.json()
+        const beatmapset = (await res.json()) as Beatmapset
         return beatmapset
     } catch (err) {
         throw err
