@@ -1,11 +1,13 @@
 import type { OAuthAccessToken } from "../types/oauth_access_token"
+import type { Fetch } from "../types/fetch"
 import type { User } from "../types/user"
 
-import fetch, { HeadersInit } from "node-fetch"
 import { baseUrlApiV2 } from "../types/api_info"
 import { GameMode } from "../types/game_mode"
 import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
+
+declare const fetch: Fetch
 
 export const id = async (
     oauthAccessToken: OAuthAccessToken,
@@ -19,7 +21,7 @@ export const id = async (
         },
     ])
     const method = "get"
-    const headers: HeadersInit = {
+    const headers = {
         Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
         "Content-Type": "application/json",
     }

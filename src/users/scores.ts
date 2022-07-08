@@ -1,10 +1,13 @@
 import type { OAuthAccessToken } from "../types/oauth_access_token"
+import type { Fetch } from "../types/fetch"
+import type { Score } from ".."
 
-import fetch, { HeadersInit } from "node-fetch"
 import { baseUrlApiV2 } from "../types/api_info"
 import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
-import { GameMode, Score } from ".."
+import { GameMode } from ".."
+
+declare const fetch: Fetch
 
 export enum ScoresType {
     Recent = "recent",
@@ -45,7 +48,7 @@ export const scores = async (
         },
     ])
     const method = "get"
-    const headers: HeadersInit = {
+    const headers = {
         Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
         "Content-Type": "application/json",
     }

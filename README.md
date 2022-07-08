@@ -6,6 +6,8 @@ An easy way to use the [osu!api v2](https://osu.ppy.sh/docs/index.html).
 
 **Attention: This is only a prototype that is currently aimed at providing beatmap information for another project and *NOT* a complete implementation of this api!**
 
+ALSO: This package after version v0.0.18 makes use of a native fetch implementation which is for example provided by nodejs [since version v17.5.0 experimentally](https://nodejs.org/tr/blog/release/v17.5.0/).
+
 - [Getting started](#getting-started)
   - [Acquire osu! OAuth credentials](#acquire-osu-oauth-credentials)
   - [Use it in a Node.js project](#use-it-in-a-nodejs-project)
