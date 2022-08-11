@@ -29,6 +29,7 @@ export type {
 } from "./types/user"
 export type { OsuApiV2WebRequestError } from "./helpers/custom_errors"
 
+export { ScoresType } from "./users/scores"
 export { GameMode } from "./types/game_mode"
 export { GameMods } from "./types/game_mods"
 export { RankedStatus } from "./types/ranked_status"
