@@ -6,9 +6,9 @@ name: Node.js CI
 
 # When is the workflow executed:
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events for specified branches
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
   pull_request:
     branches: [ main ]
   # This allows to manually trigger the workflow from the Actions tab ON GitHub
