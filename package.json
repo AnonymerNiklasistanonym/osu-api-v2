@@ -54,5 +54,8 @@
     "bugs": {
         "url": "https://github.com/AnonymerNiklasistanonym/osu-api-v2/issues"
     },
-    "homepage": "https://github.com/AnonymerNiklasistanonym/osu-api-v2#readme"
+    "homepage": "https://github.com/AnonymerNiklasistanonym/osu-api-v2#readme",
+    "dependencies": {
+        "isomorphic-fetch": "^3.0.0"
+    }
 }
