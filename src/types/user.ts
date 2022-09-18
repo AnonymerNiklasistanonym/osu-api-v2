@@ -1,5 +1,5 @@
 import type { Timestamp } from "./timestamp"
-import { GameMode } from "./game_mode"
+import { GameModeString } from "./game_mode"
 
 export interface UserCompactCover {
     custom_url: null | unknown
@@ -222,7 +222,7 @@ export interface User extends UserCompactBase {
      */
     max_friends: number
     occupation?: string
-    playmode: GameMode
+    playmode: GameModeString
     /**
      * Device choices of the user
      */
