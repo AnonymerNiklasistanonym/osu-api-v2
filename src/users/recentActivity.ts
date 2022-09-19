@@ -73,29 +73,25 @@ export const recentActivity = async (
         Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
         "Content-Type": "application/json",
     }
-    // eslint-disable-next-line no-useless-catch
-    try {
-        const res = await fetch(
-            `${baseUrlApiV2}/users/${userId}/recent_activity${params}`,
-            {
-                headers,
-                method,
-            },
-        )
-        if (res.status !== 200) {
-            throw new OsuApiV2WebRequestError(
-                `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
-                res.status,
-                res.statusText,
-                res.url,
-                method,
-                headers,
-            )
-        }
 
-        const events = (await res.json()) as Event[]
-        return events
-    } catch (err) {
-        throw err
+    const res = await fetch(
+        `${baseUrlApiV2}/users/${userId}/recent_activity${params}`,
+        {
+            headers,
+            method,
+        },
+    )
+    if (res.status !== 200) {
+        throw new OsuApiV2WebRequestError(
+            `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
+            res.status,
+            res.statusText,
+            res.url,
+            method,
+            headers,
+        )
     }
+
+    const events = (await res.json()) as Event[]
+    return events
 }

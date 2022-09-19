@@ -1,34 +1,42 @@
-import type { Beatmap } from "../types/beatmap"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 import type { Fetch } from "../types/fetch"
+import type { User } from "../types/user"
 
 import { baseUrlApiV2 } from "../types/api_info"
+import { GameMode } from "../types/game_mode"
 import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 
 declare const fetch: Fetch
 
-export const lookup = async (
+/**
+ * Gets a user by their ID or username
+ */
+export const get = async (
     oauthAccessToken: OAuthAccessToken,
-    checksum?: string,
-    filename?: string,
-    id?: number,
-): Promise<Beatmap> => {
+    userIdOrName: number | string,
+    mode?: GameMode,
+): Promise<User> => {
     const params = urlParameterGenerator([
-        { name: "checksum", value: checksum },
-        { name: "filename", value: filename },
-        { name: "id", value: id !== undefined ? `${id}` : undefined },
+        {
+            name: "key",
+            value: typeof userIdOrName === "number" ? "id" : "username",
+        },
     ])
     const method = "get"
     const headers = {
         Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
         "Content-Type": "application/json",
     }
+    const modeString = mode === undefined ? "" : `/${mode}`
 
-    const res = await fetch(`${baseUrlApiV2}/beatmaps/lookup${params}`, {
-        headers,
-        method,
-    })
+    const res = await fetch(
+        `${baseUrlApiV2}/users/${userIdOrName}${modeString}${params}`,
+        {
+            headers,
+            method,
+        },
+    )
     if (res.status !== 200) {
         throw new OsuApiV2WebRequestError(
             `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
@@ -40,6 +48,6 @@ export const lookup = async (
         )
     }
 
-    const beatmap = (await res.json()) as Beatmap
-    return beatmap
+    const user = (await res.json()) as User
+    return user
 }
