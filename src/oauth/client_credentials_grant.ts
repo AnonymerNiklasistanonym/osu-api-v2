@@ -34,7 +34,10 @@ export const clientCredentialsGrant = async (
             res.url,
             method,
             headers,
-            body,
+            JSON.stringify({
+                ...requestBody,
+                client_secret: "[redacted]",
+            }),
         )
     }
 
