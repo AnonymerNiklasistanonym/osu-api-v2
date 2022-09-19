@@ -1,12 +1,9 @@
 import type { Beatmapset } from "../types/beatmap"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
-import type { Fetch } from "../types/fetch"
 
 import { baseUrlApiV2 } from "../types/api_info"
 import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
-
-declare const fetch: Fetch
 
 export interface BeatmapsetSearchResult {
     beatmapsets: Beatmapset[]
