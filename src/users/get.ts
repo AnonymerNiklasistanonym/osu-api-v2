@@ -5,16 +5,49 @@ import type { User } from "../types/user"
 import { baseUrlApiV2 } from "../types/api_info"
 import { GameMode } from "../types/game_mode"
 import { urlParameterGenerator } from "../helpers/url_parameter_generator"
-import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
+import {
+    OsuApiV2Error,
+    OsuApiV2ErrorCode,
+    OsuApiV2WebRequestError,
+} from "../helpers/custom_errors"
 
 declare const fetch: Fetch
 
 /**
- * Gets a user by their ID or username
+ * Get a user by their ID or username.
+ *
+ * @param oauthAccessToken The OAuth Access token.
+ * @param userIdOrName Either the osu! user name or id of the user to get.
+ * @param mode Per default (ranking) statistics are returned regarding the
+ * default game mode of the user, to request statistics of the user regarding a
+ * specific game mode this argument can be supplied.
+ * @throws If the web request fails like for example when no user was found with
+ * the provided user ID a {@link OsuApiV2WebRequestError} is being thrown.
+ * @throws If the web request returns an unexpected type or no user but doesn't
+ * throw a web request error a {@link OsuApiV2Error} is being thrown.
+ *
+ * @example
+ * ```ts
+ * import osuApiV2 from "osu-api-v2"
+ *
+ * const user = await osuApiV2.users.get(
+ *     oauthAccessToken,
+ *     9096716,
+ * )
+ * ```
+ * @example
+ * ```ts
+ * import osuApiV2 from "osu-api-v2"
+ *
+ * const user = await osuApiV2.users.get(
+ *     oauthAccessToken,
+ *     "Ooi",
+ * )
+ * ```
  */
 export const get = async (
     oauthAccessToken: OAuthAccessToken,
-    userIdOrName: number | string,
+    userIdOrName?: number | string,
     mode?: GameMode,
 ): Promise<User> => {
     const params = urlParameterGenerator([
@@ -49,5 +82,22 @@ export const get = async (
     }
 
     const user = (await res.json()) as User
+    if (Array.isArray((user as unknown as UserList).users)) {
+        if ((user as unknown as UserList).users.length === 0) {
+            throw new OsuApiV2Error(
+                "No user was found",
+                OsuApiV2ErrorCode.NOT_FOUND,
+            )
+        } else {
+            throw new OsuApiV2Error(
+                "Array of users was returned but only user was expected",
+                OsuApiV2ErrorCode.UNEXPECTED_RETURN_TYPE,
+            )
+        }
+    }
     return user
+}
+
+interface UserList {
+    users: User[]
 }

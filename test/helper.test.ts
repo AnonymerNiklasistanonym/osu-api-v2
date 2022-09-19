@@ -4,7 +4,11 @@ import { promises as fsp } from "fs"
 import path from "path"
 
 import { urlParameterGenerator } from "../src/helpers/url_parameter_generator"
-import { OsuApiV2WebRequestError } from "../src/helpers/custom_errors"
+import {
+    OsuApiV2Error,
+    OsuApiV2ErrorCode,
+    OsuApiV2WebRequestError,
+} from "../src/helpers/custom_errors"
 
 export const saveOsuResponseObjectAsFile = async (
     fileName: string,
@@ -44,6 +48,26 @@ export const checkOsuApiV2WebRequestError = (
         case OsuApiV2WebRequestErrorType.UNAUTHORIZED:
             expect(error.statusCode).equal(401)
             expect(error.statusText).equal("Unauthorized")
+            break
+        default:
+            break
+    }
+}
+
+export const checkOsuApiV2Error = (
+    error: OsuApiV2Error | null,
+    errorCode?: OsuApiV2ErrorCode,
+): void => {
+    expect(error).to.be.an("Error")
+    if (error == null) {
+        return
+    }
+    expect(error.code).to.be.a("string")
+    expect(error.message).to.be.a("string")
+
+    switch (errorCode) {
+        case OsuApiV2ErrorCode.NOT_FOUND:
+            expect(error.code).equal(OsuApiV2ErrorCode.NOT_FOUND)
             break
         default:
             break

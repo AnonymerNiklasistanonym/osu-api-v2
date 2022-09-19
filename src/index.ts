@@ -27,19 +27,32 @@ export type {
     UserCompactKusodo,
     User,
 } from "./types/user"
-export { OsuApiV2WebRequestError } from "./helpers/custom_errors"
 
-export { ScoresType } from "./users/scores"
+export type {
+    OsuApiV2WebRequestErrorMethod,
+    OsuApiV2WebRequestErrorHeaders,
+} from "./helpers/custom_errors"
+
 export { GameMode, GameModeInt } from "./types/game_mode"
 export { GameMods } from "./types/game_mods"
 export { RankedStatus } from "./types/ranked_status"
+export { ScoresType } from "./users/scores"
+
+export {
+    OsuApiV2WebRequestError,
+    OsuApiV2ErrorCode,
+    OsuApiV2Error,
+} from "./helpers/custom_errors"
 
 import { beatmaps } from "./beatmaps/beatmaps"
 import { beatmapsets } from "./beatmapsets/beatmapsets"
-import { search } from "./search/search"
 import { oauth } from "./oauth/oauth"
+import { search } from "./search/search"
 import { users } from "./users/users"
 
+/**
+ * A collection of all supported osu!api v2 endpoints.
+ */
 const osuApiV2 = {
     beatmaps,
     beatmapsets,
