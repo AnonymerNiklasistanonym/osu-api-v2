@@ -24,7 +24,7 @@ jobs:
     # Specify the node versions that should be checked
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [17.x, 18.x]
     # The following steps should be sequentially executed:
     steps:
     # Checkout the current repository
