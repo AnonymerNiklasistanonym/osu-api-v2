@@ -1,0 +1,56 @@
+# This workflow is designed to update the documentation when a new
+# version is detected.
+
+name: Publish Documentation
+
+# When a new (version) tag is detected run this workflow
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  # Job that validates that the documentation can be built without errors
+  build:
+    strategy:
+      matrix:
+        node-version: [17.x,18.x]
+        os: [ubuntu-latest,windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - name: Install documentation dependencies (apt - ubuntu-latest)
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt install graphviz
+      - name: Install documentation dependencies (choco - windows-latest)
+        if: matrix.os == 'windows-latest'
+        run: choco install graphviz
+      - run: npm run docs
+  # Job that publishes the documentation to GitHub pages
+  publish-github-pages:
+    # This job should only be run if the build job didn't throw errors
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - name: Install documentation dependencies (apt - ubuntu-latest)
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt install graphviz
+      - name: Install documentation dependencies (choco - windows-latest)
+        if: matrix.os == 'windows-latest'
+        run: choco install graphviz
+      - run: npm run docs
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # The branch the action should deploy to
+          folder: docs # The folder the action should deploy

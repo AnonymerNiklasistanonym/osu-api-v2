@@ -949,7 +949,7 @@ npm run test-without-osu-api-v2
 To see which parts (branches and functions) of the code are covered by the tests you can run:
 
 ```sh
-npm run nyc
+npm run test:coverage
 ```
 
 This does the same thing as running `npm run test` but tracks the test coverage.

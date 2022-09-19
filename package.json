@@ -28,17 +28,17 @@
         "typescript": "^4.8.3"
     },
     "scripts": {
-        "prepare": "tsc",
         "build": "tsc",
         "build:check": "tsc --noEmit",
+        "docs": "typedoc --tsconfig tsconfig.json",
+        "format": "prettier --check src test .prettierrc.js .eslintrc.js",
+        "format:fix": "prettier --write src test .prettierrc.js .eslintrc.js",
         "lint": "eslint src test",
         "lint:fix": "eslint --fix src test",
-        "format": "prettier --check src test .prettierrc.js .eslintrc.js",
-        "docs": "typedoc --tsconfig tsconfig.json",
-        "format:fix": "prettier --write src test .prettierrc.js .eslintrc.js",
+        "prepare": "tsc",
         "test": "mocha -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
-        "test:without-osu-api-v2": "mocha --invert --grep ^osu-api-v2 -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
-        "nyc": "nyc --reporter=html --reporter=text mocha -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts"
+        "test:coverage": "nyc --reporter=html --reporter=text mocha -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
+        "test:without-osu-api-v2": "mocha --invert --grep ^osu-api-v2 -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts"
     },
     "repository": {
         "type": "git",
