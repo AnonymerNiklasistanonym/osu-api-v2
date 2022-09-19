@@ -160,7 +160,7 @@ export interface UserCompactBase {
     page?: unknown
     pending_beatmapset_count?: unknown
     previous_usernames?: unknown
-    rank_history?: unknown
+    rank_history?: UserRankHistory
     ranked_beatmapset_count?: unknown
     replays_watched_counts?: unknown
     scores_best_count?: number
@@ -172,6 +172,11 @@ export interface UserCompactBase {
     unread_pm_count?: unknown
     user_achievements?: UserAchievement[]
     user_preferences?: unknown
+}
+
+export interface UserRankHistory {
+    mode: GameModeString
+    data: number[]
 }
 
 /**
