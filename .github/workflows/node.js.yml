@@ -24,7 +24,7 @@ jobs:
     # Specify the node versions that should be checked
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [17.x, 18.x]
     # The following steps should be sequentially executed:
     steps:
     # Checkout the current repository
@@ -42,12 +42,22 @@ jobs:
     # with Typescript type definitions
     - name: Compile Typescript library to JavaScript with type definitions
       run: npm run build
-    # Run tests using github secrets
+    # Run tests using github secrets if in local repository because other
+    # repositories don't have access to the secret files
     - name: Verify tests and get coverage
+      if: github.event_name != 'pull_request'
       run: npm run nyc
       env:
         OSU_OAUTH_CLIENT_ID: ${{ secrets.OSU_OAUTH_CLIENT_ID }}
         OSU_OAUTH_CLIENT_SECRET: ${{ secrets.OSU_OAUTH_CLIENT_SECRET }}
+    # Run other tests without github secrets otherwise
+    - name: Run generic tests for pull requests
+      if: github.event_name == 'pull_request'
+      run: npm run test:without-osu-api-v2
+    - name: Run all tests for pull requests
+      if: github.event_name == 'pull_request'
+      continue-on-error: true
+      run: npm run test
     - name: Lint code for errors/warnings
       run: npm run lint
     - name: Check code for formatting errors

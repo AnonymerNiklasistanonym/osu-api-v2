@@ -1,6 +1,7 @@
 {
   "extensions": ["ts"],
   "require": [
-    "ts-node/register"
+    "ts-node/register",
+    "isomorphic-fetch"
   ]
 }
