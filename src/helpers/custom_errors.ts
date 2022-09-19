@@ -25,7 +25,11 @@ export class OsuApiV2WebRequestError extends Error {
         this.statusText = statusText
         this.url = url
         this.method = method
-        this.headers = headers
+        this.headers = {
+            ...headers,
+            authorization:
+                headers.authorization.substring(0, 20) + "***redacted***",
+        }
         if (body !== undefined) {
             this.body = body
         }
