@@ -185,3 +185,7 @@ export interface Beatmap extends BeatmapCompact {
     ranked: RankedStatus
     url: string
 }
+
+export interface BeatmapsetSearchResult {
+    beatmapsets: Beatmapset[]
+}

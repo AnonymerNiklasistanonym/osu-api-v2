@@ -1,4 +1,4 @@
-import type { User } from "../types/user"
+import type { UserSearchResult } from "../types/user"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 import type { Fetch } from "../types/fetch"
 
@@ -7,15 +7,6 @@ import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 
 declare const fetch: Fetch
-
-export interface UserSearchResult {
-    user: UserSearchResultUserSection
-}
-
-export interface UserSearchResultUserSection {
-    data: User[]
-    total: number
-}
 
 export const user = async (
     oauthAccessToken: OAuthAccessToken,

@@ -5,17 +5,34 @@ export type {
     BeatmapsetCompactHype,
     BeatmapsetCompactNominationsSummary,
     Beatmapset,
+    BeatmapsetSearchResult,
     BeatmapCompact,
     Beatmap,
 } from "./types/beatmap"
 export type { ClientCredentialsGrant } from "./types/client_credentials_grant"
+export type {
+    Event,
+    EventUser,
+    EventBeatmap,
+    EventAchievement,
+    EventRank,
+    EventRankLost,
+} from "./types/event"
 export type { Failtimes } from "./types/failtimes"
 export type { OAuthAccessToken } from "./types/oauth_access_token"
 export type { ScoreStatistics, Score, BeatmapUserScore } from "./types/score"
 export type { Timestamp } from "./types/timestamp"
 export type {
     UserCompactCover,
+    UserCompactStatistics,
+    UserRankHistory,
     ProfilePage,
+    UserAchievement,
+    UserSearchResult,
+    UserCompactStatisticsGradeCounts,
+    UserCompactStatisticsRank,
+    UserCompactStatisticsLevel,
+    UserSearchResultUserSection,
     UserStatisticsRulesets,
     UserMonthlyPlaycount,
     UserGroup,
@@ -33,6 +50,7 @@ export type {
     OsuApiV2WebRequestErrorHeaders,
 } from "./helpers/custom_errors"
 
+export { EventType } from "./types/event"
 export { GameMode, GameModeInt } from "./types/game_mode"
 export { GameMods } from "./types/game_mods"
 export { RankedStatus } from "./types/ranked_status"

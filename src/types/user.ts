@@ -254,3 +254,12 @@ export interface User extends UserCompactBase {
     country: UserCompactCountry
     is_restricted: boolean
 }
+
+export interface UserSearchResult {
+    user: UserSearchResultUserSection
+}
+
+export interface UserSearchResultUserSection {
+    data: User[]
+    total: number
+}
