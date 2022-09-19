@@ -47,7 +47,7 @@ declare const fetch: Fetch
  */
 export const get = async (
     oauthAccessToken: OAuthAccessToken,
-    userIdOrName?: number | string,
+    userIdOrName: number | string,
     mode?: GameMode,
 ): Promise<User> => {
     const params = urlParameterGenerator([
