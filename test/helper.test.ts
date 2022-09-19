@@ -50,7 +50,7 @@ export const checkOsuApiV2WebRequestError = (
     }
 }
 
-describe.only("OsuApiV2WebRequestError", () => {
+describe("OsuApiV2WebRequestError", () => {
     it("should mask the authorization header", () => {
         const error = new OsuApiV2WebRequestError(
             "message",
