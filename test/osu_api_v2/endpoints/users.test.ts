@@ -170,6 +170,22 @@ export const usersTestSuite = (): Suite =>
                 expect(user.playmode).equals(GameMode.mania)
             })
         }).timeout(8000)
+        describe("get", () => {
+            it("should get a user by their ID", async () => {
+                const result = await osuApiV2.users.get(
+                    oauthAccessToken,
+                    9096716,
+                )
+                expect(result.id).equals(9096716)
+            })
+            it("should get a user by their username", async () => {
+                const result = await osuApiV2.users.get(
+                    oauthAccessToken,
+                    9096716,
+                )
+                expect(result.username).equals("Ooi")
+            })
+        })
         it("recentActivity", async () => {
             // Check if the request throws an error when the id is invalid
             let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
