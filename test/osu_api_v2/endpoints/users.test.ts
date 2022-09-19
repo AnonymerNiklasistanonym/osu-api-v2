@@ -42,14 +42,54 @@ export const usersTestSuite = (): Suite =>
             })
             it("should make request successfully", async () => {
                 await osuApiV2.users.id(oauthAccessToken, 9096716)
-            })
+                await osuApiV2.users.id(oauthAccessToken, 9096716, GameMode.osu)
+                await osuApiV2.users.id(
+                    oauthAccessToken,
+                    9096716,
+                    GameMode.taiko,
+                )
+                await osuApiV2.users.id(
+                    oauthAccessToken,
+                    9096716,
+                    GameMode.fruits,
+                )
+                await osuApiV2.users.id(
+                    oauthAccessToken,
+                    9096716,
+                    GameMode.mania,
+                )
+            }).timeout(8000)
             it("user playmode should equal 'osu'", async () => {
                 const user = await osuApiV2.users.id(
                     oauthAccessToken,
                     9096716,
-                    GameMode.osu,
+                    GameMode.taiko,
                 )
                 expect(user.playmode).equals(GameModeString.osu)
+            })
+            it("user playmode should equal 'taiko'", async () => {
+                const user = await osuApiV2.users.id(
+                    oauthAccessToken,
+                    8741695,
+                    GameMode.fruits,
+                )
+                expect(user.playmode).equals(GameModeString.taiko)
+            })
+            it("user playmode should equal 'fruits'", async () => {
+                const user = await osuApiV2.users.id(
+                    oauthAccessToken,
+                    4158549,
+                    GameMode.mania,
+                )
+                expect(user.playmode).equals(GameModeString.fruits)
+            })
+            it("user playmode should equal 'mania'", async () => {
+                const user = await osuApiV2.users.id(
+                    oauthAccessToken,
+                    758406,
+                    GameMode.osu,
+                )
+                expect(user.playmode).equals(GameModeString.mania)
             })
         }).timeout(8000)
         it("recentActivity", async () => {
