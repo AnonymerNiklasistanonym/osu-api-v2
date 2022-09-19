@@ -23,5 +23,15 @@
         "node_modules",
         "test"
     ],
-    "include": ["src"]
+    "include": ["src"],
+    "typedocOptions": {
+        "entryPointStrategy": "Expand",
+        "entryPoints": ["src/index.ts"],
+        "out": "docs",
+        "umlClassDiagram": {
+            "type": "detailed",
+            "location": "local",
+            "format": "svg"
+        }
+    }
 }

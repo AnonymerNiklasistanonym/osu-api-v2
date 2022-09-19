@@ -112,3 +112,6 @@ lib
 
 # Ignore files that are declared as cached
 cached-osu-api-responses
+
+# Ignore documentation build files
+docs
