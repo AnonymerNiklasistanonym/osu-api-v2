@@ -50,6 +50,23 @@ export const checkOsuApiV2WebRequestError = (
     }
 }
 
+describe("OsuApiV2WebRequestError", () => {
+    it("should mask the authorization header", () => {
+        const error = new OsuApiV2WebRequestError(
+            "message",
+            400,
+            "text",
+            "someUrl",
+            "get",
+            { authorization: "Bearer 098304982039482039482304829034820934" },
+        )
+
+        expect(error.headers.authorization).equals(
+            "Bearer 0983049820394***redacted***",
+        )
+    })
+})
+
 describe("helper", async () => {
     it("urlParameterGenerator", async () => {
         const paramGeneratorEmpty = urlParameterGenerator()
