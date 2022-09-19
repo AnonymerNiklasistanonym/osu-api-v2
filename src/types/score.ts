@@ -2,7 +2,7 @@ import type { Beatmap } from "./beatmap"
 import type { Timestamp } from "./timestamp"
 import type { User } from "./user"
 
-import { GameMode, GameModeString } from "./game_mode"
+import { GameMode, GameModeInt } from "./game_mode"
 import { Beatmapset } from ".."
 
 /**
@@ -47,9 +47,9 @@ export interface Score {
     pp: number
     rank: string
     created_at: Timestamp
-    mode: GameModeString
+    mode: GameMode
     /** integer */
-    mode_int: GameMode
+    mode_int: GameModeInt
     replay: boolean
     // Optional:
     beatmap?: Beatmap

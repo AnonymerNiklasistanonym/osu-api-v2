@@ -1,11 +1,7 @@
 import { expect } from "chai"
 import moment from "moment"
-import {
-    Beatmap,
-    GameMode,
-    GameModeString,
-    RankedStatus,
-} from "../../../../src/index"
+import { Beatmap, GameModeInt } from "../../../../src/index"
+import { GameMode, RankedStatus } from "../../../../src/index"
 import { saveOsuResponseObjectAsFile } from "../../../helper.test"
 import { checkBeatmapsetObject } from "./check_beatmapset"
 
@@ -102,27 +98,49 @@ export const checkBeatmapObject = (
     }
     expect(beatmap.mode).to.be.a("string").with.a.lengthOf.greaterThan(0)
     expect([
-        GameModeString.fruits,
-        GameModeString.mania,
-        GameModeString.osu,
-        GameModeString.taiko,
-    ]).to.include(beatmap.mode)
-    expect([
-        GameMode[GameMode.fruits],
-        GameMode[GameMode.mania],
-        GameMode[GameMode.osu],
-        GameMode[GameMode.taiko],
-    ]).to.include(beatmap.mode)
-    expect(beatmap.mode_int).to.be.a("number").that.satisfies(Number.isInteger)
-    expect([
         GameMode.fruits,
         GameMode.mania,
         GameMode.osu,
         GameMode.taiko,
+    ]).to.include(beatmap.mode)
+    expect(Object.values(GameMode)).to.include(beatmap.mode)
+    expect(beatmap.mode_int).to.be.a("number").that.satisfies(Number.isInteger)
+    expect([
+        GameModeInt.fruits,
+        GameModeInt.mania,
+        GameModeInt.osu,
+        GameModeInt.taiko,
     ]).to.include(beatmap.mode_int)
-    expect(beatmap.mode).to.be.equal(GameMode[beatmap.mode_int])
+    switch (beatmap.mode_int) {
+        case GameModeInt.fruits:
+            expect(beatmap.mode).to.be.equal(GameMode.fruits)
+            break
+        case GameModeInt.mania:
+            expect(beatmap.mode).to.be.equal(GameMode.mania)
+            break
+        case GameModeInt.osu:
+            expect(beatmap.mode).to.be.equal(GameMode.osu)
+            break
+        case GameModeInt.taiko:
+            expect(beatmap.mode).to.be.equal(GameMode.taiko)
+            break
+    }
+    switch (beatmap.mode) {
+        case GameMode.fruits:
+            expect(beatmap.mode_int).to.be.equal(GameModeInt.fruits)
+            break
+        case GameMode.mania:
+            expect(beatmap.mode_int).to.be.equal(GameModeInt.mania)
+            break
+        case GameMode.osu:
+            expect(beatmap.mode_int).to.be.equal(GameModeInt.osu)
+            break
+        case GameMode.taiko:
+            expect(beatmap.mode_int).to.be.equal(GameModeInt.taiko)
+            break
+    }
     if (options.checkGameMode !== undefined) {
-        expect(beatmap.mode_int).to.be.equal(options.checkGameMode)
+        expect(beatmap.mode).to.be.equal(options.checkGameMode)
     }
     expect(beatmap.passcount)
         .to.be.a("number")

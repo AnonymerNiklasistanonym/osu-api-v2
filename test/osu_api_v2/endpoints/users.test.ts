@@ -2,7 +2,6 @@ import { expect } from "chai"
 import { before, describe, it, Suite } from "mocha"
 import osuApiV2, {
     GameMode,
-    GameModeString,
     OAuthAccessToken,
     OsuApiV2WebRequestError,
 } from "../../../src/index"
@@ -45,57 +44,51 @@ export const usersTestSuite = (): Suite =>
                 const osu = await osuApiV2.users.id(
                     oauthAccessToken,
                     9096716,
-                    GameModeString.osu,
+                    GameMode.osu,
                 )
                 const taiko = await osuApiV2.users.id(
                     oauthAccessToken,
                     9096716,
-                    GameModeString.taiko,
+                    GameMode.taiko,
                 )
                 const fruits = await osuApiV2.users.id(
                     oauthAccessToken,
                     9096716,
-                    GameModeString.fruits,
+                    GameMode.fruits,
                 )
                 const mania = await osuApiV2.users.id(
                     oauthAccessToken,
                     9096716,
-                    GameModeString.mania,
+                    GameMode.mania,
                 )
                 if (fruits.rank_history?.mode !== undefined) {
-                    expect(fruits.rank_history?.mode).equals(
-                        GameModeString.fruits,
-                    )
+                    expect(fruits.rank_history?.mode).equals(GameMode.fruits)
                 }
                 if (taiko.rank_history?.mode !== undefined) {
-                    expect(taiko.rank_history?.mode).equals(
-                        GameModeString.taiko,
-                    )
+                    expect(taiko.rank_history?.mode).equals(GameMode.taiko)
                 }
                 if (mania.rank_history?.mode !== undefined) {
-                    expect(mania.rank_history?.mode).equals(
-                        GameModeString.mania,
-                    )
+                    expect(mania.rank_history?.mode).equals(GameMode.mania)
                 }
                 if (osu.rank_history?.mode !== undefined) {
-                    expect(osu.rank_history?.mode).equals(GameModeString.osu)
+                    expect(osu.rank_history?.mode).equals(GameMode.osu)
                 }
             }).timeout(8000)
             it("user playmode should equal 'osu'", async () => {
                 const user = await osuApiV2.users.id(oauthAccessToken, 9096716)
-                expect(user.playmode).equals(GameModeString.osu)
+                expect(user.playmode).equals(GameMode.osu)
             })
             it("user playmode should equal 'taiko'", async () => {
                 const user = await osuApiV2.users.id(oauthAccessToken, 8741695)
-                expect(user.playmode).equals(GameModeString.taiko)
+                expect(user.playmode).equals(GameMode.taiko)
             })
             it("user playmode should equal 'fruits'", async () => {
                 const user = await osuApiV2.users.id(oauthAccessToken, 4158549)
-                expect(user.playmode).equals(GameModeString.fruits)
+                expect(user.playmode).equals(GameMode.fruits)
             })
             it("user playmode should equal 'mania'", async () => {
                 const user = await osuApiV2.users.id(oauthAccessToken, 758406)
-                expect(user.playmode).equals(GameModeString.mania)
+                expect(user.playmode).equals(GameMode.mania)
             })
         }).timeout(8000)
         describe("name", () => {
@@ -121,66 +114,60 @@ export const usersTestSuite = (): Suite =>
                 const osu = await osuApiV2.users.name(
                     oauthAccessToken,
                     "Ooi",
-                    GameModeString.osu,
+                    GameMode.osu,
                 )
                 const taiko = await osuApiV2.users.name(
                     oauthAccessToken,
                     "Ooi",
-                    GameModeString.taiko,
+                    GameMode.taiko,
                 )
                 const fruits = await osuApiV2.users.name(
                     oauthAccessToken,
                     "Ooi",
-                    GameModeString.fruits,
+                    GameMode.fruits,
                 )
                 const mania = await osuApiV2.users.name(
                     oauthAccessToken,
                     "Ooi",
-                    GameModeString.mania,
+                    GameMode.mania,
                 )
                 if (fruits.rank_history?.mode !== undefined) {
-                    expect(fruits.rank_history?.mode).equals(
-                        GameModeString.fruits,
-                    )
+                    expect(fruits.rank_history?.mode).equals(GameMode.fruits)
                 }
                 if (taiko.rank_history?.mode !== undefined) {
-                    expect(taiko.rank_history?.mode).equals(
-                        GameModeString.taiko,
-                    )
+                    expect(taiko.rank_history?.mode).equals(GameMode.taiko)
                 }
                 if (mania.rank_history?.mode !== undefined) {
-                    expect(mania.rank_history?.mode).equals(
-                        GameModeString.mania,
-                    )
+                    expect(mania.rank_history?.mode).equals(GameMode.mania)
                 }
                 if (osu.rank_history?.mode !== undefined) {
-                    expect(osu.rank_history?.mode).equals(GameModeString.osu)
+                    expect(osu.rank_history?.mode).equals(GameMode.osu)
                 }
             }).timeout(8000)
             it("user playmode should equal 'osu'", async () => {
                 const user = await osuApiV2.users.name(oauthAccessToken, "Ooi")
-                expect(user.playmode).equals(GameModeString.osu)
+                expect(user.playmode).equals(GameMode.osu)
             })
             it("user playmode should equal 'taiko'", async () => {
                 const user = await osuApiV2.users.name(
                     oauthAccessToken,
                     "syaron105",
                 )
-                expect(user.playmode).equals(GameModeString.taiko)
+                expect(user.playmode).equals(GameMode.taiko)
             })
             it("user playmode should equal 'fruits'", async () => {
                 const user = await osuApiV2.users.name(
                     oauthAccessToken,
                     "YesMyDarknesss",
                 )
-                expect(user.playmode).equals(GameModeString.fruits)
+                expect(user.playmode).equals(GameMode.fruits)
             })
             it("user playmode should equal 'mania'", async () => {
                 const user = await osuApiV2.users.name(
                     oauthAccessToken,
                     "dressurf",
                 )
-                expect(user.playmode).equals(GameModeString.mania)
+                expect(user.playmode).equals(GameMode.mania)
             })
         }).timeout(8000)
         it("recentActivity", async () => {

@@ -55,7 +55,7 @@ export const scores = async (
     // eslint-disable-next-line no-useless-catch
     try {
         const res = await fetch(
-            `${baseUrlApiV2}/users/${userId}/scores/${type.toString()}${params}`,
+            `${baseUrlApiV2}/users/${userId}/scores/${type}${params}`,
             {
                 headers,
                 method,

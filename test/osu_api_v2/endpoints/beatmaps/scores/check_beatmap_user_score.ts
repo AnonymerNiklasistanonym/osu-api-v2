@@ -3,6 +3,7 @@ import moment from "moment"
 import {
     BeatmapUserScore,
     GameMode,
+    GameModeInt,
     GameMods,
     Score,
 } from "../../../../../src/index"
@@ -63,27 +64,54 @@ export const checkBeatmapUserScoreScoreObject = (
         .to.be.a("string")
         .with.a.lengthOf.greaterThan(0)
     expect([
-        GameMode[GameMode.fruits],
-        GameMode[GameMode.mania],
-        GameMode[GameMode.osu],
-        GameMode[GameMode.taiko],
-    ]).to.include(beatmapUserScoreScore.mode)
-    expect(beatmapUserScoreScore.mode_int)
-        .to.be.a("number")
-        .that.satisfies(Number.isInteger)
-    expect([
         GameMode.fruits,
         GameMode.mania,
         GameMode.osu,
         GameMode.taiko,
+    ]).to.include(beatmapUserScoreScore.mode)
+    expect(Object.values(GameMode)).to.include(beatmapUserScoreScore.mode)
+    expect(beatmapUserScoreScore.mode_int)
+        .to.be.a("number")
+        .that.satisfies(Number.isInteger)
+    expect([
+        GameModeInt.fruits,
+        GameModeInt.mania,
+        GameModeInt.osu,
+        GameModeInt.taiko,
     ]).to.include(beatmapUserScoreScore.mode_int)
-    expect(beatmapUserScoreScore.mode).to.be.equal(
-        GameMode[beatmapUserScoreScore.mode_int],
-    )
-    if (options.checkGameMode !== undefined) {
-        expect(beatmapUserScoreScore.mode_int).to.be.equal(
-            options.checkGameMode,
-        )
+    switch (beatmapUserScoreScore.mode_int) {
+        case GameModeInt.fruits:
+            expect(beatmapUserScoreScore.mode).to.be.equal(GameMode.fruits)
+            break
+        case GameModeInt.mania:
+            expect(beatmapUserScoreScore.mode).to.be.equal(GameMode.mania)
+            break
+        case GameModeInt.osu:
+            expect(beatmapUserScoreScore.mode).to.be.equal(GameMode.osu)
+            break
+        case GameModeInt.taiko:
+            expect(beatmapUserScoreScore.mode).to.be.equal(GameMode.taiko)
+            break
+    }
+    switch (beatmapUserScoreScore.mode) {
+        case GameMode.fruits:
+            expect(beatmapUserScoreScore.mode_int).to.be.equal(
+                GameModeInt.fruits,
+            )
+            break
+        case GameMode.mania:
+            expect(beatmapUserScoreScore.mode_int).to.be.equal(
+                GameModeInt.mania,
+            )
+            break
+        case GameMode.osu:
+            expect(beatmapUserScoreScore.mode_int).to.be.equal(GameModeInt.osu)
+            break
+        case GameMode.taiko:
+            expect(beatmapUserScoreScore.mode_int).to.be.equal(
+                GameModeInt.taiko,
+            )
+            break
     }
     expect(beatmapUserScoreScore.mods)
         .to.be.an("array")
@@ -92,28 +120,30 @@ export const checkBeatmapUserScoreScoreObject = (
         beatmapUserScoreScore.mods.some(
             (x) =>
                 ![
-                    GameMods[GameMods.EZ],
-                    GameMods[GameMods.NF],
-                    GameMods[GameMods.HT],
-                    GameMods[GameMods.HR],
-                    GameMods[GameMods.SD],
-                    GameMods[GameMods.PF],
-                    GameMods[GameMods.DT],
-                    GameMods[GameMods.NC],
-                    GameMods[GameMods.HD],
-                    GameMods[GameMods.FI],
-                    GameMods[GameMods.FL],
-                    GameMods[GameMods.RL],
-                    GameMods[GameMods.AP],
-                    GameMods[GameMods.SO],
-                    GameMods[GameMods.CP],
-                    GameMods[GameMods.MR],
-                    GameMods[GameMods.RD],
-                    GameMods[GameMods.AT],
-                    GameMods[GameMods.CM],
-                    GameMods[GameMods.SV2],
-                    GameMods[GameMods.TP],
-                ].includes(x),
+                    GameMods.EZ,
+                    GameMods.NF,
+                    GameMods.HT,
+                    GameMods.HR,
+                    GameMods.SD,
+                    GameMods.PF,
+                    GameMods.DT,
+                    GameMods.NC,
+                    GameMods.HD,
+                    GameMods.FI,
+                    GameMods.FL,
+                    GameMods.RL,
+                    GameMods.AP,
+                    GameMods.SO,
+                    GameMods.CP,
+                    GameMods.MR,
+                    GameMods.RD,
+                    GameMods.AT,
+                    GameMods.CM,
+                    GameMods.SV2,
+                    GameMods.TP,
+                ]
+                    .map((a) => a.toString())
+                    .includes(x),
         ),
     ).to.be.false
     expect(beatmapUserScoreScore.passed).to.be.a("boolean")
