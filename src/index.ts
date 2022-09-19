@@ -27,7 +27,7 @@ export type {
     UserCompactKusodo,
     User,
 } from "./types/user"
-export type { OsuApiV2WebRequestError } from "./helpers/custom_errors"
+export { OsuApiV2WebRequestError } from "./helpers/custom_errors"
 
 export { ScoresType } from "./users/scores"
 export { GameMode, GameModeInt } from "./types/game_mode"
