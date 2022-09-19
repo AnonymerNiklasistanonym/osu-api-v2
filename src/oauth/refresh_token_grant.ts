@@ -23,29 +23,24 @@ export const refreshTokenGrant = async (
     const method = "post"
     const headers = { "Content-Type": "application/json" }
     const body = JSON.stringify(requestBody)
-    // eslint-disable-next-line no-useless-catch
-    try {
-        const res = await fetch(`${baseUrl}/oauth/token`, {
-            body,
-            headers,
-            method,
-        })
-        if (res.status !== 200) {
-            throw new OsuApiV2WebRequestError(
-                `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
-                res.status,
-                res.statusText,
-                res.url,
-                method,
-                headers,
-                body,
-            )
-        }
 
-        const oauthAccessToken =
-            (await res.json()) as OauthAccessTokenWithRefresh
-        return oauthAccessToken
-    } catch (err) {
-        throw err
+    const res = await fetch(`${baseUrl}/oauth/token`, {
+        body,
+        headers,
+        method,
+    })
+    if (res.status !== 200) {
+        throw new OsuApiV2WebRequestError(
+            `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
+            res.status,
+            res.statusText,
+            res.url,
+            method,
+            headers,
+            body,
+        )
     }
+
+    const oauthAccessToken = (await res.json()) as OauthAccessTokenWithRefresh
+    return oauthAccessToken
 }
