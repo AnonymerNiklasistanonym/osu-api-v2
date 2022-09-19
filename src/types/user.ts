@@ -1,5 +1,5 @@
 import type { Timestamp } from "./timestamp"
-import { GameMode } from "./game_mode"
+import { GameModeString } from "./game_mode"
 
 export interface UserCompactCover {
     custom_url: null | unknown
@@ -160,7 +160,7 @@ export interface UserCompactBase {
     page?: unknown
     pending_beatmapset_count?: unknown
     previous_usernames?: unknown
-    rank_history?: unknown
+    rank_history?: UserRankHistory
     ranked_beatmapset_count?: unknown
     replays_watched_counts?: unknown
     scores_best_count?: number
@@ -172,6 +172,11 @@ export interface UserCompactBase {
     unread_pm_count?: unknown
     user_achievements?: UserAchievement[]
     user_preferences?: unknown
+}
+
+export interface UserRankHistory {
+    mode: GameModeString
+    data: number[]
 }
 
 /**
@@ -222,7 +227,7 @@ export interface User extends UserCompactBase {
      */
     max_friends: number
     occupation?: string
-    playmode: GameMode
+    playmode: GameModeString
     /**
      * Device choices of the user
      */

@@ -2,6 +2,7 @@ import { RankedStatus } from "./ranked_status"
 import type { Failtimes } from "./failtimes"
 import type { Timestamp } from "./timestamp"
 import type { User } from "./user"
+import { GameMode, GameModeString } from "./game_mode"
 
 export interface Covers {
     cover: string
@@ -119,7 +120,7 @@ export interface BeatmapCompact {
     difficulty_rating: number
     /** integer */
     id: number
-    mode: string
+    mode: GameModeString
     /**
      * See Rank status for list of possible values.
      */
@@ -171,7 +172,7 @@ export interface Beatmap extends BeatmapCompact {
     is_scoreable: boolean
     last_updated: Timestamp
     /** integer */
-    mode_int: number
+    mode_int: GameMode
     /** integer */
     passcount: number
     /** integer */

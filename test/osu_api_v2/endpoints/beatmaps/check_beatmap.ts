@@ -1,6 +1,11 @@
 import { expect } from "chai"
 import moment from "moment"
-import { Beatmap, GameMode, RankedStatus } from "../../../../src/index"
+import {
+    Beatmap,
+    GameMode,
+    GameModeString,
+    RankedStatus,
+} from "../../../../src/index"
 import { saveOsuResponseObjectAsFile } from "../../../helper.test"
 import { checkBeatmapsetObject } from "./check_beatmapset"
 
@@ -96,6 +101,12 @@ export const checkBeatmapObject = (
             .that.satisfies(Number.isInteger)
     }
     expect(beatmap.mode).to.be.a("string").with.a.lengthOf.greaterThan(0)
+    expect([
+        GameModeString.fruits,
+        GameModeString.mania,
+        GameModeString.osu,
+        GameModeString.taiko,
+    ]).to.include(beatmap.mode)
     expect([
         GameMode[GameMode.fruits],
         GameMode[GameMode.mania],

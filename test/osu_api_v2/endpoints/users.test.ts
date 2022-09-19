@@ -1,6 +1,8 @@
+import { expect } from "chai"
 import { before, describe, it, Suite } from "mocha"
 import osuApiV2, {
     GameMode,
+    GameModeString,
     OAuthAccessToken,
     OsuApiV2WebRequestError,
 } from "../../../src/index"
@@ -24,22 +26,162 @@ export const usersTestSuite = (): Suite =>
             )
         })
 
-        it("id", async () => {
-            // Check if the request throws an error when the id is invalid
-            let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
-            try {
-                await osuApiV2.users.id(oauthAccessToken, -9096716)
-            } catch (err) {
-                errorInvalidBeatmapId = err as OsuApiV2WebRequestError
-            }
-            checkOsuApiV2WebRequestError(
-                errorInvalidBeatmapId,
-                OsuApiV2WebRequestErrorType.NOT_FOUND,
-            )
-
-            await osuApiV2.users.id(oauthAccessToken, 9096716)
-            await osuApiV2.users.id(oauthAccessToken, 9096716, GameMode.osu)
-            await osuApiV2.users.id(oauthAccessToken, 9096716, GameMode.mania)
+        describe("id", () => {
+            it("should throw if id is invalid", async () => {
+                // Check if the request throws an error when the id is invalid
+                let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
+                try {
+                    await osuApiV2.users.id(oauthAccessToken, -9096716)
+                } catch (err) {
+                    errorInvalidBeatmapId = err as OsuApiV2WebRequestError
+                }
+                checkOsuApiV2WebRequestError(
+                    errorInvalidBeatmapId,
+                    OsuApiV2WebRequestErrorType.NOT_FOUND,
+                )
+            })
+            it("should make request successfully", async () => {
+                await osuApiV2.users.id(oauthAccessToken, 9096716)
+                const osu = await osuApiV2.users.id(
+                    oauthAccessToken,
+                    9096716,
+                    GameModeString.osu,
+                )
+                const taiko = await osuApiV2.users.id(
+                    oauthAccessToken,
+                    9096716,
+                    GameModeString.taiko,
+                )
+                const fruits = await osuApiV2.users.id(
+                    oauthAccessToken,
+                    9096716,
+                    GameModeString.fruits,
+                )
+                const mania = await osuApiV2.users.id(
+                    oauthAccessToken,
+                    9096716,
+                    GameModeString.mania,
+                )
+                if (fruits.rank_history?.mode !== undefined) {
+                    expect(fruits.rank_history?.mode).equals(
+                        GameModeString.fruits,
+                    )
+                }
+                if (taiko.rank_history?.mode !== undefined) {
+                    expect(taiko.rank_history?.mode).equals(
+                        GameModeString.taiko,
+                    )
+                }
+                if (mania.rank_history?.mode !== undefined) {
+                    expect(mania.rank_history?.mode).equals(
+                        GameModeString.mania,
+                    )
+                }
+                if (osu.rank_history?.mode !== undefined) {
+                    expect(osu.rank_history?.mode).equals(GameModeString.osu)
+                }
+            }).timeout(8000)
+            it("user playmode should equal 'osu'", async () => {
+                const user = await osuApiV2.users.id(oauthAccessToken, 9096716)
+                expect(user.playmode).equals(GameModeString.osu)
+            })
+            it("user playmode should equal 'taiko'", async () => {
+                const user = await osuApiV2.users.id(oauthAccessToken, 8741695)
+                expect(user.playmode).equals(GameModeString.taiko)
+            })
+            it("user playmode should equal 'fruits'", async () => {
+                const user = await osuApiV2.users.id(oauthAccessToken, 4158549)
+                expect(user.playmode).equals(GameModeString.fruits)
+            })
+            it("user playmode should equal 'mania'", async () => {
+                const user = await osuApiV2.users.id(oauthAccessToken, 758406)
+                expect(user.playmode).equals(GameModeString.mania)
+            })
+        }).timeout(8000)
+        describe("name", () => {
+            it("should throw name name is '-1'", async () => {
+                // Check if the request throws an error when the name is "-1"
+                let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
+                try {
+                    const result = await osuApiV2.users.name(
+                        oauthAccessToken,
+                        "-1",
+                    )
+                    console.log(result)
+                } catch (err) {
+                    errorInvalidBeatmapId = err as OsuApiV2WebRequestError
+                }
+                checkOsuApiV2WebRequestError(
+                    errorInvalidBeatmapId,
+                    OsuApiV2WebRequestErrorType.NOT_FOUND,
+                )
+            })
+            it("should make request successfully", async () => {
+                await osuApiV2.users.name(oauthAccessToken, "Ooi")
+                const osu = await osuApiV2.users.name(
+                    oauthAccessToken,
+                    "Ooi",
+                    GameModeString.osu,
+                )
+                const taiko = await osuApiV2.users.name(
+                    oauthAccessToken,
+                    "Ooi",
+                    GameModeString.taiko,
+                )
+                const fruits = await osuApiV2.users.name(
+                    oauthAccessToken,
+                    "Ooi",
+                    GameModeString.fruits,
+                )
+                const mania = await osuApiV2.users.name(
+                    oauthAccessToken,
+                    "Ooi",
+                    GameModeString.mania,
+                )
+                if (fruits.rank_history?.mode !== undefined) {
+                    expect(fruits.rank_history?.mode).equals(
+                        GameModeString.fruits,
+                    )
+                }
+                if (taiko.rank_history?.mode !== undefined) {
+                    expect(taiko.rank_history?.mode).equals(
+                        GameModeString.taiko,
+                    )
+                }
+                if (mania.rank_history?.mode !== undefined) {
+                    expect(mania.rank_history?.mode).equals(
+                        GameModeString.mania,
+                    )
+                }
+                if (osu.rank_history?.mode !== undefined) {
+                    expect(osu.rank_history?.mode).equals(GameModeString.osu)
+                }
+            }).timeout(8000)
+            it("user playmode should equal 'osu'", async () => {
+                const user = await osuApiV2.users.name(oauthAccessToken, "Ooi")
+                expect(user.playmode).equals(GameModeString.osu)
+            })
+            it("user playmode should equal 'taiko'", async () => {
+                const user = await osuApiV2.users.name(
+                    oauthAccessToken,
+                    "syaron105",
+                )
+                expect(user.playmode).equals(GameModeString.taiko)
+            })
+            it("user playmode should equal 'fruits'", async () => {
+                const user = await osuApiV2.users.name(
+                    oauthAccessToken,
+                    "YesMyDarknesss",
+                )
+                expect(user.playmode).equals(GameModeString.fruits)
+            })
+            it("user playmode should equal 'mania'", async () => {
+                const user = await osuApiV2.users.name(
+                    oauthAccessToken,
+                    "dressurf",
+                )
+                expect(user.playmode).equals(GameModeString.mania)
+            })
         }).timeout(8000)
         it("recentActivity", async () => {
             // Check if the request throws an error when the id is invalid

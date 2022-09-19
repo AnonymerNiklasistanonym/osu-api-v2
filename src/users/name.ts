@@ -9,15 +9,15 @@ import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 
 declare const fetch: Fetch
 
-export const id = async (
+export const name = async (
     oauthAccessToken: OAuthAccessToken,
-    userId: number,
+    userName: string,
     mode?: GameModeString,
 ): Promise<User> => {
     const params = urlParameterGenerator([
         {
             name: "key",
-            value: "id",
+            value: "username ",
         },
     ])
     const method = "get"
@@ -29,7 +29,7 @@ export const id = async (
     // eslint-disable-next-line no-useless-catch
     try {
         const res = await fetch(
-            `${baseUrlApiV2}/users/${userId}${modeString}${params}`,
+            `${baseUrlApiV2}/users/${userName}${modeString}${params}`,
             {
                 headers,
                 method,

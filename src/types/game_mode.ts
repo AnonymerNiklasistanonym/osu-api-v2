@@ -3,6 +3,22 @@
  *
  * https://osu.ppy.sh/docs/index.html#gamemode
  */
+/**
+ * Available game modes:
+ *
+ * https://osu.ppy.sh/docs/index.html#gamemode
+ */
+export enum GameModeString {
+    /** osu!catch */
+    fruits = "fruits",
+    /** osu!mania */
+    mania = "mania",
+    /** osu!standard */
+    osu = "osu",
+    /** osu!taiko */
+    taiko = "taiko",
+}
+
 export enum GameMode {
     /** osu!catch */
     fruits = 2,
