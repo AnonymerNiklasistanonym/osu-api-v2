@@ -5,7 +5,7 @@
 import { promises as fsp } from "fs"
 import path from "path"
 // Type imports
-import type { User, UserRankHistory } from "../src/index"
+import type { Score, User, UserRankHistory } from "../src/index"
 
 const cachedOsuApiResponsesDir = path.join(
     __dirname,
@@ -24,68 +24,28 @@ const trimmedLongDataString = (trimmedAttributes: string[]) => {
         .join(", ")})\n`
 }
 
-const usersGet = async () => {
+const genericEndpointGenerator = async <ReturnType>(
+    prefix: string,
+    trimDataFunc: (input: ReturnType) => string[] = () => [],
+) => {
     const files = await fsp.readdir(cachedOsuApiResponsesDir)
     for (const file of files) {
-        if (!file.startsWith("users_get_")) {
+        if (!file.startsWith(`${prefix}_`)) {
             continue
         }
         const fileName = file.substring(0, file.lastIndexOf("."))
         const filePath = path.join(cachedOsuApiResponsesDir, file)
         const fileDataRaw = await fsp.readFile(filePath)
-        const fileData = JSON.parse(fileDataRaw.toString()) as User
+        const fileData = JSON.parse(fileDataRaw.toString()) as ReturnType
         // Trim long content
-        const trimmedAttributes: string[] = []
-        if (fileData.page?.html !== undefined) {
-            trimmedAttributes.push("page.html")
-            fileData.page.html = fileData.page.html.substring(0, 20) + "..."
-        }
-        if (fileData.page?.raw !== undefined) {
-            trimmedAttributes.push("page.raw")
-            fileData.page.raw = fileData.page.raw.substring(0, 20) + "..."
-        }
-        if (fileData.replays_watched_counts !== undefined) {
-            trimmedAttributes.push("replays_watched_counts")
-            fileData.replays_watched_counts =
-                fileData.replays_watched_counts.slice(0, 3)
-        }
-        if (fileData.monthly_playcounts !== undefined) {
-            trimmedAttributes.push("monthly_playcounts")
-            fileData.monthly_playcounts = fileData.monthly_playcounts.slice(
-                0,
-                3,
-            )
-        }
-        if (fileData.user_achievements !== undefined) {
-            trimmedAttributes.push("user_achievements")
-            fileData.user_achievements = fileData.user_achievements.slice(0, 3)
-        }
-        if (fileData.rank_history?.data !== undefined) {
-            trimmedAttributes.push("rank_history.data")
-            fileData.rank_history.data = fileData.rank_history.data.slice(0, 3)
-        }
-        if (
-            (
-                (fileData as unknown as Record<string, string>)
-                    .rankHistory as unknown as UserRankHistory | undefined
-            )?.data !== undefined
-        ) {
-            trimmedAttributes.push("rankHistory.data")
-            ;(
-                (fileData as unknown as Record<string, string>)
-                    .rankHistory as unknown as UserRankHistory
-            ).data = (
-                (fileData as unknown as Record<string, string>)
-                    .rankHistory as unknown as UserRankHistory
-            )?.data.slice(0, 3)
-        }
+        const trimmedAttributes: string[] = trimDataFunc(fileData)
         const outputFileName = path.join(
             pagesDirExampleOutput,
             `${fileName}.md`,
         )
         await fsp.mkdir(pagesDirExampleOutput, { recursive: true })
         console.log(
-            `created page example output 'users_get': '${outputFileName}'`,
+            `created page example output '${prefix}': '${outputFileName}'`,
         )
         await fsp.writeFile(
             outputFileName,
@@ -96,4 +56,50 @@ const usersGet = async () => {
     }
 }
 
-Promise.all([usersGet()]).catch(console.error)
+const usersGet = genericEndpointGenerator<User>("users_get", (input) => {
+    const trimmedAttributes: string[] = []
+    if (input.page?.html !== undefined) {
+        trimmedAttributes.push("page.html")
+        input.page.html = input.page.html.substring(0, 20) + "..."
+    }
+    if (input.page?.raw !== undefined) {
+        trimmedAttributes.push("page.raw")
+        input.page.raw = input.page.raw.substring(0, 20) + "..."
+    }
+    if (input.replays_watched_counts !== undefined) {
+        trimmedAttributes.push("replays_watched_counts")
+        input.replays_watched_counts = input.replays_watched_counts.slice(0, 3)
+    }
+    if (input.monthly_playcounts !== undefined) {
+        trimmedAttributes.push("monthly_playcounts")
+        input.monthly_playcounts = input.monthly_playcounts.slice(0, 3)
+    }
+    if (input.user_achievements !== undefined) {
+        trimmedAttributes.push("user_achievements")
+        input.user_achievements = input.user_achievements.slice(0, 3)
+    }
+    if (input.rank_history?.data !== undefined) {
+        trimmedAttributes.push("rank_history.data")
+        input.rank_history.data = input.rank_history.data.slice(0, 3)
+    }
+    if (
+        (
+            (input as unknown as Record<string, string>)
+                .rankHistory as unknown as UserRankHistory | undefined
+        )?.data !== undefined
+    ) {
+        trimmedAttributes.push("rankHistory.data")
+        ;(
+            (input as unknown as Record<string, string>)
+                .rankHistory as unknown as UserRankHistory
+        ).data = (
+            (input as unknown as Record<string, string>)
+                .rankHistory as unknown as UserRankHistory
+        )?.data.slice(0, 3)
+    }
+    return trimmedAttributes
+})
+
+const usersScores = genericEndpointGenerator<Score[]>("users_scores")
+
+Promise.all([usersGet, usersScores]).catch(console.error)

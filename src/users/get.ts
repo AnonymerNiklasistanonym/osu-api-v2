@@ -15,7 +15,7 @@ import type { User } from "../types/user"
  * Get a user by their ID or username.
  *
  * @param oauthAccessToken The OAuth Access token.
- * @param userIdOrName Either the osu! User name or id of the user to get.
+ * @param userIdOrName Either the osu! user name or ID of the user to get.
  * @param mode Per default (ranking) statistics are returned regarding the
  * default game mode of the user, to request statistics of the user regarding a
  * specific game mode this argument can be supplied.
@@ -43,6 +43,8 @@ import type { User } from "../types/user"
  * )
  * ```
  * [[include:example_output/users_get_Ooi.md]]
+ *
+ * ([Source](https://osu.ppy.sh/docs/index.html#get-user))
  */
 export const get = async (
     oauthAccessToken: OAuthAccessToken,

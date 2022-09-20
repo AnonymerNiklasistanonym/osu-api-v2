@@ -237,7 +237,7 @@ export const usersTestSuite = (): Suite =>
                 await osuApiV2.users.scores(
                     oauthAccessToken,
                     -9096716,
-                    ScoresType.Recent,
+                    ScoresType.RECENT,
                 )
             } catch (err) {
                 errorInvalidBeatmapId = err as OsuApiV2WebRequestError
@@ -247,25 +247,39 @@ export const usersTestSuite = (): Suite =>
                 OsuApiV2WebRequestErrorType.NOT_FOUND,
             )
 
+            const userBestOsu21 = await osuApiV2.users.scores(
+                oauthAccessToken,
+                9096716,
+                ScoresType.BEST,
+                GameMode.osu,
+                2,
+                1,
+            )
+            await cacheResponse(
+                "users_scores",
+                "9096716_best_osu_2_1",
+                userBestOsu21,
+            )
+
             await osuApiV2.users.scores(
                 oauthAccessToken,
                 9096716,
-                ScoresType.Recent,
+                ScoresType.RECENT,
             )
             await osuApiV2.users.scores(
                 oauthAccessToken,
                 9096716,
-                ScoresType.Best,
+                ScoresType.BEST,
             )
             await osuApiV2.users.scores(
                 oauthAccessToken,
                 9096716,
-                ScoresType.FirstPlace,
+                ScoresType.FIRST_PLACE,
             )
             await osuApiV2.users.scores(
                 oauthAccessToken,
                 9096716,
-                ScoresType.Recent,
+                ScoresType.RECENT,
                 GameMode.osu,
                 3,
                 0,
@@ -274,11 +288,26 @@ export const usersTestSuite = (): Suite =>
             await osuApiV2.users.scores(
                 oauthAccessToken,
                 9096716,
-                ScoresType.Recent,
+                ScoresType.RECENT,
                 undefined,
                 undefined,
                 undefined,
                 false,
+            )
+
+            const userRecentOsu20True = await osuApiV2.users.scores(
+                oauthAccessToken,
+                2927048,
+                ScoresType.RECENT,
+                GameMode.osu,
+                2,
+                0,
+                true,
+            )
+            await cacheResponse(
+                "users_scores",
+                "2927048_recent_osu_2_0_true",
+                userRecentOsu20True,
             )
         }).timeout(8000)
     })

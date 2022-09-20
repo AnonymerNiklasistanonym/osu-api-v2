@@ -7,17 +7,69 @@ import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 import type { Score } from ".."
 
+/**
+ * The type of score that can be requested.
+ */
 export enum ScoresType {
-    Best = "best",
-    FirstPlace = "firsts",
-    Recent = "recent",
+    /** The best scores of the user. */
+    BEST = "best",
+    /** The first place scores of the user. */
+    FIRST_PLACE = "firsts",
+    /** The recent scores of the user. */
+    RECENT = "recent",
 }
 
+/**
+ * Get a list of a type of scores ({@link ScoresType}) of a user.
+ *
+ * @param oauthAccessToken The OAuth Access token.
+ * @param userId The osu! user ID of the account from which scores should be
+ * fetched.
+ * @param type The type of scores that should be fetched.
+ * @param mode The game mode for which the scores should be fetched.
+ * @param limit Maximum number of results.
+ * @param offset Result offset for pagination.
+ * @param includeFails Only for recent scores, include scores of failed plays.
+ * Is off per default.
+ * @throws If the web request fails like for example when no user was found with
+ * the provided user ID a {@link OsuApiV2WebRequestError} is being thrown.
+ * @example
+ * ```ts
+ * import osuApiV2, { GameMode, ScoresType } from "osu-api-v2"
+ *
+ * const user = await osuApiV2.users.scores(
+ *     oauthAccessToken,
+ *     9096716,
+ *     ScoresType.BEST,
+ *     GameMode.osu,
+ *     2,
+ *     1,
+ * )
+ * ```
+ * [[include:example_output/users_scores_9096716_best_osu_2_1.md]]
+ * @example
+ * ```ts
+ * import osuApiV2, { GameMode, ScoresType } from "osu-api-v2"
+ *
+ * const user = await osuApiV2.users.scores(
+ *     oauthAccessToken,
+ *     2927048,
+ *     ScoresType.RECENT,
+ *     GameMode.osu,
+ *     2,
+ *     0,
+ *     true,
+ * )
+ * ```
+ * [[include:example_output/users_scores_2927048_recent_osu_2_0_true.md]]
+ *
+ * ([Source](https://osu.ppy.sh/docs/index.html#get-user-scores))
+ */
 export const scores = async (
     oauthAccessToken: OAuthAccessToken,
     userId: number,
-    type: ScoresType,
-    mode?: GameMode,
+    type: ScoresType = ScoresType.BEST,
+    mode: GameMode = GameMode.osu,
     limit?: number,
     offset?: number,
     includeFails?: boolean,
