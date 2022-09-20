@@ -3,20 +3,20 @@ import { baseUrl } from "../types/api_info"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 import { RefreshTokenGrant } from "../types/refresh_token_grant"
 // Type imports
-import type { OauthAccessTokenWithRefresh } from "../types/oauth_access_token"
+import type { OAuthAccessTokenWithRefreshToken } from "../types/oauth_access_token"
 
 export const refreshTokenGrant = async (
-    client_id: number,
-    client_secret: string,
-    redirect_uri: string,
-    refresh_token: string,
-): Promise<OauthAccessTokenWithRefresh> => {
+    clientId: number,
+    clientSecret: string,
+    redirectUri: string,
+    refreshToken: string,
+): Promise<OAuthAccessTokenWithRefreshToken> => {
     const requestBody: RefreshTokenGrant = {
-        client_id,
-        client_secret,
+        client_id: clientId,
+        client_secret: clientSecret,
         grant_type: "refresh_token",
-        redirect_uri,
-        refresh_token,
+        redirect_uri: redirectUri,
+        refresh_token: refreshToken,
     }
     const method = "post"
     const headers = { "Content-Type": "application/json" }
@@ -42,6 +42,7 @@ export const refreshTokenGrant = async (
         )
     }
 
-    const oauthAccessToken = (await res.json()) as OauthAccessTokenWithRefresh
+    const oauthAccessToken =
+        (await res.json()) as OAuthAccessTokenWithRefreshToken
     return oauthAccessToken
 }
