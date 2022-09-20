@@ -199,7 +199,16 @@ npm run format
 npm pack --dry-run
 ```
 
-### Update/Publish package
+### Test package
+
+```sh
+# Create package 'osu-api-v2-X.Y.Z.tgz'
+npm pack
+# Create a new project with a package.json and add the package as dependency
+npm install "path/to/osu-api-v2-X.Y.Z.tgz"
+```
+
+### Publish package
 
 ```sh
 # Login to your npm account

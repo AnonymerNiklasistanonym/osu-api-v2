@@ -1,11 +1,12 @@
 {
-    "name": "test-osu-api-v2-typescript",
+    "name": "test-osu-api-v2-typescript-refresh-token",
     "version": "1.0.0",
     "scripts": {
         "build": "tsc",
         "start": "node dist/index.js"
     },
     "dependencies": {
+        "open": "^8.4.0",
         "osu-api-v2": "^0.0.26"
     },
     "devDependencies": {

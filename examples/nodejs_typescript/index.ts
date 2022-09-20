@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+
 // Package imports
 import fs from "fs"
 import osuApiV2 from "osu-api-v2"
