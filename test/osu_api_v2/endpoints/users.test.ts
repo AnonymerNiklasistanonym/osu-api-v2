@@ -229,6 +229,18 @@ export const usersTestSuite = (): Suite =>
             }).timeout(timeoutForRequestsInMs(2))
         })
 
+        describe("me", () => {
+            // Test case suspended since the current automated test has no
+            // identity scope
+            //it("should make request successfully", async () => {
+            //    await osuApiV2.users.me(oauthAccessToken)
+            //    await osuApiV2.users.me(oauthAccessToken, GameMode.OSU_STANDARD)
+            //    await osuApiV2.users.me(oauthAccessToken, GameMode.OSU_CATCH)
+            //    await osuApiV2.users.me(oauthAccessToken, GameMode.OSU_MANIA)
+            //    await osuApiV2.users.me(oauthAccessToken, GameMode.OSU_TAIKO)
+            //}).timeout(timeoutForRequestsInMs(5))
+        })
+
         describe("recentActivity", () => {
             it("should throw if id is invalid", async () => {
                 // Check if the request throws an error when the id is invalid

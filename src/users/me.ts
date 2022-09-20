@@ -1,19 +1,34 @@
-import type { OauthAccessTokenWithRefresh } from "../types/oauth_access_token"
-import type { User } from "../types/user"
-
+// Local imports
 import { baseUrlApiV2 } from "../types/api_info"
 import { GameMode } from "../types/game_mode"
-import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
+import { urlParameterGenerator } from "../helpers/url_parameter_generator"
+// Type imports
+import type { OAuthAccessToken } from "../types/oauth_access_token"
+import type { User } from "../types/user"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { get } from "./get"
 
 /**
- * Gets own user's data using a token obtained via Authorization Code grant
+ * Similar to {@link get} but with authenticated user (token owner) as user id.
+ *
+ * @param oauthAccessToken The OAuth Access token.
+ * @param mode Per default (ranking) statistics are returned regarding the
+ * default game mode of the user, to request statistics of the user regarding a
+ * specific game mode this argument can be supplied.
+ * @example
+ * ```ts
+ * import osuApiV2 from "osu-api-v2"
+ *
+ * const user = await osuApiV2.users.me(
+ *     oauthAccessToken,
+ * )
+ * ```
+ *
+ * ([Source](https://osu.ppy.sh/docs/index.html#get-own-data))
  */
 export const me = async (
-    oauthAccessToken: Pick<
-        OauthAccessTokenWithRefresh,
-        "access_token" | "token_type"
-    >,
+    oauthAccessToken: OAuthAccessToken,
     mode?: GameMode,
 ): Promise<User> => {
     const params = urlParameterGenerator([
