@@ -19,6 +19,7 @@
         "types": ["node"]
     },
     "exclude": [
+        "examples",
         "lib",
         "node_modules",
         "pages",
