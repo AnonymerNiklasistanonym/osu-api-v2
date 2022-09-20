@@ -5,10 +5,7 @@ import { OsuApiV2WebRequestError } from "../../../helpers/custom_errors"
 import { urlParameterGenerator } from "../../../helpers/url_parameter_generator"
 // Type imports
 import type { BeatmapUserScore } from "../../../types/score"
-import type { Fetch } from "../../../types/fetch"
 import type { OAuthAccessToken } from "../../../types/oauth_access_token"
-
-declare const fetch: Fetch
 
 export const users = async (
     oauthAccessToken: OAuthAccessToken,

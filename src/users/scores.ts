@@ -4,11 +4,8 @@ import { GameMode } from ".."
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 // Type imports
-import type { Fetch } from "../types/fetch"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 import type { Score } from ".."
-
-declare const fetch: Fetch
 
 export enum ScoresType {
     Best = "best",

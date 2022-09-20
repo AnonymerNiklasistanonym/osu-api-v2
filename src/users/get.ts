@@ -8,11 +8,8 @@ import { baseUrlApiV2 } from "../types/api_info"
 import { GameMode } from "../types/game_mode"
 import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 // Type imports
-import type { Fetch } from "../types/fetch"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 import type { User } from "../types/user"
-
-declare const fetch: Fetch
 
 /**
  * Get a user by their ID or username.

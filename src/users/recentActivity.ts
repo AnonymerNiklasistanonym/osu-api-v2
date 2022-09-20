@@ -9,10 +9,7 @@ import type {
     EventRank,
     EventRankLost,
 } from "../types/event"
-import type { Fetch } from "../types/fetch"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
-
-declare const fetch: Fetch
 
 export const recentActivity = async (
     oauthAccessToken: OAuthAccessToken,

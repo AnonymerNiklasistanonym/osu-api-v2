@@ -23,6 +23,7 @@
         "node_modules",
         "test"
     ],
+    "files": ["./src/types.d.ts"],
     "include": ["src"],
     "typedocOptions": {
         "entryPointStrategy": "Expand",
