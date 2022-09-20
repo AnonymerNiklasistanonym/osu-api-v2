@@ -1,5 +1,8 @@
 # osu-api-v2
 
+[![CI](https://github.com/AnonymerNiklasistanonym/osu-api-v2/actions/workflows/node.js.yml/badge.svg)](https://github.com/AnonymerNiklasistanonym/osu-api-v2/actions/workflows/node.js.yml)
+[![NPM](https://nodei.co/npm/osu-api-v2.png?mini=tru)](https://npmjs.org/package/osu-api-v2)
+
 *UNOFFICIAL!*
 
 An easy way to use the [osu!api v2](https://osu.ppy.sh/docs/index.html).
