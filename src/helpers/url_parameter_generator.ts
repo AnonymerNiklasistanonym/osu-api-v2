@@ -30,8 +30,8 @@ export const urlParameterGenerator = (
         } else if (typeof value === "string") {
             valueStr = value
         } else {
-            // TODO How to parse an array?
-            valueStr = value.join(",")
+            // https://github.com/ppy/osu-web/issues/5832#issuecomment-605456962
+            valueStr = value.join(" ")
         }
         return `${prev}${delimiterToPrevious}${curr.name}=${valueStr}`
     }, "?")

@@ -1,11 +1,9 @@
-import type { OauthAccessTokenWithRefresh } from "../types/oauth_access_token"
-import type { Fetch } from "../types/fetch"
-
+// Local imports
 import { baseUrl } from "../types/api_info"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 import { RefreshTokenGrant } from "../types/refresh_token_grant"
-
-declare const fetch: Fetch
+// Type imports
+import type { OauthAccessTokenWithRefresh } from "../types/oauth_access_token"
 
 export const refreshTokenGrant = async (
     client_id: number,

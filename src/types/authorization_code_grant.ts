@@ -14,6 +14,10 @@ export interface AuthorizationCodeGrant {
      */
     client_secret: string
     /**
+     * This is the code obtained via the OAuth token process
+     */
+    code: string
+    /**
      * This must always be authorization_code (or refresh_token)
      */
     grant_type: "authorization_code"
@@ -21,8 +25,4 @@ export interface AuthorizationCodeGrant {
      * This must match the redirect_uri of your app when you registered it
      */
     redirect_uri: string
-    /**
-     * This is the code obtained via the OAuth token process
-     */
-    code: string
 }
