@@ -13,15 +13,24 @@ test
 .eslintrc.js
 # Ignore Prettier configuration
 .prettierrc.js
-# Ignore Typescript configuration file
+# Ignore Typescript configuration files
 tsconfig.json
+tsconfig.eslint.json
+# Ignore mocha configuration file
+.mocharc.json
 # Ignore authentication schema
 authentication.schema.json
 # Ignore authentication secret because it is not parsed from the gitingore correctly
 authentication.secret.json
+authentication.secret.example.json
 
 # Ignore cached files
 cached-osu-api-responses
+# Ignore examples
+examples
+# Ignore documentation
+docs
+pages
 # Ignore code coverage files
 .nyc_output
 coverage
