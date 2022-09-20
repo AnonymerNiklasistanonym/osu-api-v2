@@ -1,27 +1,30 @@
+// Package imports
 import { expect } from "chai"
 import moment from "moment"
-import { Beatmap, GameModeInt } from "../../../../src/index"
-import { GameMode, RankedStatus } from "../../../../src/index"
-import { saveOsuResponseObjectAsFile } from "../../../helper.test"
+// Local imports
+import { GameMode, GameModeInt, RankStatus } from "../../../../src/index"
 import { checkBeatmapsetObject } from "./check_beatmapset"
+import { saveOsuResponseObjectAsFile } from "../../../helper.test"
+// Type imports
+import type { Beatmap } from "../../../../src/index"
 
 export interface CheckBeatmapObjectOptions {
     checkBeatmapId?: number
     checkBeatmapsetId?: number
     checkGameMode?: GameMode
-    checkRankedStatus?: RankedStatus
+    checkRankStatus?: RankStatus
 }
 
-export const checkBeatmapObject = (
+export const checkBeatmapObject = async (
     beatmap: Beatmap,
     options: CheckBeatmapObjectOptions = {},
-): void => {
-    saveOsuResponseObjectAsFile(`beatmap_${beatmap?.id}`, beatmap)
+): Promise<void> => {
+    await saveOsuResponseObjectAsFile(`beatmap_${beatmap?.id}`, beatmap)
     expect(beatmap).to.be.an("object")
     expect(beatmap.accuracy).to.be.a("number").greaterThanOrEqual(0)
     expect(beatmap.ar).to.be.a("number").greaterThanOrEqual(0)
     if (beatmap.beatmapset !== undefined && beatmap.beatmapset != null) {
-        checkBeatmapsetObject(beatmap.beatmapset, {
+        await checkBeatmapsetObject(beatmap.beatmapset, {
             checkBeatmapsetId: options.checkBeatmapsetId,
         })
     }
@@ -152,27 +155,27 @@ export const checkBeatmapObject = (
         .that.satisfies(Number.isInteger)
     expect(beatmap.ranked).to.be.a("number").that.satisfies(Number.isInteger)
     expect([
-        RankedStatus.approved,
-        RankedStatus.graveyard,
-        RankedStatus.loved,
-        RankedStatus.pending,
-        RankedStatus.qualified,
-        RankedStatus.ranked,
-        RankedStatus.wip,
+        RankStatus.approved,
+        RankStatus.graveyard,
+        RankStatus.loved,
+        RankStatus.pending,
+        RankStatus.qualified,
+        RankStatus.ranked,
+        RankStatus.wip,
     ]).to.include(beatmap.ranked)
     expect(beatmap.status).to.be.a("string").with.a.lengthOf.greaterThan(0)
     expect([
-        RankedStatus[RankedStatus.approved],
-        RankedStatus[RankedStatus.graveyard],
-        RankedStatus[RankedStatus.loved],
-        RankedStatus[RankedStatus.pending],
-        RankedStatus[RankedStatus.qualified],
-        RankedStatus[RankedStatus.ranked],
-        RankedStatus[RankedStatus.wip],
+        RankStatus[RankStatus.approved],
+        RankStatus[RankStatus.graveyard],
+        RankStatus[RankStatus.loved],
+        RankStatus[RankStatus.pending],
+        RankStatus[RankStatus.qualified],
+        RankStatus[RankStatus.ranked],
+        RankStatus[RankStatus.wip],
     ]).to.include(beatmap.status)
-    expect(beatmap.status).to.be.equal(RankedStatus[beatmap.ranked])
-    if (options.checkRankedStatus !== undefined) {
-        expect(beatmap.ranked).to.be.equal(options.checkRankedStatus)
+    expect(beatmap.status).to.be.equal(RankStatus[beatmap.ranked])
+    if (options.checkRankStatus !== undefined) {
+        expect(beatmap.ranked).to.be.equal(options.checkRankStatus)
     }
     expect(beatmap.total_length)
         .to.be.a("number")

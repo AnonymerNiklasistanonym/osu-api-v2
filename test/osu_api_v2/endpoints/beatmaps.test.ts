@@ -1,20 +1,22 @@
+// Package imports
 import { before, describe, it, Suite } from "mocha"
-import osuApiV2, {
-    GameMode,
-    OAuthAccessToken,
-    RankedStatus,
-    OsuApiV2WebRequestError,
-} from "../../../src/index"
-import { readOauthCredentials } from "./../read_oauth_credentials"
-import { checkBeatmapObject } from "./beatmaps/check_beatmap"
-import { scoresTestSuite } from "./beatmaps/scores.test"
+// Local imports
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
 } from "../../helper.test"
+import osuApiV2, {
+    GameMode,
+    OAuthAccessToken,
+    OsuApiV2WebRequestError,
+    RankStatus,
+} from "../../../src/index"
+import { checkBeatmapObject } from "./beatmaps/check_beatmap"
+import { readOauthCredentials } from "./../read_oauth_credentials"
+import { scoresTestSuite } from "./beatmaps/scores.test"
 
 export const beatmapsTestSuite = (): Suite =>
-    describe("beatmaps", async () => {
+    describe("beatmaps", () => {
         let oauthAccessToken: OAuthAccessToken
 
         before("before all test cases", async () => {
@@ -50,28 +52,28 @@ export const beatmapsTestSuite = (): Suite =>
                 oauthAccessToken,
                 3086537,
             )
-            checkBeatmapObject(beatmapRankedOsu, {
+            await checkBeatmapObject(beatmapRankedOsu, {
                 checkBeatmapId: 3086537,
                 checkGameMode: GameMode.osu,
-                checkRankedStatus: RankedStatus.ranked,
+                checkRankStatus: RankStatus.ranked,
             })
             const beatmapGraveyardOsu = await osuApiV2.beatmaps.get(
                 oauthAccessToken,
                 1718102,
             )
-            checkBeatmapObject(beatmapGraveyardOsu, {
+            await checkBeatmapObject(beatmapGraveyardOsu, {
                 checkBeatmapId: 1718102,
                 checkGameMode: GameMode.osu,
-                checkRankedStatus: RankedStatus.graveyard,
+                checkRankStatus: RankStatus.graveyard,
             })
             const beatmapLovedOsu = await osuApiV2.beatmaps.get(
                 oauthAccessToken,
                 112385,
             )
-            checkBeatmapObject(beatmapLovedOsu, {
+            await checkBeatmapObject(beatmapLovedOsu, {
                 checkBeatmapId: 112385,
                 checkGameMode: GameMode.osu,
-                checkRankedStatus: RankedStatus.loved,
+                checkRankStatus: RankStatus.loved,
             })
 
             // Check if the request throws an error when the id is invalid
@@ -115,10 +117,10 @@ export const beatmapsTestSuite = (): Suite =>
                 undefined,
                 3086537,
             )
-            checkBeatmapObject(beatmapRankedOsu, {
+            await checkBeatmapObject(beatmapRankedOsu, {
                 checkBeatmapId: 3086537,
                 checkGameMode: GameMode.osu,
-                checkRankedStatus: RankedStatus.ranked,
+                checkRankStatus: RankStatus.ranked,
             })
             const beatmapGraveyardOsuId = await osuApiV2.beatmaps.lookup(
                 oauthAccessToken,
@@ -126,10 +128,10 @@ export const beatmapsTestSuite = (): Suite =>
                 undefined,
                 1718102,
             )
-            checkBeatmapObject(beatmapGraveyardOsuId, {
+            await checkBeatmapObject(beatmapGraveyardOsuId, {
                 checkBeatmapId: 1718102,
                 checkGameMode: GameMode.osu,
-                checkRankedStatus: RankedStatus.graveyard,
+                checkRankStatus: RankStatus.graveyard,
             })
             const beatmapLovedOsuId = await osuApiV2.beatmaps.lookup(
                 oauthAccessToken,
@@ -137,10 +139,10 @@ export const beatmapsTestSuite = (): Suite =>
                 undefined,
                 112385,
             )
-            checkBeatmapObject(beatmapLovedOsuId, {
+            await checkBeatmapObject(beatmapLovedOsuId, {
                 checkBeatmapId: 112385,
                 checkGameMode: GameMode.osu,
-                checkRankedStatus: RankedStatus.loved,
+                checkRankStatus: RankStatus.loved,
             })
 
             // Check if the request throws an error when the id is invalid

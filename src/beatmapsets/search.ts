@@ -1,13 +1,10 @@
-import type { Beatmapset } from "../types/beatmap"
-import type { OAuthAccessToken } from "../types/oauth_access_token"
-
+// Local imports
 import { baseUrlApiV2 } from "../types/api_info"
-import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
-
-export interface BeatmapsetSearchResult {
-    beatmapsets: Beatmapset[]
-}
+import { urlParameterGenerator } from "../helpers/url_parameter_generator"
+// Type imports
+import type { BeatmapsetSearchResult } from "../types/beatmap"
+import type { OAuthAccessToken } from "../types/oauth_access_token"
 
 export const search = async (
     oauthAccessToken: OAuthAccessToken,

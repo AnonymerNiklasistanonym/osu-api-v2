@@ -1,16 +1,18 @@
+// Package imports
 import { before, describe, it, Suite } from "mocha"
+// Local imports
+import {
+    checkOsuApiV2WebRequestError,
+    OsuApiV2WebRequestErrorType,
+} from "../../helper.test"
 import osuApiV2, {
     OAuthAccessToken,
     OsuApiV2WebRequestError,
 } from "../../../src/index"
 import { readOauthCredentials } from "../read_oauth_credentials"
-import {
-    checkOsuApiV2WebRequestError,
-    OsuApiV2WebRequestErrorType,
-} from "../../helper.test"
 
 export const beatmapsetsTestSuite = (): Suite =>
-    describe("beatmapsets", async () => {
+    describe("beatmapsets", () => {
         let oauthAccessToken: OAuthAccessToken
 
         before("before all test cases", async () => {

@@ -1,0 +1,60 @@
+# This workflow is designed to update the documentation when a new
+# version is detected.
+
+name: Publish Documentation
+
+# When a new (version) tag is detected run this workflow
+on:
+  push:
+    tags:
+    - '*'
+  # This attribute allows to manually trigger the workflow from the
+  # Actions tab from the GitHub website
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+ # Job that publishes the documentation to GitHub pages
+  publish-github-pages:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - uses: actions/configure-pages@v2
+      - run: npm ci
+      - name: Install documentation dependencies (apt - ubuntu-latest)
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt install graphviz
+      - name: Install documentation dependencies (choco - windows-latest)
+        if: matrix.os == 'windows-latest'
+        run: choco install graphviz
+      # Run tests with workflow secrets to get example outputs
+      - run: npm run test
+        env:
+          OSU_OAUTH_CLIENT_ID: ${{ secrets.OSU_OAUTH_CLIENT_ID }}
+          OSU_OAUTH_CLIENT_SECRET: ${{ secrets.OSU_OAUTH_CLIENT_SECRET }}
+      # Generate pages that can be included into the documentation
+      - run: npm run docs:createPagesExampleOutput
+      - run: npm run docs
+      # Upload generated documentation and deploy it
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: docs
+      - uses: actions/deploy-pages@v1
+        id: deployment

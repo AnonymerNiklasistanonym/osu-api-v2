@@ -1,10 +1,11 @@
-import type { OAuthAccessToken } from "../../../types/oauth_access_token"
-import type { BeatmapUserScore } from "../../../types/score"
-
+// Local imports
 import { baseUrlApiV2 } from "../../../types/api_info"
 import { GameMode } from "../../../types/game_mode"
-import { urlParameterGenerator } from "../../../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../../../helpers/custom_errors"
+import { urlParameterGenerator } from "../../../helpers/url_parameter_generator"
+// Type imports
+import type { BeatmapUserScore } from "../../../types/score"
+import type { OAuthAccessToken } from "../../../types/oauth_access_token"
 
 export const users = async (
     oauthAccessToken: OAuthAccessToken,

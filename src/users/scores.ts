@@ -1,15 +1,16 @@
+// Local imports
+import { baseUrlApiV2 } from "../types/api_info"
+import { GameMode } from ".."
+import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
+import { urlParameterGenerator } from "../helpers/url_parameter_generator"
+// Type imports
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 import type { Score } from ".."
 
-import { baseUrlApiV2 } from "../types/api_info"
-import { urlParameterGenerator } from "../helpers/url_parameter_generator"
-import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
-import { GameMode } from ".."
-
 export enum ScoresType {
-    Recent = "recent",
     Best = "best",
     FirstPlace = "firsts",
+    Recent = "recent",
 }
 
 export const scores = async (

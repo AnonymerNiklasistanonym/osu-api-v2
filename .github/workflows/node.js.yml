@@ -1,64 +1,58 @@
-# This workflow will check if the current version can be built and conforms in
-# respect to defined formatting, linting standards and if all test cases are
-# as expected.
+# This workflow is designed to check if the Node.js package can be built,
+# the format and lint rules are respected, documentation can be generated
+# and if the tests don't throw errors.
 
 name: Node.js CI
 
-# When is the workflow executed:
+# When a commit on the main or dev branch is created or a pull request
+# is created run this workflow
 on:
-  # Triggers the workflow on push or pull request events for specified branches
   push:
     branches: [ main, dev ]
   pull_request:
     branches: [ main ]
-  # This allows to manually trigger the workflow from the Actions tab ON GitHub
+  # This attribute allows to manually trigger the workflow from the
+  # Actions tab from the GitHub website
   workflow_dispatch:
 
-# The following jobs are defined:
 jobs:
-  # The build job tries to built the api library and checks formatting, linting
-  # and test results
+  # The build job tries to build the package and the documentation,
+  # checks if the formatting and linting rules are respected and checks
+  # if all tests can be run without throwing errors
   build:
-    # Run the job on the latest Ubuntu runner
-    runs-on: ubuntu-latest
-    # Specify the node versions that should be checked
     strategy:
       matrix:
-        node-version: [17.x, 18.x]
-    # The following steps should be sequentially executed:
+        node-version: [17.x,18.x]
+        os: [ubuntu-latest,windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
-    # Checkout the current repository
-    - uses: actions/checkout@v2
-    # Activate the NodeJs plugin with the previously defined versions and cache it
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    # Install the exact dependencies specified in the package-lock.json file
-    - name: Install dependencies
-      run: npm ci
-    # Build the library which means compile the Typescript code to JavaScript
-    # with Typescript type definitions
-    - name: Compile Typescript library to JavaScript with type definitions
-      run: npm run build
-    # Run tests using github secrets if in local repository because other
-    # repositories don't have access to the secret files
-    - name: Verify tests and get coverage
+    - run: npm ci
+    - run: npm run build
+    # Run tests but keep in mind that not all pull requests have access
+    # to workflow secrets
+    - run: npm run test:coverage
       if: github.event_name != 'pull_request'
-      run: npm run nyc
       env:
         OSU_OAUTH_CLIENT_ID: ${{ secrets.OSU_OAUTH_CLIENT_ID }}
         OSU_OAUTH_CLIENT_SECRET: ${{ secrets.OSU_OAUTH_CLIENT_SECRET }}
-    # Run other tests without github secrets otherwise
-    - name: Run generic tests for pull requests
+    # > If this workflow was triggered by a pull request only check for
+    #   tests that don't require workflow secrets and run but ignore the
+    #   tests that require them
+    - run: npm run test:without-osu-api-v2
       if: github.event_name == 'pull_request'
-      run: npm run test:without-osu-api-v2
-    - name: Run all tests for pull requests
+    - run: npm run test
       if: github.event_name == 'pull_request'
       continue-on-error: true
-      run: npm run test
-    - name: Lint code for errors/warnings
-      run: npm run lint
-    - name: Check code for formatting errors
-      run: npm run format
+    # Creating the documentation requires additional dependencies
+    - name: Install documentation dependencies (apt - ubuntu-latest)
+      if: matrix.os == 'ubuntu-latest'
+      run: sudo apt install graphviz
+    - name: Install documentation dependencies (choco - windows-latest)
+      if: matrix.os == 'windows-latest'
+      run: choco install graphviz
+    - run: npm run docs

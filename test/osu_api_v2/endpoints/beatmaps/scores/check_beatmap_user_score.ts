@@ -1,14 +1,12 @@
+// Package imports
 import { expect } from "chai"
 import moment from "moment"
-import {
-    BeatmapUserScore,
-    GameMode,
-    GameModeInt,
-    GameMods,
-    Score,
-} from "../../../../../src/index"
-import { saveOsuResponseObjectAsFile } from "../../../../helper.test"
+// Local imports
+import { GameMode, GameModeInt, GameMods } from "../../../../../src/index"
 import { checkBeatmapObject } from "../check_beatmap"
+import { saveOsuResponseObjectAsFile } from "../../../../helper.test"
+// Type imports
+import type { BeatmapUserScore, Score } from "../../../../../src/index"
 
 export interface CheckBeatmapUserScoreObjectOptions {
     checkBeatmapId?: number
@@ -16,11 +14,11 @@ export interface CheckBeatmapUserScoreObjectOptions {
     checkUserId?: number
 }
 
-export const checkBeatmapUserScoreScoreObject = (
+export const checkBeatmapUserScoreScoreObject = async (
     beatmapUserScoreScore: Score,
     options: CheckBeatmapUserScoreObjectOptions = {},
-): void => {
-    saveOsuResponseObjectAsFile(
+): Promise<void> => {
+    await saveOsuResponseObjectAsFile(
         `beatmapUserScoreScore_${beatmapUserScoreScore?.id}`,
         beatmapUserScoreScore,
     )
@@ -29,7 +27,7 @@ export const checkBeatmapUserScoreScoreObject = (
         .to.be.a("number")
         .greaterThanOrEqual(0)
     if (beatmapUserScoreScore.beatmap !== undefined) {
-        checkBeatmapObject(beatmapUserScoreScore.beatmap, {
+        await checkBeatmapObject(beatmapUserScoreScore.beatmap, {
             checkBeatmapId: options.checkBeatmapId,
             checkGameMode: options.checkGameMode,
         })
@@ -165,17 +163,17 @@ export const checkBeatmapUserScoreScoreObject = (
     }
 }
 
-export const checkBeatmapUserScoreObject = (
+export const checkBeatmapUserScoreObject = async (
     beatmapUserScore: BeatmapUserScore,
     options: CheckBeatmapUserScoreObjectOptions = {},
-): void => {
-    saveOsuResponseObjectAsFile(
+): Promise<void> => {
+    await saveOsuResponseObjectAsFile(
         `beatmapUserScore_${beatmapUserScore?.score?.id}`,
         beatmapUserScore,
     )
     expect(beatmapUserScore).to.be.an("object")
     expect(beatmapUserScore.position).to.be.a("number").greaterThan(0)
-    checkBeatmapUserScoreScoreObject(beatmapUserScore.score, {
+    await checkBeatmapUserScoreScoreObject(beatmapUserScore.score, {
         checkBeatmapId: options.checkBeatmapId,
         checkGameMode: options.checkGameMode,
         checkUserId: options.checkUserId,

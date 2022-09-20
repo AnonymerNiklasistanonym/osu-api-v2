@@ -1,20 +1,30 @@
+// Package imports
 import { describe, it } from "mocha"
 import { expect } from "chai"
 import { promises as fsp } from "fs"
 import path from "path"
-
+// Type imports
+import {
+    OsuApiV2Error,
+    OsuApiV2ErrorCode,
+    OsuApiV2WebRequestError,
+} from "../src/helpers/custom_errors"
 import { urlParameterGenerator } from "../src/helpers/url_parameter_generator"
-import { OsuApiV2WebRequestError } from "../src/helpers/custom_errors"
+
+const cachedOsuApiResponses = path.join(
+    __dirname,
+    "..",
+    "cached-osu-api-responses",
+)
 
 export const saveOsuResponseObjectAsFile = async (
     fileName: string,
     jsonObject: unknown,
 ): Promise<void> => {
-    const outputDir = path.join(__dirname, "..", "cached-osu-api-responses")
-    await fsp.mkdir(outputDir, {
+    await fsp.mkdir(cachedOsuApiResponses, {
         recursive: true,
     })
-    const outputFile = path.join(outputDir, `${fileName}.json`)
+    const outputFile = path.join(cachedOsuApiResponses, `${fileName}.json`)
     await fsp.writeFile(outputFile, JSON.stringify(jsonObject, undefined, 4), {
         encoding: "utf8",
     })
@@ -50,6 +60,40 @@ export const checkOsuApiV2WebRequestError = (
     }
 }
 
+export const checkOsuApiV2Error = (
+    error: OsuApiV2Error | null,
+    errorCode?: OsuApiV2ErrorCode,
+): void => {
+    expect(error).to.be.an("Error")
+    if (error == null) {
+        return
+    }
+    expect(error.code).to.be.a("string")
+    expect(error.message).to.be.a("string")
+
+    switch (errorCode) {
+        case OsuApiV2ErrorCode.NOT_FOUND:
+            expect(error.code).equal(OsuApiV2ErrorCode.NOT_FOUND)
+            break
+        default:
+            break
+    }
+}
+
+export const cacheResponse = async (
+    prefix: string,
+    name: string,
+    jsonData: unknown,
+): Promise<void> => {
+    const outputFile = path.join(
+        cachedOsuApiResponses,
+        `${prefix}_${name}.json`,
+    )
+    await fsp.writeFile(outputFile, JSON.stringify(jsonData), {
+        encoding: "utf8",
+    })
+}
+
 describe("OsuApiV2WebRequestError", () => {
     it("should mask the authorization header", () => {
         const error = new OsuApiV2WebRequestError(
@@ -76,8 +120,8 @@ describe("OsuApiV2WebRequestError", () => {
     })
 })
 
-describe("helper", async () => {
-    it("urlParameterGenerator", async () => {
+describe("helper", () => {
+    it("urlParameterGenerator", () => {
         const paramGeneratorEmpty = urlParameterGenerator()
         expect(paramGeneratorEmpty).to.equal("")
 

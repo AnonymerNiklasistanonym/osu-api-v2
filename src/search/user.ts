@@ -1,18 +1,10 @@
-import type { User } from "../types/user"
-import type { OAuthAccessToken } from "../types/oauth_access_token"
-
+// Local imports
 import { baseUrlApiV2 } from "../types/api_info"
-import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
-
-export interface UserSearchResult {
-    user: UserSearchResultUserSection
-}
-
-export interface UserSearchResultUserSection {
-    data: User[]
-    total: number
-}
+import { urlParameterGenerator } from "../helpers/url_parameter_generator"
+// Type imports
+import type { OAuthAccessToken } from "../types/oauth_access_token"
+import type { UserSearchResult } from "../types/user"
 
 export const user = async (
     oauthAccessToken: OAuthAccessToken,

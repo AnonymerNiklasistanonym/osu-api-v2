@@ -1,72 +1,72 @@
+// Local imports
+import { GameMode, GameModeInt } from "./game_mode"
+import { Beatmapset } from ".."
+// Type imports
 import type { Beatmap } from "./beatmap"
 import type { Timestamp } from "./timestamp"
 import type { User } from "./user"
 
-import { GameMode, GameModeInt } from "./game_mode"
-import { Beatmapset } from ".."
-
 /**
- * https://osu.ppy.sh/docs/index.html#score
+ * ([Undocumented but can be found in Score](https://osu.ppy.sh/docs/index.html#score)).
  */
 export interface ScoreStatistics {
-    /** integer */
-    count_50: number
-    /** integer */
+    /** Integer */
     count_100: number
-    /** integer */
+    /** Integer */
     count_300: number
-    /** integer */
+    /** Integer */
+    count_50: number
+    /** Integer */
     count_geki: number
-    /** integer */
+    /** Integer */
     count_katu: number
-    /** integer */
+    /** Integer */
     count_miss: number
 }
 
 /**
- * https://osu.ppy.sh/docs/index.html#score
+ * ([Source](https://osu.ppy.sh/docs/index.html#score)).
  */
 export interface Score {
-    /** integer */
-    id: number
-    /** integer */
-    best_id: number
-    /** integer */
-    user_id: number
-    /** float */
+    /** Float */
     accuracy: number
-    mods: string[]
-    /** integer */
-    score: number
-    /** integer */
-    max_combo: number
-    perfect: boolean
-    statistics: ScoreStatistics
-    passed: boolean
-    /** float */
-    pp: number
-    rank: string
-    created_at: Timestamp
-    mode: GameMode
-    /** integer */
-    mode_int: GameModeInt
-    replay: boolean
-    // Optional:
     beatmap?: Beatmap
     beatmapset?: Beatmapset
-    //rank_country?: unknown
-    //rank_global?: unknown
-    //weight?: unknown
+    /** Integer */
+    best_id: number
+    created_at: Timestamp
+    /** Integer */
+    id: number
+    match?: unknown
+    /** Integer */
+    max_combo: number
+    mode: GameMode
+    /** Integer */
+    mode_int: GameModeInt
+    mods: string[]
+    passed: boolean
+    perfect: boolean
+    /** Float */
+    pp: number
+    rank: string
+    rank_country?: unknown
+    rank_global?: unknown
+    replay: boolean
+    /** Integer */
+    score: number
+    statistics: ScoreStatistics
     user?: User
-    //match?: unknown
+    /** Integer */
+    user_id: number
+    weight?: unknown
 }
 
 /**
- * https://osu.ppy.sh/docs/index.html#beatmapuserscore
+ * ([Source](https://osu.ppy.sh/docs/index.html#beatmapuserscore)).
  */
 export interface BeatmapUserScore {
     /**
-     * The position of the score within the requested beatmap ranking
+     * The position of the score within the requested beatmap ranking.
      */
     position: number
     /**

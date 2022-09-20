@@ -1,8 +1,8 @@
-type OsuApiV2WebRequestErrorMethod = "get" | "post"
-type OsuApiV2WebRequestErrorHeaders = { [key: string]: string }
+export type OsuApiV2WebRequestErrorMethod = "get" | "post"
+export type OsuApiV2WebRequestErrorHeaders = Record<string, string>
 
 /**
- * An error that should be thrown if an osu api V2 web request fails
+ * An error that should be thrown if an osu!api v2 web request fails.
  */
 export class OsuApiV2WebRequestError extends Error {
     public url: string
@@ -37,5 +37,33 @@ export class OsuApiV2WebRequestError extends Error {
         if (body !== undefined) {
             this.body = body
         }
+    }
+}
+
+/**
+ * Error codes for internal or logic errors.
+ */
+export enum OsuApiV2ErrorCode {
+    /**
+     * Thrown if something was not found like for example the osu!api v2
+     * returns an empty array for found users but it is expected to return
+     * one user.
+     */
+    NOT_FOUND = "NOT_FOUND",
+    /**
+     * Thrown if the API returns something that is not the expected type.
+     */
+    UNEXPECTED_RETURN_TYPE = "UNEXPECTED_RETURN_TYPE",
+}
+
+/**
+ * An error that should be thrown if there if a logic or internal error was
+ * detected.
+ */
+export class OsuApiV2Error extends Error {
+    public code: OsuApiV2ErrorCode
+    constructor(message: string, code: OsuApiV2ErrorCode) {
+        super(message)
+        this.code = code
     }
 }

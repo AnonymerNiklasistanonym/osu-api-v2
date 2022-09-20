@@ -1,13 +1,16 @@
+// Package imports
 import { expect } from "chai"
-import {
+// Local imports
+import { checkBeatmapObject } from "./check_beatmap"
+import { saveOsuResponseObjectAsFile } from "../../../helper.test"
+// Type imports
+import type {
     Beatmapset,
     BeatmapsetCompactAvailability,
     BeatmapsetCompactHype,
     BeatmapsetCompactNominationsSummary,
     Covers,
 } from "../../../../src/index"
-import { saveOsuResponseObjectAsFile } from "../../../helper.test"
-import { checkBeatmapObject } from "./check_beatmap"
 
 export const checkBeatmapsetAvailabilityObject = (
     beatmapsetAvailability: BeatmapsetCompactAvailability,
@@ -80,11 +83,14 @@ export const checkBeatmapsetNominationssummaryObject = (
     }
 }
 
-export const checkBeatmapsetObject = (
+export const checkBeatmapsetObject = async (
     beatmapset: Beatmapset,
     options: CheckBeatmapSetObjectOptions = {},
-): void => {
-    saveOsuResponseObjectAsFile(`beatmapset_${beatmapset?.id}`, beatmapset)
+): Promise<void> => {
+    await saveOsuResponseObjectAsFile(
+        `beatmapset_${beatmapset?.id}`,
+        beatmapset,
+    )
     expect(beatmapset.artist).to.be.a("string").with.a.lengthOf.greaterThan(0)
     expect(beatmapset.artist_unicode)
         .to.be.a("string")
@@ -94,7 +100,7 @@ export const checkBeatmapsetObject = (
     if (beatmapset.beatmaps !== undefined) {
         expect(beatmapset.beatmaps).to.be.an("array")
         for (const beatmap of beatmapset.beatmaps) {
-            checkBeatmapObject(beatmap, {
+            await checkBeatmapObject(beatmap, {
                 checkBeatmapsetId: options.checkBeatmapsetId,
             })
         }

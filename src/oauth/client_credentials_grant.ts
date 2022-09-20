@@ -1,8 +1,9 @@
-import type { ClientCredentialsGrant } from "../types/client_credentials_grant"
-import type { OAuthAccessToken } from "../types/oauth_access_token"
-
+// Local imports
 import { baseUrl } from "../types/api_info"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
+// Type imports
+import type { ClientCredentialsGrant } from "../types/client_credentials_grant"
+import type { OAuthAccessToken } from "../types/oauth_access_token"
 
 export const clientCredentialsGrant = async (
     client_id: number,

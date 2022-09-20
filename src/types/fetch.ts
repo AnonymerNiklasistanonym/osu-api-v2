@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable sort-imports */
 /*
  * Since currently TypeScript is struggling with the experimental node fetch
  * implementation the node type from
@@ -25,6 +26,10 @@ export interface AbortSignal {
               },
     ) => void
 
+    dispatchEvent: (event: any) => boolean
+
+    onabort: null | ((this: AbortSignal, event: any) => any)
+
     removeEventListener: (
         type: "abort",
         listener: (this: AbortSignal, event: any) => any,
@@ -34,10 +39,6 @@ export interface AbortSignal {
                   capture?: boolean | undefined
               },
     ) => void
-
-    dispatchEvent: (event: any) => boolean
-
-    onabort: null | ((this: AbortSignal, event: any) => any)
 }
 
 declare class Request extends Body {
@@ -65,19 +66,21 @@ declare class Request extends Body {
 }
 
 export interface RequestInit {
-    // whatwg/fetch standard options
-    body?: BodyInit | undefined
-    headers?: HeadersInit | undefined
-    method?: string | undefined
-    redirect?: RequestRedirect | undefined
-    signal?: AbortSignal | null | undefined
-
     // node-fetch extensions
     agent?:
         | RequestOptions["agent"]
-        | ((parsedUrl: URL) => RequestOptions["agent"]) // =null http.Agent instance, allows custom proxy, certificate etc.
-    compress?: boolean | undefined // =true support gzip/deflate content encoding. false to disable
-    follow?: number | undefined // =20 maximum redirect count. 0 to not follow redirect
+        | ((parsedUrl: URL) => RequestOptions["agent"])
+    // whatwg/fetch standard options
+    body?: BodyInit | undefined
+    // =null http.Agent instance, allows custom proxy, certificate etc.
+    compress?: boolean | undefined
+    // =true support gzip/deflate content encoding. false to disable
+    follow?: number | undefined
+    headers?: HeadersInit | undefined
+
+    method?: string | undefined
+    redirect?: RequestRedirect | undefined
+    signal?: AbortSignal | null | undefined // =20 maximum redirect count. 0 to not follow redirect
     size?: number | undefined // =0 maximum response body size in bytes. 0 to disable
     timeout?: number | undefined // =0 req/res timeout in ms, it resets on redirect. 0 to disable (OS limit applies)
 
@@ -150,8 +153,8 @@ declare class Headers implements Iterable<[string, string]> {
 type BlobPart = ArrayBuffer | ArrayBufferView | Blob | string
 
 interface BlobOptions {
-    type?: string | undefined
     endings?: "transparent" | "native" | undefined
+    type?: string | undefined
 }
 
 declare class Blob {
