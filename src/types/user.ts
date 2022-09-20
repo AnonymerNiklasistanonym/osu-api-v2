@@ -66,10 +66,10 @@ export interface UserCompactStatisticsGradeCounts {
 
 export interface UserCompactStatistics {
     country_rank: number
-    global_rank: number
+    global_rank?: number
     grade_counts: UserCompactStatisticsGradeCounts
     hit_accuracy: number
-    is_ranked: true
+    is_ranked: boolean
     level: UserCompactStatisticsLevel
     maximum_combo: number
     play_count: number
@@ -167,7 +167,7 @@ export interface UserCompactBase {
     /**
      * Colour of username/profile highlight, hex code (e.g. #333333).
      */
-    profile_colour: string
+    profile_colour?: string
     rank_history?: UserRankHistory
     ranked_beatmapset_count?: unknown
     replays_watched_counts?: UserReplaysWatchedCounts[]
