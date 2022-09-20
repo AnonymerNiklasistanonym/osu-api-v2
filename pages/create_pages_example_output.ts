@@ -101,5 +101,8 @@ const usersGet = genericEndpointGenerator<User>("users_get", (input) => {
 })
 
 const usersScores = genericEndpointGenerator<Score[]>("users_scores")
+const usersRecentActivity = genericEndpointGenerator<Score[]>(
+    "users_recent_activity",
+)
 
-Promise.all([usersGet, usersScores]).catch(console.error)
+Promise.all([usersGet, usersScores, usersRecentActivity]).catch(console.error)

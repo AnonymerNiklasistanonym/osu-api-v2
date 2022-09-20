@@ -226,102 +226,135 @@ export const usersTestSuite = (): Suite =>
                 )
                 expect(userName.playmode).equals(GameMode.OSU_MANIA)
             })
-        }).timeout(8000)
+        })
 
-        it("recentActivity", async () => {
-            // Check if the request throws an error when the id is invalid
-            let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
-            try {
-                await osuApiV2.users.recentActivity(oauthAccessToken, -9096716)
-            } catch (err) {
-                errorInvalidBeatmapId = err as OsuApiV2WebRequestError
-            }
-            checkOsuApiV2WebRequestError(
-                errorInvalidBeatmapId,
-                OsuApiV2WebRequestErrorType.NOT_FOUND,
-            )
+        describe("recentActivity", () => {
+            it("should throw if id is invalid", async () => {
+                // Check if the request throws an error when the id is invalid
+                let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
+                try {
+                    await osuApiV2.users.recentActivity(
+                        oauthAccessToken,
+                        -9096716,
+                    )
+                } catch (err) {
+                    errorInvalidBeatmapId = err as OsuApiV2WebRequestError
+                }
+                checkOsuApiV2WebRequestError(
+                    errorInvalidBeatmapId,
+                    OsuApiV2WebRequestErrorType.NOT_FOUND,
+                )
+            }).timeout(8000)
 
-            await osuApiV2.users.recentActivity(oauthAccessToken, 9096716)
-        }).timeout(8000)
+            it("should make request successfully", async () => {
+                await osuApiV2.users.recentActivity(oauthAccessToken, 9096716)
 
-        it("scores", async () => {
-            // Check if the request throws an error when the id is invalid
-            let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
-            try {
+                const recentActivity21 = await osuApiV2.users.recentActivity(
+                    oauthAccessToken,
+                    9096716,
+                    2,
+                    1,
+                )
+                await cacheResponse(
+                    "users_recent_activity",
+                    "9096716_2_1",
+                    recentActivity21,
+                )
+
+                const recentActivity2 = await osuApiV2.users.recentActivity(
+                    oauthAccessToken,
+                    2927048,
+                    2,
+                )
+                await cacheResponse(
+                    "users_recent_activity",
+                    "2927048_2",
+                    recentActivity2,
+                )
+            }).timeout(8000)
+        })
+
+        describe("scores", () => {
+            it("should throw if id is invalid", async () => {
+                // Check if the request throws an error when the id is invalid
+                let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
+                try {
+                    await osuApiV2.users.scores(
+                        oauthAccessToken,
+                        -9096716,
+                        ScoresType.RECENT,
+                    )
+                } catch (err) {
+                    errorInvalidBeatmapId = err as OsuApiV2WebRequestError
+                }
+                checkOsuApiV2WebRequestError(
+                    errorInvalidBeatmapId,
+                    OsuApiV2WebRequestErrorType.NOT_FOUND,
+                )
+            })
+            it("should make request successfully", async () => {
+                const userBestOsu21 = await osuApiV2.users.scores(
+                    oauthAccessToken,
+                    9096716,
+                    ScoresType.BEST,
+                    GameMode.OSU_STANDARD,
+                    2,
+                    1,
+                )
+                await cacheResponse(
+                    "users_scores",
+                    "9096716_best_osu_2_1",
+                    userBestOsu21,
+                )
+
                 await osuApiV2.users.scores(
                     oauthAccessToken,
-                    -9096716,
+                    9096716,
                     ScoresType.RECENT,
                 )
-            } catch (err) {
-                errorInvalidBeatmapId = err as OsuApiV2WebRequestError
-            }
-            checkOsuApiV2WebRequestError(
-                errorInvalidBeatmapId,
-                OsuApiV2WebRequestErrorType.NOT_FOUND,
-            )
+                await osuApiV2.users.scores(
+                    oauthAccessToken,
+                    9096716,
+                    ScoresType.BEST,
+                )
+                await osuApiV2.users.scores(
+                    oauthAccessToken,
+                    9096716,
+                    ScoresType.FIRST_PLACE,
+                )
+                await osuApiV2.users.scores(
+                    oauthAccessToken,
+                    9096716,
+                    ScoresType.RECENT,
+                    GameMode.OSU_STANDARD,
+                    3,
+                    0,
+                    true,
+                )
+                await osuApiV2.users.scores(
+                    oauthAccessToken,
+                    9096716,
+                    ScoresType.RECENT,
+                    undefined,
+                    undefined,
+                    undefined,
+                    false,
+                )
 
-            const userBestOsu21 = await osuApiV2.users.scores(
-                oauthAccessToken,
-                9096716,
-                ScoresType.BEST,
-                GameMode.OSU_STANDARD,
-                2,
-                1,
-            )
-            await cacheResponse(
-                "users_scores",
-                "9096716_best_osu_2_1",
-                userBestOsu21,
-            )
-
-            await osuApiV2.users.scores(
-                oauthAccessToken,
-                9096716,
-                ScoresType.RECENT,
-            )
-            await osuApiV2.users.scores(
-                oauthAccessToken,
-                9096716,
-                ScoresType.BEST,
-            )
-            await osuApiV2.users.scores(
-                oauthAccessToken,
-                9096716,
-                ScoresType.FIRST_PLACE,
-            )
-            await osuApiV2.users.scores(
-                oauthAccessToken,
-                9096716,
-                ScoresType.RECENT,
-                GameMode.OSU_STANDARD,
-                3,
-                0,
-                true,
-            )
-            await osuApiV2.users.scores(
-                oauthAccessToken,
-                9096716,
-                ScoresType.RECENT,
-                undefined,
-                undefined,
-                undefined,
-                false,
-            )
-
-            const userRecentOsu20True = await osuApiV2.users.scores(
-                oauthAccessToken,
-                2927048,
-                ScoresType.RECENT,
-                GameMode.OSU_STANDARD,
-                2,
-                0,
-                true,
-            )
-            await cacheResponse(
-                "users_scores",
-                "2927048_recent_osu_2_0_true",
-                userRecentOsu20True,
-            )
-        }).timeout(8000)
+                const userRecentOsu20True = await osuApiV2.users.scores(
+                    oauthAccessToken,
+                    2927048,
+                    ScoresType.RECENT,
+                    GameMode.OSU_STANDARD,
+                    2,
+                    0,
+                    true,
+                )
+                await cacheResponse(
+                    "users_scores",
+                    "2927048_recent_osu_2_0_true",
+                    userRecentOsu20True,
+                )
+            }).timeout(8000)
+        })
     })

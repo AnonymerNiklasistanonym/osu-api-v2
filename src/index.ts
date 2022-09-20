@@ -5,13 +5,17 @@ import { oauth } from "./oauth/oauth"
 import { search } from "./search/search"
 import { users } from "./users/users"
 // Local exports
+export {
+    EventType,
+    EventBeatmapsetApproveApproval,
+    EventRankScoreRank,
+} from "./types/event"
 export { GameMode, GameModeInt } from "./types/game_mode"
 export {
     OsuApiV2WebRequestError,
     OsuApiV2ErrorCode,
     OsuApiV2Error,
 } from "./helpers/custom_errors"
-export { EventType } from "./types/event"
 export { GameMods } from "./types/game_mods"
 export { RankStatus } from "./types/rank_status"
 export { ScoresType } from "./users/scores"
@@ -31,10 +35,23 @@ export type { BeatmapUserScore, Score, ScoreStatistics } from "./types/score"
 export type {
     Event,
     EventAchievement,
-    EventBeatmap,
+    EventBeatmapPlayCount,
+    EventBeatmapsetApprove,
+    EventBeatmapsetDelete,
+    EventBeatmapsetRevive,
+    EventBeatmapsetUpdate,
+    EventBeatmapsetUpload,
+    EventObjectAchievement,
+    EventObjectBeatmap,
+    EventObjectBeatmapset,
+    EventObjectUser,
     EventRank,
     EventRankLost,
-    EventUser,
+    Events,
+    EventUsernameChange,
+    EventUserSupportAgain,
+    EventUserSupportFirst,
+    EventUserSupportGift,
 } from "./types/event"
 export type {
     OsuApiV2WebRequestErrorMethod,
