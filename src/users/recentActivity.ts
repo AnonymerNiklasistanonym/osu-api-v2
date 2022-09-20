@@ -1,4 +1,8 @@
-import type { OAuthAccessToken } from "../types/oauth_access_token"
+// Local imports
+import { baseUrlApiV2 } from "../types/api_info"
+import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
+import { urlParameterGenerator } from "../helpers/url_parameter_generator"
+// Type imports
 import type {
     Event,
     EventAchievement,
@@ -6,10 +10,7 @@ import type {
     EventRankLost,
 } from "../types/event"
 import type { Fetch } from "../types/fetch"
-
-import { baseUrlApiV2 } from "../types/api_info"
-import { urlParameterGenerator } from "../helpers/url_parameter_generator"
-import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
+import type { OAuthAccessToken } from "../types/oauth_access_token"
 
 declare const fetch: Fetch
 

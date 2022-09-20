@@ -1,14 +1,15 @@
+// Package imports
 import { describe, it } from "mocha"
 import { expect } from "chai"
 import { promises as fsp } from "fs"
 import path from "path"
-
-import { urlParameterGenerator } from "../src/helpers/url_parameter_generator"
+// Type imports
 import {
     OsuApiV2Error,
     OsuApiV2ErrorCode,
     OsuApiV2WebRequestError,
 } from "../src/helpers/custom_errors"
+import { urlParameterGenerator } from "../src/helpers/url_parameter_generator"
 
 export const saveOsuResponseObjectAsFile = async (
     fileName: string,
@@ -100,8 +101,8 @@ describe("OsuApiV2WebRequestError", () => {
     })
 })
 
-describe("helper", async () => {
-    it("urlParameterGenerator", async () => {
+describe("helper", () => {
+    it("urlParameterGenerator", () => {
         const paramGeneratorEmpty = urlParameterGenerator()
         expect(paramGeneratorEmpty).to.equal("")
 

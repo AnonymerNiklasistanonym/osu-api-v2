@@ -1,15 +1,16 @@
-import type { OAuthAccessToken } from "../types/oauth_access_token"
-import type { Fetch } from "../types/fetch"
-import type { User } from "../types/user"
-
-import { baseUrlApiV2 } from "../types/api_info"
-import { GameMode } from "../types/game_mode"
-import { urlParameterGenerator } from "../helpers/url_parameter_generator"
+// Local imports
 import {
     OsuApiV2Error,
     OsuApiV2ErrorCode,
     OsuApiV2WebRequestError,
 } from "../helpers/custom_errors"
+import { baseUrlApiV2 } from "../types/api_info"
+import { GameMode } from "../types/game_mode"
+import { urlParameterGenerator } from "../helpers/url_parameter_generator"
+// Type imports
+import type { Fetch } from "../types/fetch"
+import type { OAuthAccessToken } from "../types/oauth_access_token"
+import type { User } from "../types/user"
 
 declare const fetch: Fetch
 
@@ -17,7 +18,7 @@ declare const fetch: Fetch
  * Get a user by their ID or username.
  *
  * @param oauthAccessToken The OAuth Access token.
- * @param userIdOrName Either the osu! user name or id of the user to get.
+ * @param userIdOrName Either the osu! User name or id of the user to get.
  * @param mode Per default (ranking) statistics are returned regarding the
  * default game mode of the user, to request statistics of the user regarding a
  * specific game mode this argument can be supplied.
@@ -25,7 +26,6 @@ declare const fetch: Fetch
  * the provided user ID a {@link OsuApiV2WebRequestError} is being thrown.
  * @throws If the web request returns an unexpected type or no user but doesn't
  * throw a web request error a {@link OsuApiV2Error} is being thrown.
- *
  * @example
  * ```ts
  * import osuApiV2 from "osu-api-v2"

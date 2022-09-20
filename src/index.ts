@@ -1,72 +1,70 @@
-export type {
-    Covers,
-    BeatmapsetCompact,
-    BeatmapsetCompactAvailability,
-    BeatmapsetCompactHype,
-    BeatmapsetCompactNominationsSummary,
-    Beatmapset,
-    BeatmapsetSearchResult,
-    BeatmapCompact,
-    Beatmap,
-} from "./types/beatmap"
-export type { ClientCredentialsGrant } from "./types/client_credentials_grant"
-export type {
-    Event,
-    EventUser,
-    EventBeatmap,
-    EventAchievement,
-    EventRank,
-    EventRankLost,
-} from "./types/event"
-export type { Failtimes } from "./types/failtimes"
-export type { OAuthAccessToken } from "./types/oauth_access_token"
-export type { ScoreStatistics, Score, BeatmapUserScore } from "./types/score"
-export type { Timestamp } from "./types/timestamp"
-export type {
-    UserCompactCover,
-    UserCompactStatistics,
-    UserRankHistory,
-    ProfilePage,
-    UserAchievement,
-    UserSearchResult,
-    UserCompactStatisticsGradeCounts,
-    UserCompactStatisticsRank,
-    UserCompactStatisticsLevel,
-    UserSearchResultUserSection,
-    UserStatisticsRulesets,
-    UserMonthlyPlaycount,
-    UserGroup,
-    UserAccountHistory,
-    UserCompactProfileBanner,
-    UserBadge,
-    UserCompactCountry,
-    UserCompact,
-    UserCompactKusodo,
-    User,
-} from "./types/user"
-
-export type {
-    OsuApiV2WebRequestErrorMethod,
-    OsuApiV2WebRequestErrorHeaders,
-} from "./helpers/custom_errors"
-
-export { EventType } from "./types/event"
-export { GameMode, GameModeInt } from "./types/game_mode"
-export { GameMods } from "./types/game_mods"
-export { RankedStatus } from "./types/ranked_status"
-export { ScoresType } from "./users/scores"
-
-export {
-    OsuApiV2WebRequestError,
-    OsuApiV2ErrorCode,
-    OsuApiV2Error,
-} from "./helpers/custom_errors"
-
+// Local imports
 import { beatmaps } from "./beatmaps/beatmaps"
 import { beatmapsets } from "./beatmapsets/beatmapsets"
 import { oauth } from "./oauth/oauth"
 import { search } from "./search/search"
 import { users } from "./users/users"
+// Local exports
+export { GameMode, GameModeInt } from "./types/game_mode"
+export {
+    OsuApiV2WebRequestError,
+    OsuApiV2ErrorCode,
+    OsuApiV2Error,
+} from "./helpers/custom_errors"
+export { EventType } from "./types/event"
+export { GameMods } from "./types/game_mods"
+export { RankStatus } from "./types/rank_status"
+export { ScoresType } from "./users/scores"
+// Type exports
+export type {
+    Beatmap,
+    BeatmapCompact,
+    Beatmapset,
+    BeatmapsetCompact,
+    BeatmapsetCompactAvailability,
+    BeatmapsetCompactHype,
+    BeatmapsetCompactNominationsSummary,
+    BeatmapsetSearchResult,
+    Covers,
+} from "./types/beatmap"
+export type { BeatmapUserScore, Score, ScoreStatistics } from "./types/score"
+export type {
+    Event,
+    EventAchievement,
+    EventBeatmap,
+    EventRank,
+    EventRankLost,
+    EventUser,
+} from "./types/event"
+export type {
+    OsuApiV2WebRequestErrorMethod,
+    OsuApiV2WebRequestErrorHeaders,
+} from "./helpers/custom_errors"
+export type {
+    ProfilePage,
+    User,
+    UserAccountHistory,
+    UserAchievement,
+    UserBadge,
+    UserCompact,
+    UserCompactCountry,
+    UserCompactCover,
+    UserCompactKusodo,
+    UserCompactProfileBanner,
+    UserCompactStatistics,
+    UserCompactStatisticsGradeCounts,
+    UserCompactStatisticsLevel,
+    UserGroup,
+    UserMonthlyPlaycount,
+    UserRankHistory,
+    UserSearchResult,
+    UserSearchResultUserSection,
+    UserStatisticsRulesets,
+} from "./types/user"
+export type { ClientCredentialsGrant } from "./types/client_credentials_grant"
+export type { Failtimes } from "./types/failtimes"
+export type { OAuthAccessToken } from "./types/oauth_access_token"
+export type { Timestamp } from "./types/timestamp"
 
 /**
  * A collection of all supported osu!api v2 endpoints.

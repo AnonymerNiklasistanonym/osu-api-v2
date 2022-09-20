@@ -1,29 +1,31 @@
 /**
- * Available game mods:
+ * Available game mods.
+ *
+ * ([Undocumented but can be found in Score](https://osu.ppy.sh/docs/index.html#score)).
  */
 export enum GameMods {
-    // Difficulty reduction
-    EZ = "EZ",
-    NF = "NF",
-    HT = "HT",
-    // Difficulty increase
-    HR = "HR",
-    SD = "SD",
-    PF = "PF",
-    DT = "DT",
-    NC = "NC",
-    HD = "HD",
-    FI = "FI",
-    FL = "FL",
-    // Special
-    RL = "RL",
     AP = "AP",
-    SO = "SO",
-    CP = "CP",
-    MR = "MR",
-    RD = "RD",
     AT = "AT",
     CM = "CM",
+    CP = "CP",
+    DT = "DT",
+    // Difficulty reduction
+    EZ = "EZ",
+    FI = "FI",
+    FL = "FL",
+    HD = "HD",
+    // Difficulty increase
+    HR = "HR",
+    HT = "HT",
+    MR = "MR",
+    NC = "NC",
+    NF = "NF",
+    PF = "PF",
+    RD = "RD",
+    // Special
+    RL = "RL",
+    SD = "SD",
+    SO = "SO",
     SV2 = "SV2",
     TP = "TP",
 }

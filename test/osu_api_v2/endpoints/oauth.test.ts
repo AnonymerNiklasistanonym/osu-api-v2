@@ -1,18 +1,18 @@
+// Package imorts
 import { before, describe, it, Suite } from "mocha"
 import { expect } from "chai"
-
-import osuApiV2, { OsuApiV2WebRequestError } from "../../../src/index"
-import {
-    OAuthCredentials,
-    readOauthCredentials,
-} from "../read_oauth_credentials"
+// Local imports
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
 } from "../../helper.test"
+import osuApiV2, { OsuApiV2WebRequestError } from "../../../src/index"
+import { readOauthCredentials } from "../read_oauth_credentials"
+// Type imports
+import type { OAuthCredentials } from "../read_oauth_credentials"
 
 export const oauthTestSuite = (): Suite =>
-    describe("oauth", async () => {
+    describe("oauth", () => {
         let oauthCredentials: OAuthCredentials
 
         before("before all test cases in oauth block", async () => {

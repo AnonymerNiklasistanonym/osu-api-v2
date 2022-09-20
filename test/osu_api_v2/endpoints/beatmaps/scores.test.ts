@@ -1,15 +1,19 @@
-import { expect } from "chai"
+// Package imports
 import { describe, Suite } from "mocha"
-import osuApiV2 from "../../../../src"
-import { OsuApiV2WebRequestError } from "../../../../src/helpers/custom_errors"
-import { GameMode } from "../../../../src/types/game_mode"
-import { OAuthAccessToken } from "../../../../src/types/oauth_access_token"
+import { expect } from "chai"
+// Local imports
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
 } from "../../../helper.test"
-import { readOauthCredentials } from "../../read_oauth_credentials"
+import osuApiV2, {
+    GameMode,
+    OsuApiV2WebRequestError,
+} from "../../../../src/index"
 import { checkBeatmapUserScoreObject } from "./scores/check_beatmap_user_score"
+import { readOauthCredentials } from "../../read_oauth_credentials"
+// Type imports
+import type { OAuthAccessToken } from "../../../../src/index"
 
 export const scoresTestSuite = (): Suite =>
     describe("scores", () => {
@@ -51,7 +55,7 @@ export const scoresTestSuite = (): Suite =>
                 1095534,
                 18508852,
             )
-            checkBeatmapUserScoreObject(beatmapUserScore0, {
+            await checkBeatmapUserScoreObject(beatmapUserScore0, {
                 checkBeatmapId: 1095534,
                 checkGameMode: GameMode.osu,
                 checkUserId: 18508852,
@@ -62,7 +66,7 @@ export const scoresTestSuite = (): Suite =>
                 18508852,
                 GameMode.osu,
             )
-            checkBeatmapUserScoreObject(beatmapUserScore1, {
+            await checkBeatmapUserScoreObject(beatmapUserScore1, {
                 checkBeatmapId: 1095534,
                 checkGameMode: GameMode.osu,
                 checkUserId: 18508852,
@@ -74,7 +78,7 @@ export const scoresTestSuite = (): Suite =>
                 18508852,
                 GameMode.osu,
             )
-            checkBeatmapUserScoreObject(beatmapUserScore2, {
+            await checkBeatmapUserScoreObject(beatmapUserScore2, {
                 checkBeatmapId: 744305,
                 checkGameMode: GameMode.osu,
                 checkUserId: 18508852,

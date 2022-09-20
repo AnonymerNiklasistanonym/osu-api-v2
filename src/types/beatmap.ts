@@ -1,14 +1,19 @@
-import { RankedStatus } from "./ranked_status"
+// Local imports
+import { GameMode, GameModeInt } from "./game_mode"
+import { RankStatus } from "./rank_status"
+// Type imports
 import type { Failtimes } from "./failtimes"
 import type { Timestamp } from "./timestamp"
 import type { User } from "./user"
-import { GameMode, GameModeInt } from "./game_mode"
 
+/**
+ * ([Source](https://osu.ppy.sh/docs/index.html#beatmapsetcompact-covers))
+ */
 export interface Covers {
-    cover: string
-    "cover@2x": string
     card: string
     "card@2x": string
+    cover: string
+    "cover@2x": string
     list: string
     "list@2x": string
     slimcover: string
@@ -16,50 +21,49 @@ export interface Covers {
 }
 
 /**
- * Represents a beatmapset
+ * Represents a beatmapset.
  *
- * https://osu.ppy.sh/docs/index.html#beatmapsetcompact
+ * ([Source](https://osu.ppy.sh/docs/index.html#beatmapsetcompact))
  */
-export interface BeatmapsetCompactBase {
+interface BeatmapsetCompactBase {
     artist: string
     artist_unicode: string
-    covers: Covers
-    creator: string
-    favourite_count: number
-    id: number
-    nsfw: boolean
-    play_count: number
-    preview_url: string
-    status: string
-    title: string
-    title_unicode: string
-    user_id: number
-    video: boolean
-    // Optional:
     beatmaps?: Beatmap[]
     converts?: unknown
+    covers: Covers
+    creator: string
     current_user_attributes?: unknown
     description?: unknown
     discussions?: unknown
     events?: unknown
+    favourite_count: number
     genre?: unknown
+    id: number
     language?: unknown
     nominations?: unknown
+    nsfw: boolean
+    play_count: number
+    preview_url: string
     ratings?: number[]
     recent_favourites?: unknown
     related_users?: unknown
+    status: string
+    title: string
+    title_unicode: string
     user?: User
+    user_id: number
+    video: boolean
 }
 
 /**
- * Represents a beatmapset
+ * Represents a beatmapset.
  *
- * https://osu.ppy.sh/docs/index.html#beatmapsetcompact
+ * ([Source](https://osu.ppy.sh/docs/index.html#beatmapsetcompact))
  */
 export interface BeatmapsetCompact extends BeatmapsetCompactBase {
-    source: string
-    /** Always included in Betmapset */
+    /** Always included in {@link Beatmapset} but optional in {@link BeatmapsetCompact}. */
     has_favourited?: boolean
+    source: string
 }
 
 export interface BeatmapsetCompactAvailability {
@@ -68,121 +72,122 @@ export interface BeatmapsetCompactAvailability {
 }
 
 export interface BeatmapsetCompactHype {
-    /** integer */
+    /** Integer */
     current?: number
-    /** integer */
+    /** Integer */
     required?: number
 }
 
 export interface BeatmapsetCompactNominationsSummary {
-    /** integer */
+    /** Integer */
     current?: number
-    /** integer */
+    /** Integer */
     required?: number
 }
 
 export interface Beatmapset extends BeatmapsetCompactBase {
     availability: BeatmapsetCompactAvailability
-    /** float */
+    /** Float */
     bpm: number
     can_be_hyped: boolean
     /**
-     * Username of the mapper at the time of beatmapset creation
+     * Username of the mapper at the time of beatmapset creation.
      */
     creator: string
     discussion_enabled: boolean
     discussion_locked: boolean
+    has_favourited: boolean
     hype: null | BeatmapsetCompactHype
     is_scoreable: boolean
     last_updated: Timestamp
     legacy_thread_url?: string
     nominations_summary: BeatmapsetCompactNominationsSummary
     /**
-     * See Rank status for list of possible values
+     * See Rank status for list of possible values.
      */
-    ranked?: RankedStatus
+    ranked?: RankStatus
     ranked_date?: Timestamp
     source?: string
     storyboard: boolean
     submitted_date?: Timestamp
     tags: string
-
-    has_favourited: boolean
 }
 
 /**
  * Represent a beatmap.
  *
- * https://osu.ppy.sh/docs/index.html#beatmapcompact
+ * Https://osu.ppy.sh/docs/index.html#beatmapcompact.
  */
 export interface BeatmapCompact {
-    /** float */
+    // Optional attributes:
+    /**
+     * Beatmapset for Beatmap object, BeatmapsetCompact for
+     * BeatmapCompact object. Null if the beatmap doesn't
+     * have associated beatmapset (e.g. Deleted).
+     */
+    beatmapset?: null | Beatmapset
+    // | BeatmapCompact
+    checksum?: string
+    /** Float */
     difficulty_rating: number
-    /** integer */
+    failtimes?: Failtimes
+    /** Integer */
     id: number
+    /** Integer */
+    max_combo?: number
     mode: GameMode
     /**
      * See Rank status for list of possible values.
      */
     status: string
-    total_length: number // integer
+    total_length: number
+    // integer
     version: string
-    // Optional attributes:
-    /**
-     * Beatmapset for Beatmap object, BeatmapsetCompact for
-     * BeatmapCompact object. null if the beatmap doesn't
-     * have associated beatmapset (e.g. deleted).
-     */
-    beatmapset?: null | Beatmapset // | BeatmapCompact
-    checksum?: string
-    failtimes?: Failtimes
-    /** integer */
-    max_combo?: number
 }
 
 /**
  * Represent a beatmap.
  * This extends BeatmapCompact with additional attributes.
  *
- * https://osu.ppy.sh/docs/index.html#beatmap
+ * Https://osu.ppy.sh/docs/index.html#beatmap.
  */
 export interface Beatmap extends BeatmapCompact {
-    /** float */
+    /** Float */
     accuracy: number
-    /** float */
+    /** Float */
     ar: number
-    /** integer */
+    /** Integer */
     beatmapset_id: number
-    /** float */
+    /** Float */
     bpm: number
     convert: boolean
-    /** integer */
+    /** Integer */
     count_circles: number
-    /** integer */
+    /** Integer */
     count_sliders: number
-    /** integer */
+    /** Integer */
     count_spinners: number
-    /** float */
+    /** Float */
     cs: number
     deleted_at?: Timestamp
-    /** float */
+    /** Float */
     drain: number
-    /** integer */
+    /** Integer */
     hit_length: number
     is_scoreable: boolean
     last_updated: Timestamp
-    /** integer */
+    /** Integer */
     mode_int: GameModeInt
-    /** integer */
+    /** Integer */
     passcount: number
-    /** integer */
+    /** Integer */
     playcount: number
     /**
      * See Rank status for list of possible values.
      *
-     * integer
+     * Integer.
      */
-    ranked: RankedStatus
+    ranked: RankStatus
     url: string
 }
 

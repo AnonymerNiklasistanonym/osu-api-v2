@@ -1,26 +1,31 @@
 /**
- * Available game modes:
+ * Available game modes.
  *
- * https://osu.ppy.sh/docs/index.html#gamemode
+ * ([Source](https://osu.ppy.sh/docs/index.html#gamemode))
  */
 export enum GameMode {
-    /** osu!catch */
+    /** Osu!catch */
     fruits = "fruits",
-    /** osu!mania */
+    /** Osu!mania */
     mania = "mania",
-    /** osu!standard */
+    /** Osu!standard */
     osu = "osu",
-    /** osu!taiko */
+    /** Osu!taiko */
     taiko = "taiko",
 }
 
+/**
+ * Available game modes integer codes.
+ *
+ * ([Undocumented but can be found in Score](https://osu.ppy.sh/docs/index.html#score))
+ */
 export enum GameModeInt {
-    /** osu!catch */
+    /** Osu!catch */
     fruits = 2,
-    /** osu!mania */
+    /** Osu!mania */
     mania = 1,
-    /** osu!standard */
+    /** Osu!standard */
     osu = 0,
-    /** osu!taiko */
+    /** Osu!taiko */
     taiko = 3,
 }

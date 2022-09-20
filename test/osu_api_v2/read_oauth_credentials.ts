@@ -1,5 +1,6 @@
-import { promises as fsp } from "fs"
+// Package imports
 import * as path from "path"
+import { promises as fsp } from "fs"
 
 export interface OAuthCredentialsJson {
     osuOAuthClientId: number
@@ -36,7 +37,9 @@ export const readOauthCredentials = async (
     const oauthCredentialsFileContent = await fsp.readFile(filePath, {
         encoding: "utf8",
     })
-    const oAuthCredentialsJson = JSON.parse(oauthCredentialsFileContent)
+    const oAuthCredentialsJson = JSON.parse(
+        oauthCredentialsFileContent,
+    ) as OAuthCredentialsJson
     return {
         clientId: oAuthCredentialsJson.osuOAuthClientId,
         clientSecret: oAuthCredentialsJson.osuOAuthClientSecret,

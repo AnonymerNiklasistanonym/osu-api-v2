@@ -24,7 +24,15 @@ export const urlParameterGenerator = (
             delimiterToPrevious = ""
         }
         const value = curr.value
-        // TODO How to parse an array?
-        return `${prev}${delimiterToPrevious}${curr.name}=${value}`
+        let valueStr
+        if (value === undefined) {
+            valueStr = "undefined"
+        } else if (typeof value === "string") {
+            valueStr = value
+        } else {
+            // TODO How to parse an array?
+            valueStr = value.join(",")
+        }
+        return `${prev}${delimiterToPrevious}${curr.name}=${valueStr}`
     }, "?")
 }

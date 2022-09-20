@@ -1,9 +1,10 @@
-import type { Beatmapset } from "../types/beatmap"
-import type { OAuthAccessToken } from "../types/oauth_access_token"
-import type { Fetch } from "../types/fetch"
-
+// Local imports
 import { baseUrlApiV2 } from "../types/api_info"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
+// Type imports
+import type { Beatmapset } from "../types/beatmap"
+import type { Fetch } from "../types/fetch"
+import type { OAuthAccessToken } from "../types/oauth_access_token"
 
 declare const fetch: Fetch
 

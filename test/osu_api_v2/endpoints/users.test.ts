@@ -1,22 +1,25 @@
-import { expect } from "chai"
+// Package imports
 import { before, describe, it, Suite } from "mocha"
-import osuApiV2, {
-    GameMode,
-    OAuthAccessToken,
-    OsuApiV2Error,
-    OsuApiV2ErrorCode,
-    OsuApiV2WebRequestError,
-} from "../../../src/index"
-import { ScoresType } from "../../../src/users/scores"
+import { expect } from "chai"
+// Local imports
 import {
     checkOsuApiV2Error,
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
 } from "../../helper.test"
+import osuApiV2, {
+    GameMode,
+    OsuApiV2Error,
+    OsuApiV2ErrorCode,
+    OsuApiV2WebRequestError,
+} from "../../../src/index"
 import { readOauthCredentials } from "../read_oauth_credentials"
+// Type imports
+import { OAuthAccessToken } from "../../../src/index"
+import type { ScoresType } from "../../../src/users/scores"
 
 export const usersTestSuite = (): Suite =>
-    describe("users", async () => {
+    describe("users", () => {
         let oauthAccessToken: OAuthAccessToken
 
         before("before all test cases", async () => {

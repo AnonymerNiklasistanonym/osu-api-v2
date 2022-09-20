@@ -24,8 +24,8 @@ export interface Event {
 }
 
 export interface EventUser {
-    username: string
     url: string
+    username: string
 }
 
 export interface EventBeatmap {
@@ -34,23 +34,23 @@ export interface EventBeatmap {
 }
 
 export interface EventAchievement extends Event {
-    type: EventType.RankLost
-    achievement: string // ?????
+    achievement: string
+    type: EventType.RankLost // ?????
     user: EventUser
 }
 
 export interface EventRank extends Event {
-    type: EventType.Rank
-    scoreRank: string
-    rank: number
-    mode: GameMode
     beatmap: EventBeatmap
+    mode: GameMode
+    rank: number
+    scoreRank: string
+    type: EventType.Rank
     user: EventUser
 }
 
 export interface EventRankLost extends Event {
-    type: EventType.RankLost
-    mode: GameMode
     beatmap: EventBeatmap
+    mode: GameMode
+    type: EventType.RankLost
     user: EventUser
 }

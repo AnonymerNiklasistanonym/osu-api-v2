@@ -1,9 +1,10 @@
-import type { ClientCredentialsGrant } from "../types/client_credentials_grant"
-import type { OAuthAccessToken } from "../types/oauth_access_token"
-import type { Fetch } from "../types/fetch"
-
+// Local imports
 import { baseUrl } from "../types/api_info"
 import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
+// Type imports
+import type { ClientCredentialsGrant } from "../types/client_credentials_grant"
+import type { Fetch } from "../types/fetch"
+import type { OAuthAccessToken } from "../types/oauth_access_token"
 
 declare const fetch: Fetch
 
