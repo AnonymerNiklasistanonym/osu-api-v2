@@ -12,11 +12,11 @@ import osuApiV2, {
     OsuApiV2Error,
     OsuApiV2ErrorCode,
     OsuApiV2WebRequestError,
+    ScoresType
 } from "../../../src/index"
 import { readOauthCredentials } from "../read_oauth_credentials"
 // Type imports
 import { OAuthAccessToken } from "../../../src/index"
-import type { ScoresType } from "../../../src/users/scores"
 
 export const usersTestSuite = (): Suite =>
     describe("users", () => {
