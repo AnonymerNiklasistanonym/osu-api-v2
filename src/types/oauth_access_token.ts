@@ -14,3 +14,7 @@ export interface OAuthAccessToken {
      */
     token_type: string
 }
+
+export interface OauthAccessTokenWithRefresh extends OAuthAccessToken {
+    refresh_token: string
+}
