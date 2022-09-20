@@ -17,7 +17,7 @@ export const users = async (
     const params = urlParameterGenerator([
         {
             name: "mode",
-            value: mode !== undefined ? GameMode[mode] : undefined,
+            value: mode !== undefined ? mode : undefined,
         },
         { name: "mods", value: mods },
     ])

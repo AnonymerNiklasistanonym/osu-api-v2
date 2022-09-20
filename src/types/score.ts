@@ -25,6 +25,9 @@ export interface ScoreStatistics {
 }
 
 /**
+ * [[include:example_output/users_scores_9096716_best_osu_2_1.md]]
+ * [[include:example_output/users_scores_2927048_recent_osu_2_0_true.md]]
+ *
  * ([Source](https://osu.ppy.sh/docs/index.html#score)).
  */
 export interface Score {

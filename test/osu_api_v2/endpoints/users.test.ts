@@ -94,34 +94,42 @@ export const usersTestSuite = (): Suite =>
                 const osuId = await osuApiV2.users.get(
                     oauthAccessToken,
                     9096716,
-                    GameMode.osu,
+                    GameMode.OSU_STANDARD,
                 )
                 const taikoId = await osuApiV2.users.get(
                     oauthAccessToken,
                     9096716,
-                    GameMode.taiko,
+                    GameMode.OSU_TAIKO,
                 )
                 const fruitsId = await osuApiV2.users.get(
                     oauthAccessToken,
                     9096716,
-                    GameMode.fruits,
+                    GameMode.OSU_CATCH,
                 )
                 const maniaId = await osuApiV2.users.get(
                     oauthAccessToken,
                     9096716,
-                    GameMode.mania,
+                    GameMode.OSU_MANIA,
                 )
                 if (fruitsId.rank_history?.mode !== undefined) {
-                    expect(fruitsId.rank_history?.mode).equals(GameMode.fruits)
+                    expect(fruitsId.rank_history?.mode).equals(
+                        GameMode.OSU_CATCH,
+                    )
                 }
                 if (taikoId.rank_history?.mode !== undefined) {
-                    expect(taikoId.rank_history?.mode).equals(GameMode.taiko)
+                    expect(taikoId.rank_history?.mode).equals(
+                        GameMode.OSU_TAIKO,
+                    )
                 }
                 if (maniaId.rank_history?.mode !== undefined) {
-                    expect(maniaId.rank_history?.mode).equals(GameMode.mania)
+                    expect(maniaId.rank_history?.mode).equals(
+                        GameMode.OSU_MANIA,
+                    )
                 }
                 if (osuId.rank_history?.mode !== undefined) {
-                    expect(osuId.rank_history?.mode).equals(GameMode.osu)
+                    expect(osuId.rank_history?.mode).equals(
+                        GameMode.OSU_STANDARD,
+                    )
                 }
                 // User name
                 const defaultName = await osuApiV2.users.get(
@@ -132,36 +140,42 @@ export const usersTestSuite = (): Suite =>
                 const osuName = await osuApiV2.users.get(
                     oauthAccessToken,
                     "Ooi",
-                    GameMode.osu,
+                    GameMode.OSU_STANDARD,
                 )
                 const taikoName = await osuApiV2.users.get(
                     oauthAccessToken,
                     "Ooi",
-                    GameMode.taiko,
+                    GameMode.OSU_TAIKO,
                 )
                 const fruitsName = await osuApiV2.users.get(
                     oauthAccessToken,
                     "Ooi",
-                    GameMode.fruits,
+                    GameMode.OSU_CATCH,
                 )
                 const maniaName = await osuApiV2.users.get(
                     oauthAccessToken,
                     "Ooi",
-                    GameMode.mania,
+                    GameMode.OSU_MANIA,
                 )
                 if (fruitsName.rank_history?.mode !== undefined) {
                     expect(fruitsName.rank_history?.mode).equals(
-                        GameMode.fruits,
+                        GameMode.OSU_CATCH,
                     )
                 }
                 if (taikoName.rank_history?.mode !== undefined) {
-                    expect(taikoName.rank_history?.mode).equals(GameMode.taiko)
+                    expect(taikoName.rank_history?.mode).equals(
+                        GameMode.OSU_TAIKO,
+                    )
                 }
                 if (maniaName.rank_history?.mode !== undefined) {
-                    expect(maniaName.rank_history?.mode).equals(GameMode.mania)
+                    expect(maniaName.rank_history?.mode).equals(
+                        GameMode.OSU_MANIA,
+                    )
                 }
                 if (osuName.rank_history?.mode !== undefined) {
-                    expect(osuName.rank_history?.mode).equals(GameMode.osu)
+                    expect(osuName.rank_history?.mode).equals(
+                        GameMode.OSU_STANDARD,
+                    )
                 }
             }).timeout(8000)
             it("user playmode should equal 'osu'", async () => {
@@ -169,48 +183,48 @@ export const usersTestSuite = (): Suite =>
                     oauthAccessToken,
                     9096716,
                 )
-                expect(userId.playmode).equals(GameMode.osu)
+                expect(userId.playmode).equals(GameMode.OSU_STANDARD)
                 const userName = await osuApiV2.users.get(
                     oauthAccessToken,
                     "syaron105",
                 )
-                expect(userName.playmode).equals(GameMode.taiko)
+                expect(userName.playmode).equals(GameMode.OSU_TAIKO)
             })
             it("user playmode should equal 'taiko'", async () => {
                 const userId = await osuApiV2.users.get(
                     oauthAccessToken,
                     8741695,
                 )
-                expect(userId.playmode).equals(GameMode.taiko)
+                expect(userId.playmode).equals(GameMode.OSU_TAIKO)
                 const userName = await osuApiV2.users.get(
                     oauthAccessToken,
                     "syaron105",
                 )
-                expect(userName.playmode).equals(GameMode.taiko)
+                expect(userName.playmode).equals(GameMode.OSU_TAIKO)
             })
             it("user playmode should equal 'fruits'", async () => {
                 const userId = await osuApiV2.users.get(
                     oauthAccessToken,
                     4158549,
                 )
-                expect(userId.playmode).equals(GameMode.fruits)
+                expect(userId.playmode).equals(GameMode.OSU_CATCH)
                 const userName = await osuApiV2.users.get(
                     oauthAccessToken,
                     "YesMyDarknesss",
                 )
-                expect(userName.playmode).equals(GameMode.fruits)
+                expect(userName.playmode).equals(GameMode.OSU_CATCH)
             })
             it("user playmode should equal 'mania'", async () => {
                 const userId = await osuApiV2.users.get(
                     oauthAccessToken,
                     758406,
                 )
-                expect(userId.playmode).equals(GameMode.mania)
+                expect(userId.playmode).equals(GameMode.OSU_MANIA)
                 const userName = await osuApiV2.users.get(
                     oauthAccessToken,
                     "dressurf",
                 )
-                expect(userName.playmode).equals(GameMode.mania)
+                expect(userName.playmode).equals(GameMode.OSU_MANIA)
             })
         }).timeout(8000)
 
@@ -251,7 +265,7 @@ export const usersTestSuite = (): Suite =>
                 oauthAccessToken,
                 9096716,
                 ScoresType.BEST,
-                GameMode.osu,
+                GameMode.OSU_STANDARD,
                 2,
                 1,
             )
@@ -280,7 +294,7 @@ export const usersTestSuite = (): Suite =>
                 oauthAccessToken,
                 9096716,
                 ScoresType.RECENT,
-                GameMode.osu,
+                GameMode.OSU_STANDARD,
                 3,
                 0,
                 true,
@@ -299,7 +313,7 @@ export const usersTestSuite = (): Suite =>
                 oauthAccessToken,
                 2927048,
                 ScoresType.RECENT,
-                GameMode.osu,
+                GameMode.OSU_STANDARD,
                 2,
                 0,
                 true,

@@ -51,7 +51,7 @@ export const beatmapsetsTestSuite = (): Suite =>
             /*
             checkBeatmapObject(beatmapRankedOsu, {
                 checkBeatmapId: 3086537,
-                checkGameMode: GameMode.osu,
+                checkGameMode: GameMode.OSU_STANDARD,
                 checkRankedStatus: RankedStatus.ranked,
             })
             */
@@ -62,7 +62,7 @@ export const beatmapsetsTestSuite = (): Suite =>
             /*
             checkBeatmapObject(beatmapGraveyardOsu, {
                 checkBeatmapId: 1718102,
-                checkGameMode: GameMode.osu,
+                checkGameMode: GameMode.OSU_STANDARD,
                 checkRankedStatus: RankedStatus.graveyard,
             })
             */
@@ -73,7 +73,7 @@ export const beatmapsetsTestSuite = (): Suite =>
             /*
             checkBeatmapObject(beatmapLovedOsu, {
                 checkBeatmapId: 112385,
-                checkGameMode: GameMode.osu,
+                checkGameMode: GameMode.OSU_STANDARD,
                 checkRankedStatus: RankedStatus.loved,
             })
             */

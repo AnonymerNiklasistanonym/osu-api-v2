@@ -101,45 +101,45 @@ export const checkBeatmapObject = async (
     }
     expect(beatmap.mode).to.be.a("string").with.a.lengthOf.greaterThan(0)
     expect([
-        GameMode.fruits,
-        GameMode.mania,
-        GameMode.osu,
-        GameMode.taiko,
+        GameMode.OSU_CATCH,
+        GameMode.OSU_MANIA,
+        GameMode.OSU_STANDARD,
+        GameMode.OSU_TAIKO,
     ]).to.include(beatmap.mode)
     expect(Object.values(GameMode)).to.include(beatmap.mode)
     expect(beatmap.mode_int).to.be.a("number").that.satisfies(Number.isInteger)
     expect([
-        GameModeInt.fruits,
-        GameModeInt.mania,
-        GameModeInt.osu,
-        GameModeInt.taiko,
+        GameModeInt.OSU_CATCH,
+        GameModeInt.OSU_MANIA,
+        GameModeInt.OSU_STANDARD,
+        GameModeInt.OSU_TAIKO,
     ]).to.include(beatmap.mode_int)
     switch (beatmap.mode_int) {
-        case GameModeInt.fruits:
-            expect(beatmap.mode).to.be.equal(GameMode.fruits)
+        case GameModeInt.OSU_CATCH:
+            expect(beatmap.mode).to.be.equal(GameMode.OSU_CATCH)
             break
-        case GameModeInt.mania:
-            expect(beatmap.mode).to.be.equal(GameMode.mania)
+        case GameModeInt.OSU_MANIA:
+            expect(beatmap.mode).to.be.equal(GameMode.OSU_MANIA)
             break
-        case GameModeInt.osu:
-            expect(beatmap.mode).to.be.equal(GameMode.osu)
+        case GameModeInt.OSU_STANDARD:
+            expect(beatmap.mode).to.be.equal(GameMode.OSU_STANDARD)
             break
-        case GameModeInt.taiko:
-            expect(beatmap.mode).to.be.equal(GameMode.taiko)
+        case GameModeInt.OSU_TAIKO:
+            expect(beatmap.mode).to.be.equal(GameMode.OSU_TAIKO)
             break
     }
     switch (beatmap.mode) {
-        case GameMode.fruits:
-            expect(beatmap.mode_int).to.be.equal(GameModeInt.fruits)
+        case GameMode.OSU_CATCH:
+            expect(beatmap.mode_int).to.be.equal(GameModeInt.OSU_CATCH)
             break
-        case GameMode.mania:
-            expect(beatmap.mode_int).to.be.equal(GameModeInt.mania)
+        case GameMode.OSU_MANIA:
+            expect(beatmap.mode_int).to.be.equal(GameModeInt.OSU_MANIA)
             break
-        case GameMode.osu:
-            expect(beatmap.mode_int).to.be.equal(GameModeInt.osu)
+        case GameMode.OSU_STANDARD:
+            expect(beatmap.mode_int).to.be.equal(GameModeInt.OSU_STANDARD)
             break
-        case GameMode.taiko:
-            expect(beatmap.mode_int).to.be.equal(GameModeInt.taiko)
+        case GameMode.OSU_TAIKO:
+            expect(beatmap.mode_int).to.be.equal(GameModeInt.OSU_TAIKO)
             break
     }
     if (options.checkGameMode !== undefined) {

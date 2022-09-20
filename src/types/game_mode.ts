@@ -5,13 +5,13 @@
  */
 export enum GameMode {
     /** Osu!catch */
-    fruits = "fruits",
+    OSU_CATCH = "fruits",
     /** Osu!mania */
-    mania = "mania",
+    OSU_MANIA = "mania",
     /** Osu!standard */
-    osu = "osu",
+    OSU_STANDARD = "osu",
     /** Osu!taiko */
-    taiko = "taiko",
+    OSU_TAIKO = "taiko",
 }
 
 /**
@@ -21,11 +21,11 @@ export enum GameMode {
  */
 export enum GameModeInt {
     /** Osu!catch */
-    fruits = 2,
+    OSU_CATCH = 2,
     /** Osu!mania */
-    mania = 1,
+    OSU_MANIA = 1,
     /** Osu!standard */
-    osu = 0,
+    OSU_STANDARD = 0,
     /** Osu!taiko */
-    taiko = 3,
+    OSU_TAIKO = 3,
 }

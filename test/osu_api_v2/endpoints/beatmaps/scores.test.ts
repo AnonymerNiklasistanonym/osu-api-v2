@@ -40,7 +40,7 @@ export const scoresTestSuite = (): Suite =>
                     },
                     1095534,
                     18508852,
-                    GameMode.osu,
+                    GameMode.OSU_STANDARD,
                 )
             } catch (err) {
                 errorInvalidAccessToken = err as OsuApiV2WebRequestError
@@ -57,18 +57,18 @@ export const scoresTestSuite = (): Suite =>
             )
             await checkBeatmapUserScoreObject(beatmapUserScore0, {
                 checkBeatmapId: 1095534,
-                checkGameMode: GameMode.osu,
+                checkGameMode: GameMode.OSU_STANDARD,
                 checkUserId: 18508852,
             })
             const beatmapUserScore1 = await osuApiV2.beatmaps.scores.users(
                 oauthAccessToken,
                 1095534,
                 18508852,
-                GameMode.osu,
+                GameMode.OSU_STANDARD,
             )
             await checkBeatmapUserScoreObject(beatmapUserScore1, {
                 checkBeatmapId: 1095534,
-                checkGameMode: GameMode.osu,
+                checkGameMode: GameMode.OSU_STANDARD,
                 checkUserId: 18508852,
             })
 
@@ -76,11 +76,11 @@ export const scoresTestSuite = (): Suite =>
                 oauthAccessToken,
                 744305,
                 18508852,
-                GameMode.osu,
+                GameMode.OSU_STANDARD,
             )
             await checkBeatmapUserScoreObject(beatmapUserScore2, {
                 checkBeatmapId: 744305,
-                checkGameMode: GameMode.osu,
+                checkGameMode: GameMode.OSU_STANDARD,
                 checkUserId: 18508852,
             })
 
@@ -91,7 +91,7 @@ export const scoresTestSuite = (): Suite =>
                     oauthAccessToken,
                     1718102,
                     18508852,
-                    GameMode.osu,
+                    GameMode.OSU_STANDARD,
                 )
             } catch (err) {
                 errorGraveyardMap = err
@@ -105,7 +105,7 @@ export const scoresTestSuite = (): Suite =>
                     oauthAccessToken,
                     -1095534,
                     18508852,
-                    GameMode.osu,
+                    GameMode.OSU_STANDARD,
                 )
             } catch (err) {
                 errorInvalidBeatmapId = err as OsuApiV2WebRequestError
@@ -122,7 +122,7 @@ export const scoresTestSuite = (): Suite =>
                     oauthAccessToken,
                     1095534,
                     -18508852,
-                    GameMode.osu,
+                    GameMode.OSU_STANDARD,
                 )
             } catch (err) {
                 errorInvalidUserId = err as OsuApiV2WebRequestError

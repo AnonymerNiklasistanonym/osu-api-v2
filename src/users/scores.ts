@@ -41,7 +41,7 @@ export enum ScoresType {
  *     oauthAccessToken,
  *     9096716,
  *     ScoresType.BEST,
- *     GameMode.osu,
+ *     GameMode.OSU_STANDARD,
  *     2,
  *     1,
  * )
@@ -55,7 +55,7 @@ export enum ScoresType {
  *     oauthAccessToken,
  *     2927048,
  *     ScoresType.RECENT,
- *     GameMode.osu,
+ *     GameMode.OSU_STANDARD,
  *     2,
  *     0,
  *     true,
@@ -69,7 +69,7 @@ export const scores = async (
     oauthAccessToken: OAuthAccessToken,
     userId: number,
     type: ScoresType = ScoresType.BEST,
-    mode: GameMode = GameMode.osu,
+    mode: GameMode = GameMode.OSU_STANDARD,
     limit?: number,
     offset?: number,
     includeFails?: boolean,
@@ -77,15 +77,15 @@ export const scores = async (
     const params = urlParameterGenerator([
         {
             name: "mode",
-            value: mode !== undefined ? GameMode[mode] : undefined,
+            value: mode !== undefined ? mode : undefined,
         },
         {
             name: "limit",
-            value: limit !== undefined ? limit.toString() : undefined,
+            value: limit !== undefined ? `${limit}` : undefined,
         },
         {
             name: "offset",
-            value: offset !== undefined ? offset.toString() : undefined,
+            value: offset !== undefined ? `${offset}` : undefined,
         },
         {
             name: "include_fails",

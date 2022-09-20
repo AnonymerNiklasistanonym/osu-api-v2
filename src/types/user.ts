@@ -218,6 +218,9 @@ export interface UserCompactCountry {
 /**
  * Represents a User. Extends UserCompact object with additional attributes.
  *
+ * [[include:example_output/users_get_9096716.md]]
+ * [[include:example_output/users_get_Ooi.md]]
+ *
  * ([Source](https://osu.ppy.sh/docs/index.html#user))
  */
 export interface User extends UserCompactBase {

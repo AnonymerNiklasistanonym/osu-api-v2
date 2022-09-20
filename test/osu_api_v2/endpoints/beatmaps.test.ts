@@ -54,7 +54,7 @@ export const beatmapsTestSuite = (): Suite =>
             )
             await checkBeatmapObject(beatmapRankedOsu, {
                 checkBeatmapId: 3086537,
-                checkGameMode: GameMode.osu,
+                checkGameMode: GameMode.OSU_STANDARD,
                 checkRankStatus: RankStatus.ranked,
             })
             const beatmapGraveyardOsu = await osuApiV2.beatmaps.get(
@@ -63,7 +63,7 @@ export const beatmapsTestSuite = (): Suite =>
             )
             await checkBeatmapObject(beatmapGraveyardOsu, {
                 checkBeatmapId: 1718102,
-                checkGameMode: GameMode.osu,
+                checkGameMode: GameMode.OSU_STANDARD,
                 checkRankStatus: RankStatus.graveyard,
             })
             const beatmapLovedOsu = await osuApiV2.beatmaps.get(
@@ -72,7 +72,7 @@ export const beatmapsTestSuite = (): Suite =>
             )
             await checkBeatmapObject(beatmapLovedOsu, {
                 checkBeatmapId: 112385,
-                checkGameMode: GameMode.osu,
+                checkGameMode: GameMode.OSU_STANDARD,
                 checkRankStatus: RankStatus.loved,
             })
 
@@ -119,7 +119,7 @@ export const beatmapsTestSuite = (): Suite =>
             )
             await checkBeatmapObject(beatmapRankedOsu, {
                 checkBeatmapId: 3086537,
-                checkGameMode: GameMode.osu,
+                checkGameMode: GameMode.OSU_STANDARD,
                 checkRankStatus: RankStatus.ranked,
             })
             const beatmapGraveyardOsuId = await osuApiV2.beatmaps.lookup(
@@ -130,7 +130,7 @@ export const beatmapsTestSuite = (): Suite =>
             )
             await checkBeatmapObject(beatmapGraveyardOsuId, {
                 checkBeatmapId: 1718102,
-                checkGameMode: GameMode.osu,
+                checkGameMode: GameMode.OSU_STANDARD,
                 checkRankStatus: RankStatus.graveyard,
             })
             const beatmapLovedOsuId = await osuApiV2.beatmaps.lookup(
@@ -141,7 +141,7 @@ export const beatmapsTestSuite = (): Suite =>
             )
             await checkBeatmapObject(beatmapLovedOsuId, {
                 checkBeatmapId: 112385,
-                checkGameMode: GameMode.osu,
+                checkGameMode: GameMode.OSU_STANDARD,
                 checkRankStatus: RankStatus.loved,
             })
 
