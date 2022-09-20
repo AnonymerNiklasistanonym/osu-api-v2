@@ -4,6 +4,7 @@ import { before, describe, it, Suite } from "mocha"
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
+    timeoutForRequestsInMs,
 } from "../../helper.test"
 import osuApiV2, {
     OAuthAccessToken,
@@ -89,7 +90,7 @@ export const beatmapsetsTestSuite = (): Suite =>
                 errorInvalidBeatmapId,
                 OsuApiV2WebRequestErrorType.NOT_FOUND,
             )
-        }).timeout(8000)
+        }).timeout(timeoutForRequestsInMs(5))
 
         it("search", async () => {
             // Check if the request throws an error when the access token is invalid
@@ -126,5 +127,5 @@ export const beatmapsetsTestSuite = (): Suite =>
             /*
             console.log(beatmapsetRankedOsu2)
             */
-        }).timeout(8000)
+        }).timeout(timeoutForRequestsInMs(3))
     })

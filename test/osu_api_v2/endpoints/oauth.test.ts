@@ -5,6 +5,7 @@ import { expect } from "chai"
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
+    timeoutForRequestsInMs,
 } from "../../helper.test"
 import osuApiV2, { OsuApiV2WebRequestError } from "../../../src/index"
 import { readOauthCredentials } from "../read_oauth_credentials"
@@ -61,5 +62,5 @@ export const oauthTestSuite = (): Suite =>
                 .with.a.lengthOf.greaterThan(0)
             expect(oauthAccessToken.token_type).to.equal("Bearer")
             expect(oauthAccessToken.expires_in).to.be.a("number").above(0)
-        }).timeout(8000)
+        }).timeout(timeoutForRequestsInMs(3))
     })

@@ -2,8 +2,10 @@
 import { before, describe, it, Suite } from "mocha"
 // Local imports
 import {
+    cacheResponse,
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
+    timeoutForRequestsInMs,
 } from "../../helper.test"
 import osuApiV2, {
     OAuthAccessToken,
@@ -44,22 +46,16 @@ export const searchTestSuite = (): Suite =>
                 OsuApiV2WebRequestErrorType.UNAUTHORIZED,
             )
 
-            /*const beatmapsetRankedOsu =*/ await osuApiV2.search.user(
+            const searchResultUser1 = await osuApiV2.search.user(
                 oauthAccessToken,
                 "niklas616",
             )
+            await cacheResponse("search_user", "niklas616", searchResultUser1)
 
-            /*
-            console.log(JSON.stringify(beatmapsetRankedOsu))
-            */
-
-            /*const beatmapsetRankedOsu2 =*/ await osuApiV2.search.user(
+            const searchResultUser2 = await osuApiV2.search.user(
                 oauthAccessToken,
                 "Ooi",
             )
-
-            /*
-            console.log(JSON.stringify(beatmapsetRankedOsu2))
-            */
-        }).timeout(8000)
+            await cacheResponse("search_user", "Ooi", searchResultUser2)
+        }).timeout(timeoutForRequestsInMs(3))
     })

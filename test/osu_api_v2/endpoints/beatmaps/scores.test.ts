@@ -5,6 +5,7 @@ import { expect } from "chai"
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
+    timeoutForRequestsInMs,
 } from "../../../helper.test"
 import osuApiV2, {
     GameMode,
@@ -131,5 +132,5 @@ export const scoresTestSuite = (): Suite =>
                 errorInvalidUserId,
                 OsuApiV2WebRequestErrorType.NOT_FOUND,
             )
-        }).timeout(8000)
+        }).timeout(timeoutForRequestsInMs(7))
     })

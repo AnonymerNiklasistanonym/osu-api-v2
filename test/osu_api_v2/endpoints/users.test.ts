@@ -7,6 +7,7 @@ import {
     checkOsuApiV2Error,
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
+    timeoutForRequestsInMs,
 } from "../../helper.test"
 import osuApiV2, {
     GameMode,
@@ -49,7 +50,7 @@ export const usersTestSuite = (): Suite =>
                     errorInvalidUserId,
                     OsuApiV2WebRequestErrorType.NOT_FOUND,
                 )
-            })
+            }).timeout(timeoutForRequestsInMs(1))
             it("should throw if name is '-1'", async () => {
                 // Check if the request throws an error when the name is "-1"
                 let errorInvalidUserName: OsuApiV2WebRequestError | null = null
@@ -66,7 +67,7 @@ export const usersTestSuite = (): Suite =>
                     errorInvalidUserName,
                     OsuApiV2WebRequestErrorType.NOT_FOUND,
                 )
-            })
+            }).timeout(timeoutForRequestsInMs(1))
             it("should throw if name is '' and no account is found", async () => {
                 // Check if the request throws an error when the name is "-1"
                 let errorInvalidUserName: OsuApiV2Error | null = null
@@ -83,7 +84,7 @@ export const usersTestSuite = (): Suite =>
                     errorInvalidUserName,
                     OsuApiV2ErrorCode.NOT_FOUND,
                 )
-            })
+            }).timeout(timeoutForRequestsInMs(1))
             it("should make request successfully", async () => {
                 // User ID
                 const defaultId = await osuApiV2.users.get(
@@ -177,7 +178,7 @@ export const usersTestSuite = (): Suite =>
                         GameMode.OSU_STANDARD,
                     )
                 }
-            }).timeout(8000)
+            }).timeout(timeoutForRequestsInMs(10))
             it("user playmode should equal 'osu'", async () => {
                 const userId = await osuApiV2.users.get(
                     oauthAccessToken,
@@ -189,7 +190,7 @@ export const usersTestSuite = (): Suite =>
                     "syaron105",
                 )
                 expect(userName.playmode).equals(GameMode.OSU_TAIKO)
-            })
+            }).timeout(timeoutForRequestsInMs(2))
             it("user playmode should equal 'taiko'", async () => {
                 const userId = await osuApiV2.users.get(
                     oauthAccessToken,
@@ -201,7 +202,7 @@ export const usersTestSuite = (): Suite =>
                     "syaron105",
                 )
                 expect(userName.playmode).equals(GameMode.OSU_TAIKO)
-            })
+            }).timeout(timeoutForRequestsInMs(2))
             it("user playmode should equal 'fruits'", async () => {
                 const userId = await osuApiV2.users.get(
                     oauthAccessToken,
@@ -213,7 +214,7 @@ export const usersTestSuite = (): Suite =>
                     "YesMyDarknesss",
                 )
                 expect(userName.playmode).equals(GameMode.OSU_CATCH)
-            })
+            }).timeout(timeoutForRequestsInMs(2))
             it("user playmode should equal 'mania'", async () => {
                 const userId = await osuApiV2.users.get(
                     oauthAccessToken,
@@ -225,7 +226,7 @@ export const usersTestSuite = (): Suite =>
                     "dressurf",
                 )
                 expect(userName.playmode).equals(GameMode.OSU_MANIA)
-            })
+            }).timeout(timeoutForRequestsInMs(2))
         })
 
         describe("recentActivity", () => {
@@ -244,7 +245,7 @@ export const usersTestSuite = (): Suite =>
                     errorInvalidBeatmapId,
                     OsuApiV2WebRequestErrorType.NOT_FOUND,
                 )
-            }).timeout(8000)
+            }).timeout(timeoutForRequestsInMs(1))
 
             it("should make request successfully", async () => {
                 await osuApiV2.users.recentActivity(oauthAccessToken, 9096716)
@@ -271,7 +272,7 @@ export const usersTestSuite = (): Suite =>
                     "2927048_2",
                     recentActivity2,
                 )
-            }).timeout(8000)
+            }).timeout(timeoutForRequestsInMs(3))
         })
 
         describe("scores", () => {
@@ -291,7 +292,7 @@ export const usersTestSuite = (): Suite =>
                     errorInvalidBeatmapId,
                     OsuApiV2WebRequestErrorType.NOT_FOUND,
                 )
-            })
+            }).timeout(timeoutForRequestsInMs(1))
             it("should make request successfully", async () => {
                 const userBestOsu21 = await osuApiV2.users.scores(
                     oauthAccessToken,
@@ -355,6 +356,6 @@ export const usersTestSuite = (): Suite =>
                     "2927048_recent_osu_2_0_true",
                     userRecentOsu20True,
                 )
-            }).timeout(8000)
+            }).timeout(timeoutForRequestsInMs(7))
         })
     })

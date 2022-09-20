@@ -11,6 +11,14 @@ import {
 } from "../src/helpers/custom_errors"
 import { urlParameterGenerator } from "../src/helpers/url_parameter_generator"
 
+/**
+ * Helper method to timeout tests where a request takes more than a certain time per request on average.
+ *
+ * @param requests The number of expected requests being made by the test case.
+ * @returns The maximum number of time this test case should take to run before timing it out.
+ */
+export const timeoutForRequestsInMs = (requests: number) => 2 * 1000 * requests
+
 const cachedOsuApiResponses = path.join(
     __dirname,
     "..",
