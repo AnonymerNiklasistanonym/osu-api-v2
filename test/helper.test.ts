@@ -11,15 +11,20 @@ import {
 } from "../src/helpers/custom_errors"
 import { urlParameterGenerator } from "../src/helpers/url_parameter_generator"
 
+const cachedOsuApiResponses = path.join(
+    __dirname,
+    "..",
+    "cached-osu-api-responses",
+)
+
 export const saveOsuResponseObjectAsFile = async (
     fileName: string,
     jsonObject: unknown,
 ): Promise<void> => {
-    const outputDir = path.join(__dirname, "..", "cached-osu-api-responses")
-    await fsp.mkdir(outputDir, {
+    await fsp.mkdir(cachedOsuApiResponses, {
         recursive: true,
     })
-    const outputFile = path.join(outputDir, `${fileName}.json`)
+    const outputFile = path.join(cachedOsuApiResponses, `${fileName}.json`)
     await fsp.writeFile(outputFile, JSON.stringify(jsonObject, undefined, 4), {
         encoding: "utf8",
     })
@@ -73,6 +78,20 @@ export const checkOsuApiV2Error = (
         default:
             break
     }
+}
+
+export const cacheResponse = async (
+    prefix: string,
+    name: string,
+    jsonData: unknown,
+): Promise<void> => {
+    const outputFile = path.join(
+        cachedOsuApiResponses,
+        `${prefix}_${name}.json`,
+    )
+    await fsp.writeFile(outputFile, JSON.stringify(jsonData), {
+        encoding: "utf8",
+    })
 }
 
 describe("OsuApiV2WebRequestError", () => {

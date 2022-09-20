@@ -3,6 +3,7 @@ import { before, describe, it, Suite } from "mocha"
 import { expect } from "chai"
 // Local imports
 import {
+    cacheResponse,
     checkOsuApiV2Error,
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestErrorType,
@@ -12,7 +13,7 @@ import osuApiV2, {
     OsuApiV2Error,
     OsuApiV2ErrorCode,
     OsuApiV2WebRequestError,
-    ScoresType
+    ScoresType,
 } from "../../../src/index"
 import { readOauthCredentials } from "../read_oauth_credentials"
 // Type imports
@@ -85,7 +86,11 @@ export const usersTestSuite = (): Suite =>
             })
             it("should make request successfully", async () => {
                 // User ID
-                await osuApiV2.users.get(oauthAccessToken, 9096716)
+                const defaultId = await osuApiV2.users.get(
+                    oauthAccessToken,
+                    9096716,
+                )
+                await cacheResponse("users_get", "9096716", defaultId)
                 const osuId = await osuApiV2.users.get(
                     oauthAccessToken,
                     9096716,
@@ -119,7 +124,11 @@ export const usersTestSuite = (): Suite =>
                     expect(osuId.rank_history?.mode).equals(GameMode.osu)
                 }
                 // User name
-                await osuApiV2.users.get(oauthAccessToken, "Ooi")
+                const defaultName = await osuApiV2.users.get(
+                    oauthAccessToken,
+                    "Ooi",
+                )
+                await cacheResponse("users_get", "Ooi", defaultName)
                 const osuName = await osuApiV2.users.get(
                     oauthAccessToken,
                     "Ooi",

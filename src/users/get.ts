@@ -32,6 +32,7 @@ import type { User } from "../types/user"
  *     9096716,
  * )
  * ```
+ * [[include:example_output/users_get_9096716.md]]
  * @example
  * ```ts
  * import osuApiV2 from "osu-api-v2"
@@ -41,6 +42,7 @@ import type { User } from "../types/user"
  *     "Ooi",
  * )
  * ```
+ * [[include:example_output/users_get_Ooi.md]]
  */
 export const get = async (
     oauthAccessToken: OAuthAccessToken,

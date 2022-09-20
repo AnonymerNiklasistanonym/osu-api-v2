@@ -21,6 +21,7 @@
     "exclude": [
         "lib",
         "node_modules",
+        "pages",
         "test"
     ],
     "files": ["./src/types.d.ts"],
@@ -28,6 +29,7 @@
     "typedocOptions": {
         "entryPointStrategy": "Expand",
         "entryPoints": ["src/index.ts"],
+        "includes": ["pages"],
         "out": "docs",
         "umlClassDiagram": {
             "type": "detailed",

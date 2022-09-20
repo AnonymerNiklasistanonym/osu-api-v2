@@ -86,6 +86,21 @@ export interface UserAchievement {
     achievement_id: number
 }
 
+export interface UserCompactPage {
+    /** The me page HTML content. */
+    html?: string
+    /** The me page raw text content. */
+    raw?: string
+}
+
+export interface UserReplaysWatchedCounts {
+    count: number
+    /**
+     * @example "2017-01-01"
+     */
+    start_date: string
+}
+
 /**
  * Mainly used for embedding in certain responses to save additional api lookups.
  *
@@ -142,7 +157,7 @@ export interface UserCompactBase {
     last_visit?: null | Timestamp
     loved_beatmapset_count?: number
     monthly_playcounts?: UserMonthlyPlaycount[]
-    page?: unknown
+    page?: UserCompactPage
     pending_beatmapset_count?: unknown
     /**
      * Whether or not the user allows PM from other than friends.
@@ -155,7 +170,7 @@ export interface UserCompactBase {
     profile_colour: string
     rank_history?: UserRankHistory
     ranked_beatmapset_count?: unknown
-    replays_watched_counts?: unknown
+    replays_watched_counts?: UserReplaysWatchedCounts[]
     scores_best_count?: number
     scores_first_count?: number
     scores_recent_count?: number
@@ -203,7 +218,7 @@ export interface UserCompactCountry {
 /**
  * Represents a User. Extends UserCompact object with additional attributes.
  *
- * Https://osu.ppy.sh/docs/index.html#user.
+ * ([Source](https://osu.ppy.sh/docs/index.html#user))
  */
 export interface User extends UserCompactBase {
     country: UserCompactCountry

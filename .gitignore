@@ -115,3 +115,6 @@ cached-osu-api-responses
 
 # Ignore documentation build files
 docs
+
+# Ignore pages
+pages/example_output
