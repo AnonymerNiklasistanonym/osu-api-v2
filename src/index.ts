@@ -17,7 +17,7 @@ export {
     OsuApiV2Error,
 } from "./helpers/custom_errors"
 export { GameMods } from "./types/game_mods"
-export { OsuApiV2AuthorizeScopes } from "./types/oauth_scopes"
+export { OAuthAuthorizeScope } from "./types/oauth_scopes"
 export { RankStatus } from "./types/rank_status"
 export { ScoresType } from "./users/scores"
 // Type exports
@@ -59,6 +59,10 @@ export type {
     OsuApiV2WebRequestErrorHeaders,
 } from "./helpers/custom_errors"
 export type {
+    OAuthAccessToken,
+    OAuthAccessTokenWithRefreshToken,
+} from "./types/oauth_access_token"
+export type {
     ProfilePage,
     User,
     UserAccountHistory,
@@ -83,7 +87,6 @@ export type {
 } from "./types/user"
 export type { ClientCredentialsGrant } from "./types/client_credentials_grant"
 export type { Failtimes } from "./types/failtimes"
-export type { OAuthAccessToken } from "./types/oauth_access_token"
 export type { Timestamp } from "./types/timestamp"
 
 /**

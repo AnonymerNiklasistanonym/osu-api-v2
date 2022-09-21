@@ -3,22 +3,23 @@ import { before, describe, it, Suite } from "mocha"
 import { expect } from "chai"
 // Local imports
 import {
-    cacheResponse,
     checkOsuApiV2Error,
     checkOsuApiV2WebRequestError,
-    OsuApiV2WebRequestErrorType,
-    timeoutForRequestsInMs,
-} from "../../helper.test"
+    OsuApiV2WebRequestExpectedErrorType,
+} from "../../helper/custom_errors"
 import osuApiV2, {
     GameMode,
-    OsuApiV2Error,
     OsuApiV2ErrorCode,
-    OsuApiV2WebRequestError,
     ScoresType,
 } from "../../../src/index"
-import { readOauthCredentials } from "../read_oauth_credentials"
+import { saveResponse, timeoutForRequestsInMs } from "../../test_helper"
+import { getOAuthSecretClientCredentials } from "../get_oauth_secrets"
 // Type imports
-import type { OAuthAccessToken } from "../../../src/index"
+import type {
+    OAuthAccessToken,
+    OsuApiV2Error,
+    OsuApiV2WebRequestError,
+} from "../../../src/index"
 
 export const usersTestSuite = (): Suite =>
     describe("users", () => {
@@ -26,7 +27,7 @@ export const usersTestSuite = (): Suite =>
 
         before("before all test cases", async () => {
             // Get the OAuth access token
-            const oauthCredentials = await readOauthCredentials()
+            const oauthCredentials = await getOAuthSecretClientCredentials()
             oauthAccessToken = await osuApiV2.oauth.clientCredentialsGrant(
                 oauthCredentials.clientId,
                 oauthCredentials.clientSecret,
@@ -35,55 +36,58 @@ export const usersTestSuite = (): Suite =>
 
         describe("get", () => {
             it("should throw if id is invalid", async () => {
-                // Check if the request throws an error when the id is invalid
-                let errorInvalidUserId: OsuApiV2WebRequestError | null = null
                 try {
-                    const result = await osuApiV2.users.get(
+                    const request = await osuApiV2.users.get(
                         oauthAccessToken,
                         -9096716,
                     )
-                    console.log(result)
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
                 } catch (err) {
-                    errorInvalidUserId = err as OsuApiV2WebRequestError
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                    )
                 }
-                checkOsuApiV2WebRequestError(
-                    errorInvalidUserId,
-                    OsuApiV2WebRequestErrorType.NOT_FOUND,
-                )
             }).timeout(timeoutForRequestsInMs(1))
             it("should throw if name is '-1'", async () => {
-                // Check if the request throws an error when the name is "-1"
-                let errorInvalidUserName: OsuApiV2WebRequestError | null = null
                 try {
-                    const result = await osuApiV2.users.get(
+                    const request = await osuApiV2.users.get(
                         oauthAccessToken,
                         "-1",
                     )
-                    console.log(result)
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
                 } catch (err) {
-                    errorInvalidUserName = err as OsuApiV2WebRequestError
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                    )
                 }
-                checkOsuApiV2WebRequestError(
-                    errorInvalidUserName,
-                    OsuApiV2WebRequestErrorType.NOT_FOUND,
-                )
             }).timeout(timeoutForRequestsInMs(1))
             it("should throw if name is '' and no account is found", async () => {
-                // Check if the request throws an error when the name is "-1"
-                let errorInvalidUserName: OsuApiV2Error | null = null
                 try {
-                    const result = await osuApiV2.users.get(
+                    const request = await osuApiV2.users.get(
                         oauthAccessToken,
                         "",
                     )
-                    console.log(result)
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
                 } catch (err) {
-                    errorInvalidUserName = err as OsuApiV2Error
+                    checkOsuApiV2Error(
+                        err as OsuApiV2Error,
+                        OsuApiV2ErrorCode.NOT_FOUND,
+                    )
                 }
-                checkOsuApiV2Error(
-                    errorInvalidUserName,
-                    OsuApiV2ErrorCode.NOT_FOUND,
-                )
             }).timeout(timeoutForRequestsInMs(1))
             it("should make request successfully", async () => {
                 // User ID
@@ -91,7 +95,7 @@ export const usersTestSuite = (): Suite =>
                     oauthAccessToken,
                     9096716,
                 )
-                await cacheResponse("users_get", "9096716", defaultId)
+                await saveResponse("users_get", "9096716", defaultId)
                 const osuId = await osuApiV2.users.get(
                     oauthAccessToken,
                     9096716,
@@ -137,7 +141,7 @@ export const usersTestSuite = (): Suite =>
                     oauthAccessToken,
                     "Ooi",
                 )
-                await cacheResponse("users_get", "Ooi", defaultName)
+                await saveResponse("users_get", "Ooi", defaultName)
                 const osuName = await osuApiV2.users.get(
                     oauthAccessToken,
                     "Ooi",
@@ -243,22 +247,23 @@ export const usersTestSuite = (): Suite =>
 
         describe("recentActivity", () => {
             it("should throw if id is invalid", async () => {
-                // Check if the request throws an error when the id is invalid
-                let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
                 try {
-                    await osuApiV2.users.recentActivity(
+                    const request = await osuApiV2.users.recentActivity(
                         oauthAccessToken,
                         -9096716,
                     )
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
                 } catch (err) {
-                    errorInvalidBeatmapId = err as OsuApiV2WebRequestError
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                    )
                 }
-                checkOsuApiV2WebRequestError(
-                    errorInvalidBeatmapId,
-                    OsuApiV2WebRequestErrorType.NOT_FOUND,
-                )
             }).timeout(timeoutForRequestsInMs(1))
-
             it("should make request successfully", async () => {
                 await osuApiV2.users.recentActivity(oauthAccessToken, 9096716)
 
@@ -268,7 +273,7 @@ export const usersTestSuite = (): Suite =>
                     2,
                     1,
                 )
-                await cacheResponse(
+                await saveResponse(
                     "users_recent_activity",
                     "9096716_2_1",
                     recentActivity21,
@@ -279,7 +284,7 @@ export const usersTestSuite = (): Suite =>
                     2927048,
                     2,
                 )
-                await cacheResponse(
+                await saveResponse(
                     "users_recent_activity",
                     "2927048_2",
                     recentActivity2,
@@ -289,21 +294,23 @@ export const usersTestSuite = (): Suite =>
 
         describe("scores", () => {
             it("should throw if id is invalid", async () => {
-                // Check if the request throws an error when the id is invalid
-                let errorInvalidBeatmapId: OsuApiV2WebRequestError | null = null
                 try {
-                    await osuApiV2.users.scores(
+                    const request = await osuApiV2.users.scores(
                         oauthAccessToken,
                         -9096716,
                         ScoresType.RECENT,
                     )
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
                 } catch (err) {
-                    errorInvalidBeatmapId = err as OsuApiV2WebRequestError
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                    )
                 }
-                checkOsuApiV2WebRequestError(
-                    errorInvalidBeatmapId,
-                    OsuApiV2WebRequestErrorType.NOT_FOUND,
-                )
             }).timeout(timeoutForRequestsInMs(1))
             it("should make request successfully", async () => {
                 const userBestOsu21 = await osuApiV2.users.scores(
@@ -314,7 +321,7 @@ export const usersTestSuite = (): Suite =>
                     2,
                     1,
                 )
-                await cacheResponse(
+                await saveResponse(
                     "users_scores",
                     "9096716_best_osu_2_1",
                     userBestOsu21,
@@ -363,7 +370,7 @@ export const usersTestSuite = (): Suite =>
                     0,
                     true,
                 )
-                await cacheResponse(
+                await saveResponse(
                     "users_scores",
                     "2927048_recent_osu_2_0_true",
                     userRecentOsu20True,

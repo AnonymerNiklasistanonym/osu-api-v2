@@ -19,7 +19,7 @@ tsconfig.eslint.json
 # Ignore mocha configuration file
 .mocharc.json
 # Ignore authentication files
-authentication.*
+osu_api_v2_oauth_*.json
 
 # Ignore cached files
 cached-osu-api-responses

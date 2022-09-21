@@ -13,9 +13,9 @@ const secretOAuthCredentialsPath = path.join(
     __dirname,
     "..",
     "..",
-    "authentication.secret.json",
+    "osu_api_v2_oauth_client_credentials.secret.json",
 )
-/** @type {{osuOAuthClientId: number;osuOAuthClientSecret: string}} */
+/** @type {{clientId: number;clientSecret: string}} */
 const secretOAuthCredentials = JSON.parse(
     fs.readFileSync(secretOAuthCredentialsPath).toString(),
 )
@@ -23,8 +23,8 @@ console.log(secretOAuthCredentials)
 
 osuApiV2.oauth
     .clientCredentialsGrant(
-        secretOAuthCredentials.osuOAuthClientId,
-        secretOAuthCredentials.osuOAuthClientSecret,
+        secretOAuthCredentials.clientId,
+        secretOAuthCredentials.clientSecret,
     )
     .then((oauthAccessToken) => {
         console.log(oauthAccessToken)

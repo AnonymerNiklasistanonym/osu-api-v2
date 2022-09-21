@@ -1,66 +1,184 @@
-// Package imorts
+// Package imports
 import { before, describe, it, Suite } from "mocha"
 import { expect } from "chai"
 // Local imports
 import {
     checkOsuApiV2WebRequestError,
-    OsuApiV2WebRequestErrorType,
-    timeoutForRequestsInMs,
-} from "../../helper.test"
+    OsuApiV2WebRequestExpectedErrorType,
+} from "../../helper/custom_errors"
 import osuApiV2, { OsuApiV2WebRequestError } from "../../../src/index"
-import { readOauthCredentials } from "../read_oauth_credentials"
+import {
+    getOAuthSecretClientCredentials,
+    getOAuthSecretRefreshToken,
+    OAuthSecretRefreshToken,
+} from "../get_oauth_secrets"
+import { timeoutForRequestsInMs } from "../../test_helper"
 // Type imports
-import type { OAuthCredentials } from "../read_oauth_credentials"
+import type { OAuthSecretClientCredentials } from "../get_oauth_secrets"
 
 export const oauthTestSuite = (): Suite =>
     describe("oauth", () => {
-        let oauthCredentials: OAuthCredentials
+        let oauthClientCredentials: OAuthSecretClientCredentials
+        let oauthRefreshToken: OAuthSecretRefreshToken
 
-        before("before all test cases in oauth block", async () => {
+        before("before all test cases", async () => {
             // Get the local OAuth Credentials
-            oauthCredentials = await readOauthCredentials()
+            oauthClientCredentials = await getOAuthSecretClientCredentials()
+            oauthRefreshToken = await getOAuthSecretRefreshToken()
         })
 
-        it("clientCredentialsGrant", async () => {
-            // Check if the request throws an error when the client id is invalid
-            let errorInvalidClientId: OsuApiV2WebRequestError | null = null
-            try {
-                await osuApiV2.oauth.clientCredentialsGrant(
-                    -99,
-                    oauthCredentials.clientSecret,
-                )
-            } catch (err) {
-                errorInvalidClientId = err as OsuApiV2WebRequestError
-            }
-            checkOsuApiV2WebRequestError(
-                errorInvalidClientId,
-                OsuApiV2WebRequestErrorType.UNAUTHORIZED,
-            )
+        describe("clientCredentialsGrant", () => {
+            it("should throw if client id is invalid", async () => {
+                try {
+                    const request = await osuApiV2.oauth.clientCredentialsGrant(
+                        -99,
+                        oauthClientCredentials.clientSecret,
+                    )
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
+                } catch (err) {
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                    )
+                }
+            }).timeout(timeoutForRequestsInMs(1))
+            it("should throw if client secret is invalid", async () => {
+                try {
+                    const request = await osuApiV2.oauth.clientCredentialsGrant(
+                        oauthClientCredentials.clientId,
+                        "abc",
+                    )
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
+                } catch (err) {
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                    )
+                }
+            }).timeout(timeoutForRequestsInMs(1))
+            it("should make request successfully", async () => {
+                const oauthAccessToken =
+                    await osuApiV2.oauth.clientCredentialsGrant(
+                        oauthClientCredentials.clientId,
+                        oauthClientCredentials.clientSecret,
+                    )
+                expect(oauthAccessToken.access_token)
+                    .to.be.a("string")
+                    .with.a.lengthOf.greaterThan(0)
+                expect(oauthAccessToken.token_type).to.equal("Bearer")
+                expect(oauthAccessToken.expires_in).to.be.a("number").above(0)
+            }).timeout(timeoutForRequestsInMs(1))
+        })
 
-            // Check if the request throws an error when the client id is invalid
-            let errorInvalidClientSecret: OsuApiV2WebRequestError | null = null
-            try {
-                await osuApiV2.oauth.clientCredentialsGrant(
-                    oauthCredentials.clientId,
-                    "abc",
+        describe("refreshTokenGrant", () => {
+            it("should throw if client id is invalid", async () => {
+                try {
+                    const request = await osuApiV2.oauth.refreshTokenGrant(
+                        -99,
+                        oauthRefreshToken.clientSecret,
+                        oauthRefreshToken.redirectUrl,
+                        oauthRefreshToken.refreshToken,
+                    )
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
+                } catch (err) {
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                    )
+                }
+            }).timeout(timeoutForRequestsInMs(1))
+            it("should throw if client secret is invalid", async () => {
+                try {
+                    const request = await osuApiV2.oauth.refreshTokenGrant(
+                        oauthRefreshToken.clientId,
+                        "-1",
+                        oauthRefreshToken.redirectUrl,
+                        oauthRefreshToken.refreshToken,
+                    )
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
+                } catch (err) {
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                    )
+                }
+            }).timeout(timeoutForRequestsInMs(1))
+            it("should throw if redirect URL is invalid", async () => {
+                try {
+                    const request = await osuApiV2.oauth.refreshTokenGrant(
+                        oauthRefreshToken.clientId,
+                        oauthRefreshToken.clientSecret,
+                        "http://bad.com",
+                        oauthRefreshToken.refreshToken,
+                    )
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
+                } catch (err) {
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                    )
+                }
+            }).timeout(timeoutForRequestsInMs(1))
+            it("should throw if refresh token is invalid", async () => {
+                try {
+                    const request = await osuApiV2.oauth.refreshTokenGrant(
+                        oauthRefreshToken.clientId,
+                        oauthRefreshToken.clientSecret,
+                        oauthRefreshToken.redirectUrl,
+                        "asakdkabd",
+                    )
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
+                } catch (err) {
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                    )
+                }
+            }).timeout(timeoutForRequestsInMs(1))
+            it("should make request successfully", async () => {
+                const oauthAccessTokenWithRefreshToken =
+                    await osuApiV2.oauth.refreshTokenGrant(
+                        oauthRefreshToken.clientId,
+                        oauthRefreshToken.clientSecret,
+                        oauthRefreshToken.redirectUrl,
+                        oauthRefreshToken.refreshToken,
+                    )
+                expect(oauthAccessTokenWithRefreshToken.access_token)
+                    .to.be.a("string")
+                    .with.a.lengthOf.greaterThan(0)
+                expect(oauthAccessTokenWithRefreshToken.token_type).to.equal(
+                    "Bearer",
                 )
-            } catch (err) {
-                errorInvalidClientSecret = err as OsuApiV2WebRequestError
-            }
-            checkOsuApiV2WebRequestError(
-                errorInvalidClientSecret,
-                OsuApiV2WebRequestErrorType.UNAUTHORIZED,
-            )
-
-            const oauthAccessToken =
-                await osuApiV2.oauth.clientCredentialsGrant(
-                    oauthCredentials.clientId,
-                    oauthCredentials.clientSecret,
-                )
-            expect(oauthAccessToken.access_token)
-                .to.be.a("string")
-                .with.a.lengthOf.greaterThan(0)
-            expect(oauthAccessToken.token_type).to.equal("Bearer")
-            expect(oauthAccessToken.expires_in).to.be.a("number").above(0)
-        }).timeout(timeoutForRequestsInMs(3))
+                expect(oauthAccessTokenWithRefreshToken.expires_in)
+                    .to.be.a("number")
+                    .above(0)
+                expect(oauthAccessTokenWithRefreshToken.refresh_token)
+                    .to.be.a("string")
+                    .with.a.lengthOf.greaterThan(0)
+            }).timeout(timeoutForRequestsInMs(1))
+        })
     })

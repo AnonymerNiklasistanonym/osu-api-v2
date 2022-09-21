@@ -1,15 +1,16 @@
 // Local imports
-import {
-    OsuApiV2Error,
-    OsuApiV2ErrorCode,
-    OsuApiV2WebRequestError,
-} from "../helpers/custom_errors"
-import { baseUrlApiV2 } from "../types/api_info"
+import { OsuApiV2Error, OsuApiV2ErrorCode } from "../helpers/custom_errors"
 import { GameMode } from "../types/game_mode"
-import { urlParameterGenerator } from "../helpers/url_parameter_generator"
+import { genericWebRequest } from "../helpers/web_request"
 // Type imports
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 import type { User } from "../types/user"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { OsuApiV2WebRequestError } from "../helpers/custom_errors"
+
+interface UserList {
+    users: User[]
+}
 
 /**
  * Get a user by their ID or username.
@@ -47,44 +48,28 @@ import type { User } from "../types/user"
  * ([Source](https://osu.ppy.sh/docs/index.html#get-user))
  */
 export const get = async (
-    oauthAccessToken: OAuthAccessToken,
+    oauthAccessToken: Readonly<OAuthAccessToken>,
     userIdOrName: number | string,
     mode?: GameMode,
 ): Promise<User> => {
-    const params = urlParameterGenerator([
-        {
-            name: "key",
-            value: typeof userIdOrName === "number" ? "id" : "username",
-        },
-    ])
-    const method = "get"
-    const headers = {
-        Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
-        "Content-Type": "application/json",
-    }
     const modeString = mode === undefined ? "" : `/${mode}`
-
-    const res = await fetch(
-        `${baseUrlApiV2}/users/${userIdOrName}${modeString}${params}`,
+    const possibleUser = await genericWebRequest<User | UserList>(
+        "get",
+        `/users/${userIdOrName}${modeString}`,
         {
-            headers,
-            method,
+            apiCall: true,
+            authorizationAccessToken: oauthAccessToken,
+            urlParameters: [
+                {
+                    name: "key",
+                    value: typeof userIdOrName === "number" ? "id" : "username",
+                },
+            ],
         },
     )
-    if (res.status !== 200) {
-        throw new OsuApiV2WebRequestError(
-            `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
-            res.status,
-            res.statusText,
-            res.url,
-            method,
-            headers,
-        )
-    }
-
-    const user = (await res.json()) as User
-    if (Array.isArray((user as unknown as UserList).users)) {
-        if ((user as unknown as UserList).users.length === 0) {
+    // Detect unexpected UserList request response and throw an API error.
+    if (Array.isArray((possibleUser as UserList).users)) {
+        if ((possibleUser as UserList).users.length === 0) {
             throw new OsuApiV2Error(
                 "No user was found",
                 OsuApiV2ErrorCode.NOT_FOUND,
@@ -96,9 +81,5 @@ export const get = async (
             )
         }
     }
-    return user
-}
-
-interface UserList {
-    users: User[]
+    return possibleUser as User
 }

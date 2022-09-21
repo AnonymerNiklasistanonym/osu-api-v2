@@ -1,7 +1,6 @@
 // Local imports
-import { baseUrl } from "../types/api_info"
-import { OsuApiV2AuthorizeScopes } from "../types/oauth_scopes"
-import { urlParameterGenerator } from "../helpers/url_parameter_generator"
+import { genericWebRequestUrlGenerator } from "../helpers/web_request"
+import { OAuthAuthorizeScope } from "../types/oauth_scopes"
 
 /**
  * To obtain an access token, you must first get an authorization code that is
@@ -24,36 +23,52 @@ import { urlParameterGenerator } from "../helpers/url_parameter_generator"
  * It can be used to provide a token for protecting against cross-site request
  * forgery attacks.
  * @returns The authorize redirect URL which opens the authorization dialogue.
+ * @example
+ * ```ts
+ * import osuApiV2, { OAuthAuthorizeScope } from "osu-api-v2"
+ * import open from "open"
+ *
+ * const authorizeUrl = osuApiV2.oauth.authorizeRedirectUrlGenerator(
+ *     1234,
+ *     "http://localhost:8888",
+ *     [OAuthAuthorizeScope.PUBLIC, OAuthAuthorizeScope.IDENTITY],
+ * )
+ * await open(authorizeUrl)
+ * ```
+ * @example
+ * ```text
+ * https://osu.ppy.sh/oauth/authorize?client_id=1234&redirect_uri=http://localhost:8888&scope=public+identify&response_type=code
+ * ```
  *
  * ([Source](https://osu.ppy.sh/docs/index.html#authorization-code-grant))
  */
 export const authorizeRedirectUrlGenerator = (
     clientId: number,
     redirectUri: string,
-    scopes?: OsuApiV2AuthorizeScopes[],
+    scopes?: readonly OAuthAuthorizeScope[],
     state?: string,
-): string => {
-    const params = urlParameterGenerator([
-        {
-            name: "client_id",
-            value: `${clientId}`,
-        },
-        {
-            name: "redirect_uri",
-            value: redirectUri,
-        },
-        {
-            name: "scope",
-            value: scopes,
-        },
-        {
-            name: "state",
-            value: state,
-        },
-        {
-            name: "response_type",
-            value: "code",
-        },
-    ])
-    return `${baseUrl}/oauth/authorize${params}`
-}
+): string =>
+    genericWebRequestUrlGenerator("/oauth/authorize", {
+        urlParameters: [
+            {
+                name: "client_id",
+                value: `${clientId}`,
+            },
+            {
+                name: "redirect_uri",
+                value: redirectUri,
+            },
+            {
+                name: "scope",
+                value: scopes,
+            },
+            {
+                name: "state",
+                value: state,
+            },
+            {
+                name: "response_type",
+                value: "code",
+            },
+        ],
+    })
