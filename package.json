@@ -40,7 +40,9 @@
         "lint:fix": "eslint --fix examples pages src test",
         "prepare": "tsc",
         "test": "mocha -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
+        "test:no-refresh-token": "mocha --invert --grep ^refresh-token -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
         "test:coverage": "nyc --reporter=html --reporter=text mocha -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
+        "test:coverage-no-refresh-token": "nyc --reporter=html --reporter=text mocha --invert --grep ^refresh-token -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
         "test:without-osu-api-v2": "mocha --invert --grep ^osu-api-v2 -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts"
     },
     "repository": {

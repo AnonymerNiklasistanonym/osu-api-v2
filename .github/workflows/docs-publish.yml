@@ -49,7 +49,7 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: choco install graphviz
       # Run tests with workflow secrets to get example outputs
-      - run: npm run test
+      - run: npm run test:no-refresh-token
         env:
           OSU_OAUTH_CLIENT_ID: ${{ secrets.OSU_OAUTH_CLIENT_ID }}
           OSU_OAUTH_CLIENT_SECRET: ${{ secrets.OSU_OAUTH_CLIENT_SECRET }}

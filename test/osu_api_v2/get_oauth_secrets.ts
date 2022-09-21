@@ -2,7 +2,10 @@
 import * as path from "path"
 import { promises as fsp } from "fs"
 // Type imports
-import type { OAuthAccessToken } from "../../src"
+import type {
+    OAuthAccessToken,
+    OAuthAccessTokenWithRefreshToken,
+} from "../../src"
 
 export interface OAuthSecretClientCredentials {
     clientId: number
@@ -10,6 +13,7 @@ export interface OAuthSecretClientCredentials {
 }
 
 export interface OAuthSecretRefreshToken extends OAuthSecretClientCredentials {
+    old?: OAuthSecretRefreshToken[]
     redirectUrl: string
     refreshToken: string
 }
@@ -88,4 +92,31 @@ export const getOAuthSecretRefreshToken = async (
     return JSON.parse(
         oAuthSecretRefreshTokenContent.toString(),
     ) as OAuthSecretRefreshToken
+}
+
+export const updateOAuthSecretRefreshToken = async (
+    currentRefreshToken: OAuthSecretRefreshToken,
+    newRefreshToken: OAuthAccessTokenWithRefreshToken,
+    filePath: string = defaultOauthSecretRefreshTokenFilePath,
+): Promise<void> => {
+    const newRefreshTokenData: OAuthSecretRefreshToken = {
+        ...currentRefreshToken,
+        old: [
+            {
+                ...currentRefreshToken,
+                old: undefined,
+            },
+            ...(currentRefreshToken.old !== undefined
+                ? currentRefreshToken.old
+                : []),
+        ].slice(0, 5),
+        refreshToken: newRefreshToken.refresh_token,
+    }
+    await fsp.writeFile(
+        filePath,
+        JSON.stringify(newRefreshTokenData, undefined, 4),
+        {
+            encoding: "utf8",
+        },
+    )
 }
