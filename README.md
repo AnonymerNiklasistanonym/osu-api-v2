@@ -16,6 +16,8 @@ If you use an older version or another environment be sure to include a package 
 
 **HTML documentation with examples and responses:** [GitHub pages](https://anonymerniklasistanonym.github.io/osu-api-v2/)
 
+**GitHub repository:** [`osu-api-v2`](https://github.com/AnonymerNiklasistanonym/osu-api-v2)
+
 - [Getting started](#getting-started)
   - [Acquire osu! OAuth credentials](#acquire-osu-oauth-credentials)
   - [Use it in a Node.js project](#use-it-in-a-nodejs-project)
@@ -26,7 +28,8 @@ If you use an older version or another environment be sure to include a package 
   - [Linting and Formatting](#linting-and-formatting)
 - [Manage npm package](#manage-npm-package)
   - [Preview package content](#preview-package-content)
-  - [Update/Publish package](#updatepublish-package)
+  - [Test package](#test-package)
+  - [Publish package](#publish-package)
 
 ## Getting started
 
