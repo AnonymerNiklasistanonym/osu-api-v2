@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "osu! API v2 OAuth refresh token for making OAuth refresh token grants",
+    "type": "object",
+    "properties": {
+        "clientId": {
+            "type": "integer"
+        },
+        "clientSecret": {
+            "type": "string"
+        },
+        "redirectUrl": {
+            "type": "string"
+        },
+        "refreshToken": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "clientId",
+        "clientSecret",
+        "redirectUrl",
+        "refreshToken"
+    ]
+}

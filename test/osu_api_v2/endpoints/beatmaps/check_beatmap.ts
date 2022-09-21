@@ -4,7 +4,7 @@ import moment from "moment"
 // Local imports
 import { GameMode, GameModeInt, RankStatus } from "../../../../src/index"
 import { checkBeatmapsetObject } from "./check_beatmapset"
-import { saveOsuResponseObjectAsFile } from "../../../helper.test"
+import { saveResponse } from "../../../test_helper"
 // Type imports
 import type { Beatmap } from "../../../../src/index"
 
@@ -19,7 +19,7 @@ export const checkBeatmapObject = async (
     beatmap: Beatmap,
     options: CheckBeatmapObjectOptions = {},
 ): Promise<void> => {
-    await saveOsuResponseObjectAsFile(`beatmap_${beatmap?.id}`, beatmap)
+    await saveResponse("beatmap", `${beatmap?.id}`, beatmap)
     expect(beatmap).to.be.an("object")
     expect(beatmap.accuracy).to.be.a("number").greaterThanOrEqual(0)
     expect(beatmap.ar).to.be.a("number").greaterThanOrEqual(0)

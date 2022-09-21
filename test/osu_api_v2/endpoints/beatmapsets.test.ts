@@ -3,16 +3,20 @@ import { before, describe, it, Suite } from "mocha"
 import { expect } from "chai"
 // Local imports
 import {
-    cacheResponse,
     checkOsuApiV2WebRequestError,
-    OsuApiV2WebRequestErrorType,
-    timeoutForRequestsInMs,
-} from "../../helper.test"
-import osuApiV2, {
+    OsuApiV2WebRequestExpectedErrorType,
+} from "../../helper/custom_errors"
+import {
+    getOAuthSecretClientCredentials,
+    invalidOAuthAccessToken,
+} from "../get_oauth_secrets"
+import { saveResponse, timeoutForRequestsInMs } from "../../test_helper"
+import osuApiV2 from "../../../src/index"
+// Type imports
+import type {
     OAuthAccessToken,
     OsuApiV2WebRequestError,
 } from "../../../src/index"
-import { readOauthCredentials } from "../read_oauth_credentials"
 
 export const beatmapsetsTestSuite = (): Suite =>
     describe("beatmapsets", () => {
@@ -20,7 +24,7 @@ export const beatmapsetsTestSuite = (): Suite =>
 
         before("before all test cases", async () => {
             // Get the OAuth access token
-            const oauthCredentials = await readOauthCredentials()
+            const oauthCredentials = await getOAuthSecretClientCredentials()
             oauthAccessToken = await osuApiV2.oauth.clientCredentialsGrant(
                 oauthCredentials.clientId,
                 oauthCredentials.clientSecret,
@@ -31,11 +35,7 @@ export const beatmapsetsTestSuite = (): Suite =>
             it("should throw if access token is invalid", async () => {
                 try {
                     const request = await osuApiV2.beatmapsets.get(
-                        {
-                            access_token: "",
-                            expires_in: 100,
-                            token_type: "",
-                        },
+                        invalidOAuthAccessToken,
                         1196347,
                     )
                     expect.fail(
@@ -46,7 +46,7 @@ export const beatmapsetsTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestErrorType.UNAUTHORIZED,
+                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -64,7 +64,7 @@ export const beatmapsetsTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestErrorType.NOT_FOUND,
+                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -73,7 +73,7 @@ export const beatmapsetsTestSuite = (): Suite =>
                     oauthAccessToken,
                     1196347,
                 )
-                await cacheResponse(
+                await saveResponse(
                     "beatmapsets_get",
                     "1196347",
                     beatmapRankedOsu,
@@ -82,7 +82,7 @@ export const beatmapsetsTestSuite = (): Suite =>
                     oauthAccessToken,
                     819456,
                 )
-                await cacheResponse(
+                await saveResponse(
                     "beatmapsets_get",
                     "819456",
                     beatmapGraveyardOsu,
@@ -91,7 +91,7 @@ export const beatmapsetsTestSuite = (): Suite =>
                     oauthAccessToken,
                     34256,
                 )
-                await cacheResponse("beatmapsets_get", "34256", beatmapLovedOsu)
+                await saveResponse("beatmapsets_get", "34256", beatmapLovedOsu)
             }).timeout(timeoutForRequestsInMs(3))
         })
 
@@ -99,11 +99,7 @@ export const beatmapsetsTestSuite = (): Suite =>
             it("should throw if access token is invalid", async () => {
                 try {
                     const request = await osuApiV2.beatmapsets.search(
-                        {
-                            access_token: "",
-                            expires_in: 100,
-                            token_type: "",
-                        },
+                        invalidOAuthAccessToken,
                         "Nekojarashi",
                     )
                     expect.fail(
@@ -114,7 +110,7 @@ export const beatmapsetsTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestErrorType.UNAUTHORIZED,
+                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -123,7 +119,7 @@ export const beatmapsetsTestSuite = (): Suite =>
                     oauthAccessToken,
                     "Nekojarashi",
                 )
-                await cacheResponse(
+                await saveResponse(
                     "beatmapsets_search",
                     "Nekojarashi",
                     beatmapsetRankedOsu,
@@ -132,7 +128,7 @@ export const beatmapsetsTestSuite = (): Suite =>
                     oauthAccessToken,
                     "Singularity - Au5",
                 )
-                await cacheResponse(
+                await saveResponse(
                     "beatmapsets_search",
                     "Singularity_-_Au5",
                     beatmapsetRankedOsu2,

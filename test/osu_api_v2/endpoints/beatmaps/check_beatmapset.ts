@@ -2,7 +2,7 @@
 import { expect } from "chai"
 // Local imports
 import { checkBeatmapObject } from "./check_beatmap"
-import { saveOsuResponseObjectAsFile } from "../../../helper.test"
+import { saveResponse } from "../../../test_helper"
 // Type imports
 import type {
     Beatmapset,
@@ -87,10 +87,7 @@ export const checkBeatmapsetObject = async (
     beatmapset: Beatmapset,
     options: CheckBeatmapSetObjectOptions = {},
 ): Promise<void> => {
-    await saveOsuResponseObjectAsFile(
-        `beatmapset_${beatmapset?.id}`,
-        beatmapset,
-    )
+    await saveResponse("beatmapset", `${beatmapset?.id}`, beatmapset)
     expect(beatmapset.artist).to.be.a("string").with.a.lengthOf.greaterThan(0)
     expect(beatmapset.artist_unicode)
         .to.be.a("string")

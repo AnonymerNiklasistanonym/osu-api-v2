@@ -1,0 +1,7 @@
+{
+    "$schema": "./osu_api_v2_oauth_refresh_token.schema.json",
+    "clientId": 1234,
+    "clientSecret": "wjejoewjroewk3543rigjdog90rngg",
+    "refreshToken": "djfdisnfoidsnfodsnfklsdnfldsnfldsnflksdfns",
+    "redirectUrl": "http://localhost:8888"
+}

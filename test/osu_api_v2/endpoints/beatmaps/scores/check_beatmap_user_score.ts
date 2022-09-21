@@ -4,7 +4,7 @@ import moment from "moment"
 // Local imports
 import { GameMode, GameModeInt, GameMods } from "../../../../../src/index"
 import { checkBeatmapObject } from "../check_beatmap"
-import { saveOsuResponseObjectAsFile } from "../../../../helper.test"
+import { saveResponse } from "../../../../test_helper"
 // Type imports
 import type { BeatmapUserScore, Score } from "../../../../../src/index"
 
@@ -18,8 +18,9 @@ export const checkBeatmapUserScoreScoreObject = async (
     beatmapUserScoreScore: Score,
     options: CheckBeatmapUserScoreObjectOptions = {},
 ): Promise<void> => {
-    await saveOsuResponseObjectAsFile(
-        `beatmapUserScoreScore_${beatmapUserScoreScore?.id}`,
+    await saveResponse(
+        "beatmapUserScoreScore",
+        `${beatmapUserScoreScore?.id}`,
         beatmapUserScoreScore,
     )
     expect(beatmapUserScoreScore).to.be.an("object")
@@ -171,8 +172,9 @@ export const checkBeatmapUserScoreObject = async (
     beatmapUserScore: BeatmapUserScore,
     options: CheckBeatmapUserScoreObjectOptions = {},
 ): Promise<void> => {
-    await saveOsuResponseObjectAsFile(
-        `beatmapUserScore_${beatmapUserScore?.score?.id}`,
+    await saveResponse(
+        "beatmapUserScore",
+        `${beatmapUserScore?.score?.id}`,
         beatmapUserScore,
     )
     expect(beatmapUserScore).to.be.an("object")

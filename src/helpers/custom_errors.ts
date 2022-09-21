@@ -15,7 +15,7 @@ export class OsuApiV2WebRequestError<REQUEST_BODY = string> extends Error {
     public url: string
     public statusText: string
     public statusCode: number
-    public method: Readonly<OsuApiV2WebRequestErrorMethod>
+    public method: OsuApiV2WebRequestErrorMethod
     public headers?: Readonly<OsuApiV2WebRequestErrorHeaders>
     public body?: string
     constructor(

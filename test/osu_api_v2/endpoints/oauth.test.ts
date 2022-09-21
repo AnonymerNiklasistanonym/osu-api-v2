@@ -1,24 +1,24 @@
-// Package imorts
+// Package imports
 import { before, describe, it, Suite } from "mocha"
 import { expect } from "chai"
 // Local imports
 import {
     checkOsuApiV2WebRequestError,
-    OsuApiV2WebRequestErrorType,
-    timeoutForRequestsInMs,
-} from "../../helper.test"
+    OsuApiV2WebRequestExpectedErrorType,
+} from "../../helper/custom_errors"
 import osuApiV2, { OsuApiV2WebRequestError } from "../../../src/index"
-import { readOauthCredentials } from "../read_oauth_credentials"
+import { getOAuthSecretClientCredentials } from "../get_oauth_secrets"
+import { timeoutForRequestsInMs } from "../../test_helper"
 // Type imports
-import type { OAuthCredentials } from "../read_oauth_credentials"
+import type { OAuthSecretClientCredentials } from "../get_oauth_secrets"
 
 export const oauthTestSuite = (): Suite =>
     describe("oauth", () => {
-        let oauthCredentials: OAuthCredentials
+        let oauthCredentials: OAuthSecretClientCredentials
 
         before("before all test cases in oauth block", async () => {
             // Get the local OAuth Credentials
-            oauthCredentials = await readOauthCredentials()
+            oauthCredentials = await getOAuthSecretClientCredentials()
         })
 
         describe("clientCredentialsGrant", () => {
@@ -36,7 +36,7 @@ export const oauthTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestErrorType.UNAUTHORIZED,
+                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -54,7 +54,7 @@ export const oauthTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestErrorType.UNAUTHORIZED,
+                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))

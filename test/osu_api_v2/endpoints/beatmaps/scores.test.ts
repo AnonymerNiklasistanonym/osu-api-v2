@@ -4,17 +4,20 @@ import { expect } from "chai"
 // Local imports
 import {
     checkOsuApiV2WebRequestError,
-    OsuApiV2WebRequestErrorType,
-    timeoutForRequestsInMs,
-} from "../../../helper.test"
-import osuApiV2, {
-    GameMode,
+    OsuApiV2WebRequestExpectedErrorType,
+} from "../../../helper/custom_errors"
+import {
+    getOAuthSecretClientCredentials,
+    invalidOAuthAccessToken,
+} from "../../get_oauth_secrets"
+import osuApiV2, { GameMode } from "../../../../src/index"
+import { checkBeatmapUserScoreObject } from "./scores/check_beatmap_user_score"
+import { timeoutForRequestsInMs } from "../../../test_helper"
+// Type imports
+import type {
+    OAuthAccessToken,
     OsuApiV2WebRequestError,
 } from "../../../../src/index"
-import { checkBeatmapUserScoreObject } from "./scores/check_beatmap_user_score"
-import { readOauthCredentials } from "../../read_oauth_credentials"
-// Type imports
-import type { OAuthAccessToken } from "../../../../src/index"
 
 export const scoresTestSuite = (): Suite =>
     describe("scores", () => {
@@ -22,7 +25,7 @@ export const scoresTestSuite = (): Suite =>
 
         before("before all test cases", async () => {
             // Get the OAuth access token
-            const oauthCredentials = await readOauthCredentials()
+            const oauthCredentials = await getOAuthSecretClientCredentials()
             oauthAccessToken = await osuApiV2.oauth.clientCredentialsGrant(
                 oauthCredentials.clientId,
                 oauthCredentials.clientSecret,
@@ -33,11 +36,7 @@ export const scoresTestSuite = (): Suite =>
             it("should throw if access token is invalid", async () => {
                 try {
                     const request = await osuApiV2.beatmaps.scores.users(
-                        {
-                            access_token: "",
-                            expires_in: 100,
-                            token_type: "",
-                        },
+                        invalidOAuthAccessToken,
                         1095534,
                         18508852,
                         GameMode.OSU_STANDARD,
@@ -50,7 +49,7 @@ export const scoresTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestErrorType.UNAUTHORIZED,
+                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -70,7 +69,7 @@ export const scoresTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestErrorType.NOT_FOUND,
+                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -90,7 +89,7 @@ export const scoresTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestErrorType.NOT_FOUND,
+                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))

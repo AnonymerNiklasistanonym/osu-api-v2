@@ -3,22 +3,23 @@ import { before, describe, it, Suite } from "mocha"
 import { expect } from "chai"
 // Local imports
 import {
-    cacheResponse,
     checkOsuApiV2Error,
     checkOsuApiV2WebRequestError,
-    OsuApiV2WebRequestErrorType,
-    timeoutForRequestsInMs,
-} from "../../helper.test"
+    OsuApiV2WebRequestExpectedErrorType,
+} from "../../helper/custom_errors"
 import osuApiV2, {
     GameMode,
-    OsuApiV2Error,
     OsuApiV2ErrorCode,
-    OsuApiV2WebRequestError,
     ScoresType,
 } from "../../../src/index"
-import { readOauthCredentials } from "../read_oauth_credentials"
+import { saveResponse, timeoutForRequestsInMs } from "../../test_helper"
+import { getOAuthSecretClientCredentials } from "../get_oauth_secrets"
 // Type imports
-import type { OAuthAccessToken } from "../../../src/index"
+import type {
+    OAuthAccessToken,
+    OsuApiV2Error,
+    OsuApiV2WebRequestError,
+} from "../../../src/index"
 
 export const usersTestSuite = (): Suite =>
     describe("users", () => {
@@ -26,7 +27,7 @@ export const usersTestSuite = (): Suite =>
 
         before("before all test cases", async () => {
             // Get the OAuth access token
-            const oauthCredentials = await readOauthCredentials()
+            const oauthCredentials = await getOAuthSecretClientCredentials()
             oauthAccessToken = await osuApiV2.oauth.clientCredentialsGrant(
                 oauthCredentials.clientId,
                 oauthCredentials.clientSecret,
@@ -48,7 +49,7 @@ export const usersTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestErrorType.NOT_FOUND,
+                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -66,7 +67,7 @@ export const usersTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestErrorType.NOT_FOUND,
+                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -94,7 +95,7 @@ export const usersTestSuite = (): Suite =>
                     oauthAccessToken,
                     9096716,
                 )
-                await cacheResponse("users_get", "9096716", defaultId)
+                await saveResponse("users_get", "9096716", defaultId)
                 const osuId = await osuApiV2.users.get(
                     oauthAccessToken,
                     9096716,
@@ -140,7 +141,7 @@ export const usersTestSuite = (): Suite =>
                     oauthAccessToken,
                     "Ooi",
                 )
-                await cacheResponse("users_get", "Ooi", defaultName)
+                await saveResponse("users_get", "Ooi", defaultName)
                 const osuName = await osuApiV2.users.get(
                     oauthAccessToken,
                     "Ooi",
@@ -247,7 +248,7 @@ export const usersTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestErrorType.NOT_FOUND,
+                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -260,7 +261,7 @@ export const usersTestSuite = (): Suite =>
                     2,
                     1,
                 )
-                await cacheResponse(
+                await saveResponse(
                     "users_recent_activity",
                     "9096716_2_1",
                     recentActivity21,
@@ -271,7 +272,7 @@ export const usersTestSuite = (): Suite =>
                     2927048,
                     2,
                 )
-                await cacheResponse(
+                await saveResponse(
                     "users_recent_activity",
                     "2927048_2",
                     recentActivity2,
@@ -295,7 +296,7 @@ export const usersTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestErrorType.NOT_FOUND,
+                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -308,7 +309,7 @@ export const usersTestSuite = (): Suite =>
                     2,
                     1,
                 )
-                await cacheResponse(
+                await saveResponse(
                     "users_scores",
                     "9096716_best_osu_2_1",
                     userBestOsu21,
@@ -357,7 +358,7 @@ export const usersTestSuite = (): Suite =>
                     0,
                     true,
                 )
-                await cacheResponse(
+                await saveResponse(
                     "users_scores",
                     "2927048_recent_osu_2_0_true",
                     userRecentOsu20True,
