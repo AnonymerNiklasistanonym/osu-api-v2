@@ -421,23 +421,30 @@ export const usersTestSuite = (): Suite =>
 
             describe("me", () => {
                 it("should make request successfully", async () => {
-                    await osuApiV2.users.me(oauthAccessTokenIdentityScope)
-                    await osuApiV2.users.me(
+                    const me = await osuApiV2.users.me(
+                        oauthAccessTokenIdentityScope,
+                    )
+                    await saveResponse("users_me", "nothing", me)
+                    const meStandard = await osuApiV2.users.me(
                         oauthAccessTokenIdentityScope,
                         GameMode.OSU_STANDARD,
                     )
-                    await osuApiV2.users.me(
+                    await saveResponse("users_me", "standard", meStandard)
+                    const meCatch = await osuApiV2.users.me(
                         oauthAccessTokenIdentityScope,
                         GameMode.OSU_CATCH,
                     )
-                    await osuApiV2.users.me(
+                    await saveResponse("users_me", "mania", meCatch)
+                    const meMania = await osuApiV2.users.me(
                         oauthAccessTokenIdentityScope,
                         GameMode.OSU_MANIA,
                     )
-                    await osuApiV2.users.me(
+                    await saveResponse("users_me", "mania", meMania)
+                    const meTaiko = await osuApiV2.users.me(
                         oauthAccessTokenIdentityScope,
                         GameMode.OSU_TAIKO,
                     )
+                    await saveResponse("users_me", "taiko", meTaiko)
                 }).timeout(timeoutForRequestsInMs(5))
             })
         })
