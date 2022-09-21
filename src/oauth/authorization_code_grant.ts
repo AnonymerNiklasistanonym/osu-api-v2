@@ -1,6 +1,5 @@
 // Local imports
-import { baseUrl } from "../types/api_info"
-import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
+import { genericWebRequest } from "../helpers/web_request"
 // Type imports
 import type { AuthorizationCodeGrant } from "../types/authorization_code_grant"
 import type { OAuthAccessTokenWithRefreshToken } from "../types/oauth_access_token"
@@ -39,38 +38,18 @@ export const authorizationCodeGrant = async (
     clientSecret: string,
     redirectUri: string,
     code: string,
-): Promise<OAuthAccessTokenWithRefreshToken> => {
-    const requestBody: AuthorizationCodeGrant = {
-        client_id: clientId,
-        client_secret: clientSecret,
-        code,
-        grant_type: "authorization_code",
-        redirect_uri: redirectUri,
-    }
-    const method = "post"
-    const headers = { "Content-Type": "application/json" }
-    const body = JSON.stringify(requestBody)
-    const res = await fetch(`${baseUrl}/oauth/token`, {
-        body,
-        headers,
-        method,
-    })
-    if (res.status !== 200) {
-        throw new OsuApiV2WebRequestError(
-            `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
-            res.status,
-            res.statusText,
-            res.url,
-            method,
-            headers,
-            JSON.stringify({
-                ...requestBody,
-                client_secret: "[redacted]",
-            }),
-        )
-    }
-
-    const oauthAccessToken =
-        (await res.json()) as OAuthAccessTokenWithRefreshToken
-    return oauthAccessToken
-}
+): Promise<OAuthAccessTokenWithRefreshToken> =>
+    genericWebRequest<OAuthAccessTokenWithRefreshToken, AuthorizationCodeGrant>(
+        "post",
+        "/oauth/token",
+        false,
+        undefined,
+        undefined,
+        {
+            client_id: clientId,
+            client_secret: clientSecret,
+            code,
+            grant_type: "authorization_code",
+            redirect_uri: redirectUri,
+        },
+    )

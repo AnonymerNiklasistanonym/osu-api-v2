@@ -1,11 +1,11 @@
 // Local imports
-import { baseUrlApiV2 } from "../types/api_info"
 import { GameMode } from ".."
-import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
-import { urlParameterGenerator } from "../helpers/url_parameter_generator"
+import { genericWebRequest } from "../helpers/web_request"
 // Type imports
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 import type { Score } from ".."
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 
 /**
  * The type of score that can be requested.
@@ -66,61 +66,40 @@ export enum ScoresType {
  * ([Source](https://osu.ppy.sh/docs/index.html#get-user-scores))
  */
 export const scores = async (
-    oauthAccessToken: OAuthAccessToken,
+    oauthAccessToken: Readonly<OAuthAccessToken>,
     userId: number,
     type: ScoresType = ScoresType.BEST,
     mode: GameMode = GameMode.OSU_STANDARD,
     limit?: number,
     offset?: number,
     includeFails?: boolean,
-): Promise<Score[]> => {
-    const params = urlParameterGenerator([
-        {
-            name: "mode",
-            value: mode !== undefined ? mode : undefined,
-        },
-        {
-            name: "limit",
-            value: limit !== undefined ? `${limit}` : undefined,
-        },
-        {
-            name: "offset",
-            value: offset !== undefined ? `${offset}` : undefined,
-        },
-        {
-            name: "include_fails",
-            value:
-                includeFails !== undefined
-                    ? includeFails
-                        ? "1"
-                        : "0"
-                    : undefined,
-        },
-    ])
-    const method = "get"
-    const headers = {
-        Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
-        "Content-Type": "application/json",
-    }
-
-    const res = await fetch(
-        `${baseUrlApiV2}/users/${userId}/scores/${type}${params}`,
-        {
-            headers,
-            method,
-        },
+): Promise<Score[]> =>
+    genericWebRequest<Score[]>(
+        "get",
+        `/users/${userId}/scores/${type}`,
+        true,
+        [
+            {
+                name: "mode",
+                value: mode !== undefined ? mode : undefined,
+            },
+            {
+                name: "limit",
+                value: limit !== undefined ? `${limit}` : undefined,
+            },
+            {
+                name: "offset",
+                value: offset !== undefined ? `${offset}` : undefined,
+            },
+            {
+                name: "include_fails",
+                value:
+                    includeFails !== undefined
+                        ? includeFails
+                            ? "1"
+                            : "0"
+                        : undefined,
+            },
+        ],
+        oauthAccessToken,
     )
-    if (res.status !== 200) {
-        throw new OsuApiV2WebRequestError(
-            `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
-            res.status,
-            res.statusText,
-            res.url,
-            method,
-            headers,
-        )
-    }
-
-    const events = (await res.json()) as Score[]
-    return events
-}

@@ -1,10 +1,10 @@
 // Local imports
-import { baseUrlApiV2 } from "../types/api_info"
-import { OsuApiV2WebRequestError } from "../helpers/custom_errors"
-import { urlParameterGenerator } from "../helpers/url_parameter_generator"
+import { genericWebRequest } from "../helpers/web_request"
 // Type imports
 import type { Events } from "../types/event"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 
 /**
  * Get a list of recent activity events of a user.
@@ -43,45 +43,24 @@ import type { OAuthAccessToken } from "../types/oauth_access_token"
  * ([Source](https://osu.ppy.sh/docs/index.html#get-user-recent-activity))
  */
 export const recentActivity = async (
-    oauthAccessToken: OAuthAccessToken,
+    oauthAccessToken: Readonly<OAuthAccessToken>,
     userId: number,
     limit?: number,
     offset?: number,
-): Promise<Events[]> => {
-    const params = urlParameterGenerator([
-        {
-            name: "limit",
-            value: limit !== undefined ? `${limit}` : undefined,
-        },
-        {
-            name: "offset",
-            value: offset !== undefined ? `${offset}` : undefined,
-        },
-    ])
-    const method = "get"
-    const headers = {
-        Authorization: `${oauthAccessToken.token_type} ${oauthAccessToken.access_token}`,
-        "Content-Type": "application/json",
-    }
-
-    const res = await fetch(
-        `${baseUrlApiV2}/users/${userId}/recent_activity${params}`,
-        {
-            headers,
-            method,
-        },
+): Promise<Events[]> =>
+    genericWebRequest<Events[]>(
+        "get",
+        `/users/${userId}/recent_activity`,
+        true,
+        [
+            {
+                name: "limit",
+                value: limit !== undefined ? `${limit}` : undefined,
+            },
+            {
+                name: "offset",
+                value: offset !== undefined ? `${offset}` : undefined,
+            },
+        ],
+        oauthAccessToken,
     )
-    if (res.status !== 200) {
-        throw new OsuApiV2WebRequestError(
-            `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
-            res.status,
-            res.statusText,
-            res.url,
-            method,
-            headers,
-        )
-    }
-
-    const events = (await res.json()) as Events[]
-    return events
-}

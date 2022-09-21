@@ -21,46 +21,54 @@ export const oauthTestSuite = (): Suite =>
             oauthCredentials = await readOauthCredentials()
         })
 
-        it("clientCredentialsGrant", async () => {
-            // Check if the request throws an error when the client id is invalid
-            let errorInvalidClientId: OsuApiV2WebRequestError | null = null
-            try {
-                await osuApiV2.oauth.clientCredentialsGrant(
-                    -99,
-                    oauthCredentials.clientSecret,
-                )
-            } catch (err) {
-                errorInvalidClientId = err as OsuApiV2WebRequestError
-            }
-            checkOsuApiV2WebRequestError(
-                errorInvalidClientId,
-                OsuApiV2WebRequestErrorType.UNAUTHORIZED,
-            )
-
-            // Check if the request throws an error when the client id is invalid
-            let errorInvalidClientSecret: OsuApiV2WebRequestError | null = null
-            try {
-                await osuApiV2.oauth.clientCredentialsGrant(
-                    oauthCredentials.clientId,
-                    "abc",
-                )
-            } catch (err) {
-                errorInvalidClientSecret = err as OsuApiV2WebRequestError
-            }
-            checkOsuApiV2WebRequestError(
-                errorInvalidClientSecret,
-                OsuApiV2WebRequestErrorType.UNAUTHORIZED,
-            )
-
-            const oauthAccessToken =
-                await osuApiV2.oauth.clientCredentialsGrant(
-                    oauthCredentials.clientId,
-                    oauthCredentials.clientSecret,
-                )
-            expect(oauthAccessToken.access_token)
-                .to.be.a("string")
-                .with.a.lengthOf.greaterThan(0)
-            expect(oauthAccessToken.token_type).to.equal("Bearer")
-            expect(oauthAccessToken.expires_in).to.be.a("number").above(0)
-        }).timeout(timeoutForRequestsInMs(3))
+        describe("clientCredentialsGrant", () => {
+            it("should throw if client id is invalid", async () => {
+                try {
+                    const request = await osuApiV2.oauth.clientCredentialsGrant(
+                        -99,
+                        oauthCredentials.clientSecret,
+                    )
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
+                } catch (err) {
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestErrorType.UNAUTHORIZED,
+                    )
+                }
+            }).timeout(timeoutForRequestsInMs(1))
+            it("should throw if client secret is invalid", async () => {
+                try {
+                    const request = await osuApiV2.oauth.clientCredentialsGrant(
+                        oauthCredentials.clientId,
+                        "abc",
+                    )
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
+                } catch (err) {
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestErrorType.UNAUTHORIZED,
+                    )
+                }
+            }).timeout(timeoutForRequestsInMs(1))
+            it("should make request successfully", async () => {
+                const oauthAccessToken =
+                    await osuApiV2.oauth.clientCredentialsGrant(
+                        oauthCredentials.clientId,
+                        oauthCredentials.clientSecret,
+                    )
+                expect(oauthAccessToken.access_token)
+                    .to.be.a("string")
+                    .with.a.lengthOf.greaterThan(0)
+                expect(oauthAccessToken.token_type).to.equal("Bearer")
+                expect(oauthAccessToken.expires_in).to.be.a("number").above(0)
+            }).timeout(timeoutForRequestsInMs(1))
+        })
     })

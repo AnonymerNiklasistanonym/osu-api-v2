@@ -1,10 +1,10 @@
 export interface UrlParameter {
     name: string
-    value?: string | string[]
+    value?: string | readonly string[]
 }
 
 export const urlParameterGenerator = (
-    urlParameters?: UrlParameter[],
+    urlParameters?: readonly UrlParameter[],
 ): string => {
     const urlParametersFiltered = urlParameters?.filter(
         (param) => param.value !== undefined,

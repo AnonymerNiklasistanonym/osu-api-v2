@@ -1,7 +1,6 @@
 // Local imports
-import { baseUrl } from "../types/api_info"
+import { genericWebRequestUrlGenerator } from "../helpers/web_request"
 import { OAuthAuthorizeScopes } from "../types/oauth_scopes"
-import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 
 /**
  * To obtain an access token, you must first get an authorization code that is
@@ -46,30 +45,32 @@ import { urlParameterGenerator } from "../helpers/url_parameter_generator"
 export const authorizeRedirectUrlGenerator = (
     clientId: number,
     redirectUri: string,
-    scopes?: OAuthAuthorizeScopes[],
+    scopes?: readonly OAuthAuthorizeScopes[],
     state?: string,
-): string => {
-    const params = urlParameterGenerator([
-        {
-            name: "client_id",
-            value: `${clientId}`,
-        },
-        {
-            name: "redirect_uri",
-            value: redirectUri,
-        },
-        {
-            name: "scope",
-            value: scopes,
-        },
-        {
-            name: "state",
-            value: state,
-        },
-        {
-            name: "response_type",
-            value: "code",
-        },
-    ])
-    return `${baseUrl}/oauth/authorize${params}`
-}
+): string =>
+    genericWebRequestUrlGenerator(
+        "/oauth/authorize",
+        [
+            {
+                name: "client_id",
+                value: `${clientId}`,
+            },
+            {
+                name: "redirect_uri",
+                value: redirectUri,
+            },
+            {
+                name: "scope",
+                value: scopes,
+            },
+            {
+                name: "state",
+                value: state,
+            },
+            {
+                name: "response_type",
+                value: "code",
+            },
+        ],
+        false,
+    )

@@ -44,15 +44,20 @@ export const enum OsuApiV2WebRequestErrorType {
 }
 
 export const checkOsuApiV2WebRequestError = (
-    error: OsuApiV2WebRequestError | null,
+    error: OsuApiV2WebRequestError,
     errorType?: OsuApiV2WebRequestErrorType,
 ): void => {
     expect(error).to.be.an("Error")
-    if (error == null) {
-        return
+
+    switch (errorType) {
+        case OsuApiV2WebRequestErrorType.NOT_FOUND:
+        case OsuApiV2WebRequestErrorType.UNAUTHORIZED:
+            expect(error.statusCode).to.be.a("number")
+            expect(error.statusText).to.be.a("string")
+            break
+        default:
+            break
     }
-    expect(error.statusCode).to.be.a("number")
-    expect(error.statusText).to.be.a("string")
 
     switch (errorType) {
         case OsuApiV2WebRequestErrorType.NOT_FOUND:
@@ -112,9 +117,7 @@ describe("OsuApiV2WebRequestError", () => {
             "get",
             { authorization: "Bearer 098304982039482039482304829034820934" },
         )
-        expect(error.headers.authorization).equals(
-            "Bearer 0983049820394***redacted***",
-        )
+        expect(error.headers?.authorization).equals("Bearer 098[redacted]")
 
         const errorNoAuth = new OsuApiV2WebRequestError(
             "message",
@@ -122,9 +125,54 @@ describe("OsuApiV2WebRequestError", () => {
             "text",
             "someUrl",
             "get",
-            {},
         )
-        expect(errorNoAuth.headers.authorization).to.be.undefined
+        expect(errorNoAuth.headers?.authorization).to.be.undefined
+    })
+    it("should mask the client secret in body", () => {
+        const error = new OsuApiV2WebRequestError(
+            "message",
+            400,
+            "text",
+            "someUrl",
+            "get",
+            undefined,
+            {
+                client_secret: "fjdsnfkdsfnksdfnskfns",
+                test: "abc",
+            },
+        )
+        expect(error.body).equals(
+            JSON.stringify({
+                client_secret: "fjdsnfkdsf[redacted]",
+                test: "abc",
+            }),
+        )
+
+        const errorNoClientSecret = new OsuApiV2WebRequestError(
+            "message",
+            400,
+            "text",
+            "someUrl",
+            "get",
+            undefined,
+            {
+                test: "abc",
+            },
+        )
+        expect(errorNoClientSecret.body).equals(
+            JSON.stringify({
+                test: "abc",
+            }),
+        )
+
+        const errorNoBody = new OsuApiV2WebRequestError(
+            "message",
+            400,
+            "text",
+            "someUrl",
+            "get",
+        )
+        expect(errorNoBody.body).to.be.undefined
     })
 })
 
