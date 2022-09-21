@@ -55,4 +55,6 @@ jobs:
     - name: Install documentation dependencies (choco - windows-latest)
       if: matrix.os == 'windows-latest'
       run: choco install graphviz
+    # Generate pages that can be included into the documentation
+    - run: npm run docs:createPagesExampleOutput
     - run: npm run docs
