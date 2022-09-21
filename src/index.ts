@@ -17,7 +17,7 @@ export {
     OsuApiV2Error,
 } from "./helpers/custom_errors"
 export { GameMods } from "./types/game_mods"
-export { OAuthAuthorizeScopes } from "./types/oauth_scopes"
+export { OAuthAuthorizeScope } from "./types/oauth_scopes"
 export { RankStatus } from "./types/rank_status"
 export { ScoresType } from "./users/scores"
 // Type exports

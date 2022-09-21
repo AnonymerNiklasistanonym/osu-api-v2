@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 
 // Package imports
-import osuApiV2, { OAuthAuthorizeScopes } from "osu-api-v2"
+import osuApiV2, { OAuthAuthorizeScope } from "osu-api-v2"
 import fs from "fs"
 import http from "http"
 import open from "open"
@@ -125,9 +125,9 @@ new Promise<void>((resolve) => {
     .then(async () => {
         // Request code grant
         const authorizeUrl = osuApiV2.oauth.authorizeRedirectUrlGenerator(
-            [OAuthAuthorizeScopes.PUBLIC, OAuthAuthorizeScopes.IDENTITY],
             secretOAuthCredentials.clientId,
             secretOAuthCredentials.redirectUrl,
+            [OAuthAuthorizeScope.PUBLIC, OAuthAuthorizeScope.IDENTITY],
         )
         await open(authorizeUrl)
     })

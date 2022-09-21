@@ -3,7 +3,7 @@
  *
  * ([Source](https://osu.ppy.sh/docs/index.html#scopes))
  */
-export enum OAuthAuthorizeScopes {
+export enum OAuthAuthorizeScope {
     /** Allows sending chat messages on a user's behalf. */
     CHAT_WRITE = "chat.write",
     /** Allows acting as the owner of a client; only available for Client Credentials Grant. */

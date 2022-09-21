@@ -1,6 +1,6 @@
 // Local imports
 import { genericWebRequestUrlGenerator } from "../helpers/web_request"
-import { OAuthAuthorizeScopes } from "../types/oauth_scopes"
+import { OAuthAuthorizeScope } from "../types/oauth_scopes"
 
 /**
  * To obtain an access token, you must first get an authorization code that is
@@ -25,13 +25,13 @@ import { OAuthAuthorizeScopes } from "../types/oauth_scopes"
  * @returns The authorize redirect URL which opens the authorization dialogue.
  * @example
  * ```ts
- * import osuApiV2, { OAuthAuthorizeScopes } from "osu-api-v2"
+ * import osuApiV2, { OAuthAuthorizeScope } from "osu-api-v2"
  * import open from "open"
  *
  * const authorizeUrl = osuApiV2.oauth.authorizeRedirectUrlGenerator(
  *     1234,
  *     "http://localhost:8888",
- *     [OAuthAuthorizeScopes.PUBLIC, OAuthAuthorizeScopes.IDENTITY],
+ *     [OAuthAuthorizeScope.PUBLIC, OAuthAuthorizeScope.IDENTITY],
  * )
  * await open(authorizeUrl)
  * ```
@@ -45,7 +45,7 @@ import { OAuthAuthorizeScopes } from "../types/oauth_scopes"
 export const authorizeRedirectUrlGenerator = (
     clientId: number,
     redirectUri: string,
-    scopes?: readonly OAuthAuthorizeScopes[],
+    scopes?: readonly OAuthAuthorizeScope[],
     state?: string,
 ): string =>
     genericWebRequestUrlGenerator("/oauth/authorize", {
