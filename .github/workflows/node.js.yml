@@ -35,7 +35,7 @@ jobs:
     - run: npm run build
     # Run tests but keep in mind that not all pull requests have access
     # to workflow secrets
-    - run: npm run test:coverage-no-refresh-token
+    - run: npm run test:no-refresh-token
       if: github.event_name != 'pull_request'
       env:
         OSU_OAUTH_CLIENT_ID: ${{ secrets.OSU_OAUTH_CLIENT_ID }}
@@ -43,7 +43,7 @@ jobs:
     # > If this workflow was triggered by a pull request only check for
     #   tests that don't require workflow secrets and run but ignore the
     #   tests that require them
-    - run: npm run test:without-osu-api-v2
+    - run: npm run test:no-osu-api-v2
       if: github.event_name == 'pull_request'
     - run: npm run test:no-refresh-token
       if: github.event_name == 'pull_request'
