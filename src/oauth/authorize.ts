@@ -48,9 +48,8 @@ export const authorizeRedirectUrlGenerator = (
     scopes?: readonly OAuthAuthorizeScopes[],
     state?: string,
 ): string =>
-    genericWebRequestUrlGenerator(
-        "/oauth/authorize",
-        [
+    genericWebRequestUrlGenerator("/oauth/authorize", {
+        urlParameters: [
             {
                 name: "client_id",
                 value: `${clientId}`,
@@ -72,5 +71,4 @@ export const authorizeRedirectUrlGenerator = (
                 value: "code",
             },
         ],
-        false,
-    )
+    })

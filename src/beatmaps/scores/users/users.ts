@@ -15,13 +15,15 @@ export const users = async (
     genericWebRequest<BeatmapUserScore>(
         "get",
         `/beatmaps/${beatmapId}/scores/users/${userId}`,
-        true,
-        [
-            {
-                name: "mode",
-                value: mode !== undefined ? mode : undefined,
-            },
-            { name: "mods", value: mods },
-        ],
-        oauthAccessToken,
+        {
+            apiCall: true,
+            authorizationAccessToken: oauthAccessToken,
+            urlParameters: [
+                {
+                    name: "mode",
+                    value: mode !== undefined ? mode : undefined,
+                },
+                { name: "mods", value: mods },
+            ],
+        },
     )

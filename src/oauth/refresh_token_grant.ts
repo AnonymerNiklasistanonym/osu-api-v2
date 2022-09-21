@@ -13,14 +13,13 @@ export const refreshTokenGrant = async (
     genericWebRequest<OAuthAccessTokenWithRefreshToken, RefreshTokenGrant>(
         "post",
         "/oauth/token",
-        false,
-        undefined,
-        undefined,
         {
-            client_id: clientId,
-            client_secret: clientSecret,
-            grant_type: "refresh_token",
-            redirect_uri: redirectUri,
-            refresh_token: refreshToken,
+            postRequestBody: {
+                client_id: clientId,
+                client_secret: clientSecret,
+                grant_type: "refresh_token",
+                redirect_uri: redirectUri,
+                refresh_token: refreshToken,
+            },
         },
     )

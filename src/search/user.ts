@@ -8,13 +8,11 @@ export const user = async (
     oauthAccessToken: Readonly<OAuthAccessToken>,
     query: string,
 ): Promise<UserSearchResult> =>
-    genericWebRequest<UserSearchResult>(
-        "get",
-        "/search",
-        true,
-        [
+    genericWebRequest<UserSearchResult>("get", "/search", {
+        apiCall: true,
+        authorizationAccessToken: oauthAccessToken,
+        urlParameters: [
             { name: "mode", value: "user" },
             { name: "query", value: query },
         ],
-        oauthAccessToken,
-    )
+    })

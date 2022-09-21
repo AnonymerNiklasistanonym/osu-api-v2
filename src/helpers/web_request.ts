@@ -6,14 +6,38 @@ import { urlParameterGenerator } from "./url_parameter_generator"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 import type { UrlParameter } from "./url_parameter_generator"
 
+/**
+ * Optional generic web request URL generator options.
+ */
+export interface GenericWebRequestUrlGeneratorOptions {
+    /** URL is an API call. */
+    apiCall?: boolean
+    /** URL parameters. */
+    urlParameters?: readonly UrlParameter[]
+}
+
 export const genericWebRequestUrlGenerator = (
     path: string,
-    urlParameters?: readonly UrlParameter[],
-    apiCall?: boolean,
+    options?: Readonly<GenericWebRequestUrlGeneratorOptions>,
 ) =>
-    `${apiCall === true ? baseUrlApiV2 : baseUrl}${path}${urlParameterGenerator(
-        urlParameters,
-    )}`
+    `${
+        options?.apiCall === true ? baseUrlApiV2 : baseUrl
+    }${path}${urlParameterGenerator(options?.urlParameters)}`
+
+/**
+ * Optional generic web request options.
+ */
+export interface GenericWebRequestOptions<POST_REQUEST_BODY>
+    extends GenericWebRequestUrlGeneratorOptions {
+    /**
+     * OAuthAccessToken to add an Authorization header.
+     */
+    authorizationAccessToken?: Readonly<OAuthAccessToken>
+    /**
+     * (Post-)Request JSON data.
+     */
+    postRequestBody?: Readonly<POST_REQUEST_BODY>
+}
 
 export const genericWebRequest = async <
     RETURN_TYPE,
@@ -21,30 +45,26 @@ export const genericWebRequest = async <
 >(
     method: "get" | "post",
     path: string,
-    apiCall: boolean,
-    urlParameters?: readonly UrlParameter[],
-    authorizationAccessToken?: Readonly<OAuthAccessToken>,
-    requestBody?: Readonly<REQUEST_BODY>,
+    options?: Readonly<GenericWebRequestOptions<REQUEST_BODY>>,
 ): Promise<RETURN_TYPE> => {
-    const body =
-        requestBody !== undefined ? JSON.stringify(requestBody) : undefined
+    let body
+    if (method === "post" && options?.postRequestBody !== undefined) {
+        body = JSON.stringify(options?.postRequestBody)
+    }
     let headers
-    if (authorizationAccessToken !== undefined) {
+    if (options?.authorizationAccessToken !== undefined) {
         headers = {
-            Authorization: `${authorizationAccessToken.token_type} ${authorizationAccessToken.access_token}`,
+            Authorization: `${options?.authorizationAccessToken.token_type} ${options?.authorizationAccessToken.access_token}`,
             "Content-Type": "application/json",
         }
-    } else if (requestBody !== undefined) {
+    } else if (method === "post" && options?.postRequestBody !== undefined) {
         headers = { "Content-Type": "application/json" }
     }
-    const res = await fetch(
-        genericWebRequestUrlGenerator(path, urlParameters, apiCall),
-        {
-            body,
-            headers,
-            method,
-        },
-    )
+    const res = await fetch(genericWebRequestUrlGenerator(path, options), {
+        body,
+        headers,
+        method,
+    })
     if (res.status !== 200) {
         throw new OsuApiV2WebRequestError<REQUEST_BODY>(
             `Bad web request (${res.status}=${res.statusText}, url=${res.url})`,
@@ -53,7 +73,7 @@ export const genericWebRequest = async <
             res.url,
             method,
             headers,
-            requestBody,
+            options?.postRequestBody,
         )
     }
     return (await res.json()) as RETURN_TYPE

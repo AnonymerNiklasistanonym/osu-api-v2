@@ -30,13 +30,12 @@ export const clientCredentialsGrant = async (
     genericWebRequest<OAuthAccessToken, ClientCredentialsGrant>(
         "post",
         "/oauth/token",
-        false,
-        undefined,
-        undefined,
         {
-            client_id: clientId,
-            client_secret: clientSecret,
-            grant_type: "client_credentials",
-            scope: "public",
+            postRequestBody: {
+                client_id: clientId,
+                client_secret: clientSecret,
+                grant_type: "client_credentials",
+                scope: "public",
+            },
         },
     )

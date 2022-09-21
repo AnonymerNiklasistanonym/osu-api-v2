@@ -56,16 +56,18 @@ export const get = async (
     const possibleUser = await genericWebRequest<User | UserList>(
         "get",
         `/users/${userIdOrName}${modeString}`,
-        true,
-        [
-            {
-                name: "key",
-                value: typeof userIdOrName === "number" ? "id" : "username",
-            },
-        ],
-        oauthAccessToken,
+        {
+            apiCall: true,
+            authorizationAccessToken: oauthAccessToken,
+            urlParameters: [
+                {
+                    name: "key",
+                    value: typeof userIdOrName === "number" ? "id" : "username",
+                },
+            ],
+        },
     )
-
+    // Detect unexpected UserList request response and throw an API error.
     if (Array.isArray((possibleUser as UserList).users)) {
         if ((possibleUser as UserList).users.length === 0) {
             throw new OsuApiV2Error(

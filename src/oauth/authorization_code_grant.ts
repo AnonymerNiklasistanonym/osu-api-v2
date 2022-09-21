@@ -42,14 +42,13 @@ export const authorizationCodeGrant = async (
     genericWebRequest<OAuthAccessTokenWithRefreshToken, AuthorizationCodeGrant>(
         "post",
         "/oauth/token",
-        false,
-        undefined,
-        undefined,
         {
-            client_id: clientId,
-            client_secret: clientSecret,
-            code,
-            grant_type: "authorization_code",
-            redirect_uri: redirectUri,
+            postRequestBody: {
+                client_id: clientId,
+                client_secret: clientSecret,
+                code,
+                grant_type: "authorization_code",
+                redirect_uri: redirectUri,
+            },
         },
     )
