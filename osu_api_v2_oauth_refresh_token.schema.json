@@ -14,6 +14,29 @@
         },
         "refreshToken": {
             "type": "string"
+        },
+        "old": {
+            "items": {
+                "type": "object",
+                "properties": {
+                    "clientId": {
+                        "type": "integer"
+                    },
+                    "clientSecret": {
+                        "type": "string"
+                    },
+                    "redirectUrl": {
+                        "type": "string"
+                    },
+                    "refreshToken": {
+                        "type": "string"
+                    },
+                    "old": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "array"
         }
     },
     "required": [
