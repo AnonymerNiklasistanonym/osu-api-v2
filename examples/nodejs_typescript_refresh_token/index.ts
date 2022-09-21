@@ -15,21 +15,28 @@ const secretOAuthCredentialsPath = path.join(
     "..",
     "..",
     "..",
-    "authentication.secret.json",
+    "osu_api_v2_oauth_refresh_token.secret.json",
 )
-interface SecretOAuthCredentials {
-    osuOAuthClientId: number
-    osuOAuthClientSecret: string
+interface OAuthRefreshTokenSecret {
+    clientId: number
+    clientSecret: string
+    redirectUrl: string
 }
 // MAKE SURE THAT YOU REGISTERED THE APPLICATION WITH THE URL
-// "http://localhost:8888"
+// "http://localhost:8888" because the server uses that one
 const secretOAuthCredentials = JSON.parse(
     fs.readFileSync(secretOAuthCredentialsPath).toString(),
-) as SecretOAuthCredentials
+) as OAuthRefreshTokenSecret
 console.log(secretOAuthCredentials)
 
 const REDIRECT_URL = "http://localhost"
 const REDIRECT_PORT = 8888
+
+if (secretOAuthCredentials.redirectUrl !== `${REDIRECT_URL}:${REDIRECT_PORT}`) {
+    throw Error(
+        `The only supported redirect URL by this server in this example is '${REDIRECT_URL}:${REDIRECT_PORT}' - be sure that you also registered it on the osu! website with this URL`,
+    )
+}
 
 const OK_STATUS_CODE = 200
 const FORBIDDEN_STATUS_CODE = 403
@@ -62,9 +69,9 @@ const server = http.createServer((req, res) => {
                 )
                 osuApiV2.oauth
                     .authorizationCodeGrant(
-                        secretOAuthCredentials.osuOAuthClientId,
-                        secretOAuthCredentials.osuOAuthClientSecret,
-                        `${REDIRECT_URL}:${REDIRECT_PORT}`,
+                        secretOAuthCredentials.clientId,
+                        secretOAuthCredentials.clientSecret,
+                        secretOAuthCredentials.redirectUrl,
                         codeToken,
                     )
                     .then((codeGrantAuthorization) => {
@@ -118,9 +125,9 @@ new Promise<void>((resolve) => {
     .then(async () => {
         // Request code grant
         const authorizeUrl = osuApiV2.oauth.authorizeRedirectUrlGenerator(
-            secretOAuthCredentials.osuOAuthClientId,
-            `${REDIRECT_URL}:${REDIRECT_PORT}`,
             [OAuthAuthorizeScopes.PUBLIC, OAuthAuthorizeScopes.IDENTITY],
+            secretOAuthCredentials.clientId,
+            secretOAuthCredentials.redirectUrl,
         )
         await open(authorizeUrl)
     })
