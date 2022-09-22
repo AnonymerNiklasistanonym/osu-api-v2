@@ -387,7 +387,7 @@ export const usersTestSuite = (): Suite =>
                     await osuApiV2.users.scores(
                         oauthAccessToken,
                         9096716,
-                        ScoresType.FIRST_PLACE,
+                        ScoresType.FIRST,
                     )
                     await osuApiV2.users.scores(
                         oauthAccessToken,

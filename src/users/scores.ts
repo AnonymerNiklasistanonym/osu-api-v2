@@ -14,7 +14,7 @@ export enum ScoresType {
     /** The best scores of the user. */
     BEST = "best",
     /** The first place scores of the user. */
-    FIRST_PLACE = "firsts",
+    FIRST = "firsts",
     /** The recent scores of the user. */
     RECENT = "recent",
 }
