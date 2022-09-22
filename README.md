@@ -7,7 +7,7 @@
 
 An easy way to use the [osu!api v2](https://osu.ppy.sh/docs/index.html).
 
-**Attention: This is only a prototype that is currently aimed at providing beatmap information for another project and *NOT* a complete implementation of this api!**
+**Attention: This is only a prototype that is currently aimed at providing beatmap information for another project and *NOT* a complete implementation of this API!**
 
 ALSO: This package after version v0.0.18 makes use of a native `fetch` implementation which is for example provided by node [since version v17.5.0 experimentally](https://nodejs.org/en/blog/release/v17.5.0/).
 If you use an older version or another environment be sure to include a package like [`whatwg-fetch`](https://www.npmjs.com/package/whatwg-fetch) that polyfills `fetch` if not existing.
@@ -52,8 +52,8 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
    import osuApiV2 from "osu-api-v2"
 
    osuApiV2.oauth.clientCredentialsGrant(
-       1234,          // Replace with your value
-       "PLACEHOLDER", // Replace with your value
+       1234,                        // Replace with your value (client ID)
+       "PLACEHOLDER_CLIENT_SECRET", // Replace with your value (client secret)
    ).then(oauthAccessToken => {
        console.log(oauthAccessToken)
    }).catch(console.error)
@@ -71,9 +71,9 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
    import open from "open"
 
    const authorizeUrl = osuApiV2.oauth.authorizeRedirectUrlGenerator(
-       1234,                            // Replace with your value
-       "PLACEHOLDER",                   // Replace with your value
-       "https://your-redirect-url.com", // Replace with your value
+       1234,                            // Replace with your value (client ID)
+       "PLACEHOLDER_CLIENT_SECRET",     // Replace with your value (client secret)
+       "https://your-redirect-url.com", // Replace with your value (redirect URL)
        [OAuthAuthorizeScope.PUBLIC, OAuthAuthorizeScope.IDENTITY],
    )
    await open(authorizeUrl)
@@ -87,9 +87,9 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
 
    const receivedCode = "PLACEHOLDER_CODE" // Replace with received value
    osuApiV2.oauth.authorizationCodeGrant(
-      1234,                            // Replace with your value
-      "PLACEHOLDER_CLIENT_SECRET",     // Replace with your value
-      "https://your-redirect-url.com", // Replace with your value
+      1234,                            // Replace with your value (client ID)
+      "PLACEHOLDER_CLIENT_SECRET",     // Replace with your value (client secret)
+      "https://your-redirect-url.com", // Replace with your value (redirect URL)
       receivedCode,
    ).then((oauthAccessTokenWithRefreshToken) => {
        console.log(oauthAccessTokenWithRefreshToken)
@@ -102,10 +102,10 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
    import osuApiV2 from "osu-api-v2"
 
    osuApiV2.oauth.refreshTokenGrant(
-       1234,                            // Replace with your value
-       "PLACEHOLDER_CLIENT_SECRET",     // Replace with your value
-       "https://your-redirect-url.com", // Replace with your value
-       "PLACEHOLDER_REFRESH_TOKEN",     // Replace with your value
+       1234,                            // Replace with your value (client ID)
+       "PLACEHOLDER_CLIENT_SECRET",     // Replace with your value (client secret)
+       "https://your-redirect-url.com", // Replace with your value (redirect URL)
+       "PLACEHOLDER_REFRESH_TOKEN",     // Replace with your value (refresh token)
    ).then(oauthAccessTokenWithRefreshToken => {
        console.log(oauthAccessTokenWithRefreshToken)
    }).catch(console.error)
@@ -128,7 +128,7 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
         "start": "node index.js"
     },
     "dependencies": {
-        "osu-api-v2": "^0.0.25"
+        "osu-api-v2": "^0.0.75"
     }
 }
 ```
@@ -138,10 +138,9 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
 ```js
 const osuApiV2 = require("osu-api-v2").default
 
-// TODO: Replace the strings with your client ID and secret!
 osuApiV2.oauth.clientCredentialsGrant(
-    1234, // Your secret oauthCredentials.clientId
-    "clientSecret", // Your secret oauthCredentials.clientSecret
+    1234,                        // Replace with your value (client ID)
+    "PLACEHOLDER_CLIENT_SECRET", // Replace with your value (client secret)
 ).then(oauthAccessToken => {
     console.log(oauthAccessToken)
 })
@@ -166,7 +165,7 @@ npm start
         "start": "node dist/index.js"
     },
     "dependencies": {
-        "osu-api-v2": "^0.0.25"
+        "osu-api-v2": "^0.0.27"
     },
     "devDependencies": {
         "typescript": "^4.8.3"
@@ -196,10 +195,9 @@ npm start
 ```js
 import osuApiV2 from "osu-api-v2"
 
-// TODO: Replace these variable with your client ID and secret!
 osuApiV2.oauth.clientCredentialsGrant(
-    1234, // Your secret oauthCredentials.clientId
-    "clientSecret", // Your secret oauthCredentials.clientSecret
+    1234,                        // Replace with your value (client ID)
+    "PLACEHOLDER_CLIENT_SECRET", // Replace with your value (client secret)
 ).then(oauthAccessToken => {
     console.log(oauthAccessToken)
 })
@@ -312,12 +310,14 @@ npm version patch
 npm publish
 ```
 
-In the github repository is also a [github workflow](.github/workflows/npm-publish.yml) that publishes the package when pushing a new tag:
+In the GitHub repository is also a [GitHub workflow](.github/workflows/npm-publish.yml) that publishes the package when pushing a new tag.
+Pushing a new tag can be done using the following steps:
 
 ```sh
-# commit all changes so the git working directory is clean
-npm version patch # or minor/majory
-# Push the changes to github
+# Commit all changes so the git working directory is clean
+# Create a new version [tag] (major, minor, patch)
+npm version patch
+# Push the changes to GitHub
 git push
 # If not automatically push the created tag(s)
 git push --tags
