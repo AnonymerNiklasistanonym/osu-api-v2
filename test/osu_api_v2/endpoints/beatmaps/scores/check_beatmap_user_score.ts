@@ -2,11 +2,11 @@
 import { expect } from "chai"
 import moment from "moment"
 // Local imports
-import { GameMode, GameModeInt, GameMods } from "../../../../../src/index"
+import { GameMode, GameModeInt, GameMods } from "../../../../../src"
 import { checkBeatmapObject } from "../check_beatmap"
 import { saveResponse } from "../../../../test_helper"
 // Type imports
-import type { BeatmapUserScore, Score } from "../../../../../src/index"
+import type { BeatmapUserScore, Score } from "../../../../../src"
 
 export interface CheckBeatmapUserScoreObjectOptions {
     checkBeatmapId?: number

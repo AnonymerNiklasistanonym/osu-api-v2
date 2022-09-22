@@ -35,7 +35,7 @@ If you use an older version or another environment be sure to include a package 
 
 ### Acquire osu! OAuth credentials
 
-To use the [osu! API v2](https://osu.ppy.sh/docs/index.html) you need to request a temporary OAuth access token that can be acquired with the following steps:
+To use the [osu!api v2](https://osu.ppy.sh/docs/index.html) you need to request a temporary OAuth access token that can be acquired with the following steps:
 
 1. [Create an osu! account or log into an existing account](https://osu.ppy.sh)
 2. Go to the [account settings](https://osu.ppy.sh/home/account/edit)
@@ -218,7 +218,7 @@ npm start
 
 The tests can be separated in 3 different categories:
 
-1. No osu! API v2 tests
+1. No osu!api v2 tests
 
    This means these tests can be ran without any extra information but only cover a small part of the library.
 
@@ -226,7 +226,7 @@ The tests can be separated in 3 different categories:
    npm run test:no-osu-api-v2
    ```
 
-2. osu! API v2 tests using custom OAuth credentials but only with client credential grants
+2. osu!api v2 tests using custom OAuth credentials but only with client credential grants
 
    To run these tests you need to provide either a file called `osu_api_v2_oauth_client_credentials.secret.json` that contains a valid *client ID* and *client secret* ([example file](./osu_api_v2_oauth_client_credentials.example.json)) or environment variables that contain this information (`OSU_OAUTH_CLIENT_ID`, `OSU_OAUTH_CLIENT_SECRET`).
 
@@ -238,7 +238,7 @@ The tests can be separated in 3 different categories:
    npm run test:coverage-no-refresh-token
    ```
 
-3. osu! API v2 tests using custom OAuth credentials with client credential grants and refresh token grants
+3. osu!api v2 tests using custom OAuth credentials with client credential grants and refresh token grants
 
    To run these tests you need to provide either a file called `osu_api_v2_oauth_refresh_token.secret.json` that contains a valid *client ID* and *client secret* ([example file](./osu_api_v2_oauth_refresh_token.example.json)) or environment variables that contain this information (`OSU_OAUTH_CLIENT_ID`, `OSU_OAUTH_CLIENT_SECRET`, `OSU_OAUTH_REDIRECT_URL`, `OSU_OAUTH_REFRESH_TOKEN`).
    Keep in mind that at the end of the tests the refresh token in `OSU_OAUTH_REFRESH_TOKEN` would be useless but the current refresh token will be in the file that was automatically created/updated during running the tests!
@@ -315,8 +315,8 @@ npm publish
 In the github repository is also a [github workflow](.github/workflows/npm-publish.yml) that publishes the package when pushing a new tag:
 
 ```sh
-# [...]
-npm version patch
+# commit all changes so the git working directory is clean
+npm version patch # or minor/majory
 # Push the changes to github
 git push
 # If not automatically push the created tag(s)

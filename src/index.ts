@@ -16,6 +16,7 @@ export {
     OsuApiV2ErrorCode,
     OsuApiV2Error,
 } from "./helpers/custom_errors"
+export { GameModeVariant, ProfilePage, Playstyle } from "./types/user"
 export { GameMods } from "./types/game_mods"
 export { OAuthAuthorizeScope } from "./types/oauth_scopes"
 export { RankStatus } from "./types/rank_status"
@@ -63,7 +64,6 @@ export type {
     OAuthAccessTokenWithRefreshToken,
 } from "./types/oauth_access_token"
 export type {
-    ProfilePage,
     User,
     UserAccountHistory,
     UserAchievement,
@@ -74,13 +74,14 @@ export type {
     UserCompactKusodo,
     UserCompactPage,
     UserCompactProfileBanner,
-    UserCompactStatistics,
-    UserCompactStatisticsGradeCounts,
-    UserCompactStatisticsLevel,
+    UserGameModeVariant,
+    UserStatistics,
+    UserStatisticsGradeCounts,
+    UserStatisticsLevel,
     UserGroup,
     UserMonthlyPlaycount,
     UserRankHistory,
-    UserReplaysWatchedCounts,
+    UserReplaysWatchedCount,
     UserSearchResult,
     UserSearchResultUserSection,
     UserStatisticsRulesets,

@@ -12,18 +12,19 @@ import {
     getOAuthSecretRefreshToken,
     updateOAuthSecretRefreshToken,
 } from "../get_oauth_secrets"
-import osuApiV2, {
-    GameMode,
-    OsuApiV2ErrorCode,
-    ScoresType,
-} from "../../../src/index"
-import { saveResponse, timeoutForRequestsInMs } from "../../test_helper"
+import osuApiV2, { GameMode, OsuApiV2ErrorCode, ScoresType } from "../../../src"
+import {
+    saveAndCheckResponse,
+    saveResponse,
+    timeoutForRequestsInMs,
+} from "../../test_helper"
+import { checkUserObject } from "../types/check_user"
 // Type imports
 import type {
     OAuthAccessToken,
     OsuApiV2Error,
     OsuApiV2WebRequestError,
-} from "../../../src/index"
+} from "../../../src"
 
 export const usersTestSuite = (): Suite =>
     describe("users", () => {
@@ -101,47 +102,75 @@ export const usersTestSuite = (): Suite =>
                         oauthAccessToken,
                         9096716,
                     )
-                    await saveResponse("users_get", "9096716", defaultId)
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "9096716",
+                        defaultId,
+                        checkUserObject,
+                        {
+                            userId: 9096716,
+                        },
+                    )
                     const osuId = await osuApiV2.users.get(
                         oauthAccessToken,
                         9096716,
                         GameMode.OSU_STANDARD,
+                    )
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "9096716_standard",
+                        osuId,
+                        checkUserObject,
+                        {
+                            statisticsGameMode: GameMode.OSU_STANDARD,
+                            userId: 9096716,
+                        },
                     )
                     const taikoId = await osuApiV2.users.get(
                         oauthAccessToken,
                         9096716,
                         GameMode.OSU_TAIKO,
                     )
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "9096716_taiko",
+                        taikoId,
+                        checkUserObject,
+                        {
+                            statisticsGameMode: GameMode.OSU_TAIKO,
+                            userId: 9096716,
+                        },
+                    )
                     const fruitsId = await osuApiV2.users.get(
                         oauthAccessToken,
                         9096716,
                         GameMode.OSU_CATCH,
+                    )
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "9096716_catch",
+                        fruitsId,
+                        checkUserObject,
+                        {
+                            statisticsGameMode: GameMode.OSU_CATCH,
+                            userId: 9096716,
+                        },
                     )
                     const maniaId = await osuApiV2.users.get(
                         oauthAccessToken,
                         9096716,
                         GameMode.OSU_MANIA,
                     )
-                    if (fruitsId.rank_history?.mode !== undefined) {
-                        expect(fruitsId.rank_history?.mode).equals(
-                            GameMode.OSU_CATCH,
-                        )
-                    }
-                    if (taikoId.rank_history?.mode !== undefined) {
-                        expect(taikoId.rank_history?.mode).equals(
-                            GameMode.OSU_TAIKO,
-                        )
-                    }
-                    if (maniaId.rank_history?.mode !== undefined) {
-                        expect(maniaId.rank_history?.mode).equals(
-                            GameMode.OSU_MANIA,
-                        )
-                    }
-                    if (osuId.rank_history?.mode !== undefined) {
-                        expect(osuId.rank_history?.mode).equals(
-                            GameMode.OSU_STANDARD,
-                        )
-                    }
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "9096716_mania",
+                        maniaId,
+                        checkUserObject,
+                        {
+                            statisticsGameMode: GameMode.OSU_MANIA,
+                            userId: 9096716,
+                        },
+                    )
                     // User name
                     const defaultName = await osuApiV2.users.get(
                         oauthAccessToken,
@@ -424,27 +453,64 @@ export const usersTestSuite = (): Suite =>
                     const me = await osuApiV2.users.me(
                         oauthAccessTokenIdentityScope,
                     )
-                    await saveResponse("users_me", "nothing", me)
+                    await saveAndCheckResponse(
+                        "users_me",
+                        "nothing",
+                        me,
+                        checkUserObject,
+                    )
                     const meStandard = await osuApiV2.users.me(
                         oauthAccessTokenIdentityScope,
                         GameMode.OSU_STANDARD,
                     )
-                    await saveResponse("users_me", "standard", meStandard)
+                    await saveAndCheckResponse(
+                        "users_me",
+                        "standard",
+                        meStandard,
+                        checkUserObject,
+                        {
+                            statisticsGameMode: GameMode.OSU_STANDARD,
+                        },
+                    )
                     const meCatch = await osuApiV2.users.me(
                         oauthAccessTokenIdentityScope,
                         GameMode.OSU_CATCH,
                     )
-                    await saveResponse("users_me", "mania", meCatch)
+                    await saveAndCheckResponse(
+                        "users_me",
+                        "catch",
+                        meCatch,
+                        checkUserObject,
+                        {
+                            statisticsGameMode: GameMode.OSU_CATCH,
+                        },
+                    )
                     const meMania = await osuApiV2.users.me(
                         oauthAccessTokenIdentityScope,
                         GameMode.OSU_MANIA,
                     )
-                    await saveResponse("users_me", "mania", meMania)
+                    await saveAndCheckResponse(
+                        "users_me",
+                        "mania",
+                        meMania,
+                        checkUserObject,
+                        {
+                            statisticsGameMode: GameMode.OSU_MANIA,
+                        },
+                    )
                     const meTaiko = await osuApiV2.users.me(
                         oauthAccessTokenIdentityScope,
                         GameMode.OSU_TAIKO,
                     )
-                    await saveResponse("users_me", "taiko", meTaiko)
+                    await saveAndCheckResponse(
+                        "users_me",
+                        "taiko",
+                        meTaiko,
+                        checkUserObject,
+                        {
+                            statisticsGameMode: GameMode.OSU_TAIKO,
+                        },
+                    )
                 }).timeout(timeoutForRequestsInMs(5))
             })
         })

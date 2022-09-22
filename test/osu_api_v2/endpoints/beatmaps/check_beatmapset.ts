@@ -10,7 +10,7 @@ import type {
     BeatmapsetCompactHype,
     BeatmapsetCompactNominationsSummary,
     Covers,
-} from "../../../../src/index"
+} from "../../../../src"
 
 export const checkBeatmapsetAvailabilityObject = (
     beatmapsetAvailability: BeatmapsetCompactAvailability,

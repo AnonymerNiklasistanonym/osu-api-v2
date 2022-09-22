@@ -5,29 +5,33 @@ import type { Timestamp } from "./timestamp"
 
 export interface UserCompactCover {
     custom_url: null | unknown
-    id: string
+    id: null | string
     url: string
 }
 
 /**
  * ([Source](https://osu.ppy.sh/docs/index.html#user-profilepage))
  */
-export interface ProfilePage {
-    beatmaps: unknown
-    historical: unknown
-    kudosu: unknown
-    me: unknown
-    medals: unknown
-    recent_activity: unknown
-    top_ranks: unknown
+export enum ProfilePage {
+    BEATMAPS = "beatmaps",
+    HISTORICAL = "historical",
+    KUDOSU = "kudosu",
+    ME = "me",
+    MEDALS = "medals",
+    RECENT_ACTIVITY = "recent_activity",
+    TOP_RANKS = "top_ranks",
 }
 
 export interface UserStatisticsRulesets {
-    todo?: boolean
+    fruits: UserStatistics
+    mania: UserStatistics
+    osu: UserStatistics
+    taiko: UserStatistics
 }
 
 export interface UserMonthlyPlaycount {
-    todo?: boolean
+    count: number
+    start_date: string
 }
 
 export interface UserGroup {
@@ -51,12 +55,12 @@ export interface UserCompactCountry {
     name: string
 }
 
-export interface UserCompactStatisticsLevel {
+export interface UserStatisticsLevel {
     current: number
     progress: number
 }
 
-export interface UserCompactStatisticsGradeCounts {
+export interface UserStatisticsGradeCounts {
     a: number
     s: number
     sh: number
@@ -64,13 +68,16 @@ export interface UserCompactStatisticsGradeCounts {
     ssh: number
 }
 
-export interface UserCompactStatistics {
-    country_rank: number
+/**
+ * ([Source](https://osu.ppy.sh/docs/index.html#userstatistics))
+ */
+export interface UserStatistics {
+    country_rank?: number
     global_rank?: number
-    grade_counts: UserCompactStatisticsGradeCounts
+    grade_counts: UserStatisticsGradeCounts
     hit_accuracy: number
     is_ranked: boolean
-    level: UserCompactStatisticsLevel
+    level: UserStatisticsLevel
     maximum_combo: number
     play_count: number
     play_time: number
@@ -79,6 +86,7 @@ export interface UserCompactStatistics {
     replays_watched_by_others: number
     total_hits: number
     total_score: number
+    variants?: UserGameModeVariant[]
 }
 
 export interface UserAchievement {
@@ -88,17 +96,24 @@ export interface UserAchievement {
 
 export interface UserCompactPage {
     /** The me page HTML content. */
-    html?: string
+    html: string
     /** The me page raw text content. */
-    raw?: string
+    raw: string
 }
 
-export interface UserReplaysWatchedCounts {
+export interface UserReplaysWatchedCount {
     count: number
     /**
      * @example "2017-01-01"
      */
     start_date: string
+}
+
+export enum Playstyle {
+    KEYBOARD = "keyboard",
+    MOUSE = "mouse",
+    TABLET = "tablet",
+    TOUCH = "touch",
 }
 
 /**
@@ -109,7 +124,7 @@ export interface UserReplaysWatchedCounts {
 export interface UserCompactBase {
     // Optional:
     account_history?: UserAccountHistory[]
-    active_tournament_banner?: UserCompactProfileBanner
+    active_tournament_banner?: UserCompactProfileBanner | null
     /**
      * Url of user's avatar.
      */
@@ -117,6 +132,10 @@ export interface UserCompactBase {
     badges?: UserBadge[]
     beatmap_playcounts_count?: number
     blocks?: unknown
+    /**
+     * (Undocumented)
+     */
+    comments_count?: number
     /**
      * Two-letter code representing user's country.
      */
@@ -130,6 +149,10 @@ export interface UserCompactBase {
     friends?: unknown
     graveyard_beatmapset_count?: number
     groups?: UserGroup[]
+    /**
+     * (Undocumented)
+     */
+    guest_beatmapset_count?: number
     /**
      * Unique identifier for user.
      */
@@ -154,27 +177,29 @@ export interface UserCompactBase {
     /**
      * Last access time. Null if the user hides online presence.
      */
-    last_visit?: null | Timestamp
+    last_visit?: Timestamp | null
     loved_beatmapset_count?: number
+    mapping_follower_count?: number
     monthly_playcounts?: UserMonthlyPlaycount[]
     page?: UserCompactPage
-    pending_beatmapset_count?: unknown
+    pending_beatmapset_count?: number
     /**
      * Whether or not the user allows PM from other than friends.
      */
     pm_friends_only: boolean
-    previous_usernames?: unknown
+    previous_usernames?: string[]
     /**
      * Colour of username/profile highlight, hex code (e.g. #333333).
      */
-    profile_colour?: string
+    profile_colour?: string | null
     rank_history?: UserRankHistory
-    ranked_beatmapset_count?: unknown
-    replays_watched_counts?: UserReplaysWatchedCounts[]
+    ranked_beatmapset_count?: number
+    replays_watched_counts?: UserReplaysWatchedCount[]
     scores_best_count?: number
     scores_first_count?: number
+    scores_pinned_count?: number
     scores_recent_count?: number
-    statistics?: UserCompactStatistics
+    statistics?: UserStatistics
     statistics_rulesets: UserStatisticsRulesets
     support_level?: unknown
     unread_pm_count?: unknown
@@ -215,6 +240,19 @@ export interface UserCompactCountry {
     name: string
 }
 
+export enum GameModeVariant {
+    MANIA_4K = "4k",
+    MANIA_7K = "7k",
+}
+
+export interface UserGameModeVariant {
+    country_rank: number | null
+    global_rank: number | null
+    mode: GameMode
+    pp: number
+    variant: GameModeVariant
+}
+
 /**
  * Represents a User. Extends UserCompact object with additional attributes.
  *
@@ -226,16 +264,16 @@ export interface UserCompactCountry {
 export interface User extends UserCompactBase {
     country: UserCompactCountry
     cover: UserCompactCover
-    discord?: string
+    discord?: string | null
     /**
      * Whether or not ever being a supporter in the past.
      */
     has_supported: boolean
-    interests?: string
-    is_restricted: boolean
+    interests?: string | null
+    is_restricted?: boolean
     join_date: Timestamp
     kudosu: UserCompactKusodo
-    location?: string
+    location?: string | null
     /**
      * Maximum number of users allowed to be blocked.
      */
@@ -244,12 +282,12 @@ export interface User extends UserCompactBase {
      * Maximum number of friends allowed to be added.
      */
     max_friends: number
-    occupation?: string
+    occupation?: string | null
     playmode: GameMode
     /**
      * Device choices of the user.
      */
-    playstyle: null | string[]
+    playstyle: Playstyle[] | null
     /**
      * Number of forum posts.
      *
@@ -263,10 +301,14 @@ export interface User extends UserCompactBase {
     /**
      * User-specific title.
      */
-    title?: string
-    title_url?: string
-    twitter?: string
-    website?: string
+    title?: string | null
+    title_url?: string | null
+    twitter?: string | null
+    /**
+     * Exists for profiles that have mania as their default game mode.
+     */
+    variants?: UserGameModeVariant[]
+    website?: string | null
 }
 
 export interface UserSearchResult {

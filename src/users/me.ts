@@ -33,14 +33,10 @@ import type { OAuthAuthorizeScope } from "../types/oauth_scopes"
 export const me = async (
     oauthAccessToken: OAuthAccessToken,
     mode?: GameMode,
-): Promise<User> =>
-    genericWebRequest<User>("get", "/me", {
+): Promise<User> => {
+    const modeString = mode === undefined ? "" : `/${mode}`
+    return genericWebRequest<User>("get", `/me${modeString}`, {
         apiCall: true,
         authorizationAccessToken: oauthAccessToken,
-        urlParameters: [
-            {
-                name: "mode",
-                value: mode,
-            },
-        ],
     })
+}

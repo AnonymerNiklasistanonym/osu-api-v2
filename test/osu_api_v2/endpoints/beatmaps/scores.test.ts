@@ -10,14 +10,11 @@ import {
     getOAuthSecretClientCredentials,
     invalidOAuthAccessToken,
 } from "../../get_oauth_secrets"
-import osuApiV2, { GameMode } from "../../../../src/index"
+import osuApiV2, { GameMode } from "../../../../src"
 import { checkBeatmapUserScoreObject } from "./scores/check_beatmap_user_score"
 import { timeoutForRequestsInMs } from "../../../test_helper"
 // Type imports
-import type {
-    OAuthAccessToken,
-    OsuApiV2WebRequestError,
-} from "../../../../src/index"
+import type { OAuthAccessToken, OsuApiV2WebRequestError } from "../../../../src"
 
 export const scoresTestSuite = (): Suite =>
     describe("scores", () => {

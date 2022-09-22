@@ -17,16 +17,16 @@ const cachedOsuApiResponses = path.join(
 )
 
 /**
- * Helper method to cache osu! api v2 responses in text files.
+ * Helper method to cache osu!api v2 responses in text files.
  *
  * @param prefix The prefix of the file name.
  * @param name The specifics of the data that is represented.
  * @param jsonData The actual response data that should be cached.
  */
-export const saveResponse = async (
+export const saveResponse = async <DATA_TYPE>(
     prefix: string,
     name: string,
-    jsonData: unknown,
+    jsonData: DATA_TYPE,
 ): Promise<void> => {
     const outputFile = path.join(
         cachedOsuApiResponses,
@@ -38,4 +38,25 @@ export const saveResponse = async (
     await fsp.writeFile(outputFile, JSON.stringify(jsonData), {
         encoding: "utf8",
     })
+}
+
+/**
+ * Helper method to cache osu!api v2 responses in text files and check if they
+ * fit the expected type.
+ *
+ * @param prefix The prefix of the file name.
+ * @param name The specifics of the data that is represented.
+ * @param jsonData The actual response data that should be cached.
+ * @param jsonDataChecker Function that checks the response data.
+ * @param jsonDataCheckerOptions Options for data checker.
+ */
+export const saveAndCheckResponse = async <DATA_TYPE, DATA_TYPE_OPTIONS>(
+    prefix: string,
+    name: string,
+    jsonData: DATA_TYPE,
+    jsonDataChecker: (input: DATA_TYPE, options?: DATA_TYPE_OPTIONS) => void,
+    jsonDataCheckerOptions?: DATA_TYPE_OPTIONS,
+): Promise<void> => {
+    await saveResponse(prefix, name, jsonData)
+    jsonDataChecker(jsonData, jsonDataCheckerOptions)
 }

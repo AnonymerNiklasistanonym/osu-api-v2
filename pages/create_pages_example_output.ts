@@ -5,7 +5,7 @@
 import { promises as fsp } from "fs"
 import path from "path"
 // Type imports
-import type { Score, User, UserRankHistory } from "../src/index"
+import type { Score, User, UserRankHistory } from "../src"
 
 const cachedOsuApiResponsesDir = path.join(
     __dirname,

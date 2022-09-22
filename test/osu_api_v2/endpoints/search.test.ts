@@ -11,12 +11,9 @@ import {
     invalidOAuthAccessToken,
 } from "../get_oauth_secrets"
 import { saveResponse, timeoutForRequestsInMs } from "../../test_helper"
-import osuApiV2 from "../../../src/index"
+import osuApiV2 from "../../../src"
 // Type imports
-import type {
-    OAuthAccessToken,
-    OsuApiV2WebRequestError,
-} from "../../../src/index"
+import type { OAuthAccessToken, OsuApiV2WebRequestError } from "../../../src"
 
 export const searchTestSuite = (): Suite =>
     describe("search", () => {

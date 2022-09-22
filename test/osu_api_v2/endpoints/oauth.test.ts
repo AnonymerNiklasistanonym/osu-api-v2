@@ -11,7 +11,7 @@ import {
     getOAuthSecretRefreshToken,
     updateOAuthSecretRefreshToken,
 } from "../get_oauth_secrets"
-import osuApiV2, { OsuApiV2WebRequestError } from "../../../src/index"
+import osuApiV2, { OsuApiV2WebRequestError } from "../../../src"
 import { timeoutForRequestsInMs } from "../../test_helper"
 // Type imports
 import type {
