@@ -31,7 +31,7 @@ import { OAuthAuthorizeScope } from "../types/oauth_scopes"
  * const authorizeUrl = osuApiV2.oauth.authorizeRedirectUrlGenerator(
  *     1234,
  *     "http://localhost:8888",
- *     [OAuthAuthorizeScope.PUBLIC, OAuthAuthorizeScope.IDENTITY],
+ *     [OAuthAuthorizeScope.PUBLIC, OAuthAuthorizeScope.IDENTIFY],
  * )
  * await open(authorizeUrl)
  * ```

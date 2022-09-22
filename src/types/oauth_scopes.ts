@@ -13,7 +13,7 @@ export enum OAuthAuthorizeScope {
     /** Allows reading of the user's friend list. */
     FRIENDS_READ = "friends.read",
     /** Allows reading of the public profile of the user (/me). */
-    IDENTITY = "identify",
+    IDENTIFY = "identify",
     /** Allows reading of publicly available data on behalf of the user. */
     PUBLIC = "public",
 }

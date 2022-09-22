@@ -127,7 +127,7 @@ new Promise<void>((resolve) => {
         const authorizeUrl = osuApiV2.oauth.authorizeRedirectUrlGenerator(
             secretOAuthCredentials.clientId,
             secretOAuthCredentials.redirectUrl,
-            [OAuthAuthorizeScope.PUBLIC, OAuthAuthorizeScope.IDENTITY],
+            [OAuthAuthorizeScope.PUBLIC, OAuthAuthorizeScope.IDENTIFY],
         )
         await open(authorizeUrl)
     })

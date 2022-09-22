@@ -74,7 +74,7 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
        1234,                            // Replace with your value (client ID)
        "PLACEHOLDER_CLIENT_SECRET",     // Replace with your value (client secret)
        "https://your-redirect-url.com", // Replace with your value (redirect URL)
-       [OAuthAuthorizeScope.PUBLIC, OAuthAuthorizeScope.IDENTITY],
+       [OAuthAuthorizeScope.PUBLIC, OAuthAuthorizeScope.IDENTIFY],
    )
    await open(authorizeUrl)
    ```
