@@ -10,7 +10,8 @@ import {
     getOAuthSecretClientCredentials,
     invalidOAuthAccessToken,
 } from "../get_oauth_secrets"
-import { saveResponse, timeoutForRequestsInMs } from "../../test_helper"
+import { saveAndCheckResponse, timeoutForRequestsInMs } from "../../test_helper"
+import { checkEndpointSearchUserResponseObject } from "../types/check_search_user"
 import osuApiV2 from "../../../src"
 // Type imports
 import type { OAuthAccessToken, OsuApiV2WebRequestError } from "../../../src"
@@ -47,21 +48,27 @@ export const searchTestSuite = (): Suite =>
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
-            it("should make request successfully", async () => {
+            it("requests don't throw errors", async () => {
                 const searchResultUser1 = await osuApiV2.search.user(
                     oauthAccessToken,
                     "niklas616",
                 )
-                await saveResponse(
+                await saveAndCheckResponse(
                     "search_user",
                     "niklas616",
                     searchResultUser1,
+                    checkEndpointSearchUserResponseObject,
                 )
                 const searchResultUser2 = await osuApiV2.search.user(
                     oauthAccessToken,
                     "Ooi",
                 )
-                await saveResponse("search_user", "Ooi", searchResultUser2)
+                await saveAndCheckResponse(
+                    "search_user",
+                    "Ooi",
+                    searchResultUser2,
+                    checkEndpointSearchUserResponseObject,
+                )
             }).timeout(timeoutForRequestsInMs(2))
         })
     })

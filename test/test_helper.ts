@@ -40,6 +40,10 @@ export const saveResponse = async <DATA_TYPE>(
     })
 }
 
+export interface DefaultCheckResponseOptions {
+    doNotCheckForUncheckedKeys?: boolean
+}
+
 /**
  * Helper method to check if osu!api v2 responses fit the expected type.
  *
@@ -47,7 +51,10 @@ export const saveResponse = async <DATA_TYPE>(
  * @param jsonDataChecker Function that checks the response data.
  * @param jsonDataCheckerOptions Options for data checker.
  */
-export const checkResponse = <DATA_TYPE, DATA_TYPE_OPTIONS>(
+export const checkResponse = <
+    DATA_TYPE,
+    DATA_TYPE_OPTIONS extends DefaultCheckResponseOptions,
+>(
     jsonData: DATA_TYPE,
     jsonDataChecker: (input: DATA_TYPE, options?: DATA_TYPE_OPTIONS) => void,
     jsonDataCheckerOptions?: DATA_TYPE_OPTIONS,
@@ -65,7 +72,10 @@ export const checkResponse = <DATA_TYPE, DATA_TYPE_OPTIONS>(
  * @param jsonDataChecker Function that checks the response data.
  * @param jsonDataCheckerOptions Options for data checker.
  */
-export const saveAndCheckResponse = async <DATA_TYPE, DATA_TYPE_OPTIONS>(
+export const saveAndCheckResponse = async <
+    DATA_TYPE,
+    DATA_TYPE_OPTIONS extends DefaultCheckResponseOptions,
+>(
     prefix: string,
     name: string,
     jsonData: DATA_TYPE,

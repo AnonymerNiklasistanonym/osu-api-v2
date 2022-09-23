@@ -2,7 +2,13 @@
 import { expect } from "chai"
 // Local imports
 import { GameMode, ProfilePage } from "../../../src"
-import { GameModeVariant, Playstyle, UserGroup } from "../../../src/types/user"
+import {
+    GameModeVariant,
+    Playstyle,
+    UserCompact,
+    UserEndpointSearchUser,
+    UserGroup,
+} from "../../../src/types/user"
 import { genericCheckObjectForUncheckedKeys } from "./check_generic"
 // Type imports
 import type {
@@ -25,6 +31,7 @@ import type {
     UserStatisticsLevel,
     UserStatisticsRulesets,
 } from "../../../src/types/user"
+import { DefaultCheckResponseOptions } from "../../test_helper"
 
 export const checkUserCompactCoverObject = (
     userCompactCover: Readonly<UserCompactCover>,
@@ -514,6 +521,13 @@ export const checkUserObjectEndpointGet = (
     expect(user.website).to.not.be.undefined
 }
 
+export const checkUserCompactObjectEndpointSearchUser = (
+    user: Readonly<UserEndpointSearchUser>,
+): void => {
+    expect(user.last_visit).to.not.be.undefined
+    expect(user.profile_colour).to.not.be.undefined
+}
+
 export const checkUserObjectEndpointMe = (
     user: Readonly<UserEndpointMe>,
 ): void => {
@@ -523,17 +537,26 @@ export const checkUserObjectEndpointMe = (
     expect(user.statistics_rulesets).to.not.be.undefined
 }
 
-export enum CheckUserObjectEndpoint {
+export enum CheckUserObjectEndpointUsers {
     GET = "GET",
     ME = "ME",
 }
 
-export interface CheckUserObjectOptions {
-    endpoint?: CheckUserObjectEndpoint
+export enum CheckUserObjectEndpointSearch {
+    USER = "USER",
+}
+
+export interface CheckUserObjectOptions extends CheckUserCompactObjectOptions {
+    endpointUsers?: CheckUserObjectEndpointUsers
+    playmode?: GameMode
+}
+
+export interface CheckUserCompactObjectOptions
+    extends DefaultCheckResponseOptions {
+    endpointSearch?: CheckUserObjectEndpointSearch
     hasIsRestricted?: boolean
     noPage?: boolean
     noSupporter?: boolean
-    playmode?: GameMode
     restricted?: boolean
     statisticsGameMode?: GameMode
     userId?: number
@@ -543,7 +566,154 @@ export interface CheckUserObjectOptions {
 export const checkUserObject = (
     user: Readonly<User>,
     options?: Readonly<CheckUserObjectOptions>,
-): void => {
+): readonly string[] => {
+    expect(user).to.be.an("object")
+
+    const alreadyCheckedKeys = checkUserCompactObject(user, {
+        ...options,
+        doNotCheckForUncheckedKeys: true,
+    })
+
+    expect(user.country).to.not.be.undefined
+    expect(user.cover).to.not.be.undefined
+
+    // List of all keys that will be checked
+    const checkedKeys = [...alreadyCheckedKeys]
+
+    if (user.discord !== null) {
+        checkedKeys.push("discord")
+        expect(user.discord).to.be.a("string").with.a.lengthOf.greaterThan(0)
+    } else {
+        checkedKeys.push("discord")
+        expect(user.discord).to.be.null
+    }
+
+    checkedKeys.push("has_supported")
+    expect(user.has_supported).to.be.a("boolean")
+
+    if (user.interests !== null) {
+        checkedKeys.push("interests")
+        expect(user.interests).to.be.a("string").with.a.lengthOf.greaterThan(0)
+    } else {
+        checkedKeys.push("interests")
+        expect(user.interests).to.be.null
+    }
+
+    checkedKeys.push("join_date")
+    expect(user.join_date).to.be.a("string").with.a.lengthOf.greaterThan(0)
+
+    checkedKeys.push("kudosu")
+    checkUserCompactKusodoObject(user.kudosu)
+
+    if (user.location !== null) {
+        checkedKeys.push("location")
+        expect(user.location).to.be.a("string").with.a.lengthOf.greaterThan(0)
+    } else {
+        checkedKeys.push("location")
+        expect(user.location).to.be.null
+    }
+
+    checkedKeys.push("max_blocks")
+    expect(user.max_blocks).to.be.a("number").greaterThanOrEqual(0)
+
+    checkedKeys.push("max_friends")
+    expect(user.max_friends).to.be.a("number").greaterThanOrEqual(0)
+
+    if (user.occupation !== null) {
+        checkedKeys.push("occupation")
+        expect(user.occupation).to.be.a("string").with.a.lengthOf.greaterThan(0)
+    } else {
+        checkedKeys.push("occupation")
+        expect(user.occupation).to.be.null
+    }
+
+    checkedKeys.push("playmode")
+    expect(user.playmode).to.be.a("string")
+    expect(Object.values(GameMode)).includes(user.playmode)
+    if (options?.playmode) {
+        expect(user.playmode).equals(options.playmode)
+    }
+
+    if (user.playstyle !== null) {
+        checkedKeys.push("playstyle")
+        expect(user.playstyle).to.be.an("array")
+        for (const element of user.playstyle) {
+            expect(element).to.be.a("string")
+            expect(Object.values(Playstyle)).includes(element)
+        }
+    } else {
+        checkedKeys.push("playstyle")
+        expect(user.playstyle).to.be.null
+    }
+
+    checkedKeys.push("post_count")
+    expect(user.post_count).to.be.a("number").greaterThanOrEqual(0)
+
+    checkedKeys.push("profile_order")
+    expect(user.profile_order).to.be.a("array")
+    for (const element of user.profile_order) {
+        expect(element).to.be.a("string")
+        expect(Object.values(ProfilePage)).includes(element)
+    }
+
+    if (user.title !== null) {
+        checkedKeys.push("title")
+        expect(user.title).to.be.a("string").with.a.lengthOf.greaterThan(0)
+    } else {
+        checkedKeys.push("title")
+        expect(user.title).to.be.null
+    }
+
+    if (user.title_url !== null) {
+        checkedKeys.push("title_url")
+        expect(user.title_url).to.be.a("string").with.a.lengthOf.greaterThan(0)
+    } else {
+        checkedKeys.push("title_url")
+        expect(user.title_url).to.be.null
+    }
+
+    if (user.twitter !== null) {
+        checkedKeys.push("twitter")
+        expect(user.twitter).to.be.a("string").with.a.lengthOf.greaterThan(0)
+    } else {
+        checkedKeys.push("twitter")
+        expect(user.twitter).to.be.null
+    }
+
+    if (user.variants !== undefined) {
+        checkedKeys.push("variants")
+        expect(user.variants).to.be.an("array")
+        for (const element of user.variants) {
+            checkUserGameModeVariantObject(element)
+        }
+    }
+
+    if (user.website !== null) {
+        checkedKeys.push("website")
+        expect(user.website).to.be.a("string").with.a.lengthOf.greaterThan(0)
+    } else {
+        checkedKeys.push("website")
+        expect(user.website).to.be.null
+    }
+
+    if (options?.endpointUsers) {
+        switch (options.endpointUsers) {
+            case CheckUserObjectEndpointUsers.GET:
+                checkUserObjectEndpointGet(user as UserEndpointGet)
+                break
+            case CheckUserObjectEndpointUsers.ME:
+                checkUserObjectEndpointMe(user as UserEndpointMe)
+                break
+        }
+    }
+
+    return genericCheckObjectForUncheckedKeys(user, checkedKeys, options)
+}
+
+export const checkUserCompactObject = (
+    user: Readonly<UserCompact>,
+    options?: Readonly<CheckUserCompactObjectOptions>,
+): readonly string[] => {
     expect(user).to.be.an("object")
 
     // List of all keys that will be checked
@@ -567,16 +737,18 @@ export const checkUserObject = (
         }
     }
 
-    if (user.active_tournament_banner !== null) {
-        checkedKeys.push("active_tournament_banner")
-        expect.fail(
-            `Found undocumented type 'active_tournament_banner': '${JSON.stringify(
-                user.active_tournament_banner,
-            )}'`,
-        )
-    } else {
-        checkedKeys.push("active_tournament_banner")
-        expect(user.active_tournament_banner).to.be.null
+    if (user.active_tournament_banner !== undefined) {
+        if (user.active_tournament_banner !== null) {
+            checkedKeys.push("active_tournament_banner")
+            expect.fail(
+                `Found undocumented type 'active_tournament_banner': '${JSON.stringify(
+                    user.active_tournament_banner,
+                )}'`,
+            )
+        } else {
+            checkedKeys.push("active_tournament_banner")
+            expect(user.active_tournament_banner).to.be.null
+        }
     }
 
     checkedKeys.push("avatar_url")
@@ -611,27 +783,28 @@ export const checkUserObject = (
         expect(user.comments_count).to.be.a("number").greaterThanOrEqual(0)
     }
 
-    checkedKeys.push("country")
-    expect(user.country).to.be.an("object")
-    expect(user.country.code).to.be.a("string").with.a.lengthOf.greaterThan(0)
-    expect(user.country.name).to.be.a("string").with.a.lengthOf.greaterThan(0)
+    if (user.country !== undefined) {
+        checkedKeys.push("comments_count")
+        checkedKeys.push("country")
+        expect(user.country).to.be.an("object")
+        expect(user.country.code)
+            .to.be.a("string")
+            .with.a.lengthOf.greaterThan(0)
+        expect(user.country.name)
+            .to.be.a("string")
+            .with.a.lengthOf.greaterThan(0)
+    }
 
     checkedKeys.push("country_code")
     expect(user.country_code).to.be.a("string").with.a.lengthOf.greaterThan(0)
 
-    checkedKeys.push("cover")
-    checkUserCompactCoverObject(user.cover)
+    if (user.cover !== undefined) {
+        checkedKeys.push("cover")
+        checkUserCompactCoverObject(user.cover)
+    }
 
     checkedKeys.push("default_group")
     expect(user.default_group).to.be.a("string").with.a.lengthOf.greaterThan(0)
-
-    if (user.discord !== null) {
-        checkedKeys.push("discord")
-        expect(user.discord).to.be.a("string").with.a.lengthOf.greaterThan(0)
-    } else {
-        checkedKeys.push("discord")
-        expect(user.discord).to.be.null
-    }
 
     if (user.favourite_beatmapset_count !== undefined) {
         checkedKeys.push("favourite_beatmapset_count")
@@ -676,21 +849,10 @@ export const checkUserObject = (
             .greaterThanOrEqual(0)
     }
 
-    checkedKeys.push("has_supported")
-    expect(user.has_supported).to.be.a("boolean")
-
     checkedKeys.push("id")
     expect(user.id).to.be.a("number").greaterThanOrEqual(0)
     if (options?.userId) {
         expect(user.id).to.equal(options?.userId, "userId does not match")
-    }
-
-    if (user.interests !== null) {
-        checkedKeys.push("interests")
-        expect(user.interests).to.be.a("string").with.a.lengthOf.greaterThan(0)
-    } else {
-        checkedKeys.push("interests")
-        expect(user.interests).to.be.null
     }
 
     checkedKeys.push("is_active")
@@ -722,26 +884,14 @@ export const checkUserObject = (
         expect(user.is_supporter).to.be.equal(false)
     }
 
-    checkedKeys.push("join_date")
-    expect(user.join_date).to.be.a("string").with.a.lengthOf.greaterThan(0)
-
-    checkedKeys.push("kudosu")
-    checkUserCompactKusodoObject(user.kudosu)
-
-    if (user.last_visit !== null) {
-        checkedKeys.push("last_visit")
-        expect(user.last_visit).to.be.a("string").with.a.lengthOf.greaterThan(0)
-    } else {
-        checkedKeys.push("last_visit")
-        expect(user.last_visit).to.be.null
-    }
-
-    if (user.location !== null) {
-        checkedKeys.push("location")
-        expect(user.location).to.be.a("string").with.a.lengthOf.greaterThan(0)
-    } else {
-        checkedKeys.push("location")
-        expect(user.location).to.be.null
+    if (user.last_visit !== undefined) {
+        if (user.last_visit !== null) {
+            checkedKeys.push("last_visit")
+            expect(user.last_visit).to.be.a("string").with.a.lengthOf.greaterThan(0)
+        } else {
+            checkedKeys.push("last_visit")
+            expect(user.last_visit).to.be.null
+        }
     }
 
     if (user.loved_beatmapset_count !== undefined) {
@@ -758,26 +908,12 @@ export const checkUserObject = (
             .greaterThanOrEqual(0)
     }
 
-    checkedKeys.push("max_blocks")
-    expect(user.max_blocks).to.be.a("number").greaterThanOrEqual(0)
-
-    checkedKeys.push("max_friends")
-    expect(user.max_friends).to.be.a("number").greaterThanOrEqual(0)
-
     if (user.monthly_playcounts !== undefined) {
         checkedKeys.push("monthly_playcounts")
         expect(user.monthly_playcounts).to.be.an("array")
         for (const element of user.monthly_playcounts) {
             checkUserMonthlyPlaycountOrReplaysWatchedCountObject(element)
         }
-    }
-
-    if (user.occupation !== null) {
-        checkedKeys.push("occupation")
-        expect(user.occupation).to.be.a("string").with.a.lengthOf.greaterThan(0)
-    } else {
-        checkedKeys.push("occupation")
-        expect(user.occupation).to.be.null
     }
 
     if (user.page !== undefined) {
@@ -797,30 +933,8 @@ export const checkUserObject = (
             .greaterThanOrEqual(0)
     }
 
-    checkedKeys.push("playmode")
-    expect(user.playmode).to.be.a("string")
-    expect(Object.values(GameMode)).includes(user.playmode)
-    if (options?.playmode) {
-        expect(user.playmode).equals(options.playmode)
-    }
-
-    if (user.playstyle !== null) {
-        checkedKeys.push("playstyle")
-        expect(user.playstyle).to.be.an("array")
-        for (const element of user.playstyle) {
-            expect(element).to.be.a("string")
-            expect(Object.values(Playstyle)).includes(element)
-        }
-    } else {
-        checkedKeys.push("playstyle")
-        expect(user.playstyle).to.be.null
-    }
-
     checkedKeys.push("pm_friends_only")
     expect(user.pm_friends_only).to.be.a("boolean")
-
-    checkedKeys.push("post_count")
-    expect(user.post_count).to.be.a("number").greaterThanOrEqual(0)
 
     if (user.previous_usernames !== undefined) {
         checkedKeys.push("previous_usernames")
@@ -830,21 +944,16 @@ export const checkUserObject = (
         }
     }
 
-    if (user.profile_colour !== null) {
-        checkedKeys.push("profile_colour")
-        expect(user.profile_colour)
-            .to.be.a("string")
-            .with.a.lengthOf.greaterThan(0)
-    } else {
-        checkedKeys.push("profile_colour")
-        expect(user.profile_colour).to.be.null
-    }
-
-    checkedKeys.push("profile_order")
-    expect(user.profile_order).to.be.a("array")
-    for (const element of user.profile_order) {
-        expect(element).to.be.a("string")
-        expect(Object.values(ProfilePage)).includes(element)
+    if (user.profile_colour !== undefined) {
+        if (user.profile_colour !== null) {
+            checkedKeys.push("profile_colour")
+            expect(user.profile_colour)
+                .to.be.a("string")
+                .with.a.lengthOf.greaterThan(0)
+        } else {
+            checkedKeys.push("profile_colour")
+            expect(user.profile_colour).to.be.null
+        }
     }
 
     if (user.rank_history !== undefined) {
@@ -934,56 +1043,15 @@ export const checkUserObject = (
         )
     }
 
-    if (user.title !== null) {
-        checkedKeys.push("title")
-        expect(user.title).to.be.a("string").with.a.lengthOf.greaterThan(0)
-    } else {
-        checkedKeys.push("title")
-        expect(user.title).to.be.null
-    }
-
-    if (user.title_url !== null) {
-        checkedKeys.push("title_url")
-        expect(user.title_url).to.be.a("string").with.a.lengthOf.greaterThan(0)
-    } else {
-        checkedKeys.push("title_url")
-        expect(user.title_url).to.be.null
-    }
-
-    if (user.twitter !== null) {
-        checkedKeys.push("twitter")
-        expect(user.twitter).to.be.a("string").with.a.lengthOf.greaterThan(0)
-    } else {
-        checkedKeys.push("twitter")
-        expect(user.twitter).to.be.null
-    }
-
-    if (user.variants !== undefined) {
-        checkedKeys.push("variants")
-        expect(user.variants).to.be.an("array")
-        for (const element of user.variants) {
-            checkUserGameModeVariantObject(element)
-        }
-    }
-
-    if (user.website !== null) {
-        checkedKeys.push("website")
-        expect(user.website).to.be.a("string").with.a.lengthOf.greaterThan(0)
-    } else {
-        checkedKeys.push("website")
-        expect(user.website).to.be.null
-    }
-
-    genericCheckObjectForUncheckedKeys(user, checkedKeys)
-
-    if (options?.endpoint) {
-        switch (options.endpoint) {
-            case CheckUserObjectEndpoint.GET:
-                checkUserObjectEndpointGet(user as UserEndpointGet)
-                break
-            case CheckUserObjectEndpoint.ME:
-                checkUserObjectEndpointMe(user as UserEndpointMe)
+    if (options?.endpointSearch) {
+        switch (options.endpointSearch) {
+            case CheckUserObjectEndpointSearch.USER:
+                checkUserCompactObjectEndpointSearchUser(
+                    user as UserEndpointSearchUser,
+                )
                 break
         }
     }
+
+    return genericCheckObjectForUncheckedKeys(user, checkedKeys, options)
 }

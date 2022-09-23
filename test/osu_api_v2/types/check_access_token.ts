@@ -7,15 +7,17 @@ import type {
     OAuthAccessToken,
     OAuthAccessTokenWithRefreshToken,
 } from "../../../src"
+import { DefaultCheckResponseOptions } from "../../test_helper"
 
-export interface CheckAccessTokenWithRefreshTokenObjectOptions {
+export interface CheckAccessTokenWithRefreshTokenObjectOptions
+    extends DefaultCheckResponseOptions {
     isNotARefreshToken?: boolean
 }
 
 export const checkAccessTokenWithRefreshTokenObject = (
     oauthAccessToken: Readonly<OAuthAccessTokenWithRefreshToken>,
     options?: Readonly<CheckAccessTokenWithRefreshTokenObjectOptions>,
-): void => {
+): readonly string[] => {
     expect(oauthAccessToken).to.be.an("object")
 
     // List of all keys that will be checked
@@ -40,7 +42,11 @@ export const checkAccessTokenWithRefreshTokenObject = (
     expect(oauthAccessToken.token_type).to.be.a("string")
     expect(oauthAccessToken.token_type).to.equal("Bearer")
 
-    genericCheckObjectForUncheckedKeys(oauthAccessToken, checkedKeys)
+    return genericCheckObjectForUncheckedKeys(
+        oauthAccessToken,
+        checkedKeys,
+        options,
+    )
 }
 
 export const checkAccessTokenObject = (
