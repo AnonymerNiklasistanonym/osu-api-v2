@@ -473,23 +473,6 @@ export const checkUserGroupObject = (userGroup: Readonly<UserGroup>): void => {
     genericCheckObjectForUncheckedKeys(userGroup, checkedKeys)
 }
 
-export enum CheckUserObjectEndpoint {
-    GET = "GET",
-    ME = "ME",
-}
-
-export interface CheckUserObjectOptions {
-    endpoint?: CheckUserObjectEndpoint
-    hasIsRestricted?: boolean
-    noPage?: boolean
-    noSupporter?: boolean
-    playmode?: GameMode
-    restricted?: boolean
-    statisticsGameMode?: GameMode
-    userId?: number
-    userName?: string
-}
-
 export const checkUserObjectEndpointGet = (
     user: Readonly<UserEndpointGet>,
 ): void => {
@@ -538,6 +521,23 @@ export const checkUserObjectEndpointMe = (
 
     expect(user.is_restricted).to.not.be.undefined
     expect(user.statistics_rulesets).to.not.be.undefined
+}
+
+export enum CheckUserObjectEndpoint {
+    GET = "GET",
+    ME = "ME",
+}
+
+export interface CheckUserObjectOptions {
+    endpoint?: CheckUserObjectEndpoint
+    hasIsRestricted?: boolean
+    noPage?: boolean
+    noSupporter?: boolean
+    playmode?: GameMode
+    restricted?: boolean
+    statisticsGameMode?: GameMode
+    userId?: number
+    userName?: string
 }
 
 export const checkUserObject = (
@@ -850,12 +850,12 @@ export const checkUserObject = (
     if (user.rank_history !== undefined) {
         checkedKeys.push("rank_history")
         checkUserRankHistoryObject(user.rank_history)
-        if (options?.statisticsGameMode) {
-            expect(user.rank_history.mode).to.equal(
-                options?.statisticsGameMode,
-                "rank history mode does not match",
-            )
-        }
+    }
+    if (options?.statisticsGameMode) {
+        expect(user.rank_history?.mode).to.equal(
+            options?.statisticsGameMode,
+            "rank history mode does not match",
+        )
     }
 
     if (user.ranked_beatmapset_count !== undefined) {

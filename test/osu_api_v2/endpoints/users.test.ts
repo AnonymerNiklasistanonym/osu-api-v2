@@ -3,10 +3,20 @@ import { before, describe, it, Suite } from "mocha"
 import { expect } from "chai"
 // Local imports
 import {
+    checkAccessTokenObject,
+    checkAccessTokenWithRefreshTokenObject,
+} from "../types/check_access_token"
+import {
     checkOsuApiV2Error,
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestExpectedErrorType,
 } from "../../helper/custom_errors"
+import {
+    checkResponse,
+    saveAndCheckResponse,
+    saveResponse,
+    timeoutForRequestsInMs,
+} from "../../test_helper"
 import { checkUserObject, CheckUserObjectEndpoint } from "../types/check_user"
 import {
     getOAuthSecretClientCredentials,
@@ -14,14 +24,10 @@ import {
     updateOAuthSecretRefreshToken,
 } from "../get_oauth_secrets"
 import osuApiV2, { GameMode, OsuApiV2ErrorCode, ScoresType } from "../../../src"
-import {
-    saveAndCheckResponse,
-    saveResponse,
-    timeoutForRequestsInMs,
-} from "../../test_helper"
 // Type imports
 import type {
     OAuthAccessToken,
+    OAuthAccessTokenWithRefreshToken,
     OsuApiV2Error,
     OsuApiV2WebRequestError,
 } from "../../../src"
@@ -39,6 +45,7 @@ export const usersTestSuite = (): Suite =>
                     oauthClientCredentialsSecret.clientId,
                     oauthClientCredentialsSecret.clientSecret,
                 )
+                checkResponse(oauthAccessToken, checkAccessTokenObject)
             })
 
             describe("get", () => {
@@ -96,7 +103,7 @@ export const usersTestSuite = (): Suite =>
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
-                it("should make request successfully", async () => {
+                it("requests don't throw errors", async () => {
                     const userNoPage = await osuApiV2.users.get(
                         oauthAccessToken,
                         26446321,
@@ -128,6 +135,8 @@ export const usersTestSuite = (): Suite =>
                             userId: 9096716,
                         },
                     )
+                }).timeout(timeoutForRequestsInMs(2))
+                it("requests for game mode statistics don't throw errors", async () => {
                     const osuId = await osuApiV2.users.get(
                         oauthAccessToken,
                         9096716,
@@ -271,7 +280,8 @@ export const usersTestSuite = (): Suite =>
                             userName: "Ooi",
                         },
                     )
-                    // Check restricted account history/badges/title
+                }).timeout(timeoutForRequestsInMs(7))
+                it("user titles/badges fit type", async () => {
                     const userWhitecat = await osuApiV2.users.get(
                         oauthAccessToken,
                         4504101,
@@ -314,6 +324,8 @@ export const usersTestSuite = (): Suite =>
                             userId: 7562902,
                         },
                     )
+                }).timeout(timeoutForRequestsInMs(3))
+                it("user groups fit type", async () => {
                     // Beatmap nominator title
                     const userSotarks = await osuApiV2.users.get(
                         oauthAccessToken,
@@ -329,55 +341,69 @@ export const usersTestSuite = (): Suite =>
                             userId: 4452992,
                         },
                     )
-                }).timeout(timeoutForRequestsInMs(10))
-                it("user playmode should equal 'osu'", async () => {
-                    const userId = await osuApiV2.users.get(
+                }).timeout(timeoutForRequestsInMs(1))
+                it("user playmode", async () => {
+                    const userOsu = await osuApiV2.users.get(
                         oauthAccessToken,
                         9096716,
                     )
-                    expect(userId.playmode).equals(GameMode.OSU_STANDARD)
-                    const userName = await osuApiV2.users.get(
-                        oauthAccessToken,
-                        "syaron105",
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "9096716",
+                        userOsu,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            playmode: GameMode.OSU_STANDARD,
+                            userId: 9096716,
+                        },
                     )
-                    expect(userName.playmode).equals(GameMode.OSU_TAIKO)
-                }).timeout(timeoutForRequestsInMs(2))
-                it("user playmode should equal 'taiko'", async () => {
-                    const userId = await osuApiV2.users.get(
+                    const userTaiko = await osuApiV2.users.get(
                         oauthAccessToken,
                         8741695,
                     )
-                    expect(userId.playmode).equals(GameMode.OSU_TAIKO)
-                    const userName = await osuApiV2.users.get(
-                        oauthAccessToken,
-                        "syaron105",
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "8741695",
+                        userTaiko,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            playmode: GameMode.OSU_TAIKO,
+                            userId: 8741695,
+                        },
                     )
-                    expect(userName.playmode).equals(GameMode.OSU_TAIKO)
-                }).timeout(timeoutForRequestsInMs(2))
-                it("user playmode should equal 'fruits'", async () => {
-                    const userId = await osuApiV2.users.get(
+                    const userCatch = await osuApiV2.users.get(
                         oauthAccessToken,
                         4158549,
                     )
-                    expect(userId.playmode).equals(GameMode.OSU_CATCH)
-                    const userName = await osuApiV2.users.get(
-                        oauthAccessToken,
-                        "YesMyDarknesss",
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "4158549",
+                        userCatch,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            playmode: GameMode.OSU_CATCH,
+                            userId: 4158549,
+                        },
                     )
-                    expect(userName.playmode).equals(GameMode.OSU_CATCH)
-                }).timeout(timeoutForRequestsInMs(2))
-                it("user playmode should equal 'mania'", async () => {
-                    const userId = await osuApiV2.users.get(
+                    const userMania = await osuApiV2.users.get(
                         oauthAccessToken,
                         758406,
                     )
-                    expect(userId.playmode).equals(GameMode.OSU_MANIA)
-                    const userName = await osuApiV2.users.get(
-                        oauthAccessToken,
-                        "dressurf",
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "758406",
+                        userMania,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            playmode: GameMode.OSU_MANIA,
+                            userId: 758406,
+                        },
                     )
-                    expect(userName.playmode).equals(GameMode.OSU_MANIA)
-                }).timeout(timeoutForRequestsInMs(2))
+                }).timeout(timeoutForRequestsInMs(4))
             })
 
             describe("me", () => {
@@ -565,31 +591,35 @@ export const usersTestSuite = (): Suite =>
         })
 
         describe("refresh-token", () => {
-            let oauthAccessTokenIdentityScope: OAuthAccessToken
+            let oauthAccessTokenIdentifyScope: OAuthAccessTokenWithRefreshToken
 
             before("before all test cases", async () => {
                 // Get the OAuth access token
                 const oauthRefreshTokenSecret =
                     await getOAuthSecretRefreshToken()
-                const oauthAccessTokenIdentityScopeTemp =
+                const oauthAccessTokenIdentifyScopeTemp =
                     await osuApiV2.oauth.refreshTokenGrant(
                         oauthRefreshTokenSecret.clientId,
                         oauthRefreshTokenSecret.clientSecret,
                         oauthRefreshTokenSecret.redirectUrl,
                         oauthRefreshTokenSecret.refreshToken,
                     )
-                oauthAccessTokenIdentityScope =
-                    oauthAccessTokenIdentityScopeTemp
+                oauthAccessTokenIdentifyScope =
+                    oauthAccessTokenIdentifyScopeTemp
                 await updateOAuthSecretRefreshToken(
                     oauthRefreshTokenSecret,
-                    oauthAccessTokenIdentityScopeTemp,
+                    oauthAccessTokenIdentifyScopeTemp,
+                )
+                checkResponse(
+                    oauthAccessTokenIdentifyScope,
+                    checkAccessTokenWithRefreshTokenObject,
                 )
             })
 
             describe("me", () => {
                 it("should make request successfully", async () => {
                     const me = await osuApiV2.users.me(
-                        oauthAccessTokenIdentityScope,
+                        oauthAccessTokenIdentifyScope,
                     )
                     await saveAndCheckResponse(
                         "users_me",
@@ -602,7 +632,7 @@ export const usersTestSuite = (): Suite =>
                         },
                     )
                     const meStandard = await osuApiV2.users.me(
-                        oauthAccessTokenIdentityScope,
+                        oauthAccessTokenIdentifyScope,
                         GameMode.OSU_STANDARD,
                     )
                     await saveAndCheckResponse(
@@ -617,7 +647,7 @@ export const usersTestSuite = (): Suite =>
                         },
                     )
                     const meCatch = await osuApiV2.users.me(
-                        oauthAccessTokenIdentityScope,
+                        oauthAccessTokenIdentifyScope,
                         GameMode.OSU_CATCH,
                     )
                     await saveAndCheckResponse(
@@ -632,7 +662,7 @@ export const usersTestSuite = (): Suite =>
                         },
                     )
                     const meMania = await osuApiV2.users.me(
-                        oauthAccessTokenIdentityScope,
+                        oauthAccessTokenIdentifyScope,
                         GameMode.OSU_MANIA,
                     )
                     await saveAndCheckResponse(
@@ -647,7 +677,7 @@ export const usersTestSuite = (): Suite =>
                         },
                     )
                     const meTaiko = await osuApiV2.users.me(
-                        oauthAccessTokenIdentityScope,
+                        oauthAccessTokenIdentifyScope,
                         GameMode.OSU_TAIKO,
                     )
                     await saveAndCheckResponse(

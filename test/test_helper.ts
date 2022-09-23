@@ -41,6 +41,21 @@ export const saveResponse = async <DATA_TYPE>(
 }
 
 /**
+ * Helper method to check if osu!api v2 responses fit the expected type.
+ *
+ * @param jsonData The actual response data that should be cached.
+ * @param jsonDataChecker Function that checks the response data.
+ * @param jsonDataCheckerOptions Options for data checker.
+ */
+export const checkResponse = <DATA_TYPE, DATA_TYPE_OPTIONS>(
+    jsonData: DATA_TYPE,
+    jsonDataChecker: (input: DATA_TYPE, options?: DATA_TYPE_OPTIONS) => void,
+    jsonDataCheckerOptions?: DATA_TYPE_OPTIONS,
+): void => {
+    jsonDataChecker(jsonData, jsonDataCheckerOptions)
+}
+
+/**
  * Helper method to cache osu!api v2 responses in text files and check if they
  * fit the expected type.
  *
@@ -58,5 +73,5 @@ export const saveAndCheckResponse = async <DATA_TYPE, DATA_TYPE_OPTIONS>(
     jsonDataCheckerOptions?: DATA_TYPE_OPTIONS,
 ): Promise<void> => {
     await saveResponse(prefix, name, jsonData)
-    jsonDataChecker(jsonData, jsonDataCheckerOptions)
+    checkResponse(jsonData, jsonDataChecker, jsonDataCheckerOptions)
 }

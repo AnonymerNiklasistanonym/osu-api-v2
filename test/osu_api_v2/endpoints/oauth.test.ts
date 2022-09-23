@@ -3,16 +3,20 @@ import { before, describe, it, Suite } from "mocha"
 import { expect } from "chai"
 // Local imports
 import {
+    checkAccessTokenObject,
+    checkAccessTokenWithRefreshTokenObject,
+} from "../types/check_access_token"
+import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestExpectedErrorType,
 } from "../../helper/custom_errors"
+import { checkResponse, timeoutForRequestsInMs } from "../../test_helper"
 import {
     getOAuthSecretClientCredentials,
     getOAuthSecretRefreshToken,
     updateOAuthSecretRefreshToken,
 } from "../get_oauth_secrets"
 import osuApiV2, { OsuApiV2WebRequestError } from "../../../src"
-import { timeoutForRequestsInMs } from "../../test_helper"
 // Type imports
 import type {
     OAuthSecretClientCredentials,
@@ -74,13 +78,7 @@ export const oauthTestSuite = (): Suite =>
                             oauthClientCredentials.clientId,
                             oauthClientCredentials.clientSecret,
                         )
-                    expect(oauthAccessToken.access_token)
-                        .to.be.a("string")
-                        .with.a.lengthOf.greaterThan(0)
-                    expect(oauthAccessToken.token_type).to.equal("Bearer")
-                    expect(oauthAccessToken.expires_in)
-                        .to.be.a("number")
-                        .above(0)
+                    checkResponse(oauthAccessToken, checkAccessTokenObject)
                 }).timeout(timeoutForRequestsInMs(1))
             })
         })
@@ -185,18 +183,10 @@ export const oauthTestSuite = (): Suite =>
                         oauthRefreshToken,
                         oauthAccessTokenWithRefreshToken,
                     )
-                    expect(oauthAccessTokenWithRefreshToken.access_token)
-                        .to.be.a("string")
-                        .with.a.lengthOf.greaterThan(0)
-                    expect(
-                        oauthAccessTokenWithRefreshToken.token_type,
-                    ).to.equal("Bearer")
-                    expect(oauthAccessTokenWithRefreshToken.expires_in)
-                        .to.be.a("number")
-                        .above(0)
-                    expect(oauthAccessTokenWithRefreshToken.refresh_token)
-                        .to.be.a("string")
-                        .with.a.lengthOf.greaterThan(0)
+                    checkResponse(
+                        oauthAccessTokenWithRefreshToken,
+                        checkAccessTokenWithRefreshTokenObject,
+                    )
                 }).timeout(timeoutForRequestsInMs(1))
             })
         })
