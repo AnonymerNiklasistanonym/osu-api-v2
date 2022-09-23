@@ -271,6 +271,50 @@ export const usersTestSuite = (): Suite =>
                             userName: "Ooi",
                         },
                     )
+                    // Check restricted account history/badges/title
+                    const userWhitecat = await osuApiV2.users.get(
+                        oauthAccessToken,
+                        4504101,
+                    )
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "4504101",
+                        userWhitecat,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            userId: 4504101,
+                        },
+                    )
+                    const userMinusGn = await osuApiV2.users.get(
+                        oauthAccessToken,
+                        895581,
+                    )
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "895581",
+                        userMinusGn,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            userId: 895581,
+                        },
+                    )
+                    const userMrekk = await osuApiV2.users.get(
+                        oauthAccessToken,
+                        7562902,
+                    )
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "7562902",
+                        userMrekk,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            userId: 7562902,
+                        },
+                    )
+
                 }).timeout(timeoutForRequestsInMs(10))
                 it("user playmode should equal 'osu'", async () => {
                     const userId = await osuApiV2.users.get(

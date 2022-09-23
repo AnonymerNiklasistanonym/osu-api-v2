@@ -38,16 +38,48 @@ export interface UserGroup {
     todo?: boolean
 }
 
+/**
+ * ([Source(https://osu.ppy.sh/docs/index.html#usercompact-useraccounthistory)])
+ */
+export enum UserAccountHistoryType {
+    NOTE = "note",
+    RESTRICTION = "restriction",
+    SILENCE = "silence",
+}
+
+/**
+ * ([Source(https://osu.ppy.sh/docs/index.html#usercompact-useraccounthistory)])
+ */
 export interface UserAccountHistory {
-    todo?: boolean
+    description?: string
+    id: number
+    /** In seconds. */
+    length: number
+    permanent: boolean
+    timestamp: Timestamp
+    type: UserAccountHistoryType
 }
 
-export interface UserCompactProfileBanner {
-    todo?: boolean
+/**
+ * ([Source](https://osu.ppy.sh/docs/index.html#usercompact-profilebanner))
+ */
+export interface UserProfileBanner {
+    id: number
+    image: string
+    tournament_id: number
 }
 
+/**
+ * ([Source](https://osu.ppy.sh/docs/index.html#usercompact-userbadge))
+ */
 export interface UserBadge {
-    todo?: boolean
+    awarded_at: Timestamp
+    description: string
+    image_url: string
+    /**
+     * Sometimes the URL can be an empty string.
+     */
+    url: string
 }
 
 export interface UserCompactCountry {
@@ -142,7 +174,7 @@ export interface UserCompact {
      *
      * This is included in a {@link UserEndpointGet} object.
      */
-    active_tournament_banner?: UserCompactProfileBanner | null
+    active_tournament_banner?: UserProfileBanner | null
     /**
      * Url of user's avatar.
      */
@@ -460,7 +492,7 @@ export interface UserGameModeVariant {
  */
 export interface UserEndpointGet extends User {
     account_history: UserAccountHistory[]
-    active_tournament_banner: UserCompactProfileBanner | null
+    active_tournament_banner: UserProfileBanner | null
     badges: UserBadge[]
     beatmap_playcounts_count: number
     comments_count: number

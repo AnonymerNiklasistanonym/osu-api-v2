@@ -1,11 +1,11 @@
 // Package imports
 import { expect } from "chai"
 // Local imports
+import { GameMode, ProfilePage } from "../../../src"
+import { GameModeVariant, Playstyle } from "../../../src/types/user"
 import { genericCheckObjectForUncheckedKeys } from "./check_generic"
 // Type imports
-import {
-    GameMode,
-    ProfilePage,
+import type {
     User,
     UserCompactCover,
     UserCompactKusodo,
@@ -13,10 +13,9 @@ import {
     UserMonthlyPlaycount,
     UserRankHistory,
 } from "../../../src"
-import {
-    GameModeVariant,
-    Playstyle,
+import type {
     UserAchievement,
+    UserBadge,
     UserEndpointGet,
     UserEndpointMe,
     UserGameModeVariant,
@@ -349,6 +348,7 @@ export const checkUserCompactStatisticsGradeCountsObject = (
         checkedKeys,
     )
 }
+
 export const checkUserAchievementObject = (
     userAchievement: Readonly<UserAchievement>,
 ): void => {
@@ -368,6 +368,36 @@ export const checkUserAchievementObject = (
         .greaterThanOrEqual(0)
 
     genericCheckObjectForUncheckedKeys(userAchievement, checkedKeys)
+}
+
+export const checkUserBadgeObject = (userBadge: Readonly<UserBadge>): void => {
+    const objectInfo = () => `UserBadge: ${JSON.stringify(userBadge)}`
+    expect(userBadge).to.be.an("object")
+
+    // List of all keys that will be checked
+    const checkedKeys: string[] = []
+
+    checkedKeys.push("awarded_at")
+    expect(userBadge.awarded_at)
+        .to.be.a("string")
+        .with.a.lengthOf.greaterThan(0, objectInfo())
+
+    checkedKeys.push("description")
+    expect(userBadge.description)
+        .to.be.a("string")
+        .with.a.lengthOf.greaterThan(0, objectInfo())
+
+    checkedKeys.push("image_url")
+    expect(userBadge.image_url)
+        .to.be.a("string")
+        .with.a.lengthOf.greaterThan(0, objectInfo())
+
+    checkedKeys.push("url")
+    expect(userBadge.url)
+        .to.be.a("string")
+        .with.a.lengthOf.greaterThanOrEqual(0, objectInfo())
+
+    genericCheckObjectForUncheckedKeys(userBadge, checkedKeys)
 }
 
 export enum CheckUserObjectEndpoint {
@@ -483,11 +513,7 @@ export const checkUserObject = (
         checkedKeys.push("badges")
         expect(user.badges).to.be.an("array")
         for (const element of user.badges) {
-            expect.fail(
-                `Found undocumented type 'badges'[]: '${JSON.stringify(
-                    element,
-                )}'`,
-            )
+            checkUserBadgeObject(element)
         }
     }
 
