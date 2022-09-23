@@ -9,7 +9,7 @@
         "clientSecret": {
             "type": "string"
         },
-        "redirectUrl": {
+        "redirectUri": {
             "type": "string"
         },
         "refreshToken": {
@@ -25,7 +25,7 @@
                     "clientSecret": {
                         "type": "string"
                     },
-                    "redirectUrl": {
+                    "redirectUri": {
                         "type": "string"
                     },
                     "refreshToken": {
@@ -42,7 +42,7 @@
     "required": [
         "clientId",
         "clientSecret",
-        "redirectUrl",
+        "redirectUri",
         "refreshToken"
     ]
 }

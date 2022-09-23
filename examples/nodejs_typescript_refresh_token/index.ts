@@ -20,7 +20,7 @@ const secretOAuthCredentialsPath = path.join(
 interface OAuthRefreshTokenSecret {
     clientId: number
     clientSecret: string
-    redirectUrl: string
+    redirectUri: string
 }
 // MAKE SURE THAT YOU REGISTERED THE APPLICATION WITH THE URL
 // "http://localhost:8888" because the server uses that one
@@ -32,9 +32,9 @@ console.log(secretOAuthCredentials)
 const REDIRECT_URL = "http://localhost"
 const REDIRECT_PORT = 8888
 
-if (secretOAuthCredentials.redirectUrl !== `${REDIRECT_URL}:${REDIRECT_PORT}`) {
+if (secretOAuthCredentials.redirectUri !== `${REDIRECT_URL}:${REDIRECT_PORT}`) {
     throw Error(
-        `The only supported redirect URL by this server in this example is '${REDIRECT_URL}:${REDIRECT_PORT}' - be sure that you also registered it on the osu! website with this URL`,
+        `The only supported redirect URI by this server in this example is '${REDIRECT_URL}:${REDIRECT_PORT}' - be sure that you also registered it on the osu! website with this URL`,
     )
 }
 
@@ -71,7 +71,7 @@ const server = http.createServer((req, res) => {
                     .authorizationCodeGrant(
                         secretOAuthCredentials.clientId,
                         secretOAuthCredentials.clientSecret,
-                        secretOAuthCredentials.redirectUrl,
+                        secretOAuthCredentials.redirectUri,
                         codeToken,
                     )
                     .then((codeGrantAuthorization) => {
@@ -126,7 +126,7 @@ new Promise<void>((resolve) => {
         // Request code grant
         const authorizeUrl = osuApiV2.oauth.authorizeRedirectUrlGenerator(
             secretOAuthCredentials.clientId,
-            secretOAuthCredentials.redirectUrl,
+            secretOAuthCredentials.redirectUri,
             [OAuthAuthorizeScope.PUBLIC, OAuthAuthorizeScope.IDENTIFY],
         )
         await open(authorizeUrl)

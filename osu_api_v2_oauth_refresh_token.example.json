@@ -3,5 +3,5 @@
     "clientId": 1234,
     "clientSecret": "wjejoewjroewk3543rigjdog90rngg",
     "refreshToken": "djfdisnfoidsnfodsnfklsdnfldsnfldsnflksdfns",
-    "redirectUrl": "http://localhost:8888"
+    "redirectUri": "http://localhost:8888"
 }

@@ -96,7 +96,7 @@ export const oauthTestSuite = (): Suite =>
                         const request = await osuApiV2.oauth.refreshTokenGrant(
                             -99,
                             oauthRefreshToken.clientSecret,
-                            oauthRefreshToken.redirectUrl,
+                            oauthRefreshToken.redirectUri,
                             oauthRefreshToken.refreshToken,
                         )
                         expect.fail(
@@ -116,7 +116,7 @@ export const oauthTestSuite = (): Suite =>
                         const request = await osuApiV2.oauth.refreshTokenGrant(
                             oauthRefreshToken.clientId,
                             "-1",
-                            oauthRefreshToken.redirectUrl,
+                            oauthRefreshToken.redirectUri,
                             oauthRefreshToken.refreshToken,
                         )
                         expect.fail(
@@ -131,7 +131,7 @@ export const oauthTestSuite = (): Suite =>
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
-                it("should throw if redirect URL is invalid", async () => {
+                it("should throw if redirect URI is invalid", async () => {
                     try {
                         const request = await osuApiV2.oauth.refreshTokenGrant(
                             oauthRefreshToken.clientId,
@@ -156,7 +156,7 @@ export const oauthTestSuite = (): Suite =>
                         const request = await osuApiV2.oauth.refreshTokenGrant(
                             oauthRefreshToken.clientId,
                             oauthRefreshToken.clientSecret,
-                            oauthRefreshToken.redirectUrl,
+                            oauthRefreshToken.redirectUri,
                             "asakdkabd",
                         )
                         expect.fail(
@@ -176,7 +176,7 @@ export const oauthTestSuite = (): Suite =>
                         await osuApiV2.oauth.refreshTokenGrant(
                             oauthRefreshToken.clientId,
                             oauthRefreshToken.clientSecret,
-                            oauthRefreshToken.redirectUrl,
+                            oauthRefreshToken.redirectUri,
                             oauthRefreshToken.refreshToken,
                         )
                     await updateOAuthSecretRefreshToken(

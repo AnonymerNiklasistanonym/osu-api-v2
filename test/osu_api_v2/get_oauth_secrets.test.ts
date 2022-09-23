@@ -25,7 +25,7 @@ export const getOAuthSecretsTestSuite = (): Suite =>
                 expect(oauthCredentials.clientSecret)
                     .to.be.a("string")
                     .with.a.lengthOf.greaterThan(0)
-                expect(oauthCredentials.redirectUrl)
+                expect(oauthCredentials.redirectUri)
                     .to.be.a("string")
                     .with.a.lengthOf.greaterThan(0)
                 expect(oauthCredentials.refreshToken)

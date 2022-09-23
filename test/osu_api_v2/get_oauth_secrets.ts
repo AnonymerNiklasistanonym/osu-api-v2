@@ -14,7 +14,7 @@ export interface OAuthSecretClientCredentials {
 
 export interface OAuthSecretRefreshToken extends OAuthSecretClientCredentials {
     old?: OAuthSecretRefreshToken[]
-    redirectUrl: string
+    redirectUri: string
     refreshToken: string
 }
 
@@ -81,7 +81,7 @@ export const getOAuthSecretRefreshToken = async (
         return {
             clientId: Number(processEnvClientId),
             clientSecret: processEnvClientSecret,
-            redirectUrl: processEnvRedirectUrl,
+            redirectUri: processEnvRedirectUrl,
             refreshToken: processEnvRefreshToken,
         }
     }

@@ -8,7 +8,7 @@ import type { authorizeRedirectUrlGenerator } from "./authorize"
 
 /**
  * Exchange the received code after successful authorization (via the
- * {@link authorizeRedirectUrlGenerator} created redirect URL) for an access
+ * {@link authorizeRedirectUrlGenerator} created redirect URI) for an access
  * token that also contains a refresh token.
  *
  * @param clientId The client ID of your application.

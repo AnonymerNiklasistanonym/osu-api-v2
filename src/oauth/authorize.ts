@@ -22,7 +22,7 @@ import { OAuthAuthorizeScope } from "../types/oauth_scopes"
  * @param state Data that will be returned when a temporary code is issued.
  * It can be used to provide a token for protecting against cross-site request
  * forgery attacks.
- * @returns The authorize redirect URL which opens the authorization dialogue.
+ * @returns The authorize redirect URI which opens the authorization dialogue.
  * @example
  * ```ts
  * import osuApiV2, { OAuthAuthorizeScope } from "osu-api-v2"

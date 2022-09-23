@@ -63,7 +63,7 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
 
 2. Refresh Tokens
 
-   By setting a *Application Callback URL* (*redirect URL*) and copying the *client ID* and *client secret* you can request a temporary OAuth access token with custom OAuth scopes.
+   By setting a *Application Callback URL* (*redirect URI*) and copying the *client ID* and *client secret* you can request a temporary OAuth access token with custom OAuth scopes.
    This is done by creating a special URL using these inputs and then opening this URL in the browser (or redirect the user to this URL):
 
    ```ts
@@ -73,13 +73,13 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
    const authorizeUrl = osuApiV2.oauth.authorizeRedirectUrlGenerator(
        1234,                            // Replace with your value (client ID)
        "PLACEHOLDER_CLIENT_SECRET",     // Replace with your value (client secret)
-       "https://your-redirect-url.com", // Replace with your value (redirect URL)
+       "https://your-redirect-uri.com", // Replace with your value (redirect URI)
        [OAuthAuthorizeScope.PUBLIC, OAuthAuthorizeScope.IDENTIFY],
    )
    await open(authorizeUrl)
    ```
 
-   The website that will open allows yourself or your user to login and manually click a button to accept access upon which the website will send a code to the redirect URL.
+   The website that will open allows yourself or your user to login and manually click a button to accept access upon which the website will send a code to the redirect URI.
    On the server that receives this code you can then request a *refresh token*:
 
    ```ts
@@ -89,7 +89,7 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
    osuApiV2.oauth.authorizationCodeGrant(
       1234,                            // Replace with your value (client ID)
       "PLACEHOLDER_CLIENT_SECRET",     // Replace with your value (client secret)
-      "https://your-redirect-url.com", // Replace with your value (redirect URL)
+      "https://your-redirect-uri.com", // Replace with your value (redirect URI)
       receivedCode,
    ).then((oauthAccessTokenWithRefreshToken) => {
        console.log(oauthAccessTokenWithRefreshToken)
@@ -104,7 +104,7 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
    osuApiV2.oauth.refreshTokenGrant(
        1234,                            // Replace with your value (client ID)
        "PLACEHOLDER_CLIENT_SECRET",     // Replace with your value (client secret)
-       "https://your-redirect-url.com", // Replace with your value (redirect URL)
+       "https://your-redirect-uri.com", // Replace with your value (redirect URI)
        "PLACEHOLDER_REFRESH_TOKEN",     // Replace with your value (refresh token)
    ).then(oauthAccessTokenWithRefreshToken => {
        console.log(oauthAccessTokenWithRefreshToken)

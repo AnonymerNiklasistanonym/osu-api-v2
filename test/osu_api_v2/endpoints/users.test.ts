@@ -602,7 +602,7 @@ export const usersTestSuite = (): Suite =>
                     await osuApiV2.oauth.refreshTokenGrant(
                         oauthRefreshTokenSecret.clientId,
                         oauthRefreshTokenSecret.clientSecret,
-                        oauthRefreshTokenSecret.redirectUrl,
+                        oauthRefreshTokenSecret.redirectUri,
                         oauthRefreshTokenSecret.refreshToken,
                     )
                 oauthAccessTokenIdentifyScope =
