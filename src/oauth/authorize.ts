@@ -37,7 +37,7 @@ import { OAuthAuthorizeScope } from "../types/oauth_scopes"
  * ```
  * @example
  * ```text
- * https://osu.ppy.sh/oauth/authorize?client_id=1234&redirect_uri=http://localhost:8888&scope=public+identify&response_type=code
+ * https://osu.ppy.sh/oauth/authorize?client_id=1234&redirect_uri=http://localhost:8888&scope=public%20identify&response_type=code
  * ```
  *
  * ([Source](https://osu.ppy.sh/docs/index.html#authorization-code-grant))
