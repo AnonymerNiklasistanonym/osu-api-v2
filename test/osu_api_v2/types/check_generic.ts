@@ -14,7 +14,9 @@ export const genericCheckObjectForUncheckedKeys = <DATA_TYPE extends object>(
     for (const [key, value] of Object.entries(input)) {
         if (!checkedKeys.includes(key) && value !== undefined) {
             expect.fail(
-                `Found unchecked key '${key}': '${JSON.stringify(value)}'`,
+                `Found unchecked key '${key}': '${JSON.stringify(
+                    value,
+                )}' (${JSON.stringify(input)})`,
             )
         }
     }

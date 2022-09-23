@@ -99,21 +99,8 @@ export const checkBeatmapObject = async (
             .greaterThanOrEqual(0)
             .that.satisfies(Number.isInteger)
     }
-    expect(beatmap.mode).to.be.a("string").with.a.lengthOf.greaterThan(0)
-    expect([
-        GameMode.OSU_CATCH,
-        GameMode.OSU_MANIA,
-        GameMode.OSU_STANDARD,
-        GameMode.OSU_TAIKO,
-    ]).to.include(beatmap.mode)
-    expect(Object.values(GameMode)).to.include(beatmap.mode)
-    expect(beatmap.mode_int).to.be.a("number").that.satisfies(Number.isInteger)
-    expect([
-        GameModeInt.OSU_CATCH,
-        GameModeInt.OSU_MANIA,
-        GameModeInt.OSU_STANDARD,
-        GameModeInt.OSU_TAIKO,
-    ]).to.include(beatmap.mode_int)
+    expect(Object.values(GameMode)).includes(beatmap.mode)
+    expect(Object.values(GameModeInt)).includes(beatmap.mode_int)
     switch (beatmap.mode_int) {
         case GameModeInt.OSU_CATCH:
             expect(beatmap.mode).to.be.equal(GameMode.OSU_CATCH)

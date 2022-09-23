@@ -7,6 +7,7 @@ import path from "path"
 // Type imports
 import type {
     EndpointSearchUserResponse,
+    Event,
     Score,
     User,
     UserEndpointGet,
@@ -141,20 +142,28 @@ const usersMe = genericEndpointGenerator<UserEndpointMe>(
 )
 
 const usersScores = genericEndpointGenerator<Score[]>("users_scores")
-const usersRecentActivity = genericEndpointGenerator<Score[]>(
+const usersRecentActivity = genericEndpointGenerator<Event[]>(
     "users_recent_activity",
+    (input) => {
+        const trimmedLongDataAttributes: string[] = []
+        if (input.length > 3) {
+            trimmedLongDataAttributes.push("[]")
+            input = input.slice(0, 3)
+        }
+        return trimmedLongDataAttributes
+    },
 )
 const searchUser = genericEndpointGenerator<EndpointSearchUserResponse>(
     "search_user",
     (input) => {
-        const trimmedAttributes: string[] = []
+        const trimmedLongDataAttributes: string[] = []
 
         if (input.user.data.length > 3) {
-            trimmedAttributes.push("user.data")
+            trimmedLongDataAttributes.push("user.data")
             input.user.data = input.user.data.slice(0, 3)
         }
 
-        return trimmedAttributes
+        return trimmedLongDataAttributes
     },
 )
 

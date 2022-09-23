@@ -31,7 +31,7 @@ import type {
     UserStatisticsLevel,
     UserStatisticsRulesets,
 } from "../../../src/types/user"
-import { DefaultCheckResponseOptions } from "../../test_helper"
+import type { DefaultCheckResponseOptions } from "../../test_helper"
 
 export const checkUserCompactCoverObject = (
     userCompactCover: Readonly<UserCompactCover>,
@@ -135,7 +135,6 @@ export const checkUserRankHistoryObject = (
     const checkedKeys: string[] = []
 
     checkedKeys.push("mode")
-    expect(userRankHistory.mode).to.be.a("string")
     expect(Object.values(GameMode)).includes(userRankHistory.mode)
 
     checkedKeys.push("data")
@@ -307,11 +306,9 @@ export const checkUserGameModeVariantObject = (
     expect(userGameModeVariant.pp).to.be.a("number").greaterThanOrEqual(0)
 
     checkedKeys.push("mode")
-    expect(userGameModeVariant.mode).to.be.a("string")
     expect(Object.values(GameMode)).includes(userGameModeVariant.mode)
 
     checkedKeys.push("variant")
-    expect(userGameModeVariant.variant).to.be.a("string")
     expect(Object.values(GameModeVariant)).includes(userGameModeVariant.variant)
 
     genericCheckObjectForUncheckedKeys(userGameModeVariant, checkedKeys)
@@ -628,7 +625,6 @@ export const checkUserObject = (
     }
 
     checkedKeys.push("playmode")
-    expect(user.playmode).to.be.a("string")
     expect(Object.values(GameMode)).includes(user.playmode)
     if (options?.playmode) {
         expect(user.playmode).equals(options.playmode)
@@ -638,7 +634,6 @@ export const checkUserObject = (
         checkedKeys.push("playstyle")
         expect(user.playstyle).to.be.an("array")
         for (const element of user.playstyle) {
-            expect(element).to.be.a("string")
             expect(Object.values(Playstyle)).includes(element)
         }
     } else {
@@ -652,7 +647,6 @@ export const checkUserObject = (
     checkedKeys.push("profile_order")
     expect(user.profile_order).to.be.a("array")
     for (const element of user.profile_order) {
-        expect(element).to.be.a("string")
         expect(Object.values(ProfilePage)).includes(element)
     }
 

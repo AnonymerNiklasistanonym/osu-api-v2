@@ -27,6 +27,7 @@ import {
     updateOAuthSecretRefreshToken,
 } from "../get_oauth_secrets"
 import osuApiV2, { GameMode, OsuApiV2ErrorCode, ScoresType } from "../../../src"
+import { checkEventObjects } from "../types/check_event"
 // Type imports
 import type {
     OAuthAccessToken,
@@ -449,33 +450,50 @@ export const usersTestSuite = (): Suite =>
                     }
                 }).timeout(timeoutForRequestsInMs(1))
                 it("should make request successfully", async () => {
-                    await osuApiV2.users.recentActivity(
+                    const recentActivity = await osuApiV2.users.recentActivity(
                         oauthAccessToken,
                         9096716,
                     )
-
-                    const recentActivity21 =
+                    await saveAndCheckResponse(
+                        "users_recent_activity",
+                        "9096716",
+                        recentActivity,
+                        checkEventObjects,
+                    )
+                    const recentActivity201 =
                         await osuApiV2.users.recentActivity(
                             oauthAccessToken,
                             9096716,
-                            2,
+                            20,
                             1,
                         )
-                    await saveResponse(
+                    await saveAndCheckResponse(
                         "users_recent_activity",
-                        "9096716_2_1",
-                        recentActivity21,
+                        "9096716_20_1",
+                        recentActivity201,
+                        checkEventObjects,
                     )
-
                     const recentActivity2 = await osuApiV2.users.recentActivity(
                         oauthAccessToken,
                         2927048,
-                        2,
+                        10,
                     )
-                    await saveResponse(
+                    await saveAndCheckResponse(
                         "users_recent_activity",
-                        "2927048_2",
+                        "2927048_10",
                         recentActivity2,
+                        checkEventObjects,
+                    )
+                    const recentActivityMrekk =
+                        await osuApiV2.users.recentActivity(
+                            oauthAccessToken,
+                            7562902,
+                        )
+                    await saveAndCheckResponse(
+                        "users_recent_activity",
+                        "7562902",
+                        recentActivityMrekk,
+                        checkEventObjects,
                     )
                 }).timeout(timeoutForRequestsInMs(3))
             })
