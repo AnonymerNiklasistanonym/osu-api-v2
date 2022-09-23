@@ -17,6 +17,8 @@ import {
     GameModeVariant,
     Playstyle,
     UserAchievement,
+    UserEndpointGet,
+    UserEndpointMe,
     UserGameModeVariant,
     UserReplaysWatchedCount,
     UserStatistics,
@@ -368,7 +370,13 @@ export const checkUserAchievementObject = (
     genericCheckObjectForUncheckedKeys(userAchievement, checkedKeys)
 }
 
+export enum CheckUserObjectEndpoint {
+    GET = "GET",
+    ME = "ME",
+}
+
 export interface CheckUserObjectOptions {
+    endpoint?: CheckUserObjectEndpoint
     hasIsRestricted?: boolean
     noPage?: boolean
     noSupporter?: boolean
@@ -377,6 +385,56 @@ export interface CheckUserObjectOptions {
     statisticsGameMode?: GameMode
     userId?: number
     userName?: string
+}
+
+export const checkUserObjectEndpointGet = (
+    user: Readonly<UserEndpointGet>,
+): void => {
+    expect(user.account_history).to.not.be.undefined
+    expect(user.active_tournament_banner).to.not.be.undefined
+    expect(user.badges).to.not.be.undefined
+    expect(user.beatmap_playcounts_count).to.not.be.undefined
+    expect(user.comments_count).to.not.be.undefined
+    expect(user.discord).to.not.be.undefined
+    expect(user.favourite_beatmapset_count).to.not.be.undefined
+    expect(user.follower_count).to.not.be.undefined
+    expect(user.graveyard_beatmapset_count).to.not.be.undefined
+    expect(user.groups).to.not.be.undefined
+    expect(user.guest_beatmapset_count).to.not.be.undefined
+    expect(user.interests).to.not.be.undefined
+    expect(user.last_visit).to.not.be.undefined
+    expect(user.location).to.not.be.undefined
+    expect(user.loved_beatmapset_count).to.not.be.undefined
+    expect(user.mapping_follower_count).to.not.be.undefined
+    expect(user.monthly_playcounts).to.not.be.undefined
+    expect(user.occupation).to.not.be.undefined
+    expect(user.page).to.not.be.undefined
+    expect(user.pending_beatmapset_count).to.not.be.undefined
+    expect(user.previous_usernames).to.not.be.undefined
+    expect(user.profile_colour).to.not.be.undefined
+    expect(user.rank_history).to.not.be.undefined
+    expect(user.ranked_beatmapset_count).to.not.be.undefined
+    expect(user.replays_watched_counts).to.not.be.undefined
+    expect(user.scores_best_count).to.not.be.undefined
+    expect(user.scores_first_count).to.not.be.undefined
+    expect(user.scores_pinned_count).to.not.be.undefined
+    expect(user.scores_recent_count).to.not.be.undefined
+    expect(user.statistics).to.not.be.undefined
+    expect(user.support_level).to.not.be.undefined
+    expect(user.title).to.not.be.undefined
+    expect(user.title_url).to.not.be.undefined
+    expect(user.twitter).to.not.be.undefined
+    expect(user.user_achievements).to.not.be.undefined
+    expect(user.website).to.not.be.undefined
+}
+
+export const checkUserObjectEndpointMe = (
+    user: Readonly<UserEndpointMe>,
+): void => {
+    checkUserObjectEndpointGet(user)
+
+    expect(user.is_restricted).to.not.be.undefined
+    expect(user.statistics_rulesets).to.not.be.undefined
 }
 
 export const checkUserObject = (
@@ -822,4 +880,15 @@ export const checkUserObject = (
     }
 
     genericCheckObjectForUncheckedKeys(user, checkedKeys)
+
+    if (options?.endpoint) {
+        switch (options.endpoint) {
+            case CheckUserObjectEndpoint.GET:
+                checkUserObjectEndpointGet(user as UserEndpointGet)
+                break
+            case CheckUserObjectEndpoint.ME:
+                checkUserObjectEndpointMe(user as UserEndpointMe)
+                break
+        }
+    }
 }

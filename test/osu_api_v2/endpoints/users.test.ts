@@ -7,6 +7,7 @@ import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestExpectedErrorType,
 } from "../../helper/custom_errors"
+import { checkUserObject, CheckUserObjectEndpoint } from "../types/check_user"
 import {
     getOAuthSecretClientCredentials,
     getOAuthSecretRefreshToken,
@@ -18,7 +19,6 @@ import {
     saveResponse,
     timeoutForRequestsInMs,
 } from "../../test_helper"
-import { checkUserObject } from "../types/check_user"
 // Type imports
 import type {
     OAuthAccessToken,
@@ -107,6 +107,7 @@ export const usersTestSuite = (): Suite =>
                         userNoPage,
                         checkUserObject,
                         {
+                            endpoint: CheckUserObjectEndpoint.GET,
                             noPage: true,
                             noSupporter: true,
                             userId: 26446321,
@@ -123,6 +124,7 @@ export const usersTestSuite = (): Suite =>
                         defaultId,
                         checkUserObject,
                         {
+                            endpoint: CheckUserObjectEndpoint.GET,
                             userId: 9096716,
                         },
                     )
@@ -137,6 +139,7 @@ export const usersTestSuite = (): Suite =>
                         osuId,
                         checkUserObject,
                         {
+                            endpoint: CheckUserObjectEndpoint.GET,
                             statisticsGameMode: GameMode.OSU_STANDARD,
                             userId: 9096716,
                         },
@@ -152,6 +155,7 @@ export const usersTestSuite = (): Suite =>
                         taikoId,
                         checkUserObject,
                         {
+                            endpoint: CheckUserObjectEndpoint.GET,
                             statisticsGameMode: GameMode.OSU_TAIKO,
                             userId: 9096716,
                         },
@@ -167,6 +171,7 @@ export const usersTestSuite = (): Suite =>
                         fruitsId,
                         checkUserObject,
                         {
+                            endpoint: CheckUserObjectEndpoint.GET,
                             statisticsGameMode: GameMode.OSU_CATCH,
                             userId: 9096716,
                         },
@@ -182,6 +187,7 @@ export const usersTestSuite = (): Suite =>
                         maniaId,
                         checkUserObject,
                         {
+                            endpoint: CheckUserObjectEndpoint.GET,
                             statisticsGameMode: GameMode.OSU_MANIA,
                             userId: 9096716,
                         },
@@ -191,47 +197,80 @@ export const usersTestSuite = (): Suite =>
                         oauthAccessToken,
                         "Ooi",
                     )
-                    await saveResponse("users_get", "Ooi", defaultName)
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "Ooi",
+                        defaultName,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            userName: "Ooi",
+                        },
+                    )
                     const osuName = await osuApiV2.users.get(
                         oauthAccessToken,
                         "Ooi",
                         GameMode.OSU_STANDARD,
+                    )
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "Ooi_osu",
+                        osuName,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            statisticsGameMode: GameMode.OSU_STANDARD,
+                            userName: "Ooi",
+                        },
                     )
                     const taikoName = await osuApiV2.users.get(
                         oauthAccessToken,
                         "Ooi",
                         GameMode.OSU_TAIKO,
                     )
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "Ooi_taiko",
+                        taikoName,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            statisticsGameMode: GameMode.OSU_TAIKO,
+                            userName: "Ooi",
+                        },
+                    )
                     const fruitsName = await osuApiV2.users.get(
                         oauthAccessToken,
                         "Ooi",
                         GameMode.OSU_CATCH,
+                    )
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "Ooi_catch",
+                        fruitsName,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            statisticsGameMode: GameMode.OSU_CATCH,
+                            userName: "Ooi",
+                        },
                     )
                     const maniaName = await osuApiV2.users.get(
                         oauthAccessToken,
                         "Ooi",
                         GameMode.OSU_MANIA,
                     )
-                    if (fruitsName.rank_history?.mode !== undefined) {
-                        expect(fruitsName.rank_history?.mode).equals(
-                            GameMode.OSU_CATCH,
-                        )
-                    }
-                    if (taikoName.rank_history?.mode !== undefined) {
-                        expect(taikoName.rank_history?.mode).equals(
-                            GameMode.OSU_TAIKO,
-                        )
-                    }
-                    if (maniaName.rank_history?.mode !== undefined) {
-                        expect(maniaName.rank_history?.mode).equals(
-                            GameMode.OSU_MANIA,
-                        )
-                    }
-                    if (osuName.rank_history?.mode !== undefined) {
-                        expect(osuName.rank_history?.mode).equals(
-                            GameMode.OSU_STANDARD,
-                        )
-                    }
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "Ooi_mania",
+                        maniaName,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            statisticsGameMode: GameMode.OSU_MANIA,
+                            userName: "Ooi",
+                        },
+                    )
                 }).timeout(timeoutForRequestsInMs(10))
                 it("user playmode should equal 'osu'", async () => {
                     const userId = await osuApiV2.users.get(
@@ -500,6 +539,7 @@ export const usersTestSuite = (): Suite =>
                         me,
                         checkUserObject,
                         {
+                            endpoint: CheckUserObjectEndpoint.ME,
                             hasIsRestricted: true,
                         },
                     )
@@ -513,6 +553,7 @@ export const usersTestSuite = (): Suite =>
                         meStandard,
                         checkUserObject,
                         {
+                            endpoint: CheckUserObjectEndpoint.ME,
                             hasIsRestricted: true,
                             statisticsGameMode: GameMode.OSU_STANDARD,
                         },
@@ -527,6 +568,7 @@ export const usersTestSuite = (): Suite =>
                         meCatch,
                         checkUserObject,
                         {
+                            endpoint: CheckUserObjectEndpoint.ME,
                             hasIsRestricted: true,
                             statisticsGameMode: GameMode.OSU_CATCH,
                         },
@@ -541,6 +583,7 @@ export const usersTestSuite = (): Suite =>
                         meMania,
                         checkUserObject,
                         {
+                            endpoint: CheckUserObjectEndpoint.ME,
                             hasIsRestricted: true,
                             statisticsGameMode: GameMode.OSU_MANIA,
                         },
@@ -555,6 +598,7 @@ export const usersTestSuite = (): Suite =>
                         meTaiko,
                         checkUserObject,
                         {
+                            endpoint: CheckUserObjectEndpoint.ME,
                             hasIsRestricted: true,
                             statisticsGameMode: GameMode.OSU_TAIKO,
                         },
