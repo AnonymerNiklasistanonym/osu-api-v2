@@ -23,11 +23,11 @@ import type { OsuApiV2WebRequestError } from "../helpers/custom_errors"
  * const user = await osuApiV2.users.recentActivity(
  *     oauthAccessToken,
  *     9096716,
- *     2,
+ *     20,
  *     1,
  * )
  * ```
- * [[include:example_output/users_recent_activity_9096716_2_1.md]]
+ * [[include:example_output/users_recent_activity_9096716_20_1.md]]
  * @example
  * ```ts
  * import osuApiV2 from "osu-api-v2"
@@ -35,10 +35,10 @@ import type { OsuApiV2WebRequestError } from "../helpers/custom_errors"
  * const user = await osuApiV2.users.recentActivity(
  *     oauthAccessToken,
  *     2927048,
- *     2,
+ *     10,
  * )
  * ```
- * [[include:example_output/users_recent_activity_2927048_2.md]]
+ * [[include:example_output/users_recent_activity_2927048_10.md]]
  *
  * ([Source](https://osu.ppy.sh/docs/index.html#get-user-recent-activity))
  */

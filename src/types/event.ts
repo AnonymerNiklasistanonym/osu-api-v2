@@ -33,8 +33,8 @@ export type Events =
     | EventUsernameChange
 
 /**
- * [[include:example_output/users_recent_activity_9096716_2_1.md]]
- * [[include:example_output/users_recent_activity_2927048_2.md]]
+ * [[include:example_output/users_recent_activity_9096716_20_1.md]]
+ * [[include:example_output/users_recent_activity_2927048_10.md]]
  *
  * ([Source](https://osu.ppy.sh/docs/index.html#event))
  */
