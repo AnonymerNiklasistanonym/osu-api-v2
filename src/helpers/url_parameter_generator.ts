@@ -1,6 +1,6 @@
 export interface UrlParameter {
     name: string
-    value?: string | readonly string[]
+    value?: number | string | readonly (number | string)[]
 }
 
 export const urlParameterGenerator = (
@@ -29,6 +29,8 @@ export const urlParameterGenerator = (
             valueStr = "undefined"
         } else if (typeof value === "string") {
             valueStr = value
+        } else if (typeof value === "number") {
+            valueStr = `${value}`
         } else {
             // https://github.com/ppy/osu-web/issues/5832#issuecomment-605456962
             valueStr = value.join(" ")

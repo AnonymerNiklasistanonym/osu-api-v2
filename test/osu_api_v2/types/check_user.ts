@@ -887,7 +887,9 @@ export const checkUserCompactObject = (
     if (user.last_visit !== undefined) {
         if (user.last_visit !== null) {
             checkedKeys.push("last_visit")
-            expect(user.last_visit).to.be.a("string").with.a.lengthOf.greaterThan(0)
+            expect(user.last_visit)
+                .to.be.a("string")
+                .with.a.lengthOf.greaterThan(0)
         } else {
             checkedKeys.push("last_visit")
             expect(user.last_visit).to.be.null

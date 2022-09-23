@@ -34,10 +34,26 @@ export const urlParameterGeneratorTestSuite = (): Suite =>
             ])
             expect(paramGeneratorSingleString).to.equal("?a=b")
 
+            const paramGeneratorSingleNumber = urlParameterGenerator([
+                { name: "a", value: 42 },
+            ])
+            expect(paramGeneratorSingleNumber).to.equal("?a=42")
+
+            const paramGeneratorSingleStringArray = urlParameterGenerator([
+                { name: "a", value: ["one", "two", "three"] },
+            ])
+            expect(paramGeneratorSingleStringArray).to.equal("?a=one two three")
+
             const paramGeneratorMultipleStrings = urlParameterGenerator([
                 { name: "a", value: "b" },
                 { name: "c", value: "d" },
             ])
             expect(paramGeneratorMultipleStrings).to.equal("?a=b&c=d")
+
+            const paramGeneratorMultipleMixed = urlParameterGenerator([
+                { name: "a", value: "b" },
+                { name: "c", value: 12 },
+            ])
+            expect(paramGeneratorMultipleMixed).to.equal("?a=b&c=12")
         })
     })

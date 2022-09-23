@@ -21,9 +21,13 @@ export const genericWebRequestUrlGenerator = (
     path: readonly (string | number | undefined)[],
     options?: Readonly<GenericWebRequestUrlGeneratorOptions>,
 ) =>
-    `${options?.apiCall === true ? baseUrlApiV2 : baseUrl}/${urlPathGenerator(
-        ...path,
-    )}${urlParameterGenerator(options?.urlParameters)}`
+    encodeURI(
+        `${
+            options?.apiCall === true ? baseUrlApiV2 : baseUrl
+        }/${urlPathGenerator(...path)}${urlParameterGenerator(
+            options?.urlParameters,
+        )}`,
+    )
 
 /**
  * Optional generic web request options.

@@ -27,6 +27,7 @@ import type { OAuthAuthorizeScope } from "../types/oauth_scopes"
  *     oauthAccessToken,
  * )
  * ```
+ * [[include:example_output/users_me_nothing.md]]
  *
  * ([Source](https://osu.ppy.sh/docs/index.html#get-own-data))
  */

@@ -545,6 +545,9 @@ export interface UserGameModeVariant {
  *
  * This type information is not official but was collected looking at responses.
  * For type safety just treat this object like a {@link User} object.
+ *
+ * [[include:example_output/users_get_9096716.md]]
+ * [[include:example_output/users_get_Ooi.md]]
  */
 export interface UserEndpointGet extends User {
     account_history: UserAccountHistory[]
@@ -592,6 +595,8 @@ export interface UserEndpointGet extends User {
  *
  * This type information is not official but was collected looking at responses.
  * For type safety just treat this object like a {@link User} object.
+ *
+ * [[include:example_output/users_me_nothing.md]]
  */
 export interface UserEndpointMe extends UserEndpointGet {
     is_restricted: boolean
@@ -766,6 +771,10 @@ export interface User extends UserCompact {
     website?: string | null
 }
 
+/**
+ * [[include:example_output/search_user_niklas616.md]]
+ * [[include:example_output/search_user_Ooi_2.md]]
+ */
 export interface EndpointSearchUserResponse {
     user: EndpointSearchUserResponseUsers
 }

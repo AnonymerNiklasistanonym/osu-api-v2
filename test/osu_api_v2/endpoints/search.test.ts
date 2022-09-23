@@ -62,10 +62,11 @@ export const searchTestSuite = (): Suite =>
                 const searchResultUser2 = await osuApiV2.search.user(
                     oauthAccessToken,
                     "Ooi",
+                    2,
                 )
                 await saveAndCheckResponse(
                     "search_user",
-                    "Ooi",
+                    "Ooi_2",
                     searchResultUser2,
                     checkEndpointSearchUserResponseObject,
                 )
