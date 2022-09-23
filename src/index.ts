@@ -35,6 +35,32 @@ export type {
 } from "./types/beatmap"
 export type { BeatmapUserScore, Score, ScoreStatistics } from "./types/score"
 export type {
+    EndpointSearchUserResponse,
+    EndpointSearchUserResponseUsers,
+    User,
+    UserAccountHistory,
+    UserAchievement,
+    UserBadge,
+    UserCompact,
+    UserCompactCountry,
+    UserCompactCover,
+    UserCompactKusodo,
+    UserCompactPage,
+    UserCompactProfileBanner,
+    UserEndpointGet,
+    UserEndpointMe,
+    UserEndpointSearchUser,
+    UserGameModeVariant,
+    UserGroup,
+    UserMonthlyPlaycount,
+    UserRankHistory,
+    UserReplaysWatchedCount,
+    UserStatistics,
+    UserStatisticsGradeCounts,
+    UserStatisticsLevel,
+    UserStatisticsRulesets,
+} from "./types/user"
+export type {
     Event,
     EventAchievement,
     EventBeatmapPlayCount,
@@ -56,38 +82,13 @@ export type {
     EventUserSupportGift,
 } from "./types/event"
 export type {
-    OsuApiV2WebRequestErrorMethod,
-    OsuApiV2WebRequestErrorHeaders,
-} from "./helpers/custom_errors"
-export type {
     OAuthAccessToken,
     OAuthAccessTokenWithRefreshToken,
 } from "./types/oauth_access_token"
 export type {
-    User,
-    UserAccountHistory,
-    UserAchievement,
-    UserBadge,
-    UserCompact,
-    UserCompactCountry,
-    UserCompactCover,
-    UserCompactKusodo,
-    UserCompactPage,
-    UserCompactProfileBanner,
-    UserEndpointGet,
-    UserEndpointMe,
-    UserGameModeVariant,
-    UserStatistics,
-    UserStatisticsGradeCounts,
-    UserStatisticsLevel,
-    UserGroup,
-    UserMonthlyPlaycount,
-    UserRankHistory,
-    UserReplaysWatchedCount,
-    UserSearchResult,
-    UserSearchResultUserSection,
-    UserStatisticsRulesets,
-} from "./types/user"
+    OsuApiV2WebRequestErrorMethod,
+    OsuApiV2WebRequestErrorHeaders,
+} from "./helpers/custom_errors"
 export type { ClientCredentialsGrant } from "./types/client_credentials_grant"
 export type { Failtimes } from "./types/failtimes"
 export type { Timestamp } from "./types/timestamp"

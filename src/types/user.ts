@@ -31,7 +31,7 @@ export interface UserStatisticsRulesets {
 
 export interface UserMonthlyPlaycount {
     count: number
-    start_date: string
+    start_date: Timestamp
 }
 
 export interface UserGroup {
@@ -111,10 +111,7 @@ export interface UserCompactPage {
 
 export interface UserReplaysWatchedCount {
     count: number
-    /**
-     * @example "2017-01-01"
-     */
-    start_date: string
+    start_date: Timestamp
 }
 
 export enum Playstyle {
@@ -275,7 +272,7 @@ export interface UserCompact {
      * Last access time.
      * `null` if the user hides online presence.
      *
-     * This is included in a {@link UserEndpointGet} object.
+     * This is included in a {@link UserEndpointGet}/{@link UserEndpointSearchUser} object.
      */
     last_visit?: Timestamp | null
     /**
@@ -329,7 +326,7 @@ export interface UserCompact {
     /**
      * Colour of username/profile highlight, hex code (e.g. #333333).
      *
-     * This is included in a {@link UserEndpointGet} object.
+     * This is included in a {@link UserEndpointGet}/{@link UserEndpointSearchUser} object.
      */
     profile_colour?: string | null
     /**
@@ -514,6 +511,19 @@ export interface UserEndpointMe extends UserEndpointGet {
 }
 
 /**
+ * Is the same as the {@link UserCompact} object but some optional attributes on {@link UserCompact} are included.
+ *
+ * ---
+ *
+ * This type information is not official but was collected looking at responses.
+ * For type safety just treat this object like a {@link UserCompact} object.
+ */
+export interface UserEndpointSearchUser extends UserCompact {
+    last_visit: Timestamp | null
+    profile_colour: string | null
+}
+
+/**
  * Represents a User.
  * Extends {@link UserCompact} with additional attributes.
  * In addition, some optional attributes on {@link UserCompact} are included.
@@ -668,11 +678,11 @@ export interface User extends UserCompact {
     website?: string | null
 }
 
-export interface UserSearchResult {
-    user: UserSearchResultUserSection
+export interface EndpointSearchUserResponse {
+    user: EndpointSearchUserResponseUsers
 }
 
-export interface UserSearchResultUserSection {
-    data: User[]
+export interface EndpointSearchUserResponseUsers {
+    data: UserEndpointSearchUser[]
     total: number
 }
