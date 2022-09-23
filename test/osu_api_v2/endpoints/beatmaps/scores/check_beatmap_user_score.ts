@@ -2,7 +2,7 @@
 import { expect } from "chai"
 import moment from "moment"
 // Local imports
-import { GameMode, GameModeInt, GameMods } from "../../../../../src"
+import { GameMod, GameMode, GameModeInt } from "../../../../../src"
 import { checkBeatmapObject } from "../check_beatmap"
 import { saveResponse } from "../../../../test_helper"
 // Type imports
@@ -106,27 +106,27 @@ export const checkBeatmapUserScoreScoreObject = async (
         beatmapUserScoreScore.mods.some(
             (x) =>
                 ![
-                    GameMods.EZ,
-                    GameMods.NF,
-                    GameMods.HT,
-                    GameMods.HR,
-                    GameMods.SD,
-                    GameMods.PF,
-                    GameMods.DT,
-                    GameMods.NC,
-                    GameMods.HD,
-                    GameMods.FI,
-                    GameMods.FL,
-                    GameMods.RL,
-                    GameMods.AP,
-                    GameMods.SO,
-                    GameMods.CP,
-                    GameMods.MR,
-                    GameMods.RD,
-                    GameMods.AT,
-                    GameMods.CM,
-                    GameMods.SV2,
-                    GameMods.TP,
+                    GameMod.EZ,
+                    GameMod.NF,
+                    GameMod.HT,
+                    GameMod.HR,
+                    GameMod.SD,
+                    GameMod.PF,
+                    GameMod.DT,
+                    GameMod.NC,
+                    GameMod.HD,
+                    GameMod.FI,
+                    GameMod.FL,
+                    GameMod.RL,
+                    GameMod.AP,
+                    GameMod.SO,
+                    GameMod.CP,
+                    GameMod.MR,
+                    GameMod.RD,
+                    GameMod.AT,
+                    GameMod.CM,
+                    GameMod.SV2,
+                    GameMod.TP,
                 ]
                     .map((a) => a.toString())
                     .includes(x),

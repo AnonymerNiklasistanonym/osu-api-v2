@@ -5,11 +5,7 @@ import { oauth } from "./oauth/oauth"
 import { search } from "./search/search"
 import { users } from "./users/users"
 // Local exports
-export {
-    EventType,
-    EventBeatmapsetApproveApproval,
-    EventRankScoreRank,
-} from "./types/event"
+export { EventType, EventBeatmapsetApproveApproval } from "./types/event"
 export { GameMode, GameModeInt } from "./types/game_mode"
 export {
     OsuApiV2WebRequestError,
@@ -22,10 +18,11 @@ export {
     Playstyle,
     UserAccountHistoryType,
 } from "./types/user"
-export { GameMods } from "./types/game_mods"
+export { GameMod } from "./types/game_mods"
 export { OAuthAuthorizeScope } from "./types/oauth_scopes"
 export { RankStatus } from "./types/rank_status"
 export { ScoresType } from "./users/scores"
+export { ScoreRank, ScoreType } from "./types/score"
 // Type exports
 export type {
     Beatmap,
@@ -100,6 +97,7 @@ export type { ClientCredentialsGrant } from "./types/client_credentials_grant"
 export type { ColorCode } from "./types/color_code"
 export type { Failtimes } from "./types/failtimes"
 export type { Timestamp } from "./types/timestamp"
+export type { ScoreWeight, ScoreUserAttributes } from "./types/score"
 
 /**
  * A collection of all supported osu!api v2 endpoints.

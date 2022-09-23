@@ -3,7 +3,7 @@
  *
  * ([Undocumented but can be found in Score](https://osu.ppy.sh/docs/index.html#score)).
  */
-export enum GameMods {
+export enum GameMod {
     AP = "AP",
     AT = "AT",
     CM = "CM",

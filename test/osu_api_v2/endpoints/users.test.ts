@@ -14,7 +14,6 @@ import {
 import {
     checkResponse,
     saveAndCheckResponse,
-    saveResponse,
     timeoutForRequestsInMs,
 } from "../../test_helper"
 import {
@@ -28,6 +27,7 @@ import {
 } from "../get_oauth_secrets"
 import osuApiV2, { GameMode, OsuApiV2ErrorCode, ScoresType } from "../../../src"
 import { checkEventObjects } from "../types/check_event"
+import { checkScoreObjects } from "../types/check_score"
 // Type imports
 import type {
     OAuthAccessToken,
@@ -527,40 +527,57 @@ export const usersTestSuite = (): Suite =>
                         2,
                         1,
                     )
-                    await saveResponse(
+                    await saveAndCheckResponse(
                         "users_scores",
                         "9096716_best_osu_2_1",
                         userBestOsu21,
+                        checkScoreObjects,
+                        {
+                            gameMode: GameMode.OSU_STANDARD,
+                            userId: 9096716,
+                        },
                     )
                     const userRecent = await osuApiV2.users.scores(
                         oauthAccessToken,
                         9096716,
                         ScoresType.RECENT,
                     )
-                    await saveResponse(
+                    await saveAndCheckResponse(
                         "users_scores",
                         "9096716_recent",
                         userRecent,
+                        checkScoreObjects,
+                        {
+                            userId: 9096716,
+                        },
                     )
                     const userBest = await osuApiV2.users.scores(
                         oauthAccessToken,
                         9096716,
                         ScoresType.BEST,
                     )
-                    await saveResponse(
+                    await saveAndCheckResponse(
                         "users_scores",
                         "9096716_first",
                         userBest,
+                        checkScoreObjects,
+                        {
+                            userId: 9096716,
+                        },
                     )
                     const userFirst = await osuApiV2.users.scores(
                         oauthAccessToken,
                         9096716,
                         ScoresType.FIRST,
                     )
-                    await saveResponse(
+                    await saveAndCheckResponse(
                         "users_scores",
                         "9096716_first",
                         userFirst,
+                        checkScoreObjects,
+                        {
+                            userId: 9096716,
+                        },
                     )
                     const userRecentOsu30True = await osuApiV2.users.scores(
                         oauthAccessToken,
@@ -571,10 +588,15 @@ export const usersTestSuite = (): Suite =>
                         0,
                         true,
                     )
-                    await saveResponse(
+                    await saveAndCheckResponse(
                         "users_scores",
                         "9096716_recent_osu_3_0_true",
                         userRecentOsu30True,
+                        checkScoreObjects,
+                        {
+                            gameMode: GameMode.OSU_STANDARD,
+                            userId: 9096716,
+                        },
                     )
                     const userRecentUndefinedUndefinedUndefinedFalse =
                         await osuApiV2.users.scores(
@@ -586,24 +608,33 @@ export const usersTestSuite = (): Suite =>
                             undefined,
                             false,
                         )
-                    await saveResponse(
+                    await saveAndCheckResponse(
                         "users_scores",
                         "9096716_recent_undefined_undefined_undefined_false",
                         userRecentUndefinedUndefinedUndefinedFalse,
+                        checkScoreObjects,
+                        {
+                            userId: 9096716,
+                        },
                     )
                     const userRecentOsu20True = await osuApiV2.users.scores(
                         oauthAccessToken,
                         2927048,
                         ScoresType.RECENT,
                         GameMode.OSU_STANDARD,
-                        2,
+                        5,
                         0,
                         true,
                     )
-                    await saveResponse(
+                    await saveAndCheckResponse(
                         "users_scores",
-                        "2927048_recent_osu_2_0_true",
+                        "2927048_recent_osu_5_0_true",
                         userRecentOsu20True,
+                        checkScoreObjects,
+                        {
+                            gameMode: GameMode.OSU_STANDARD,
+                            userId: 2927048,
+                        },
                     )
                 }).timeout(timeoutForRequestsInMs(7))
             })

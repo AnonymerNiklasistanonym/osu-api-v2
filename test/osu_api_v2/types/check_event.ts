@@ -3,9 +3,9 @@ import { expect } from "chai"
 // Local imports
 import {
     EventBeatmapsetApproveApproval,
-    EventRankScoreRank,
     EventType,
     GameMode,
+    ScoreRank,
 } from "../../../src"
 import { genericCheckObjectForUncheckedKeys } from "./check_generic"
 // Type imports
@@ -229,7 +229,7 @@ export const checkEventObject = (
             expect(Object.values(GameMode)).includes(event.mode)
 
             checkedKeys.push("scoreRank")
-            expect(Object.values(EventRankScoreRank)).includes(event.scoreRank)
+            expect(Object.values(ScoreRank)).includes(event.scoreRank)
 
             checkedKeys.push("rank")
             expect(event.rank).to.be.a("number").greaterThanOrEqual(0)

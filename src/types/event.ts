@@ -1,4 +1,7 @@
+// Local imports
 import { GameMode } from "./game_mode"
+import { ScoreRank } from "./score"
+// Type imports
 import type { Timestamp } from "./timestamp"
 
 export enum EventType {
@@ -183,18 +186,6 @@ export interface EventBeatmapsetUpload extends Event {
     user: EventObjectUser
 }
 
-/** (Undocumented) */
-export enum EventRankScoreRank {
-    A = "A",
-    B = "B",
-    C = "C",
-    F = "F",
-    S = "S",
-    SH = "SH",
-    X = "X",
-    XH = "XH",
-}
-
 /**
  * When a user achieves a certain rank on a beatmap.
  *
@@ -204,7 +195,7 @@ export interface EventRank extends Event {
     beatmap: EventObjectBeatmap
     mode: GameMode
     rank: number
-    scoreRank: EventRankScoreRank
+    scoreRank: ScoreRank
     type: EventType.RANK
     user: EventObjectUser
 }
