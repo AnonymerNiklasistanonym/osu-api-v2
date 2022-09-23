@@ -42,6 +42,8 @@ export type { BeatmapUserScore, Score, ScoreStatistics } from "./types/score"
 export type {
     EndpointSearchUserResponse,
     EndpointSearchUserResponseUsers,
+    Group,
+    GroupDescription,
     User,
     UserAccountHistory,
     UserAchievement,
@@ -95,6 +97,7 @@ export type {
     OsuApiV2WebRequestErrorHeaders,
 } from "./helpers/custom_errors"
 export type { ClientCredentialsGrant } from "./types/client_credentials_grant"
+export type { ColorCode } from "./types/color_code"
 export type { Failtimes } from "./types/failtimes"
 export type { Timestamp } from "./types/timestamp"
 

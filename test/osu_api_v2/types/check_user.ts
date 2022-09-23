@@ -2,7 +2,7 @@
 import { expect } from "chai"
 // Local imports
 import { GameMode, ProfilePage } from "../../../src"
-import { GameModeVariant, Playstyle } from "../../../src/types/user"
+import { GameModeVariant, Playstyle, UserGroup } from "../../../src/types/user"
 import { genericCheckObjectForUncheckedKeys } from "./check_generic"
 // Type imports
 import type {
@@ -400,6 +400,79 @@ export const checkUserBadgeObject = (userBadge: Readonly<UserBadge>): void => {
     genericCheckObjectForUncheckedKeys(userBadge, checkedKeys)
 }
 
+export const checkUserGroupObject = (userGroup: Readonly<UserGroup>): void => {
+    const objectInfo = () => `UserGroup: ${JSON.stringify(userGroup)}`
+    expect(userGroup).to.be.an("object")
+
+    // List of all keys that will be checked
+    const checkedKeys: string[] = []
+
+    if (userGroup.colour !== undefined) {
+        checkedKeys.push("colour")
+        expect(userGroup.colour)
+            .to.be.a("string")
+            .with.a.lengthOf.greaterThan(0, objectInfo())
+    }
+
+    if (userGroup.description !== undefined) {
+        checkedKeys.push("description")
+        expect(userGroup.description).to.be.an("object")
+        expect(userGroup.description.html)
+            .to.be.a("string")
+            .with.a.lengthOf.greaterThan(0, objectInfo())
+        expect(userGroup.description.markdown)
+            .to.be.a("string")
+            .with.a.lengthOf.greaterThan(0, objectInfo())
+    }
+
+    checkedKeys.push("has_listing")
+    expect(userGroup.has_listing).to.be.a("boolean")
+
+    checkedKeys.push("has_playmodes")
+    expect(userGroup.has_playmodes).to.be.a("boolean")
+    if (userGroup.has_playmodes) {
+        expect(userGroup.playmodes)
+            .to.be.an("array")
+            .with.a.lengthOf.greaterThan(0)
+    }
+
+    checkedKeys.push("id")
+    expect(userGroup.id).to.be.a("number").greaterThanOrEqual(0, objectInfo())
+
+    checkedKeys.push("identifier")
+    expect(userGroup.identifier)
+        .to.be.a("string")
+        .with.a.lengthOf.greaterThan(0, objectInfo())
+
+    checkedKeys.push("is_probationary")
+    expect(userGroup.is_probationary).to.be.a("boolean")
+
+    checkedKeys.push("name")
+    expect(userGroup.name)
+        .to.be.a("string")
+        .with.a.lengthOf.greaterThan(0, objectInfo())
+
+    if (userGroup.has_playmodes !== undefined) {
+        checkedKeys.push("playmodes")
+        expect(userGroup.playmodes).to.be.an("array")
+        if (Array.isArray(userGroup.playmodes)) {
+            for (const element of userGroup.playmodes) {
+                expect(Object.values(GameMode)).includes(element)
+            }
+            if (userGroup.playmodes.length > 0) {
+                expect(userGroup.has_playmodes).to.be.equal(true)
+            }
+        }
+    }
+
+    checkedKeys.push("short_name")
+    expect(userGroup.short_name)
+        .to.be.a("string")
+        .with.a.lengthOf.greaterThan(0, objectInfo())
+
+    genericCheckObjectForUncheckedKeys(userGroup, checkedKeys)
+}
+
 export enum CheckUserObjectEndpoint {
     GET = "GET",
     ME = "ME",
@@ -592,11 +665,7 @@ export const checkUserObject = (
         checkedKeys.push("groups")
         expect(user.groups).to.be.an("array")
         for (const element of user.groups) {
-            expect.fail(
-                `Found undocumented type 'groups'[]: '${JSON.stringify(
-                    element,
-                )}'`,
-            )
+            checkUserGroupObject(element)
         }
     }
 

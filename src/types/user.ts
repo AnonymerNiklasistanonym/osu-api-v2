@@ -1,6 +1,7 @@
 // Local imports
 import { GameMode } from "./game_mode"
 // Type imports
+import type { ColorCode } from "./color_code"
 import type { Timestamp } from "./timestamp"
 
 export interface UserCompactCover {
@@ -34,8 +35,63 @@ export interface UserMonthlyPlaycount {
     start_date: Timestamp
 }
 
-export interface UserGroup {
-    todo?: boolean
+/**
+ * ([Source](https://osu.ppy.sh/docs/index.html#group))
+ */
+export interface GroupDescription {
+    html: string
+    markdown: string
+}
+
+/**
+ * This object is not returned by any endpoints yet.
+ * It is here only as a reference for {@link UserGroup}.
+ *
+ * ([Source](https://osu.ppy.sh/docs/index.html#group))
+ */
+export interface Group {
+    colour?: ColorCode
+    /** Whether this group displays a listing at `/groups/{id}`. */
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     */
+    description?: GroupDescription
+    has_listing: boolean
+    /**
+ Whether this group associates GameModes with users' memberships.
+id 	number.
+     */
+    has_playmodes: boolean
+    id: number
+    /**
+     * Unique string to identify the group.
+     *
+     * @example bng
+     */
+    identifier: string
+    /** Whether members of this group are considered probationary. */
+    is_probationary: boolean
+    /**
+     * @example Beatmap Nominators
+     */
+    name: string
+    /**
+     * Short name of the group for display.
+     *
+     * @example BN
+     */
+    short_name: string
+}
+
+/**
+ * ([Source](https://osu.ppy.sh/docs/index.html#usergroup))
+ */
+export interface UserGroup extends Group {
+    /**
+     * {@link GameMode}s associated with this membership (`null` if `has_playmodes` is unset).
+     */
+    playmodes?: GameMode[] | null
 }
 
 /**
@@ -356,11 +412,11 @@ export interface UserCompact {
      */
     previous_usernames?: string[]
     /**
-     * Colour of username/profile highlight, hex code (e.g. #333333).
+     * Colour of username/profile highlight.
      *
      * This is included in a {@link UserEndpointGet}/{@link UserEndpointSearchUser} object.
      */
-    profile_colour?: string | null
+    profile_colour?: ColorCode | null
     /**
      * May be additionally included in the response.
      * Relevant endpoints should list them if applicable.
@@ -512,7 +568,7 @@ export interface UserEndpointGet extends User {
     page: UserCompactPage
     pending_beatmapset_count: number
     previous_usernames: string[]
-    profile_colour: string | null
+    profile_colour: ColorCode | null
     rank_history: UserRankHistory
     ranked_beatmapset_count: number
     replays_watched_counts: UserReplaysWatchedCount[]
@@ -552,7 +608,7 @@ export interface UserEndpointMe extends UserEndpointGet {
  */
 export interface UserEndpointSearchUser extends UserCompact {
     last_visit: Timestamp | null
-    profile_colour: string | null
+    profile_colour: ColorCode | null
 }
 
 /**

@@ -314,7 +314,21 @@ export const usersTestSuite = (): Suite =>
                             userId: 7562902,
                         },
                     )
-
+                    // Beatmap nominator title
+                    const userSotarks = await osuApiV2.users.get(
+                        oauthAccessToken,
+                        4452992,
+                    )
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "4452992",
+                        userSotarks,
+                        checkUserObject,
+                        {
+                            endpoint: CheckUserObjectEndpoint.GET,
+                            userId: 4452992,
+                        },
+                    )
                 }).timeout(timeoutForRequestsInMs(10))
                 it("user playmode should equal 'osu'", async () => {
                     const userId = await osuApiV2.users.get(
