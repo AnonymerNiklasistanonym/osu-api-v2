@@ -12,7 +12,7 @@ export const refreshTokenGrant = async (
 ): Promise<OAuthAccessTokenWithRefreshToken> =>
     genericWebRequest<OAuthAccessTokenWithRefreshToken, RefreshTokenGrant>(
         "post",
-        "/oauth/token",
+        ["oauth", "token"],
         {
             postRequestBody: {
                 client_id: clientId,

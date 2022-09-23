@@ -2,6 +2,7 @@
 import { baseUrl, baseUrlApiV2 } from "../types/api_info"
 import { OsuApiV2WebRequestError } from "./custom_errors"
 import { urlParameterGenerator } from "./url_parameter_generator"
+import { urlPathGenerator } from "./url_path_generator"
 // Type imports
 import type { OAuthAccessToken } from "../types/oauth_access_token"
 import type { UrlParameter } from "./url_parameter_generator"
@@ -17,12 +18,12 @@ export interface GenericWebRequestUrlGeneratorOptions {
 }
 
 export const genericWebRequestUrlGenerator = (
-    path: string,
+    path: readonly (string | number | undefined)[],
     options?: Readonly<GenericWebRequestUrlGeneratorOptions>,
 ) =>
-    `${
-        options?.apiCall === true ? baseUrlApiV2 : baseUrl
-    }${path}${urlParameterGenerator(options?.urlParameters)}`
+    `${options?.apiCall === true ? baseUrlApiV2 : baseUrl}/${urlPathGenerator(
+        ...path,
+    )}${urlParameterGenerator(options?.urlParameters)}`
 
 /**
  * Optional generic web request options.
@@ -44,7 +45,7 @@ export const genericWebRequest = async <
     REQUEST_BODY extends object = Record<string, string>,
 >(
     method: "get" | "post",
-    path: string,
+    path: readonly (string | number | undefined)[],
     options?: Readonly<GenericWebRequestOptions<REQUEST_BODY>>,
 ): Promise<RETURN_TYPE> => {
     let body

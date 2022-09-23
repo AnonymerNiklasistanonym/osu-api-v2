@@ -8,7 +8,7 @@ export const get = async (
     oauthAccessToken: Readonly<OAuthAccessToken>,
     beatmapsetId: number,
 ): Promise<Beatmapset> =>
-    genericWebRequest<Beatmapset>("get", `/beatmapsets/${beatmapsetId}`, {
+    genericWebRequest<Beatmapset>("get", ["beatmapsets", beatmapsetId], {
         apiCall: true,
         authorizationAccessToken: oauthAccessToken,
     })

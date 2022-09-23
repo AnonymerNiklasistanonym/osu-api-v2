@@ -53,10 +53,9 @@ export const get = async (
     userIdOrName: number | string,
     mode?: GameMode,
 ): Promise<UserEndpointGet> => {
-    const modeString = mode === undefined ? "" : `/${mode}`
     const possibleUser = await genericWebRequest<UserEndpointGet | UserList>(
         "get",
-        `/users/${userIdOrName}${modeString}`,
+        ["users", userIdOrName, mode],
         {
             apiCall: true,
             authorizationAccessToken: oauthAccessToken,

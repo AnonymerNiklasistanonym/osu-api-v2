@@ -29,7 +29,7 @@ export const clientCredentialsGrant = async (
 ): Promise<OAuthAccessToken> =>
     genericWebRequest<OAuthAccessToken, ClientCredentialsGrant>(
         "post",
-        "/oauth/token",
+        ["oauth", "token"],
         {
             postRequestBody: {
                 client_id: clientId,

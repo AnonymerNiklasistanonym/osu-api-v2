@@ -14,7 +14,7 @@ export const users = async (
 ): Promise<BeatmapUserScore> =>
     genericWebRequest<BeatmapUserScore>(
         "get",
-        `/beatmaps/${beatmapId}/scores/users/${userId}`,
+        ["beatmaps", beatmapId, "scores", "users", userId],
         {
             apiCall: true,
             authorizationAccessToken: oauthAccessToken,

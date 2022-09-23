@@ -8,7 +8,7 @@ export const user = async (
     oauthAccessToken: Readonly<OAuthAccessToken>,
     query: string,
 ): Promise<EndpointSearchUserResponse> =>
-    genericWebRequest<EndpointSearchUserResponse>("get", "/search", {
+    genericWebRequest<EndpointSearchUserResponse>("get", ["search"], {
         apiCall: true,
         authorizationAccessToken: oauthAccessToken,
         urlParameters: [

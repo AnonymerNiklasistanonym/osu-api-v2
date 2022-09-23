@@ -48,7 +48,7 @@ export const recentActivity = async (
     limit?: number,
     offset?: number,
 ): Promise<Events[]> =>
-    genericWebRequest<Events[]>("get", `/users/${userId}/recent_activity`, {
+    genericWebRequest<Events[]>("get", ["users", userId, "recent_activity"], {
         apiCall: true,
         authorizationAccessToken: oauthAccessToken,
         urlParameters: [

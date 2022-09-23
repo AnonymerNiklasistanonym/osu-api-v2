@@ -41,7 +41,7 @@ export const authorizationCodeGrant = async (
 ): Promise<OAuthAccessTokenWithRefreshToken> =>
     genericWebRequest<OAuthAccessTokenWithRefreshToken, AuthorizationCodeGrant>(
         "post",
-        "/oauth/token",
+        ["oauth", "token"],
         {
             postRequestBody: {
                 client_id: clientId,

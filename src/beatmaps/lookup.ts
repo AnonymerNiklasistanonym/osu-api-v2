@@ -10,7 +10,7 @@ export const lookup = async (
     filename?: string,
     id?: number,
 ): Promise<Beatmap> =>
-    genericWebRequest<Beatmap>("get", "/beatmaps/lookup", {
+    genericWebRequest<Beatmap>("get", ["beatmaps", "lookup"], {
         apiCall: true,
         authorizationAccessToken: oauthAccessToken,
         urlParameters: [

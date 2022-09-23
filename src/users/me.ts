@@ -31,12 +31,10 @@ import type { OAuthAuthorizeScope } from "../types/oauth_scopes"
  * ([Source](https://osu.ppy.sh/docs/index.html#get-own-data))
  */
 export const me = async (
-    oauthAccessToken: OAuthAccessToken,
+    oauthAccessToken: Readonly<OAuthAccessToken>,
     mode?: GameMode,
-): Promise<UserEndpointMe> => {
-    const modeString = mode === undefined ? "" : `/${mode}`
-    return genericWebRequest<UserEndpointMe>("get", `/me${modeString}`, {
+): Promise<UserEndpointMe> =>
+    genericWebRequest<UserEndpointMe>("get", ["me", mode], {
         apiCall: true,
         authorizationAccessToken: oauthAccessToken,
     })
-}

@@ -74,7 +74,7 @@ export const scores = async (
     offset?: number,
     includeFails?: boolean,
 ): Promise<Score[]> =>
-    genericWebRequest<Score[]>("get", `/users/${userId}/scores/${type}`, {
+    genericWebRequest<Score[]>("get", ["users", userId, "scores", type], {
         apiCall: true,
         authorizationAccessToken: oauthAccessToken,
         urlParameters: [

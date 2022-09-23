@@ -9,17 +9,21 @@ export const search = async (
     query: string,
     onlyBeatmapsetsWithLeaderboard = true,
 ): Promise<BeatmapsetSearchResult> =>
-    genericWebRequest<BeatmapsetSearchResult>("get", "/beatmapsets/search/", {
-        apiCall: true,
-        authorizationAccessToken: oauthAccessToken,
-        urlParameters: [
-            { name: "query", value: query },
-            {
-                name: "s",
-                value:
-                    onlyBeatmapsetsWithLeaderboard === false
-                        ? "any"
-                        : undefined,
-            },
-        ],
-    })
+    genericWebRequest<BeatmapsetSearchResult>(
+        "get",
+        ["beatmapsets", "search"],
+        {
+            apiCall: true,
+            authorizationAccessToken: oauthAccessToken,
+            urlParameters: [
+                { name: "query", value: query },
+                {
+                    name: "s",
+                    value:
+                        onlyBeatmapsetsWithLeaderboard === false
+                            ? "any"
+                            : undefined,
+                },
+            ],
+        },
+    )
