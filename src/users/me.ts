@@ -3,7 +3,7 @@ import { GameMode } from "../types/game_mode"
 import { genericWebRequest } from "../helpers/web_request"
 // Type imports
 import type { OAuthAccessToken } from "../types/oauth_access_token"
-import type { User } from "../types/user"
+import type { UserEndpointMe } from "../types/user"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { get } from "./get"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -33,9 +33,9 @@ import type { OAuthAuthorizeScope } from "../types/oauth_scopes"
 export const me = async (
     oauthAccessToken: OAuthAccessToken,
     mode?: GameMode,
-): Promise<User> => {
+): Promise<UserEndpointMe> => {
     const modeString = mode === undefined ? "" : `/${mode}`
-    return genericWebRequest<User>("get", `/me${modeString}`, {
+    return genericWebRequest<UserEndpointMe>("get", `/me${modeString}`, {
         apiCall: true,
         authorizationAccessToken: oauthAccessToken,
     })

@@ -74,6 +74,8 @@ export type {
     UserCompactKusodo,
     UserCompactPage,
     UserCompactProfileBanner,
+    UserEndpointGet,
+    UserEndpointMe,
     UserGameModeVariant,
     UserStatistics,
     UserStatisticsGradeCounts,

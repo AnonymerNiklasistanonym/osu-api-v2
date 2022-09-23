@@ -87,10 +87,12 @@ export const checkUserCompactPageObject = (
     checkedKeys.push("html")
     expect(userCompactPage.html)
         .to.be.a("string")
-        .with.a.lengthOf.greaterThan(0)
+        .with.a.lengthOf.greaterThanOrEqual(0)
 
     checkedKeys.push("raw")
-    expect(userCompactPage.raw).to.be.a("string").with.a.lengthOf.greaterThan(0)
+    expect(userCompactPage.raw)
+        .to.be.a("string")
+        .with.a.lengthOf.greaterThanOrEqual(0)
 
     genericCheckObjectForUncheckedKeys(userCompactPage, checkedKeys)
 }
@@ -367,7 +369,11 @@ export const checkUserAchievementObject = (
 }
 
 export interface CheckUserObjectOptions {
+    hasIsRestricted?: boolean
+    noPage?: boolean
+    noSupporter?: boolean
     playmode?: GameMode
+    restricted?: boolean
     statisticsGameMode?: GameMode
     userId?: number
     userName?: string
@@ -550,9 +556,18 @@ export const checkUserObject = (
         checkedKeys.push("is_restricted")
         expect(user.is_restricted).to.be.a("boolean")
     }
+    if (options?.hasIsRestricted) {
+        expect(user.is_restricted).to.be.a("boolean")
+    }
+    if (options?.restricted) {
+        expect(user.is_restricted).to.equal(options?.restricted)
+    }
 
     checkedKeys.push("is_supporter")
     expect(user.is_supporter).to.be.a("boolean")
+    if (options?.noSupporter) {
+        expect(user.is_supporter).to.be.equal(false)
+    }
 
     checkedKeys.push("join_date")
     expect(user.join_date).to.be.a("string").with.a.lengthOf.greaterThan(0)
@@ -590,10 +605,8 @@ export const checkUserObject = (
             .greaterThanOrEqual(0)
     }
 
-    if (user.max_blocks !== undefined) {
-        checkedKeys.push("max_blocks")
-        expect(user.max_blocks).to.be.a("number").greaterThanOrEqual(0)
-    }
+    checkedKeys.push("max_blocks")
+    expect(user.max_blocks).to.be.a("number").greaterThanOrEqual(0)
 
     checkedKeys.push("max_friends")
     expect(user.max_friends).to.be.a("number").greaterThanOrEqual(0)
@@ -617,6 +630,11 @@ export const checkUserObject = (
     if (user.page !== undefined) {
         checkedKeys.push("page")
         checkUserCompactPageObject(user.page)
+    }
+    if (options?.noPage) {
+        expect(user.page).to.be.not.undefined
+        expect(user.page?.html).to.be.equal("")
+        expect(user.page?.raw).to.be.equal("")
     }
 
     if (user.pending_beatmapset_count !== undefined) {
@@ -752,6 +770,15 @@ export const checkUserObject = (
         for (const element of user.user_achievements) {
             checkUserAchievementObject(element)
         }
+    }
+
+    if (user.user_preferences !== undefined) {
+        checkedKeys.push("user_preferences")
+        expect.fail(
+            `Found undocumented type 'user_preferences': '${JSON.stringify(
+                user.user_preferences,
+            )}'`,
+        )
     }
 
     if (user.title !== null) {

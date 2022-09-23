@@ -4,12 +4,12 @@ import { GameMode } from "../types/game_mode"
 import { genericWebRequest } from "../helpers/web_request"
 // Type imports
 import type { OAuthAccessToken } from "../types/oauth_access_token"
-import type { User } from "../types/user"
+import type { UserEndpointGet } from "../types/user"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { OsuApiV2WebRequestError } from "../helpers/custom_errors"
 
 interface UserList {
-    users: User[]
+    users: UserEndpointGet[]
 }
 
 /**
@@ -22,6 +22,7 @@ interface UserList {
  * specific game mode this argument can be supplied.
  * @throws If the web request fails like for example when no user was found with
  * the provided user ID a {@link OsuApiV2WebRequestError} is being thrown.
+ * This also happens if a restricted user is fetched.
  * @throws If the web request returns an unexpected type or no user but doesn't
  * throw a web request error a {@link OsuApiV2Error} is being thrown.
  * @example
@@ -51,9 +52,9 @@ export const get = async (
     oauthAccessToken: Readonly<OAuthAccessToken>,
     userIdOrName: number | string,
     mode?: GameMode,
-): Promise<User> => {
+): Promise<UserEndpointGet> => {
     const modeString = mode === undefined ? "" : `/${mode}`
-    const possibleUser = await genericWebRequest<User | UserList>(
+    const possibleUser = await genericWebRequest<UserEndpointGet | UserList>(
         "get",
         `/users/${userIdOrName}${modeString}`,
         {
@@ -81,5 +82,5 @@ export const get = async (
             )
         }
     }
-    return possibleUser as User
+    return possibleUser as UserEndpointGet
 }

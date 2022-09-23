@@ -95,9 +95,17 @@ export interface UserAchievement {
 }
 
 export interface UserCompactPage {
-    /** The me page HTML content. */
+    /**
+     * The me page HTML content.
+     *
+     * Is an empty string if the user has no page.
+     */
     html: string
-    /** The me page raw text content. */
+    /**
+     * The me page raw text content.
+     *
+     * Is an empty string if the user has no page.
+     */
     raw: string
 }
 
@@ -121,36 +129,113 @@ export enum Playstyle {
  *
  * ([Source](https://osu.ppy.sh/docs/index.html#usercompact))
  */
-export interface UserCompactBase {
-    // Optional:
+export interface UserCompact {
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     account_history?: UserAccountHistory[]
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * `null` if the user has no active tournament banner.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     active_tournament_banner?: UserCompactProfileBanner | null
     /**
      * Url of user's avatar.
      */
     avatar_url: string
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     badges?: UserBadge[]
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointMe} object.
+     */
     beatmap_playcounts_count?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     */
     blocks?: unknown
     /**
-     * (Undocumented)
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
      */
     comments_count?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link User} object.
+     */
+    country?: UserCompactCountry
     /**
      * Two-letter code representing user's country.
      */
     country_code: string
     /**
-     * Identifier of the default Group the user belongs to.
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link User} object.
+     */
+    cover?: UserCompactCover
+    /**
+     * Identifier of the default group the user belongs to.
      */
     default_group: string
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     favourite_beatmapset_count?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     follower_count?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     */
     friends?: unknown
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     graveyard_beatmapset_count?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     groups?: UserGroup[]
     /**
-     * (Undocumented)
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
      */
     guest_beatmapset_count?: number
     /**
@@ -165,45 +250,174 @@ export interface UserCompactBase {
      * Is this a bot account?
      */
     is_bot: boolean
+    /**
+     * Account was deleted.
+     */
     is_deleted: boolean
     /**
      * Is the user currently online? (either on lazer or the new website).
      */
     is_online: boolean
     /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link User} object if this is the currently authenticated user.
+     *
+     * This is included in a {@link UserEndpointMe} object.
+     */
+    is_restricted?: boolean
+    /**
      * Does this user have supporter?
      */
     is_supporter: boolean
     /**
-     * Last access time. Null if the user hides online presence.
+     * Last access time.
+     * `null` if the user hides online presence.
+     *
+     * This is included in a {@link UserEndpointGet} object.
      */
     last_visit?: Timestamp | null
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     loved_beatmapset_count?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     mapping_follower_count?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     monthly_playcounts?: UserMonthlyPlaycount[]
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * If the user has never edited their page (never supported osu!) this key will not be undefined.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     page?: UserCompactPage
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     pending_beatmapset_count?: number
     /**
      * Whether or not the user allows PM from other than friends.
      */
     pm_friends_only: boolean
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     previous_usernames?: string[]
     /**
      * Colour of username/profile highlight, hex code (e.g. #333333).
+     *
+     * This is included in a {@link UserEndpointGet} object.
      */
     profile_colour?: string | null
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     rank_history?: UserRankHistory
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     ranked_beatmapset_count?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     replays_watched_counts?: UserReplaysWatchedCount[]
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     scores_best_count?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     scores_first_count?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     scores_pinned_count?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     scores_recent_count?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     statistics?: UserStatistics
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointMe} object.
+     */
     statistics_rulesets: UserStatisticsRulesets
-    support_level?: unknown
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
+    support_level?: number
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     */
     unread_pm_count?: unknown
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     user_achievements?: UserAchievement[]
+    /**
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     */
     user_preferences?: unknown
     /**
      * User's display name.
@@ -214,20 +428,6 @@ export interface UserCompactBase {
 export interface UserRankHistory {
     data: number[]
     mode: GameMode
-}
-
-/**
- * Mainly used for embedding in certain responses to save additional api lookups.
- *
- * ([Source](https://osu.ppy.sh/docs/index.html#usercompact))
- */
-export interface UserCompact extends UserCompactBase {
-    /** This is included in a {@link User} object. */
-    country?: UserCompactCountry
-    /** This is included in a {@link User} object. */
-    cover?: UserCompactCover
-    /** This is included in a {@link User} object. */
-    is_restricted?: boolean
 }
 
 export interface UserCompactKusodo {
@@ -254,38 +454,154 @@ export interface UserGameModeVariant {
 }
 
 /**
- * Represents a User. Extends UserCompact object with additional attributes.
+ * Is the same as the {@link User} object but some optional attributes on {@link User} are included.
+ *
+ * ---
+ *
+ * This type information is not official but was collected looking at responses.
+ * For type safety just treat this object like a {@link User} object.
+ */
+export interface UserEndpointGet extends User {
+    account_history: UserAccountHistory[]
+    active_tournament_banner: UserCompactProfileBanner | null
+    badges: UserBadge[]
+    beatmap_playcounts_count: number
+    comments_count: number
+    discord: string | null
+    favourite_beatmapset_count: number
+    follower_count: number
+    graveyard_beatmapset_count: number
+    groups: UserGroup[]
+    guest_beatmapset_count: number
+    interests: string | null
+    last_visit: Timestamp | null
+    location: string | null
+    loved_beatmapset_count: number
+    mapping_follower_count: number
+    monthly_playcounts: UserMonthlyPlaycount[]
+    occupation: string | null
+    page: UserCompactPage
+    pending_beatmapset_count: number
+    previous_usernames: string[]
+    profile_colour: string | null
+    rank_history: UserRankHistory
+    ranked_beatmapset_count: number
+    replays_watched_counts: UserReplaysWatchedCount[]
+    scores_best_count: number
+    scores_first_count: number
+    scores_pinned_count: number
+    scores_recent_count: number
+    statistics: UserStatistics
+    support_level: number
+    title: string | null
+    title_url: string | null
+    twitter: string | null
+    user_achievements: UserAchievement[]
+    website: string | null
+}
+
+/**
+ * Is the same as the {@link UserEndpointGet}/{@link User} object but some optional attributes on {@link UserEndpointGet}/{@link User} are included.
+ *
+ * ---
+ *
+ * This type information is not official but was collected looking at responses.
+ * For type safety just treat this object like a {@link User} object.
+ */
+export interface UserEndpointMe extends UserEndpointGet {
+    is_restricted: boolean
+    statistics_rulesets: UserStatisticsRulesets
+}
+
+/**
+ * Represents a User.
+ * Extends {@link UserCompact} with additional attributes.
+ * In addition, some optional attributes on {@link UserCompact} are included.
  *
  * [[include:example_output/users_get_9096716.md]]
  * [[include:example_output/users_get_Ooi.md]]
  *
  * ([Source](https://osu.ppy.sh/docs/index.html#user))
  */
-export interface User extends UserCompactBase {
+export interface User extends UserCompact {
     country: UserCompactCountry
     cover: UserCompactCover
+    /**
+     * Discord name.
+     * `null` if the user has it not set in the settings.
+     *
+     * ---
+     *
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     discord?: string | null
     /**
      * Whether or not ever being a supporter in the past.
      */
     has_supported: boolean
+    /**
+     * Interests string.
+     * `null` if the user has it not set in the settings.
+     *
+     * ---
+     *
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     interests?: string | null
     is_restricted?: boolean
+    /**
+     * Date since when the user account exists.
+     */
     join_date: Timestamp
+    /**
+     * https://osu.ppy.sh/wiki/en/Modding/Kudosu
+     */
     kudosu: UserCompactKusodo
+    /**
+     * Location string.
+     * `null` if the user has it not set in the settings.
+     *
+     * ---
+     *
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     location?: string | null
     /**
      * Maximum number of users allowed to be blocked.
      */
-    max_blocks?: number
+    max_blocks: number
     /**
      * Maximum number of friends allowed to be added.
      */
     max_friends: number
+    /**
+     * Occupation string.
+     * `null` if the user has it not set in the settings.
+     *
+     * ---
+     *
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     occupation?: string | null
+    /**
+     * The default game mode the user is playing.
+     */
     playmode: GameMode
     /**
      * Device choices of the user.
+     * `null` if the user has it not set in the settings.
      */
     playstyle: Playstyle[] | null
     /**
@@ -300,14 +616,55 @@ export interface User extends UserCompactBase {
     profile_order: ProfilePage[]
     /**
      * User-specific title.
+     * `null` if the user has no title.
+     *
+     * ---
+     *
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
      */
     title?: string | null
+    /**
+     * User-specific title URL.
+     * `null` if the user has no title URL.
+     *
+     * ---
+     *
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     title_url?: string | null
+    /**
+     * Twitter name.
+     * `null` if the user has it not set in the settings.
+     *
+     * ---
+     *
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     twitter?: string | null
     /**
      * Exists for profiles that have mania as their default game mode.
      */
     variants?: UserGameModeVariant[]
+    /**
+     * Website string.
+     * `null` if the user has it not set in the settings.
+     *
+     * ---
+     *
+     * May be additionally included in the response.
+     * Relevant endpoints should list them if applicable.
+     *
+     * This is included in a {@link UserEndpointGet} object.
+     */
     website?: string | null
 }
 

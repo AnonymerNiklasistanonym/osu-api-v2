@@ -97,6 +97,21 @@ export const usersTestSuite = (): Suite =>
                     }
                 }).timeout(timeoutForRequestsInMs(1))
                 it("should make request successfully", async () => {
+                    const userNoPage = await osuApiV2.users.get(
+                        oauthAccessToken,
+                        26446321,
+                    )
+                    await saveAndCheckResponse(
+                        "users_get",
+                        "26446321",
+                        userNoPage,
+                        checkUserObject,
+                        {
+                            noPage: true,
+                            noSupporter: true,
+                            userId: 26446321,
+                        },
+                    )
                     // User ID
                     const defaultId = await osuApiV2.users.get(
                         oauthAccessToken,
@@ -374,22 +389,38 @@ export const usersTestSuite = (): Suite =>
                         userBestOsu21,
                     )
 
-                    await osuApiV2.users.scores(
+                    const userRecent = await osuApiV2.users.scores(
                         oauthAccessToken,
                         9096716,
                         ScoresType.RECENT,
                     )
-                    await osuApiV2.users.scores(
+                    await saveResponse(
+                        "users_scores",
+                        "9096716_recent",
+                        userRecent,
+                    )
+                    const userBest = await osuApiV2.users.scores(
                         oauthAccessToken,
                         9096716,
                         ScoresType.BEST,
                     )
-                    await osuApiV2.users.scores(
+                    await saveResponse(
+                        "users_scores",
+                        "9096716_first",
+                        userBest,
+                    )
+                    const userFirst = await osuApiV2.users.scores(
                         oauthAccessToken,
                         9096716,
                         ScoresType.FIRST,
                     )
-                    await osuApiV2.users.scores(
+                    await saveResponse(
+                        "users_scores",
+                        "9096716_first",
+                        userFirst,
+                    )
+
+                    const userRecentOsu30True = await osuApiV2.users.scores(
                         oauthAccessToken,
                         9096716,
                         ScoresType.RECENT,
@@ -398,16 +429,26 @@ export const usersTestSuite = (): Suite =>
                         0,
                         true,
                     )
-                    await osuApiV2.users.scores(
-                        oauthAccessToken,
-                        9096716,
-                        ScoresType.RECENT,
-                        undefined,
-                        undefined,
-                        undefined,
-                        false,
+                    await saveResponse(
+                        "users_scores",
+                        "9096716_recent_osu_3_0_true",
+                        userRecentOsu30True,
                     )
-
+                    const userRecentUndefinedUndefinedUndefinedFalse =
+                        await osuApiV2.users.scores(
+                            oauthAccessToken,
+                            9096716,
+                            ScoresType.RECENT,
+                            undefined,
+                            undefined,
+                            undefined,
+                            false,
+                        )
+                    await saveResponse(
+                        "users_scores",
+                        "9096716_recent_undefined_undefined_undefined_false",
+                        userRecentUndefinedUndefinedUndefinedFalse,
+                    )
                     const userRecentOsu20True = await osuApiV2.users.scores(
                         oauthAccessToken,
                         2927048,
@@ -458,6 +499,9 @@ export const usersTestSuite = (): Suite =>
                         "nothing",
                         me,
                         checkUserObject,
+                        {
+                            hasIsRestricted: true,
+                        },
                     )
                     const meStandard = await osuApiV2.users.me(
                         oauthAccessTokenIdentityScope,
@@ -469,6 +513,7 @@ export const usersTestSuite = (): Suite =>
                         meStandard,
                         checkUserObject,
                         {
+                            hasIsRestricted: true,
                             statisticsGameMode: GameMode.OSU_STANDARD,
                         },
                     )
@@ -482,6 +527,7 @@ export const usersTestSuite = (): Suite =>
                         meCatch,
                         checkUserObject,
                         {
+                            hasIsRestricted: true,
                             statisticsGameMode: GameMode.OSU_CATCH,
                         },
                     )
@@ -495,6 +541,7 @@ export const usersTestSuite = (): Suite =>
                         meMania,
                         checkUserObject,
                         {
+                            hasIsRestricted: true,
                             statisticsGameMode: GameMode.OSU_MANIA,
                         },
                     )
@@ -508,6 +555,7 @@ export const usersTestSuite = (): Suite =>
                         meTaiko,
                         checkUserObject,
                         {
+                            hasIsRestricted: true,
                             statisticsGameMode: GameMode.OSU_TAIKO,
                         },
                     )
