@@ -11,11 +11,11 @@ import {
     invalidOAuthAccessToken,
 } from "../get_oauth_secrets"
 import osuApiV2, { GameMode, RankStatus } from "../../../src"
-import { checkBeatmapObject } from "./beatmaps/check_beatmap"
+import { saveAndCheckResponse, timeoutForRequestsInMs } from "../../test_helper"
 import { scoresTestSuite } from "./beatmaps/scores.test"
-import { timeoutForRequestsInMs } from "../../test_helper"
 // Type imports
 import type { OAuthAccessToken, OsuApiV2WebRequestError } from "../../../src"
+import { checkBeatmapObject } from "../types/check_beatmap"
 
 export const beatmapsTestSuite = (): Suite =>
     describe("beatmaps", () => {
@@ -72,29 +72,47 @@ export const beatmapsTestSuite = (): Suite =>
                     oauthAccessToken,
                     3086537,
                 )
-                await checkBeatmapObject(beatmapRankedOsu, {
-                    checkBeatmapId: 3086537,
-                    checkGameMode: GameMode.OSU_STANDARD,
-                    checkRankStatus: RankStatus.ranked,
-                })
+                await saveAndCheckResponse(
+                    "beatmaps_get",
+                    "2927048_10",
+                    beatmapRankedOsu,
+                    checkBeatmapObject,
+                    {
+                        gameMode: GameMode.OSU_STANDARD,
+                        id: 3086537,
+                        rankStatus: RankStatus.RANKED,
+                    },
+                )
                 const beatmapGraveyardOsu = await osuApiV2.beatmaps.get(
                     oauthAccessToken,
                     1718102,
                 )
-                await checkBeatmapObject(beatmapGraveyardOsu, {
-                    checkBeatmapId: 1718102,
-                    checkGameMode: GameMode.OSU_STANDARD,
-                    checkRankStatus: RankStatus.graveyard,
-                })
+                await saveAndCheckResponse(
+                    "beatmaps_get",
+                    "1718102",
+                    beatmapGraveyardOsu,
+                    checkBeatmapObject,
+                    {
+                        gameMode: GameMode.OSU_STANDARD,
+                        id: 1718102,
+                        rankStatus: RankStatus.GRAVEYARD,
+                    },
+                )
                 const beatmapLovedOsu = await osuApiV2.beatmaps.get(
                     oauthAccessToken,
                     112385,
                 )
-                await checkBeatmapObject(beatmapLovedOsu, {
-                    checkBeatmapId: 112385,
-                    checkGameMode: GameMode.OSU_STANDARD,
-                    checkRankStatus: RankStatus.loved,
-                })
+                await saveAndCheckResponse(
+                    "beatmaps_get",
+                    "112385",
+                    beatmapLovedOsu,
+                    checkBeatmapObject,
+                    {
+                        gameMode: GameMode.OSU_STANDARD,
+                        id: 112385,
+                        rankStatus: RankStatus.LOVED,
+                    },
+                )
             }).timeout(timeoutForRequestsInMs(3))
         })
 
@@ -146,33 +164,51 @@ export const beatmapsTestSuite = (): Suite =>
                     undefined,
                     3086537,
                 )
-                await checkBeatmapObject(beatmapRankedOsu, {
-                    checkBeatmapId: 3086537,
-                    checkGameMode: GameMode.OSU_STANDARD,
-                    checkRankStatus: RankStatus.ranked,
-                })
+                await saveAndCheckResponse(
+                    "beatmaps_lookup",
+                    "undefined_undefined_3086537",
+                    beatmapRankedOsu,
+                    checkBeatmapObject,
+                    {
+                        gameMode: GameMode.OSU_STANDARD,
+                        id: 3086537,
+                        rankStatus: RankStatus.RANKED,
+                    },
+                )
                 const beatmapGraveyardOsuId = await osuApiV2.beatmaps.lookup(
                     oauthAccessToken,
                     undefined,
                     undefined,
                     1718102,
                 )
-                await checkBeatmapObject(beatmapGraveyardOsuId, {
-                    checkBeatmapId: 1718102,
-                    checkGameMode: GameMode.OSU_STANDARD,
-                    checkRankStatus: RankStatus.graveyard,
-                })
+                await saveAndCheckResponse(
+                    "beatmaps_lookup",
+                    "undefined_undefined_1718102",
+                    beatmapGraveyardOsuId,
+                    checkBeatmapObject,
+                    {
+                        gameMode: GameMode.OSU_STANDARD,
+                        id: 1718102,
+                        rankStatus: RankStatus.GRAVEYARD,
+                    },
+                )
                 const beatmapLovedOsuId = await osuApiV2.beatmaps.lookup(
                     oauthAccessToken,
                     undefined,
                     undefined,
                     112385,
                 )
-                await checkBeatmapObject(beatmapLovedOsuId, {
-                    checkBeatmapId: 112385,
-                    checkGameMode: GameMode.OSU_STANDARD,
-                    checkRankStatus: RankStatus.loved,
-                })
+                await saveAndCheckResponse(
+                    "beatmaps_lookup",
+                    "undefined_undefined_112385",
+                    beatmapLovedOsuId,
+                    checkBeatmapObject,
+                    {
+                        gameMode: GameMode.OSU_STANDARD,
+                        id: 112385,
+                        rankStatus: RankStatus.LOVED,
+                    },
+                )
             }).timeout(timeoutForRequestsInMs(3))
         })
 

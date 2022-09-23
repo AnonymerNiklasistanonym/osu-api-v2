@@ -1,7 +1,6 @@
 // Package imports
 import { expect } from "chai"
 // Local imports
-import { checkBeatmapObject } from "./check_beatmap"
 import { saveResponse } from "../../../test_helper"
 // Type imports
 import type {
@@ -96,11 +95,11 @@ export const checkBeatmapsetObject = async (
     expect(beatmapset.bpm).to.be.a("number").greaterThan(0)
     if (beatmapset.beatmaps !== undefined) {
         expect(beatmapset.beatmaps).to.be.an("array")
-        for (const beatmap of beatmapset.beatmaps) {
-            await checkBeatmapObject(beatmap, {
-                checkBeatmapsetId: options.checkBeatmapsetId,
-            })
-        }
+        //for (const beatmap of beatmapset.beatmaps) {
+        //    //await checkBeatmapObject(beatmap, {
+        //    //    checkBeatmapsetId: options.checkBeatmapsetId,
+        //    //})
+        //}
     }
     if (beatmapset.converts !== undefined) {
         // TODO: unknown

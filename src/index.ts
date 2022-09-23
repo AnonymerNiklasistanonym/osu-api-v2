@@ -20,7 +20,7 @@ export {
 } from "./types/user"
 export { GameMod } from "./types/game_mods"
 export { OAuthAuthorizeScope } from "./types/oauth_scopes"
-export { RankStatus } from "./types/rank_status"
+export { RankStatus, RankStatusInt } from "./types/rank_status"
 export { ScoresType } from "./users/scores"
 export { ScoreRank, ScoreType } from "./types/score"
 // Type exports

@@ -1,6 +1,6 @@
 // Local imports
 import { GameMode, GameModeInt } from "./game_mode"
-import { RankStatus } from "./rank_status"
+import { RankStatus, RankStatusInt } from "./rank_status"
 // Type imports
 import type { Failtimes } from "./failtimes"
 import type { Timestamp } from "./timestamp"
@@ -105,7 +105,7 @@ export interface Beatmapset extends BeatmapsetCompactBase {
     /**
      * See Rank status for list of possible values.
      */
-    ranked?: RankStatus
+    ranked?: RankStatusInt
     ranked_date?: Timestamp
     source?: string
     storyboard: boolean
@@ -116,19 +116,22 @@ export interface Beatmapset extends BeatmapsetCompactBase {
 /**
  * Represent a beatmap.
  *
- * Https://osu.ppy.sh/docs/index.html#beatmapcompact.
+ * ([Source](https://osu.ppy.sh/docs/index.html#beatmapcompact))
  */
 export interface BeatmapCompact {
-    // Optional attributes:
     /**
-     * Beatmapset for Beatmap object, BeatmapsetCompact for
-     * BeatmapCompact object. Null if the beatmap doesn't
-     * have associated beatmapset (e.g. Deleted).
+     * {@link Beatmapset} for {@link Beatmap} object, {@link BeatmapsetCompact} for
+     * {@link BeatmapCompact} object.
+     *
+     * `null` if the beatmap doesn't have associated beatmapset (e.g. deleted).
      */
-    beatmapset?: null | Beatmapset
-    // | BeatmapCompact
+    beatmapset?: null | Beatmapset | BeatmapsetCompact
+    /**
+     * Integer.
+     */
+    beatmapset_id: number
     checksum?: string
-    /** Float */
+    /** Float. */
     difficulty_rating: number
     failtimes?: Failtimes
     /** Integer */
@@ -137,29 +140,33 @@ export interface BeatmapCompact {
     max_combo?: number
     mode: GameMode
     /**
-     * See Rank status for list of possible values.
+     * See {@link RankStatus} for list of possible values.
      */
-    status: string
+    status: RankStatus
+    /**
+     * Integer.
+     */
     total_length: number
-    // integer
+    /**
+     * Integer.
+     */
+    user_id: number
     version: string
 }
 
 /**
  * Represent a beatmap.
- * This extends BeatmapCompact with additional attributes.
+ * This extends {@link BeatmapCompact} with additional attributes.
  *
- * Https://osu.ppy.sh/docs/index.html#beatmap.
+ * ([Source](https://osu.ppy.sh/docs/index.html#beatmap)
  */
 export interface Beatmap extends BeatmapCompact {
     /** Float */
     accuracy: number
     /** Float */
     ar: number
-    /** Integer */
-    beatmapset_id: number
     /** Float */
-    bpm: number
+    bpm?: number
     convert: boolean
     /** Integer */
     count_circles: number
@@ -169,7 +176,7 @@ export interface Beatmap extends BeatmapCompact {
     count_spinners: number
     /** Float */
     cs: number
-    deleted_at?: Timestamp
+    deleted_at?: Timestamp | null
     /** Float */
     drain: number
     /** Integer */
@@ -183,11 +190,11 @@ export interface Beatmap extends BeatmapCompact {
     /** Integer */
     playcount: number
     /**
-     * See Rank status for list of possible values.
+     * See {@link RankStatusInt} for list of possible values.
      *
      * Integer.
      */
-    ranked: RankStatus
+    ranked: RankStatusInt
     url: string
 }
 

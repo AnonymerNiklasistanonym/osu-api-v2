@@ -9,6 +9,7 @@ import {
     ScoreType,
     ScoreUserAttributes,
 } from "../../../src"
+import { checkBeatmapCompactObject, checkBeatmapObject } from "./check_beatmap"
 import { checkUserCompactObject } from "./check_user"
 import { genericCheckObjectForUncheckedKeys } from "./check_generic"
 // Type imports
@@ -111,11 +112,7 @@ export const checkScoreObject = (
 
     if (score.beatmap !== undefined) {
         checkedKeys.push("beatmap")
-        expect(score.beatmap).to.be.an("object")
-        // TODO Add later when beatmap compact object checks exist
-        //expect.fail(
-        //    `Unexpected type 'beatmap': ${JSON.stringify(score.beatmap)}`,
-        //)
+        checkBeatmapObject(score.beatmap)
     }
 
     if (score.beatmapset !== undefined) {
