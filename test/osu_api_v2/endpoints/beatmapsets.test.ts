@@ -113,6 +113,32 @@ export const beatmapsetsTestSuite = (): Suite =>
                         rankStatus: RankStatusInt.LOVED,
                     },
                 )
+                const beatmapApprovedOsu = await osuApiV2.beatmapsets.get(
+                    oauthAccessToken,
+                    108296,
+                )
+                await saveAndCheckResponse(
+                    "beatmapsets_get",
+                    "108296",
+                    beatmapApprovedOsu,
+                    checkBeatmapsetObject,
+                    {
+                        id: 108296,
+                        rankStatus: RankStatusInt.APPROVED,
+                    },
+                )
+                const beatmapGraveyardNoCoverOsu =
+                    await osuApiV2.beatmapsets.get(oauthAccessToken, 150945)
+                await saveAndCheckResponse(
+                    "beatmapsets_get",
+                    "150945",
+                    beatmapGraveyardNoCoverOsu,
+                    checkBeatmapsetObject,
+                    {
+                        id: 150945,
+                        rankStatus: RankStatusInt.GRAVEYARD,
+                    },
+                )
             }).timeout(timeoutForRequestsInMs(3))
         })
 
