@@ -1,6 +1,13 @@
+type UrlParameterValue = number | string
+type UrlParameterValues = UrlParameterValue | readonly UrlParameterValue[]
+
 export interface UrlParameter {
     name: string
-    value?: number | string | readonly (number | string)[]
+    value?: UrlParameterValues
+}
+
+export interface UrlParameterFiltered extends UrlParameter {
+    value: UrlParameterValues
 }
 
 export const urlParameterGenerator = (
@@ -8,7 +15,7 @@ export const urlParameterGenerator = (
 ): string => {
     const urlParametersFiltered = urlParameters?.filter(
         (param) => param.value !== undefined,
-    )
+    ) as UrlParameterFiltered[] | undefined
     if (
         urlParametersFiltered === undefined ||
         urlParametersFiltered.length === 0
@@ -25,9 +32,7 @@ export const urlParameterGenerator = (
         }
         const value = curr.value
         let valueStr
-        if (value === undefined) {
-            valueStr = "undefined"
-        } else if (typeof value === "string") {
+        if (typeof value === "string") {
             valueStr = value
         } else if (typeof value === "number") {
             valueStr = `${value}`

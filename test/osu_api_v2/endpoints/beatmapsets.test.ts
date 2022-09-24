@@ -180,6 +180,16 @@ export const beatmapsetsTestSuite = (): Suite =>
                     "Singularity_-_Au5",
                     beatmapsetRankedOsu2,
                 )
-            }).timeout(timeoutForRequestsInMs(2))
+                const beatmapsetAnyType = await osuApiV2.beatmapsets.search(
+                    oauthAccessToken,
+                    "Disorder Rebirth",
+                    false,
+                )
+                await saveResponse(
+                    "beatmapsets_search",
+                    "Disorder_Rebirth_false",
+                    beatmapsetAnyType,
+                )
+            }).timeout(timeoutForRequestsInMs(3))
         })
     })

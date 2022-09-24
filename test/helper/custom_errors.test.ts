@@ -24,6 +24,23 @@ export const customErrorsTestSuite = (): Suite =>
                 expect(error.method).equals("get")
                 expect(error.headers).deep.equal({ abc: "def" })
                 expect(error.body).equal(JSON.stringify({ cde: "hij" }))
+
+                const error2 = new OsuApiV2WebRequestError(
+                    "message2",
+                    401,
+                    "status2",
+                    "someUrl2",
+                    "post",
+                    { abc: "def2" },
+                    "bodystring",
+                )
+                expect(error2.message).equals("message2")
+                expect(error2.statusCode).equals(401)
+                expect(error2.statusText).equals("status2")
+                expect(error2.url).equals("someUrl2")
+                expect(error2.method).equals("post")
+                expect(error2.headers).deep.equal({ abc: "def2" })
+                expect(error2.body).equal("bodystring")
             })
             it("should mask the authorization header", () => {
                 const error = new OsuApiV2WebRequestError(

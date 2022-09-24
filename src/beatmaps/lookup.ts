@@ -16,6 +16,6 @@ export const lookup = async (
         urlParameters: [
             { name: "checksum", value: checksum },
             { name: "filename", value: filename },
-            { name: "id", value: id !== undefined ? `${id}` : undefined },
+            { name: "id", value: id },
         ],
     })

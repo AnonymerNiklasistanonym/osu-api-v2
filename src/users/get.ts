@@ -74,11 +74,6 @@ export const get = async (
                 "No user was found",
                 OsuApiV2ErrorCode.NOT_FOUND,
             )
-        } else {
-            throw new OsuApiV2Error(
-                "Array of users was returned but only user was expected",
-                OsuApiV2ErrorCode.UNEXPECTED_RETURN_TYPE,
-            )
         }
     }
     return possibleUser as UserEndpointGet

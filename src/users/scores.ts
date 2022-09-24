@@ -80,15 +80,15 @@ export const scores = async (
         urlParameters: [
             {
                 name: "mode",
-                value: mode !== undefined ? mode : undefined,
+                value: mode,
             },
             {
                 name: "limit",
-                value: limit !== undefined ? `${limit}` : undefined,
+                value: limit,
             },
             {
                 name: "offset",
-                value: offset !== undefined ? `${offset}` : undefined,
+                value: offset,
             },
             {
                 name: "include_fails",

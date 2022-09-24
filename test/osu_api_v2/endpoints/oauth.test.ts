@@ -81,6 +81,53 @@ export const oauthTestSuite = (): Suite =>
                     checkResponse(oauthAccessToken, checkAccessTokenObject)
                 }).timeout(timeoutForRequestsInMs(1))
             })
+
+            describe("refreshTokenGrant", () => {
+                it("should throw if redirect URI and refresh token are invalid", async () => {
+                    try {
+                        const request = await osuApiV2.oauth.refreshTokenGrant(
+                            oauthClientCredentials.clientId,
+                            oauthClientCredentials.clientSecret,
+                            "http://invalid-url.com",
+                            "invalid refresh token",
+                        )
+                        expect.fail(
+                            `request did not throw error: '${JSON.stringify(
+                                request,
+                            )}'`,
+                        )
+                    } catch (err) {
+                        checkOsuApiV2WebRequestError(
+                            err as OsuApiV2WebRequestError,
+                            OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        )
+                    }
+                }).timeout(timeoutForRequestsInMs(1))
+            })
+
+            describe("authorizationCodeGrant", () => {
+                it("should throw if redirect URI and code are invalid", async () => {
+                    try {
+                        const request =
+                            await osuApiV2.oauth.authorizationCodeGrant(
+                                oauthClientCredentials.clientId,
+                                oauthClientCredentials.clientSecret,
+                                "http://invalid-url.com",
+                                "invalid code",
+                            )
+                        expect.fail(
+                            `request did not throw error: '${JSON.stringify(
+                                request,
+                            )}'`,
+                        )
+                    } catch (err) {
+                        checkOsuApiV2WebRequestError(
+                            err as OsuApiV2WebRequestError,
+                            OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        )
+                    }
+                }).timeout(timeoutForRequestsInMs(1))
+            })
         })
         describe("refresh-token", () => {
             let oauthRefreshToken: OAuthSecretRefreshToken
