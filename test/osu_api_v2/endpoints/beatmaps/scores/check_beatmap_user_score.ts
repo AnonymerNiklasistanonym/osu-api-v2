@@ -3,6 +3,7 @@ import { expect } from "chai"
 import moment from "moment"
 // Local imports
 import { GameMod, GameMode, GameModeInt } from "../../../../../src"
+import { checkBeatmapObject } from "../../../types/check_beatmap"
 import { saveResponse } from "../../../../test_helper"
 // Type imports
 import type { BeatmapUserScore, Score } from "../../../../../src"
@@ -27,10 +28,10 @@ export const checkBeatmapUserScoreScoreObject = async (
         .to.be.a("number")
         .greaterThanOrEqual(0)
     if (beatmapUserScoreScore.beatmap !== undefined) {
-        //await checkBeatmapObject(beatmapUserScoreScore.beatmap, {
-        //    checkBeatmapId: options.checkBeatmapId,
-        //    checkGameMode: options.checkGameMode,
-        //})
+        checkBeatmapObject(beatmapUserScoreScore.beatmap, {
+            gameMode: options.checkGameMode,
+            id: options.checkBeatmapId,
+        })
     }
     expect(beatmapUserScoreScore.best_id)
         .to.be.a("number")

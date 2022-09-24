@@ -1,9 +1,8 @@
 // Local imports
 import { GameMode, GameModeInt } from "./game_mode"
-import { Beatmapset } from ".."
 import { GameMod } from "./game_mods"
 // Type imports
-import type { Beatmap } from "./beatmap"
+import type { Beatmap, BeatmapsetCompact } from "./beatmap"
 import type { Timestamp } from "./timestamp"
 import type { UserCompact } from "./user"
 
@@ -67,7 +66,7 @@ export interface Score {
     /** Float */
     accuracy: number
     beatmap?: Beatmap
-    beatmapset?: Beatmapset
+    beatmapset?: BeatmapsetCompact
     /** Integer */
     best_id: number | null
     created_at: Timestamp

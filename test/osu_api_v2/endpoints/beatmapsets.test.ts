@@ -10,8 +10,13 @@ import {
     getOAuthSecretClientCredentials,
     invalidOAuthAccessToken,
 } from "../get_oauth_secrets"
-import { saveResponse, timeoutForRequestsInMs } from "../../test_helper"
-import osuApiV2 from "../../../src"
+import osuApiV2, { RankStatusInt } from "../../../src"
+import {
+    saveAndCheckResponse,
+    saveResponse,
+    timeoutForRequestsInMs,
+} from "../../test_helper"
+import { checkBeatmapsetObject } from "../types/check_beatmapset"
 // Type imports
 import type { OAuthAccessToken, OsuApiV2WebRequestError } from "../../../src"
 
@@ -70,25 +75,44 @@ export const beatmapsetsTestSuite = (): Suite =>
                     oauthAccessToken,
                     1196347,
                 )
-                await saveResponse(
+                await saveAndCheckResponse(
                     "beatmapsets_get",
                     "1196347",
                     beatmapRankedOsu,
+                    checkBeatmapsetObject,
+                    {
+                        id: 1196347,
+                        rankStatus: RankStatusInt.RANKED,
+                    },
                 )
                 const beatmapGraveyardOsu = await osuApiV2.beatmapsets.get(
                     oauthAccessToken,
                     819456,
                 )
-                await saveResponse(
+                await saveAndCheckResponse(
                     "beatmapsets_get",
                     "819456",
                     beatmapGraveyardOsu,
+                    checkBeatmapsetObject,
+                    {
+                        id: 819456,
+                        rankStatus: RankStatusInt.GRAVEYARD,
+                    },
                 )
                 const beatmapLovedOsu = await osuApiV2.beatmapsets.get(
                     oauthAccessToken,
                     34256,
                 )
-                await saveResponse("beatmapsets_get", "34256", beatmapLovedOsu)
+                await saveAndCheckResponse(
+                    "beatmapsets_get",
+                    "819456",
+                    beatmapLovedOsu,
+                    checkBeatmapsetObject,
+                    {
+                        id: 34256,
+                        rankStatus: RankStatusInt.LOVED,
+                    },
+                )
             }).timeout(timeoutForRequestsInMs(3))
         })
 

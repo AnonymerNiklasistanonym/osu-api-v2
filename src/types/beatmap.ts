@@ -2,9 +2,9 @@
 import { GameMode, GameModeInt } from "./game_mode"
 import { RankStatus, RankStatusInt } from "./rank_status"
 // Type imports
+import type { User, UserCompact } from "./user"
 import type { Failtimes } from "./failtimes"
 import type { Timestamp } from "./timestamp"
-import type { User } from "./user"
 
 /**
  * ([Source](https://osu.ppy.sh/docs/index.html#beatmapsetcompact-covers))
@@ -20,73 +20,100 @@ export interface Covers {
     "slimcover@2x": string
 }
 
+export interface BeatmapsetDescription {
+    description: string
+}
+
+export interface BeatmapsetGenre {
+    id: number
+    name: string
+}
+
+export interface BeatmapsetLanguage {
+    id: number
+    name: string
+}
+
 /**
  * Represents a beatmapset.
  *
  * ([Source](https://osu.ppy.sh/docs/index.html#beatmapsetcompact))
  */
-interface BeatmapsetCompactBase {
+export interface BeatmapsetCompact {
     artist: string
     artist_unicode: string
     beatmaps?: Beatmap[]
-    converts?: unknown
+    converts?: Beatmap[]
     covers: Covers
     creator: string
     current_user_attributes?: unknown
-    description?: unknown
+    description?: BeatmapsetDescription
     discussions?: unknown
     events?: unknown
     favourite_count: number
-    genre?: unknown
+    genre?: BeatmapsetGenre
+    /**
+     * Always included in {@link Beatmapset} but optional in {@link BeatmapsetCompact}.
+     *
+     * ---
+     *
+     * Documentation wrong, can be undefined even for {@link Beatmapset}s.
+     */
+    has_favourited?: boolean
+    hype: null | BeatmapsetHype
     id: number
-    language?: unknown
+    language?: BeatmapsetLanguage
     nominations?: unknown
     nsfw: boolean
+    offset: number
     play_count: number
     preview_url: string
     ratings?: number[]
-    recent_favourites?: unknown
+    recent_favourites?: UserCompact[]
     related_users?: unknown
+    /**
+     * Always included in {@link Beatmapset} but optional in {@link BeatmapsetCompact}.
+     *
+     * Can be an empty string.
+     */
+    source: string
+    spotlight: boolean
     status: string
     title: string
     title_unicode: string
+    track_id?: number | null
     user?: User
     user_id: number
     video: boolean
 }
 
+export interface BeatmapsetAvailability {
+    download_disabled: boolean
+    more_information?: string | null
+}
+
+export interface BeatmapsetHype {
+    /** Integer */
+    current?: number
+    /** Integer */
+    required?: number
+}
+
+export interface BeatmapsetNominationsSummary {
+    /** Integer */
+    current?: number
+    /** Integer */
+    required?: number
+}
+
 /**
  * Represents a beatmapset.
+ * This extends {@link BeatmapsetCompact} with additional attributes.
  *
- * ([Source](https://osu.ppy.sh/docs/index.html#beatmapsetcompact))
+ * ([Source](https://osu.ppy.sh/docs/index.html#beatmapset))
  */
-export interface BeatmapsetCompact extends BeatmapsetCompactBase {
-    /** Always included in {@link Beatmapset} but optional in {@link BeatmapsetCompact}. */
-    has_favourited?: boolean
-    source: string
-}
-
-export interface BeatmapsetCompactAvailability {
-    download_disabled: boolean
-    more_information?: string
-}
-
-export interface BeatmapsetCompactHype {
-    /** Integer */
-    current?: number
-    /** Integer */
-    required?: number
-}
-
-export interface BeatmapsetCompactNominationsSummary {
-    /** Integer */
-    current?: number
-    /** Integer */
-    required?: number
-}
-
-export interface Beatmapset extends BeatmapsetCompactBase {
-    availability: BeatmapsetCompactAvailability
+export interface Beatmapset extends BeatmapsetCompact {
+    availability: BeatmapsetAvailability
     /** Float */
     bpm: number
     can_be_hyped: boolean
@@ -96,21 +123,26 @@ export interface Beatmapset extends BeatmapsetCompactBase {
     creator: string
     discussion_enabled: boolean
     discussion_locked: boolean
-    has_favourited: boolean
-    hype: null | BeatmapsetCompactHype
+    /**
+     * Is wrong, can be undefined
+     */
+    //has_favourited?: boolean
     is_scoreable: boolean
     last_updated: Timestamp
     legacy_thread_url?: string
-    nominations_summary: BeatmapsetCompactNominationsSummary
+    nominations_summary: BeatmapsetNominationsSummary
     /**
      * See Rank status for list of possible values.
      */
     ranked?: RankStatusInt
-    ranked_date?: Timestamp
-    source?: string
+    ranked_date?: Timestamp | null
     storyboard: boolean
     submitted_date?: Timestamp
+    /**
+     * Can be an empty string.
+     */
     tags: string
+    video: boolean
 }
 
 /**
