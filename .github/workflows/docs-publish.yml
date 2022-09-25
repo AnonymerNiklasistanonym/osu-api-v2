@@ -7,7 +7,7 @@ name: Publish Documentation
 on:
   push:
     tags:
-    - '*'
+    - 'v*'
   # This attribute allows to manually trigger the workflow from the
   # Actions tab from the GitHub website
   workflow_dispatch:
