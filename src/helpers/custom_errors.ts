@@ -46,14 +46,11 @@ export class OsuApiV2WebRequestError<REQUEST_BODY = string> extends Error {
             if (typeof body === "string") {
                 this.body = body
             } else {
-                const tempBody = { ...body }
+                const tempBody = { ...body } as HelpTypeBodyRedact
                 // Redact client secrets information from request body
-                const clientSecret = (
-                    tempBody as HelpTypeBodyRedact | undefined
-                )?.client_secret
+                const clientSecret = tempBody.client_secret
                 if (clientSecret !== undefined) {
-                    ;(tempBody as HelpTypeBodyRedact).client_secret =
-                        redactInformation(clientSecret)
+                    tempBody.client_secret = redactInformation(clientSecret)
                 }
                 this.body = JSON.stringify(tempBody)
             }

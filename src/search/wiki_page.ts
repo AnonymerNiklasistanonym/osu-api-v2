@@ -21,6 +21,17 @@ import type { WikiPage } from "../types/wiki_page"
  * )
  * ```
  * [[include:example_output/search_wiki_page_sotarks.md]]
+ * @example
+ * ```ts
+ * import osuApiV2 from "osu-api-v2"
+ *
+ * const user = await osuApiV2.search.wikiPage(
+ *     oauthAccessToken,
+ *     "sotarks",
+ *     2,
+ * )
+ * ```
+ * [[include:example_output/search_wiki_page_sotarks_2.md]]
  *
  * ([Source](https://osu.ppy.sh/docs/index.html#search))
  */

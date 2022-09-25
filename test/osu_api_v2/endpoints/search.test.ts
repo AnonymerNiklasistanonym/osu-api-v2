@@ -104,6 +104,17 @@ export const searchTestSuite = (): Suite =>
                     searchResultWikiPage1,
                     checkSearchResultWikiPageObject,
                 )
+                const searchResultWikiPage2 = await osuApiV2.search.wikiPage(
+                    oauthAccessToken,
+                    "sotarks",
+                    2,
+                )
+                await saveAndCheckResponse(
+                    "search_wiki_page",
+                    "sotarks_2",
+                    searchResultWikiPage2,
+                    checkSearchResultWikiPageObject,
+                )
             }).timeout(timeoutForRequestsInMs(2))
         })
     })

@@ -519,6 +519,19 @@ export const usersTestSuite = (): Suite =>
                     }
                 }).timeout(timeoutForRequestsInMs(1))
                 it("requests don't throw errors", async () => {
+                    const userDefault = await osuApiV2.users.scores(
+                        oauthAccessToken,
+                        9096716,
+                    )
+                    await saveAndCheckResponse(
+                        "users_scores",
+                        "9096716",
+                        userDefault,
+                        checkScoreObjects,
+                        {
+                            userId: 9096716,
+                        },
+                    )
                     const userBestOsu21 = await osuApiV2.users.scores(
                         oauthAccessToken,
                         9096716,

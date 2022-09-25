@@ -67,14 +67,13 @@ export const get = async (
             ],
         },
     )
-    // Detect unexpected UserList request response and throw an API error.
-    if (Array.isArray((possibleUser as UserList).users)) {
-        if ((possibleUser as UserList).users.length === 0) {
-            throw new OsuApiV2Error(
-                "No user was found",
-                OsuApiV2ErrorCode.NOT_FOUND,
-            )
-        }
+    // Detect unexpected UserList request response and throw an API error
+    if ("users" in possibleUser) {
+        throw new OsuApiV2Error(
+            "No user was found",
+            OsuApiV2ErrorCode.NOT_FOUND,
+        )
+    } else {
+        return possibleUser
     }
-    return possibleUser as UserEndpointGet
 }

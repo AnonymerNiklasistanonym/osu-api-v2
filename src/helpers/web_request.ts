@@ -81,5 +81,5 @@ export const genericWebRequest = async <
             options?.postRequestBody,
         )
     }
-    return (await res.json()) as RETURN_TYPE
+    return res.json() as Promise<RETURN_TYPE>
 }
