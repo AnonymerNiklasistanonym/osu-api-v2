@@ -84,8 +84,8 @@ const trimLongString = (longString: string): string => {
     return `${longString.substring(0, 30)}...`
 }
 
-const trimLongArray = <DATA_TYPE>(longArray: DATA_TYPE[]): DATA_TYPE[] => {
-    return longArray.slice(0, 3)
+const trimLongArray = <DATA_TYPE>(longArray: DATA_TYPE[]) => {
+    longArray.splice(3, longArray.length)
 }
 
 const trimLongDataUser = (input: User) => {
@@ -100,21 +100,19 @@ const trimLongDataUser = (input: User) => {
     }
     if (input.replays_watched_counts !== undefined) {
         trimmedLongDataAttributes.push("replays_watched_counts")
-        input.replays_watched_counts = trimLongArray(
-            input.replays_watched_counts,
-        )
+        trimLongArray(input.replays_watched_counts)
     }
     if (input.monthly_playcounts !== undefined) {
         trimmedLongDataAttributes.push("monthly_playcounts")
-        input.monthly_playcounts = trimLongArray(input.monthly_playcounts)
+        trimLongArray(input.monthly_playcounts)
     }
     if (input.user_achievements !== undefined) {
         trimmedLongDataAttributes.push("user_achievements")
-        input.user_achievements = trimLongArray(input.user_achievements)
+        trimLongArray(input.user_achievements)
     }
     if (input.rank_history?.data !== undefined) {
         trimmedLongDataAttributes.push("rank_history.data")
-        input.rank_history.data = trimLongArray(input.rank_history.data)
+        trimLongArray(input.rank_history.data)
     }
     return trimmedLongDataAttributes
 }
@@ -162,7 +160,7 @@ const usersRecentActivity = genericEndpointGenerator<Event[]>(
         const trimmedLongDataAttributes: string[] = []
         if (input.length > 3) {
             trimmedLongDataAttributes.push("[]")
-            input = trimLongArray(input)
+            trimLongArray(input)
         }
         return trimmedLongDataAttributes
     },
@@ -175,7 +173,7 @@ const searchUser = genericEndpointGenerator<
 
     if (input.data.length > 3) {
         trimmedLongDataAttributes.push("user.data")
-        input.data = trimLongArray(input.data)
+        trimLongArray(input.data)
     }
 
     return trimmedLongDataAttributes
@@ -189,9 +187,7 @@ const searchWikiPage = genericEndpointGenerator<SearchResult<WikiPage>>(
         for (const element of input.data) {
             if (element.available_locales.length > 3) {
                 trimmedLongDataAttributes.push("data.available_locales")
-                element.available_locales = trimLongArray(
-                    element.available_locales,
-                )
+                trimLongArray(element.available_locales)
             }
             if (element.markdown.length > 20) {
                 trimmedLongDataAttributes.push("data.markdown")
@@ -199,13 +195,13 @@ const searchWikiPage = genericEndpointGenerator<SearchResult<WikiPage>>(
             }
             if (element.tags.length > 3) {
                 trimmedLongDataAttributes.push("data.tags")
-                element.tags = trimLongArray(element.tags)
+                trimLongArray(element.tags)
             }
         }
 
         if (input.data.length > 3) {
             trimmedLongDataAttributes.push("data")
-            input.data = trimLongArray(input.data)
+            trimLongArray(input.data)
         }
 
         return trimmedLongDataAttributes
