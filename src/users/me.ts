@@ -12,7 +12,7 @@ import type { OAuthAuthorizeScope } from "../types/oauth_scopes"
 /**
  * Similar to {@link get} but with authenticated user (token owner) as user id.
  *
- * You need to have the {@link OAuthAuthorizeScope.IDENTIFY} to use this
+ * You need to have the {@link OAuthAuthorizeScope.IDENTIFY} scope to use this
  * endpoint.
  *
  * @param oauthAccessToken The OAuth Access token.

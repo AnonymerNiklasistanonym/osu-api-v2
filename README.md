@@ -238,8 +238,8 @@ The tests can be separated in 3 different categories:
 
 3. osu!api v2 tests using custom OAuth credentials with client credential grants and refresh token grants
 
-   To run these tests you need to provide either a file called `osu_api_v2_oauth_refresh_token.secret.json` that contains a valid *client ID* and *client secret* ([example file](./osu_api_v2_oauth_refresh_token.example.json)) or environment variables that contain this information (`OSU_OAUTH_CLIENT_ID`, `OSU_OAUTH_CLIENT_SECRET`, `OSU_OAUTH_REDIRECT_URL`, `OSU_OAUTH_REFRESH_TOKEN`).
-   Keep in mind that at the end of the tests the refresh token in `OSU_OAUTH_REFRESH_TOKEN` would be useless but the current refresh token will be in the file that was automatically created/updated during running the tests!
+   To run these tests you need to provide either a file called `osu_api_v2_oauth_refresh_token.secret.json` that contains a valid *client ID*, *client secret*, *redirect URI* and current *refresh token* ([example file](./osu_api_v2_oauth_refresh_token.example.json)) or environment variables that contain this information (`OSU_OAUTH_CLIENT_ID`, `OSU_OAUTH_CLIENT_SECRET`, `OSU_OAUTH_REDIRECT_URL`, `OSU_OAUTH_REFRESH_TOKEN`).
+   Keep in mind that at the end of the tests the refresh token (in `OSU_OAUTH_REFRESH_TOKEN`) would be useless but the new valid refresh token will be in the file (`osu_api_v2_oauth_refresh_token.secret.json`) that was automatically created/updated during running the tests!
 
    This means these tests will cover all endpoints, even the ones only accessible to other API scopes (of course the success of these tests depends if you have the required API scopes enabled when initially requesting the refresh token code).
 
