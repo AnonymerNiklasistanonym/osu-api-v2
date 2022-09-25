@@ -11,7 +11,8 @@ import {
     invalidOAuthAccessToken,
 } from "../get_oauth_secrets"
 import { saveAndCheckResponse, timeoutForRequestsInMs } from "../../test_helper"
-import { checkEndpointSearchUserResponseObject } from "../types/check_search_user"
+import { checkSearchResultEndpointSearchUserObject } from "../types/check_search_user"
+import { checkSearchResultWikiPageObject } from "../types/check_search_wiki_page"
 import osuApiV2 from "../../../src"
 // Type imports
 import type { OAuthAccessToken, OsuApiV2WebRequestError } from "../../../src"
@@ -57,7 +58,7 @@ export const searchTestSuite = (): Suite =>
                     "search_user",
                     "niklas616",
                     searchResultUser1,
-                    checkEndpointSearchUserResponseObject,
+                    checkSearchResultEndpointSearchUserObject,
                 )
                 const searchResultUser2 = await osuApiV2.search.user(
                     oauthAccessToken,
@@ -68,7 +69,40 @@ export const searchTestSuite = (): Suite =>
                     "search_user",
                     "Ooi_2",
                     searchResultUser2,
-                    checkEndpointSearchUserResponseObject,
+                    checkSearchResultEndpointSearchUserObject,
+                )
+            }).timeout(timeoutForRequestsInMs(2))
+        })
+
+        describe("wiki-page", () => {
+            it("should throw if access token is invalid", async () => {
+                try {
+                    const request = await osuApiV2.search.wikiPage(
+                        invalidOAuthAccessToken,
+                        "sotarks",
+                    )
+                    expect.fail(
+                        `request did not throw error: '${JSON.stringify(
+                            request,
+                        )}'`,
+                    )
+                } catch (err) {
+                    checkOsuApiV2WebRequestError(
+                        err as OsuApiV2WebRequestError,
+                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                    )
+                }
+            }).timeout(timeoutForRequestsInMs(1))
+            it("requests don't throw errors", async () => {
+                const searchResultWikiPage1 = await osuApiV2.search.wikiPage(
+                    oauthAccessToken,
+                    "sotarks",
+                )
+                await saveAndCheckResponse(
+                    "search_wiki_page",
+                    "sotarks",
+                    searchResultWikiPage1,
+                    checkSearchResultWikiPageObject,
                 )
             }).timeout(timeoutForRequestsInMs(2))
         })

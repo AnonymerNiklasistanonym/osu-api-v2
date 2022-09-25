@@ -6,12 +6,14 @@ import { promises as fsp } from "fs"
 import path from "path"
 // Type imports
 import type {
-    EndpointSearchUserResponse,
     Event,
     Score,
+    SearchResult,
     User,
     UserEndpointGet,
     UserEndpointMe,
+    UserEndpointSearchUser,
+    WikiPage,
 } from "../src"
 
 const cachedOsuApiResponsesDir = path.join(
@@ -26,7 +28,8 @@ const trimmedLongDataString = (trimmedAttributes: string[]) => {
     if (trimmedAttributes.length === 0) {
         return ""
     }
-    return `(trimmed long data attributes: ${trimmedAttributes
+    return `(trimmed long data attributes: ${[...new Set(trimmedAttributes)]
+        .sort()
         .map((a) => `\`${a}\``)
         .join(", ")})\n\n`
 }
@@ -34,7 +37,8 @@ const removedDeprecatedKeysString = (removedDeprecatedKeys: string[]) => {
     if (removedDeprecatedKeys.length === 0) {
         return ""
     }
-    return `(removed deprecated keys: ${removedDeprecatedKeys
+    return `(removed deprecated keys: ${[...new Set(removedDeprecatedKeys)]
+        .sort()
         .map((a) => `\`${a}\``)
         .join(", ")})\n\n`
 }
@@ -76,31 +80,41 @@ const genericEndpointGenerator = async <ReturnType>(
     }
 }
 
+const trimLongString = (longString: string): string => {
+    return `${longString.substring(0, 30)}...`
+}
+
+const trimLongArray = <DATA_TYPE>(longArray: DATA_TYPE[]): DATA_TYPE[] => {
+    return longArray.slice(0, 3)
+}
+
 const trimLongDataUser = (input: User) => {
     const trimmedLongDataAttributes: string[] = []
     if (input.page?.html !== undefined) {
         trimmedLongDataAttributes.push("page.html")
-        input.page.html = input.page.html.substring(0, 20) + "..."
+        input.page.html = trimLongString(input.page.html)
     }
     if (input.page?.raw !== undefined) {
         trimmedLongDataAttributes.push("page.raw")
-        input.page.raw = input.page.raw.substring(0, 20) + "..."
+        input.page.raw = trimLongString(input.page.raw)
     }
     if (input.replays_watched_counts !== undefined) {
         trimmedLongDataAttributes.push("replays_watched_counts")
-        input.replays_watched_counts = input.replays_watched_counts.slice(0, 3)
+        input.replays_watched_counts = trimLongArray(
+            input.replays_watched_counts,
+        )
     }
     if (input.monthly_playcounts !== undefined) {
         trimmedLongDataAttributes.push("monthly_playcounts")
-        input.monthly_playcounts = input.monthly_playcounts.slice(0, 3)
+        input.monthly_playcounts = trimLongArray(input.monthly_playcounts)
     }
     if (input.user_achievements !== undefined) {
         trimmedLongDataAttributes.push("user_achievements")
-        input.user_achievements = input.user_achievements.slice(0, 3)
+        input.user_achievements = trimLongArray(input.user_achievements)
     }
     if (input.rank_history?.data !== undefined) {
         trimmedLongDataAttributes.push("rank_history.data")
-        input.rank_history.data = input.rank_history.data.slice(0, 3)
+        input.rank_history.data = trimLongArray(input.rank_history.data)
     }
     return trimmedLongDataAttributes
 }
@@ -148,19 +162,50 @@ const usersRecentActivity = genericEndpointGenerator<Event[]>(
         const trimmedLongDataAttributes: string[] = []
         if (input.length > 3) {
             trimmedLongDataAttributes.push("[]")
-            input = input.slice(0, 3)
+            input = trimLongArray(input)
         }
         return trimmedLongDataAttributes
     },
 )
-const searchUser = genericEndpointGenerator<EndpointSearchUserResponse>(
-    "search_user",
+
+const searchUser = genericEndpointGenerator<
+    SearchResult<UserEndpointSearchUser>
+>("search_user", (input) => {
+    const trimmedLongDataAttributes: string[] = []
+
+    if (input.data.length > 3) {
+        trimmedLongDataAttributes.push("user.data")
+        input.data = trimLongArray(input.data)
+    }
+
+    return trimmedLongDataAttributes
+})
+
+const searchWikiPage = genericEndpointGenerator<SearchResult<WikiPage>>(
+    "search_wiki_page",
     (input) => {
         const trimmedLongDataAttributes: string[] = []
 
-        if (input.user.data.length > 3) {
-            trimmedLongDataAttributes.push("user.data")
-            input.user.data = input.user.data.slice(0, 3)
+        for (const element of input.data) {
+            if (element.available_locales.length > 3) {
+                trimmedLongDataAttributes.push("data.available_locales")
+                element.available_locales = trimLongArray(
+                    element.available_locales,
+                )
+            }
+            if (element.markdown.length > 20) {
+                trimmedLongDataAttributes.push("data.markdown")
+                element.markdown = trimLongString(element.markdown)
+            }
+            if (element.tags.length > 3) {
+                trimmedLongDataAttributes.push("data.tags")
+                element.tags = trimLongArray(element.tags)
+            }
+        }
+
+        if (input.data.length > 3) {
+            trimmedLongDataAttributes.push("data")
+            input.data = trimLongArray(input.data)
         }
 
         return trimmedLongDataAttributes
@@ -173,4 +218,5 @@ Promise.all([
     usersMe,
     usersScores,
     usersRecentActivity,
+    searchWikiPage,
 ]).catch(console.error)

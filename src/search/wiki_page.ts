@@ -3,10 +3,10 @@ import { genericWebRequest } from "../helpers/web_request"
 // Type imports
 import type { Search, SearchResult } from "../types/search"
 import type { OAuthAccessToken } from "../types/oauth_access_token"
-import type { UserEndpointSearchUser } from "../types/user"
+import type { WikiPage } from "../types/wiki_page"
 
 /**
- * Search for a user using a query.
+ * Search for a wiki page using a query.
  *
  * @param oauthAccessToken The OAuth Access token.
  * @param query Search keyword.
@@ -15,41 +15,30 @@ import type { UserEndpointSearchUser } from "../types/user"
  * ```ts
  * import osuApiV2 from "osu-api-v2"
  *
- * const user = await osuApiV2.search.user(
+ * const user = await osuApiV2.search.wikiPage(
  *     oauthAccessToken,
- *     "niklas616",
+ *     "sotarks",
  * )
  * ```
- * [[include:example_output/search_user_niklas616.md]]
- * @example
- * ```ts
- * import osuApiV2 from "osu-api-v2"
- *
- * const user = await osuApiV2.search.user(
- *     oauthAccessToken,
- *     "Ooi",
- *     2,
- * )
- * ```
- * [[include:example_output/search_user_Ooi_2.md]]
+ * [[include:example_output/search_wiki_page_sotarks.md]]
  *
  * ([Source](https://osu.ppy.sh/docs/index.html#search))
  */
-export const user = async (
+export const wikiPage = async (
     oauthAccessToken: Readonly<OAuthAccessToken>,
     query: string,
     page?: number,
-): Promise<SearchResult<UserEndpointSearchUser>> => {
+): Promise<SearchResult<WikiPage>> => {
     const searchResultUser = await genericWebRequest<
-        Search<UserEndpointSearchUser, undefined>
+        Search<undefined, WikiPage>
     >("get", ["search"], {
         apiCall: true,
         authorizationAccessToken: oauthAccessToken,
         urlParameters: [
-            { name: "mode", value: "user" },
+            { name: "mode", value: "wiki_page" },
             { name: "query", value: query },
             { name: "page", value: page },
         ],
     })
-    return searchResultUser.user
+    return searchResultUser.wiki_page
 }

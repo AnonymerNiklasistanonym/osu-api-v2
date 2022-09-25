@@ -40,8 +40,6 @@ export type {
 } from "./types/beatmap"
 export type { BeatmapUserScore, Score, ScoreStatistics } from "./types/score"
 export type {
-    EndpointSearchUserResponse,
-    EndpointSearchUserResponseUsers,
     Group,
     GroupDescription,
     User,
@@ -96,10 +94,13 @@ export type {
     OsuApiV2WebRequestErrorMethod,
     OsuApiV2WebRequestErrorHeaders,
 } from "./helpers/custom_errors"
+export type { Search, SearchResult } from "./types/search"
 export type { ClientCredentialsGrant } from "./types/client_credentials_grant"
 export type { ColorCode } from "./types/color_code"
 export type { Failtimes } from "./types/failtimes"
+export type { LanguageLocaleTag } from "./types/language"
 export type { Timestamp } from "./types/timestamp"
+export type { WikiPage } from "./types/wiki_page"
 export type { ScoreWeight, ScoreUserAttributes } from "./types/score"
 
 /**

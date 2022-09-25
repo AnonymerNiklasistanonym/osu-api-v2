@@ -770,16 +770,3 @@ export interface User extends UserCompact {
      */
     website?: string | null
 }
-
-/**
- * [[include:example_output/search_user_niklas616.md]]
- * [[include:example_output/search_user_Ooi_2.md]]
- */
-export interface EndpointSearchUserResponse {
-    user: EndpointSearchUserResponseUsers
-}
-
-export interface EndpointSearchUserResponseUsers {
-    data: UserEndpointSearchUser[]
-    total: number
-}
