@@ -5,7 +5,7 @@ import { expect } from "chai"
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestExpectedErrorType,
-} from "../../helper/custom_errors"
+} from "../../helper/types/check_custom_errors"
 import {
     getOAuthSecretClientCredentials,
     invalidOAuthAccessToken,
@@ -45,7 +45,10 @@ export const searchTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        {
+                            errorType:
+                                OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        },
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -89,7 +92,10 @@ export const searchTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        {
+                            errorType:
+                                OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        },
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))

@@ -5,17 +5,17 @@ import { expect } from "chai"
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestExpectedErrorType,
-} from "../../helper/custom_errors"
+} from "../../helper/types/check_custom_errors"
 import {
     getOAuthSecretClientCredentials,
     invalidOAuthAccessToken,
 } from "../get_oauth_secrets"
 import osuApiV2, { GameMode, RankStatus } from "../../../src"
 import { saveAndCheckResponse, timeoutForRequestsInMs } from "../../test_helper"
+import { checkBeatmapObject } from "../types/check_beatmap"
 import { scoresTestSuite } from "./beatmaps/scores.test"
 // Type imports
 import type { OAuthAccessToken, OsuApiV2WebRequestError } from "../../../src"
-import { checkBeatmapObject } from "../types/check_beatmap"
 
 export const beatmapsTestSuite = (): Suite =>
     describe("beatmaps", () => {
@@ -45,7 +45,10 @@ export const beatmapsTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        {
+                            errorType:
+                                OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        },
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -63,7 +66,10 @@ export const beatmapsTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                        {
+                            errorType:
+                                OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                        },
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -133,7 +139,10 @@ export const beatmapsTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        {
+                            errorType:
+                                OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        },
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -153,7 +162,10 @@ export const beatmapsTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                        {
+                            errorType:
+                                OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                        },
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))

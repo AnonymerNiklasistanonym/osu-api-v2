@@ -5,7 +5,7 @@ import { expect } from "chai"
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestExpectedErrorType,
-} from "../../helper/custom_errors"
+} from "../../helper/types/check_custom_errors"
 import {
     getOAuthSecretClientCredentials,
     invalidOAuthAccessToken,
@@ -48,7 +48,10 @@ export const beatmapsetsTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        {
+                            errorType:
+                                OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        },
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -66,7 +69,10 @@ export const beatmapsetsTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                        {
+                            errorType:
+                                OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                        },
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -157,7 +163,10 @@ export const beatmapsetsTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        {
+                            errorType:
+                                OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        },
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))

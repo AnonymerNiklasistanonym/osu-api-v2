@@ -5,14 +5,17 @@ import { expect } from "chai"
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestExpectedErrorType,
-} from "../../../helper/custom_errors"
+} from "../../../helper/types/check_custom_errors"
 import {
     getOAuthSecretClientCredentials,
     invalidOAuthAccessToken,
 } from "../../get_oauth_secrets"
 import osuApiV2, { GameMode } from "../../../../src"
-import { checkBeatmapUserScoreObject } from "./scores/check_beatmap_user_score"
-import { timeoutForRequestsInMs } from "../../../test_helper"
+import {
+    saveAndCheckResponse,
+    timeoutForRequestsInMs,
+} from "../../../test_helper"
+import { checkBeatmapUserScoreObject } from "../../types/check_score"
 // Type imports
 import type { OAuthAccessToken, OsuApiV2WebRequestError } from "../../../../src"
 
@@ -46,7 +49,10 @@ export const scoresTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        {
+                            errorType:
+                                OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                        },
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -66,7 +72,10 @@ export const scoresTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                        {
+                            errorType:
+                                OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                        },
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -86,7 +95,10 @@ export const scoresTestSuite = (): Suite =>
                 } catch (err) {
                     checkOsuApiV2WebRequestError(
                         err as OsuApiV2WebRequestError,
-                        OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                        {
+                            errorType:
+                                OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                        },
                     )
                 }
             }).timeout(timeoutForRequestsInMs(1))
@@ -96,33 +108,50 @@ export const scoresTestSuite = (): Suite =>
                     1095534,
                     18508852,
                 )
-                await checkBeatmapUserScoreObject(beatmapUserScore0, {
-                    checkBeatmapId: 1095534,
-                    checkGameMode: GameMode.OSU_STANDARD,
-                    checkUserId: 18508852,
-                })
+                await saveAndCheckResponse(
+                    "beatmaps_scores_users",
+                    "1095534_18508852",
+                    beatmapUserScore0,
+                    checkBeatmapUserScoreObject,
+                    {
+                        beatmapId: 1095534,
+                        userId: 18508852,
+                    },
+                )
                 const beatmapUserScore1 = await osuApiV2.beatmaps.scores.users(
                     oauthAccessToken,
                     1095534,
                     18508852,
                     GameMode.OSU_STANDARD,
                 )
-                await checkBeatmapUserScoreObject(beatmapUserScore1, {
-                    checkBeatmapId: 1095534,
-                    checkGameMode: GameMode.OSU_STANDARD,
-                    checkUserId: 18508852,
-                })
+                await saveAndCheckResponse(
+                    "beatmaps_scores_users",
+                    "1095534_18508852",
+                    beatmapUserScore1,
+                    checkBeatmapUserScoreObject,
+                    {
+                        beatmapId: 1095534,
+                        gameMode: GameMode.OSU_STANDARD,
+                        userId: 18508852,
+                    },
+                )
                 const beatmapUserScore2 = await osuApiV2.beatmaps.scores.users(
                     oauthAccessToken,
                     744305,
                     18508852,
                     GameMode.OSU_STANDARD,
                 )
-                await checkBeatmapUserScoreObject(beatmapUserScore2, {
-                    checkBeatmapId: 744305,
-                    checkGameMode: GameMode.OSU_STANDARD,
-                    checkUserId: 18508852,
-                })
+                await saveAndCheckResponse(
+                    "beatmaps_scores_users",
+                    "744305_18508852",
+                    beatmapUserScore2,
+                    checkBeatmapUserScoreObject,
+                    {
+                        beatmapId: 744305,
+                        gameMode: GameMode.OSU_STANDARD,
+                        userId: 18508852,
+                    },
+                )
             }).timeout(timeoutForRequestsInMs(3))
         })
     })

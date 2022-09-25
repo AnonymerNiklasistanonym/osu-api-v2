@@ -10,7 +10,7 @@ import {
     checkOsuApiV2Error,
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestExpectedErrorType,
-} from "../../helper/custom_errors"
+} from "../../helper/types/check_custom_errors"
 import {
     checkResponse,
     saveAndCheckResponse,
@@ -67,7 +67,10 @@ export const usersTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
@@ -85,7 +88,10 @@ export const usersTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
@@ -101,10 +107,9 @@ export const usersTestSuite = (): Suite =>
                             )}'`,
                         )
                     } catch (err) {
-                        checkOsuApiV2Error(
-                            err as OsuApiV2Error,
-                            OsuApiV2ErrorCode.NOT_FOUND,
-                        )
+                        checkOsuApiV2Error(err as OsuApiV2Error, {
+                            errorCode: OsuApiV2ErrorCode.NOT_FOUND,
+                        })
                     }
                 }).timeout(timeoutForRequestsInMs(1))
                 it("requests don't throw errors", async () => {
@@ -424,7 +429,10 @@ export const usersTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
@@ -445,7 +453,10 @@ export const usersTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
@@ -514,7 +525,10 @@ export const usersTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.NOT_FOUND,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))

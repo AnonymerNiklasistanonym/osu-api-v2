@@ -2,6 +2,7 @@
 import { expect } from "chai"
 // Local imports
 import {
+    BeatmapUserScore,
     GameMod,
     GameMode,
     GameModeInt,
@@ -85,6 +86,7 @@ export const checkScoreUserAttributesObject = (
 }
 
 export interface CheckScoreObjectOptions extends DefaultCheckResponseOptions {
+    beatmapId?: number
     gameMode?: GameMode
     userId?: number
 }
@@ -113,7 +115,9 @@ export const checkScoreObject = (
 
     if (score.beatmap !== undefined) {
         checkedKeys.push("beatmap")
-        checkBeatmapObject(score.beatmap)
+        checkBeatmapObject(score.beatmap, {
+            id: options?.beatmapId,
+        })
     }
 
     if (score.beatmapset !== undefined) {
@@ -224,4 +228,22 @@ export const checkScoreObject = (
     }
 
     return genericCheckObjectForUncheckedKeys(score, checkedKeys, options)
+}
+
+export const checkBeatmapUserScoreObject = (
+    beatmapUserScore: BeatmapUserScore,
+    options?: CheckScoreObjectOptions,
+) => {
+    expect(beatmapUserScore).to.be.an("object")
+
+    // List of all keys that will be checked
+    const checkedKeys: string[] = []
+
+    checkedKeys.push("position")
+    expect(beatmapUserScore.position).to.be.a("number").greaterThan(0)
+
+    checkedKeys.push("score")
+    checkScoreObject(beatmapUserScore.score, options)
+
+    genericCheckObjectForUncheckedKeys(beatmapUserScore, checkedKeys, options)
 }

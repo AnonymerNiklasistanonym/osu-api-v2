@@ -9,19 +9,20 @@ import {
 import {
     checkOsuApiV2WebRequestError,
     OsuApiV2WebRequestExpectedErrorType,
-} from "../../helper/custom_errors"
+} from "../../helper/types/check_custom_errors"
 import { checkResponse, timeoutForRequestsInMs } from "../../test_helper"
 import {
     getOAuthSecretClientCredentials,
     getOAuthSecretRefreshToken,
     updateOAuthSecretRefreshToken,
 } from "../get_oauth_secrets"
-import osuApiV2, { OsuApiV2WebRequestError } from "../../../src"
+import osuApiV2 from "../../../src"
 // Type imports
 import type {
     OAuthSecretClientCredentials,
     OAuthSecretRefreshToken,
 } from "../get_oauth_secrets"
+import type { OsuApiV2WebRequestError } from "../../../src"
 
 export const oauthTestSuite = (): Suite =>
     describe("oauth", () => {
@@ -49,7 +50,10 @@ export const oauthTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
@@ -68,7 +72,10 @@ export const oauthTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
@@ -99,7 +106,10 @@ export const oauthTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
@@ -123,7 +133,10 @@ export const oauthTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
@@ -154,7 +167,10 @@ export const oauthTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
@@ -174,7 +190,10 @@ export const oauthTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
@@ -194,7 +213,10 @@ export const oauthTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))
@@ -214,7 +236,10 @@ export const oauthTestSuite = (): Suite =>
                     } catch (err) {
                         checkOsuApiV2WebRequestError(
                             err as OsuApiV2WebRequestError,
-                            OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            {
+                                errorType:
+                                    OsuApiV2WebRequestExpectedErrorType.UNAUTHORIZED,
+                            },
                         )
                     }
                 }).timeout(timeoutForRequestsInMs(1))

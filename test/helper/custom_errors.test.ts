@@ -1,7 +1,7 @@
 // Package imports
 import { describe, it, Suite } from "mocha"
-import { expect } from "chai"
 // Local imports
+import { checkOsuApiV2WebRequestError } from "./types/check_custom_errors"
 import { OsuApiV2WebRequestError } from "../../src/helpers/custom_errors"
 
 export const customErrorsTestSuite = (): Suite =>
@@ -10,21 +10,22 @@ export const customErrorsTestSuite = (): Suite =>
             it("should preserve the non private data", () => {
                 const error = new OsuApiV2WebRequestError(
                     "message",
-                    400,
+                    123,
                     "status",
                     "someUrl",
                     "get",
                     { abc: "def" },
                     { cde: "hij" },
                 )
-                expect(error.message).equals("message")
-                expect(error.statusCode).equals(400)
-                expect(error.statusText).equals("status")
-                expect(error.url).equals("someUrl")
-                expect(error.method).equals("get")
-                expect(error.headers).deep.equal({ abc: "def" })
-                expect(error.body).equal(JSON.stringify({ cde: "hij" }))
-
+                checkOsuApiV2WebRequestError(error, {
+                    body: JSON.stringify({ cde: "hij" }),
+                    headers: { abc: "def" },
+                    message: "message",
+                    method: "get",
+                    statusCode: 123,
+                    statusText: "status",
+                    url: "someUrl",
+                })
                 const error2 = new OsuApiV2WebRequestError(
                     "message2",
                     401,
@@ -34,13 +35,15 @@ export const customErrorsTestSuite = (): Suite =>
                     { abc: "def2" },
                     "bodystring",
                 )
-                expect(error2.message).equals("message2")
-                expect(error2.statusCode).equals(401)
-                expect(error2.statusText).equals("status2")
-                expect(error2.url).equals("someUrl2")
-                expect(error2.method).equals("post")
-                expect(error2.headers).deep.equal({ abc: "def2" })
-                expect(error2.body).equal("bodystring")
+                checkOsuApiV2WebRequestError(error2, {
+                    body: "bodystring",
+                    headers: { abc: "def2" },
+                    message: "message2",
+                    method: "post",
+                    statusCode: 401,
+                    statusText: "status2",
+                    url: "someUrl2",
+                })
             })
             it("should mask the authorization header", () => {
                 const error = new OsuApiV2WebRequestError(
@@ -54,10 +57,14 @@ export const customErrorsTestSuite = (): Suite =>
                             "Bearer 098304982039482039482304829034820934",
                     },
                 )
-                expect(error.headers?.authorization).equals(
-                    "Bearer 098[redacted]",
-                )
-
+                checkOsuApiV2WebRequestError(error, {
+                    authorizationHeader: "Bearer 098[redacted]",
+                    message: "message",
+                    method: "get",
+                    statusCode: 400,
+                    statusText: "text",
+                    url: "someUrl",
+                })
                 const errorNoAuth = new OsuApiV2WebRequestError(
                     "message",
                     400,
@@ -65,7 +72,14 @@ export const customErrorsTestSuite = (): Suite =>
                     "someUrl",
                     "get",
                 )
-                expect(errorNoAuth.headers?.authorization).to.be.undefined
+                checkOsuApiV2WebRequestError(errorNoAuth, {
+                    message: "message",
+                    method: "get",
+                    noAuthorizationHeader: true,
+                    statusCode: 400,
+                    statusText: "text",
+                    url: "someUrl",
+                })
             })
             it("should mask the client secret in body", () => {
                 const error = new OsuApiV2WebRequestError(
@@ -80,13 +94,12 @@ export const customErrorsTestSuite = (): Suite =>
                         test: "abc",
                     },
                 )
-                expect(error.body).equals(
-                    JSON.stringify({
+                checkOsuApiV2WebRequestError(error, {
+                    body: JSON.stringify({
                         client_secret: "fjdsnfkdsf[redacted]",
                         test: "abc",
                     }),
-                )
-
+                })
                 const errorNoClientSecret = new OsuApiV2WebRequestError(
                     "message",
                     400,
@@ -98,12 +111,11 @@ export const customErrorsTestSuite = (): Suite =>
                         test: "abc",
                     },
                 )
-                expect(errorNoClientSecret.body).equals(
-                    JSON.stringify({
+                checkOsuApiV2WebRequestError(errorNoClientSecret, {
+                    body: JSON.stringify({
                         test: "abc",
                     }),
-                )
-
+                })
                 const errorNoBody = new OsuApiV2WebRequestError(
                     "message",
                     400,
@@ -111,7 +123,9 @@ export const customErrorsTestSuite = (): Suite =>
                     "someUrl",
                     "get",
                 )
-                expect(errorNoBody.body).to.be.undefined
+                checkOsuApiV2WebRequestError(errorNoBody, {
+                    noBody: true,
+                })
             })
         })
     })
