@@ -15,11 +15,14 @@ import { checkSearchResultEndpointSearchUserObject } from "../types/check_search
 import { checkSearchResultWikiPageObject } from "../types/check_search_wiki_page"
 import osuApiV2 from "../../../src"
 // Type imports
-import type { OAuthAccessToken, OsuApiV2WebRequestError } from "../../../src"
+import type {
+    OAuthAccessTokenResponse,
+    OsuApiV2WebRequestError,
+} from "../../../src"
 
 export const searchTestSuite = (): Suite =>
     describe("search", () => {
-        let oauthAccessToken: OAuthAccessToken
+        let oauthAccessToken: OAuthAccessTokenResponse
 
         before("before all test cases", async () => {
             // Get the OAuth access token

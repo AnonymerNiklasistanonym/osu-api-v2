@@ -4,7 +4,7 @@ import { promises as fsp } from "fs"
 // Type imports
 import type {
     OAuthAccessToken,
-    OAuthAccessTokenWithRefreshToken,
+    OAuthAccessTokenWithRefreshTokenResponse,
 } from "../../src"
 
 export interface OAuthSecretClientCredentials {
@@ -30,7 +30,6 @@ const defaultOauthSecretRefreshTokenFilePath = path.join(
 
 export const invalidOAuthAccessToken: OAuthAccessToken = {
     access_token: "",
-    expires_in: 100,
     token_type: "",
 }
 
@@ -96,7 +95,7 @@ export const getOAuthSecretRefreshToken = async (
 
 export const updateOAuthSecretRefreshToken = async (
     currentRefreshToken: OAuthSecretRefreshToken,
-    newRefreshToken: OAuthAccessTokenWithRefreshToken,
+    newRefreshToken: OAuthAccessTokenWithRefreshTokenResponse,
     filePath: string = defaultOauthSecretRefreshTokenFilePath,
 ): Promise<void> => {
     const newRefreshTokenData: OAuthSecretRefreshToken = {

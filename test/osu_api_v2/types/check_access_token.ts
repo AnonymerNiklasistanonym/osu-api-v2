@@ -4,8 +4,8 @@ import { expect } from "chai"
 import { genericCheckObjectForUncheckedKeys } from "./check_generic"
 // Type imports
 import type {
-    OAuthAccessToken,
-    OAuthAccessTokenWithRefreshToken,
+    OAuthAccessTokenResponse,
+    OAuthAccessTokenWithRefreshTokenResponse,
 } from "../../../src"
 import { DefaultCheckResponseOptions } from "../../test_helper"
 
@@ -15,7 +15,7 @@ export interface CheckAccessTokenWithRefreshTokenObjectOptions
 }
 
 export const checkAccessTokenWithRefreshTokenObject = (
-    oauthAccessToken: Readonly<OAuthAccessTokenWithRefreshToken>,
+    oauthAccessToken: Readonly<OAuthAccessTokenWithRefreshTokenResponse>,
     options?: Readonly<CheckAccessTokenWithRefreshTokenObjectOptions>,
 ): readonly string[] => {
     expect(oauthAccessToken).to.be.an("object")
@@ -50,10 +50,10 @@ export const checkAccessTokenWithRefreshTokenObject = (
 }
 
 export const checkAccessTokenObject = (
-    oauthAccessToken: Readonly<OAuthAccessToken>,
+    oauthAccessToken: Readonly<OAuthAccessTokenResponse>,
 ): void => {
     checkAccessTokenWithRefreshTokenObject(
-        oauthAccessToken as OAuthAccessTokenWithRefreshToken,
+        oauthAccessToken as OAuthAccessTokenWithRefreshTokenResponse,
         { isNotARefreshToken: true },
     )
 }

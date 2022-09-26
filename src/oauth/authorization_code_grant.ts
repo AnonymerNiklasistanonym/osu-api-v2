@@ -2,7 +2,7 @@
 import { genericWebRequest } from "../helpers/web_request"
 // Type imports
 import type { AuthorizationCodeGrant } from "../types/authorization_code_grant"
-import type { OAuthAccessTokenWithRefreshToken } from "../types/oauth_access_token"
+import type { OAuthAccessTokenWithRefreshTokenResponse } from "../types/oauth_access_token"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { authorizeRedirectUrlGenerator } from "./authorize"
 
@@ -38,17 +38,16 @@ export const authorizationCodeGrant = async (
     clientSecret: string,
     redirectUri: string,
     code: string,
-): Promise<OAuthAccessTokenWithRefreshToken> =>
-    genericWebRequest<OAuthAccessTokenWithRefreshToken, AuthorizationCodeGrant>(
-        "post",
-        ["oauth", "token"],
-        {
-            postRequestBody: {
-                client_id: clientId,
-                client_secret: clientSecret,
-                code,
-                grant_type: "authorization_code",
-                redirect_uri: redirectUri,
-            },
+): Promise<OAuthAccessTokenWithRefreshTokenResponse> =>
+    genericWebRequest<
+        OAuthAccessTokenWithRefreshTokenResponse,
+        AuthorizationCodeGrant
+    >("post", ["oauth", "token"], {
+        postRequestBody: {
+            client_id: clientId,
+            client_secret: clientSecret,
+            code,
+            grant_type: "authorization_code",
+            redirect_uri: redirectUri,
         },
-    )
+    })

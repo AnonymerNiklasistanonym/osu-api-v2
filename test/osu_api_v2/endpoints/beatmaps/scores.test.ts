@@ -17,11 +17,14 @@ import {
 } from "../../../test_helper"
 import { checkBeatmapUserScoreObject } from "../../types/check_score"
 // Type imports
-import type { OAuthAccessToken, OsuApiV2WebRequestError } from "../../../../src"
+import type {
+    OAuthAccessTokenResponse,
+    OsuApiV2WebRequestError,
+} from "../../../../src"
 
 export const scoresTestSuite = (): Suite =>
     describe("scores", () => {
-        let oauthAccessToken: OAuthAccessToken
+        let oauthAccessToken: OAuthAccessTokenResponse
 
         before("before all test cases", async () => {
             // Get the OAuth access token

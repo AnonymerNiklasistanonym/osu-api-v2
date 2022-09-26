@@ -2,7 +2,7 @@
 import { genericWebRequest } from "../helpers/web_request"
 // Type imports
 import type { ClientCredentialsGrant } from "../types/client_credentials_grant"
-import type { OAuthAccessToken } from "../types/oauth_access_token"
+import type { OAuthAccessTokenResponse } from "../types/oauth_access_token"
 
 /**
  * The client credential flow provides a way for developers to get access tokens
@@ -26,8 +26,8 @@ import type { OAuthAccessToken } from "../types/oauth_access_token"
 export const clientCredentialsGrant = async (
     clientId: number,
     clientSecret: string,
-): Promise<OAuthAccessToken> =>
-    genericWebRequest<OAuthAccessToken, ClientCredentialsGrant>(
+): Promise<OAuthAccessTokenResponse> =>
+    genericWebRequest<OAuthAccessTokenResponse, ClientCredentialsGrant>(
         "post",
         ["oauth", "token"],
         {

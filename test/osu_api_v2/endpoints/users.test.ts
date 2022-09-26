@@ -30,8 +30,8 @@ import { checkEventObjects } from "../types/check_event"
 import { checkScoreObjects } from "../types/check_score"
 // Type imports
 import type {
-    OAuthAccessToken,
-    OAuthAccessTokenWithRefreshToken,
+    OAuthAccessTokenResponse,
+    OAuthAccessTokenWithRefreshTokenResponse,
     OsuApiV2Error,
     OsuApiV2WebRequestError,
 } from "../../../src"
@@ -39,7 +39,7 @@ import type {
 export const usersTestSuite = (): Suite =>
     describe("users", () => {
         describe("client-credentials", () => {
-            let oauthAccessToken: OAuthAccessToken
+            let oauthAccessToken: OAuthAccessTokenResponse
 
             before("before all test cases", async () => {
                 // Get the OAuth access token
@@ -668,7 +668,7 @@ export const usersTestSuite = (): Suite =>
         })
 
         describe("refresh-token", () => {
-            let oauthAccessTokenIdentifyScope: OAuthAccessTokenWithRefreshToken
+            let oauthAccessTokenIdentifyScope: OAuthAccessTokenWithRefreshTokenResponse
 
             before("before all test cases", async () => {
                 // Get the OAuth access token

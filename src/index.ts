@@ -88,7 +88,8 @@ export type {
 } from "./types/event"
 export type {
     OAuthAccessToken,
-    OAuthAccessTokenWithRefreshToken,
+    OAuthAccessTokenResponse,
+    OAuthAccessTokenWithRefreshTokenResponse,
 } from "./types/oauth_access_token"
 export type {
     OsuApiV2WebRequestErrorMethod,

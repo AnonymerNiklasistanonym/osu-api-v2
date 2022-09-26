@@ -15,11 +15,14 @@ import { saveAndCheckResponse, timeoutForRequestsInMs } from "../../test_helper"
 import { checkBeatmapObject } from "../types/check_beatmap"
 import { scoresTestSuite } from "./beatmaps/scores.test"
 // Type imports
-import type { OAuthAccessToken, OsuApiV2WebRequestError } from "../../../src"
+import type {
+    OAuthAccessTokenResponse,
+    OsuApiV2WebRequestError,
+} from "../../../src"
 
 export const beatmapsTestSuite = (): Suite =>
     describe("beatmaps", () => {
-        let oauthAccessToken: OAuthAccessToken
+        let oauthAccessToken: OAuthAccessTokenResponse
 
         before("before all test cases", async () => {
             // Get the OAuth access token
