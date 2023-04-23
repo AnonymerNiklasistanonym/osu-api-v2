@@ -1,7 +1,21 @@
 {
-  "extensions": ["ts"],
+  "bail": true,
+  "check-leaks": true,
+  "colors": true,
+  "exit": true,
+  "full-trace": true,
+  "no-timeout": true,
+  "parallel": false,
+  "recursive": true,
+  "extension": ["mts"],
+  "node-option": ["experimental-specifier-resolution=node", "loader=ts-node/esm"],
   "require": [
     "ts-node/register",
     "isomorphic-fetch"
+  ],
+  "watch-files": [
+    ".mocharc.json",
+    "src/**/*.mts",
+    "tests/**/*.mts"
   ]
 }

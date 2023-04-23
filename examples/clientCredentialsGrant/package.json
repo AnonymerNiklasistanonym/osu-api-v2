@@ -1,0 +1,12 @@
+{
+    "name": "test-osu-api-v2",
+    "version": "1.0.0",
+    "type": "commonjs",
+    "main": "index.js",
+    "scripts": {
+        "start": "node ."
+    },
+    "dependencies": {
+        "osu-api-v2": "file:../.."
+    }
+}

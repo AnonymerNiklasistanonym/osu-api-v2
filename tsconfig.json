@@ -1,22 +1,13 @@
 {
     "compilerOptions": {
         "declaration": true,
-        "module": "CommonJS",
+        "module": "node16",
         "esModuleInterop": true,
         "outDir": "lib",
         "rootDir": "src",
         "strict": true,
-        "lib": [
-            "ES5",
-            "ES2015",
-            "ES2016",
-            "ES2017",
-            "ES2018",
-            "ES2019",
-            "ES2020"
-        ],
-        "target": "ES2015",
-        "types": ["node"]
+        "lib": ["ES6", "DOM"],
+        "target": "ES6"
     },
     "exclude": [
         "examples",
@@ -25,17 +16,11 @@
         "pages",
         "test"
     ],
-    "files": ["./src/types.d.ts"],
     "include": ["src"],
     "typedocOptions": {
         "entryPointStrategy": "Expand",
-        "entryPoints": ["src/index.ts"],
+        "entryPoints": ["src"],
         "includes": ["pages"],
-        "out": "docs",
-        "umlClassDiagram": {
-            "type": "detailed",
-            "location": "local",
-            "format": "svg"
-        }
+        "out": "docs"
     }
 }

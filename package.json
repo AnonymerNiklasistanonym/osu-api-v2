@@ -1,49 +1,55 @@
 {
     "name": "osu-api-v2",
-    "version": "0.0.33",
+    "version": "0.1.0",
     "description": "An easy way to use the osu!api v2",
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts",
+    "main": "lib/index.mjs",
+    "types": "lib/index.d.mts",
+    "type": "module",
     "directories": {
         "lib": "./lib"
     },
     "devDependencies": {
-        "@types/chai": "^4.3.3",
-        "@types/mocha": "^9.1.1",
-        "@types/node": "^18.7.20",
-        "@typescript-eslint/eslint-plugin": "^5.38.0",
-        "@typescript-eslint/parser": "^5.38.0",
-        "chai": "^4.3.6",
-        "eslint": "^8.24.0",
-        "eslint-config-prettier": "^8.5.0",
-        "eslint-plugin-jsdoc": "^39.3.6",
+        "@types/chai": "^4.3.4",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "^18.16.0",
+        "@typescript-eslint/eslint-plugin": "^5.59.0",
+        "@typescript-eslint/parser": "^5.59.0",
+        "chai": "^4.3.7",
+        "eslint": "^8.39.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-jsdoc": "^43.0.7",
         "eslint-plugin-prettier": "^4.2.1",
-        "eslint-plugin-typescript-sort-keys": "^2.1.0",
+        "eslint-plugin-typescript-sort-keys": "^2.3.0",
         "isomorphic-fetch": "^3.0.0",
-        "mocha": "^10.0.0",
+        "madge": "^6.0.0",
+        "mocha": "^10.2.0",
         "moment": "^2.29.4",
         "nyc": "^15.1.0",
-        "prettier": "^2.7.1",
+        "prettier": "^2.8.8",
+        "rimraf": "^5.0.0",
         "ts-node": "^10.9.1",
-        "typedoc": "^0.23.15",
-        "typedoc-umlclass": "^0.7.0",
-        "typescript": "^4.8.3"
+        "ts-unused-exports": "^9.0.4",
+        "typedoc": "^0.24.5",
+        "typedoc-umlclass": "^0.7.1",
+        "typescript": "^5.0.4"
     },
     "scripts": {
         "build": "tsc",
         "build:check": "tsc --noEmit",
         "docs": "typedoc --tsconfig tsconfig.json",
-        "docs:createPagesExampleOutput": "ts-node pages/create_pages_example_output.ts",
-        "format": "prettier --check examples src test .prettierrc.js .eslintrc.js",
-        "format:fix": "prettier --write examples pages src test .prettierrc.js .eslintrc.js",
-        "lint": "eslint examples pages src test",
-        "lint:fix": "eslint --fix examples pages src test",
-        "prepare": "tsc",
-        "test": "mocha -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
-        "test:no-refresh-token": "mocha --invert --fgrep refresh-token -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
-        "test:coverage": "nyc --reporter=html --reporter=text mocha -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
-        "test:coverage-no-refresh-token": "nyc --reporter=html --reporter=text mocha --invert --fgrep refresh-token -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts",
-        "test:no-osu-api-v2": "mocha --invert --fgrep osu-api-v2 -- test/**/**/*.test.ts test/**/*.test.ts test/*.test.ts"
+        "docs:createPagesExampleOutput": "ts-node --project tsconfig.json --esm pages/create_pages_example_output.mts",
+        "format": "prettier --check examples src test",
+        "format:fix": "prettier --write examples pages src test",
+        "lint": "eslint pages src test",
+        "lint:circular": "madge --circular lib/index.mjs",
+        "lint:exports": "ts-unused-exports tsconfig.json --showLineNumber",
+        "lint:fix": "eslint --fix pages src test",
+        "prebuild": "rimraf lib",
+        "test": "mocha -- test/**/**/*.test.mts test/**/*.test.mts test/*.test.mts",
+        "test:no-refresh-token": "mocha --invert --fgrep refresh-token -- test/**/**/*.test.mts test/**/*.test.mts test/*.test.mts",
+        "test:coverage": "nyc --reporter=html --reporter=text mocha -- test/**/**/*.test.mts test/**/*.test.mts test/*.test.mts",
+        "test:coverage-no-refresh-token": "nyc --reporter=html --reporter=text mocha --invert --fgrep refresh-token -- test/**/**/*.test.mts test/**/*.test.mts test/*.test.mts",
+        "test:no-osu-api-v2": "mocha --invert --fgrep osu-api-v2 -- test/**/**/*.test.mts test/**/*.test.mts test/*.test.mts"
     },
     "repository": {
         "type": "git",
@@ -63,5 +69,9 @@
     "bugs": {
         "url": "https://github.com/AnonymerNiklasistanonym/osu-api-v2/issues"
     },
-    "homepage": "https://github.com/AnonymerNiklasistanonym/osu-api-v2#readme"
+    "homepage": "https://github.com/AnonymerNiklasistanonym/osu-api-v2#readme",
+    "dependencies": {
+        "@types/node-fetch": "^2.6.3",
+        "node-fetch": "^3.3.1"
+    }
 }

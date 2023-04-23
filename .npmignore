@@ -10,9 +10,9 @@ src
 # Ignore tests
 test
 # Ignore ESlint configuration
-.eslintrc.js
+.eslintrc.json
 # Ignore Prettier configuration
-.prettierrc.js
+.prettierrc.json
 # Ignore Typescript configuration files
 tsconfig.json
 tsconfig.eslint.json

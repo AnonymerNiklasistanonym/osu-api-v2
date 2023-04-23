@@ -22,7 +22,7 @@ jobs:
   build:
     strategy:
       matrix:
-        node-version: [17.x,18.x]
+        node-version: [19.x]
         os: [ubuntu-latest,windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -58,3 +58,9 @@ jobs:
     # Generate pages that can be included into the documentation
     - run: npm run docs:createPagesExampleOutput
     - run: npm run docs
+    # Linting
+    - run: npm run lint
+    - run: npm run lint:circular
+      continue-on-error: true
+    - run: npm run lint:exports
+      continue-on-error: true

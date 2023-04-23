@@ -121,3 +121,5 @@ pages/example_output
 
 # Ignore certain example files
 examples/**/package-lock.json
+# Ignore certain example files
+examples/**/node_modules

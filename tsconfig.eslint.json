@@ -7,7 +7,6 @@
         "pages"
     ],
     "exclude": [
-        "lib",
-        "node_modules"
+        "lib"
     ],
 }

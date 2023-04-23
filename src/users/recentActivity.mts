@@ -1,0 +1,63 @@
+// Local imports
+import { genericWebRequest } from "../helpers/web_request.mjs"
+// Type imports
+import type { Events } from "../types/event.mjs"
+import type { OAuthAccessToken } from "../types/oauth_access_token.mjs"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { OsuApiV2WebRequestError } from "../helpers/custom_errors.mjs"
+
+/**
+ * Get a list of recent activity events of a user.
+ * @param oauthAccessToken The OAuth Access token.
+ * @param userId The osu! user ID of the account from which the recent activity
+ * should be fetched.
+ * @param limit Maximum number of results.
+ * @param offset Result offset for pagination.
+ * @throws If the web request fails like for example when no user was found with
+ * the provided user ID a {@link OsuApiV2WebRequestError} is being thrown.
+ * @example
+ * ```ts
+ * import osuApiV2 from "osu-api-v2"
+ *
+ * const user = await osuApiV2.users.recentActivity(
+ *     oauthAccessToken,
+ *     7562902,
+ *     20,
+ *     1,
+ * )
+ * ```
+ * [[include:example_output/users_recent_activity_7562902_20_1.md]]
+ * @example
+ * ```ts
+ * import osuApiV2 from "osu-api-v2"
+ *
+ * const user = await osuApiV2.users.recentActivity(
+ *     oauthAccessToken,
+ *     2927048,
+ *     10,
+ * )
+ * ```
+ * [[include:example_output/users_recent_activity_2927048_10.md]]
+ *
+ * ([Source](https://osu.ppy.sh/docs/index.html#get-user-recent-activity))
+ */
+export const recentActivity = async (
+    oauthAccessToken: Readonly<OAuthAccessToken>,
+    userId: number,
+    limit?: number,
+    offset?: number,
+): Promise<Events[]> =>
+    genericWebRequest<Events[]>("get", ["users", userId, "recent_activity"], {
+        apiCall: true,
+        authorizationAccessToken: oauthAccessToken,
+        urlParameters: [
+            {
+                name: "limit",
+                value: limit !== undefined ? `${limit}` : undefined,
+            },
+            {
+                name: "offset",
+                value: offset !== undefined ? `${offset}` : undefined,
+            },
+        ],
+    })

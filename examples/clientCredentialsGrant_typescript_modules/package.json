@@ -1,0 +1,16 @@
+{
+    "name": "test-osu-api-v2-typescript",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "dist/index.mjs",
+    "scripts": {
+        "build": "tsc",
+        "start": "node ."
+    },
+    "dependencies": {
+        "osu-api-v2": "file:../.."
+    },
+    "devDependencies": {
+        "typescript": "^5.0.4"
+    }
+}

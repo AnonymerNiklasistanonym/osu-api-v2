@@ -18,10 +18,10 @@ If you use an older version or another environment be sure to include a package 
 
 **GitHub repository:** [`osu-api-v2`](https://github.com/AnonymerNiklasistanonym/osu-api-v2)
 
+TODO: AutoGen types from scraping the website
+
 - [Getting started](#getting-started)
   - [Acquire osu! OAuth credentials](#acquire-osu-oauth-credentials)
-  - [Use it in a Node.js project](#use-it-in-a-nodejs-project)
-  - [Use it in a Typescript project](#use-it-in-a-typescript-project)
 - [Testing and Linting](#testing-and-linting)
   - [Testing](#testing)
     - [Coverage](#coverage)
@@ -48,20 +48,14 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
 
    By copying the *client ID* and *client secret* you can request a temporary OAuth access token:
 
-   ```ts
-   import osuApiV2 from "osu-api-v2"
-
-   osuApiV2.oauth.clientCredentialsGrant(
-       1234,                        // Replace with your value (client ID)
-       "PLACEHOLDER_CLIENT_SECRET", // Replace with your value (client secret)
-   ).then(oauthAccessToken => {
-       console.log(oauthAccessToken)
-   }).catch(console.error)
-   ```
-
-   ([Example](./examples/nodejs_typescript/index.ts))
+   - [Example [CommonJS]](./examples/clientCredentialsGrant/index.js)
+   - [Example [Modules]](./examples/clientCredentialsGrant_modules/index.mjs)
+   - [Example Typescript [CommonJS]](./examples/clientCredentialsGrant_typescript/index.ts)
+   - [Example Typescript [Modules]](./examples/clientCredentialsGrant_typescript_modules/index.mts)
 
 2. Refresh Tokens
+
+   - [Example Typescript [Modules]](./examples/refreshTokenGrant_typescript_modules/index.mts)
 
    By setting a *Application Callback URL* (*redirect URI*) and copying the *client ID* and *client secret* you can request a temporary OAuth access token with custom OAuth scopes.
    This is done by creating a special URL using these inputs and then opening this URL in the browser (or redirect the user to this URL):
@@ -115,100 +109,6 @@ Now having the OAuth credentials you have 2 possibilities to request a temporary
    For the next time you want to request a temporary OAuth access token you need to use the new *refresh token* that is contained in the response next to the temporary OAuth access token.
 
    ([Example](./examples/nodejs_typescript_refresh_token/index.ts))
-
-### Use it in a Node.js project
-
-`package.json`:
-
-```json
-{
-    "name": "test-osu-api-v2-nodejs",
-    "version": "1.0.0",
-    "scripts": {
-        "start": "node index.js"
-    },
-    "dependencies": {
-        "osu-api-v2": "^0.0.75"
-    }
-}
-```
-
-`index.js`:
-
-```js
-const osuApiV2 = require("osu-api-v2").default
-
-osuApiV2.oauth.clientCredentialsGrant(
-    1234,                        // Replace with your value (client ID)
-    "PLACEHOLDER_CLIENT_SECRET", // Replace with your value (client secret)
-).then(oauthAccessToken => {
-    console.log(oauthAccessToken)
-})
-```
-
-Run:
-
-```sh
-npm start
-```
-
-### Use it in a Typescript project
-
-`package.json`:
-
-```json
-{
-    "name": "test-osu-api-v2-typescript",
-    "version": "1.0.0",
-    "scripts": {
-        "build": "tsc",
-        "start": "node dist/index.js"
-    },
-    "dependencies": {
-        "osu-api-v2": "^0.0.27"
-    },
-    "devDependencies": {
-        "typescript": "^4.8.3"
-    }
-}
-```
-
-`tsconfig.json`:
-
-```json
-{
-    "compilerOptions": {
-        "module": "CommonJS",
-        "outDir": "dist",
-        "moduleResolution": "Node",
-        "target": "ES6"
-    },
-    "exclude": [
-      "dist",
-      "node_modules"
-    ]
-}
-```
-
-`index.ts`:
-
-```js
-import osuApiV2 from "osu-api-v2"
-
-osuApiV2.oauth.clientCredentialsGrant(
-    1234,                        // Replace with your value (client ID)
-    "PLACEHOLDER_CLIENT_SECRET", // Replace with your value (client secret)
-).then(oauthAccessToken => {
-    console.log(oauthAccessToken)
-})
-```
-
-Run:
-
-```sh
-npm run build
-npm start
-```
 
 ## Testing and Linting
 
