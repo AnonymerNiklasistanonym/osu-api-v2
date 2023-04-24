@@ -1,0 +1,38 @@
+{
+    "description": [
+        "All fields are optional but there's always at least one field returned."
+    ],
+    "extendsList": [],
+    "name": "Failtimes",
+    "properties": [
+        {
+            "key": "exit",
+            "optional": true,
+            "type": [
+                {
+                    "original": "integer[]",
+                    "array": true,
+                    "fixed": "number"
+                }
+            ],
+            "description": [
+                "Array of length 100."
+            ]
+        },
+        {
+            "key": "fail",
+            "optional": true,
+            "type": [
+                {
+                    "original": "integer[]",
+                    "array": true,
+                    "fixed": "number"
+                }
+            ],
+            "description": [
+                "Array of length 100."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#failtimes"
+}

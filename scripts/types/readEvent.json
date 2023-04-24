@@ -1,0 +1,42 @@
+{
+    "name": "ReadEvent",
+    "types": [
+        {
+            "description": [
+                "Sent when a notification has been read.",
+                "TODO: ids should be moved to data to match other events."
+            ],
+            "extendsList": [],
+            "name": "ReadEvent",
+            "properties": [
+                {
+                    "key": "event",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`read`"
+                    ]
+                },
+                {
+                    "key": "ids",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number[]",
+                            "array": true,
+                            "fixed": "number"
+                        }
+                    ],
+                    "description": [
+                        "id of Notifications which are read"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#readevent"
+        }
+    ]
+}

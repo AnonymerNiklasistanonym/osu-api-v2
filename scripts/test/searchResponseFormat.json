@@ -1,0 +1,36 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "SearchResponseFormat",
+    "properties": [
+        {
+            "key": "user",
+            "optional": true,
+            "type": [
+                {
+                    "original": "SearchResult<UserCompact>",
+                    "fixed": "SearchResult",
+                    "generic": "UserCompact"
+                }
+            ],
+            "description": [
+                "For `all` or `user` mode. Only first 100 results are accessible"
+            ]
+        },
+        {
+            "key": "wiki_page",
+            "optional": true,
+            "type": [
+                {
+                    "original": "SearchResult<WikiPage>",
+                    "fixed": "SearchResult",
+                    "generic": "WikiPage"
+                }
+            ],
+            "description": [
+                "For `all` or `wiki_page` mode"
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+}

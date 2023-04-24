@@ -1,0 +1,39 @@
+{
+    "description": [
+        "When a beatmap has been played for certain number of times."
+    ],
+    "extendsList": [
+        "Event"
+    ],
+    "name": "EventTypeBeatmapPlaycount",
+    "properties": [
+        {
+            "key": "beatmap",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.Beatmap`",
+                    "fixed": "EventBeatmap"
+                }
+            ]
+        },
+        {
+            "key": "count",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "type",
+            "type": [
+                {
+                    "original": "\"beatmapPlaycount\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#beatmapplaycount"
+}

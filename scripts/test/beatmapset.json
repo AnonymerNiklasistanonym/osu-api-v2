@@ -1,0 +1,184 @@
+{
+    "description": [
+        "Represents a beatmapset. This extends BeatmapsetCompact with additional attributes."
+    ],
+    "extendsList": [
+        "BeatmapsetCompact"
+    ],
+    "name": "Beatmapset",
+    "properties": [
+        {
+            "key": "availability",
+            "optional": false,
+            "type": [
+                {
+                    "original": "BeatmapsetAvailability"
+                }
+            ]
+        },
+        {
+            "key": "bpm",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "can_be_hyped",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "creator",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Username of the mapper at the time of beatmapset creation."
+            ]
+        },
+        {
+            "key": "deleted_at",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "discussion_locked",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "hype",
+            "optional": false,
+            "type": [
+                {
+                    "original": "BeatmapsetHype"
+                }
+            ]
+        },
+        {
+            "key": "is_scoreable",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "last_updated",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "legacy_thread_url",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "nominations",
+            "optional": false,
+            "type": [
+                {
+                    "original": "BeatmapsetNominations"
+                }
+            ]
+        },
+        {
+            "key": "ranked",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ],
+            "description": [
+                "See `Rank status` for list of possible values."
+            ]
+        },
+        {
+            "key": "ranked_date",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "source",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "storyboard",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "submitted_date",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "tags",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "has_favourited",
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#beatmapset"
+}

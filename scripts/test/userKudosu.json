@@ -1,0 +1,23 @@
+{
+    "name": "UserKudosu",
+    "properties": [
+        {
+            "key": "available",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "total",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        }
+    ]
+}

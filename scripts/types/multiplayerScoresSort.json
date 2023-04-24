@@ -1,0 +1,22 @@
+{
+    "name": "MultiplayerScoresSort",
+    "types": [
+        {
+            "description": [],
+            "name": "MultiplayerScoresSort",
+            "source": "https://osu.ppy.sh/docs/index.html#multiplayerscoressort",
+            "values": [
+                {
+                    "description": "Description",
+                    "key": "SCORE_ASC",
+                    "value": "score_asc"
+                },
+                {
+                    "description": "Description",
+                    "key": "SCORE_DESC",
+                    "value": "score_desc"
+                }
+            ]
+        }
+    ]
+}

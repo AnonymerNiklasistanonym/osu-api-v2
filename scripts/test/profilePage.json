@@ -1,0 +1,35 @@
+{
+    "description": [],
+    "name": "ProfilePage",
+    "source": "https://osu.ppy.sh/docs/index.html#profilepage",
+    "values": [
+        {
+            "key": "ME",
+            "value": "me"
+        },
+        {
+            "key": "RECENT_ACTIVITY",
+            "value": "recent_activity"
+        },
+        {
+            "key": "BEATMAPS",
+            "value": "beatmaps"
+        },
+        {
+            "key": "HISTORICAL",
+            "value": "historical"
+        },
+        {
+            "key": "KUDOSU",
+            "value": "kudosu"
+        },
+        {
+            "key": "TOP_RANKS",
+            "value": "top_ranks"
+        },
+        {
+            "key": "MEDALS",
+            "value": "medals"
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "name": "Scopes",
+    "types": [
+        {
+            "description": [],
+            "name": "Scopes",
+            "source": "https://osu.ppy.sh/docs/index.html#scopes",
+            "values": [
+                {
+                    "description": "Description",
+                    "key": "CHAT_WRITE",
+                    "value": "chat.write"
+                },
+                {
+                    "description": "Description",
+                    "key": "DELEGATE",
+                    "value": "delegate"
+                },
+                {
+                    "description": "Description",
+                    "key": "FORUM_WRITE",
+                    "value": "forum.write"
+                },
+                {
+                    "description": "Description",
+                    "key": "FRIENDS_READ",
+                    "value": "friends.read"
+                },
+                {
+                    "description": "Description",
+                    "key": "IDENTIFY",
+                    "value": "identify"
+                },
+                {
+                    "description": "Description",
+                    "key": "PUBLIC",
+                    "value": "public"
+                }
+            ]
+        }
+    ]
+}

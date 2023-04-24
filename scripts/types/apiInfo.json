@@ -1,0 +1,13 @@
+{
+    "name": "ApiInfo",
+    "types": [
+        {
+            "name": "baseUrl",
+            "value": "https://osu.ppy.sh"
+        },
+        {
+            "name": "baseUrlApiV2",
+            "value": "https://osu.ppy.sh/api/v2"
+        }
+    ]
+}

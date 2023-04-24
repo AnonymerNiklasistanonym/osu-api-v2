@@ -1,0 +1,15 @@
+{
+    "description": [
+        "Metadata of the object that a comment is attached to."
+    ],
+    "name": "CommentableMeta",
+    "source": "commentablemeta",
+    "type": [
+        {
+            "original": "CommentableMetaAvailable"
+        },
+        {
+            "original": "CommentableMetaDeleted"
+        }
+    ]
+}

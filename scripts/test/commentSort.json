@@ -1,0 +1,22 @@
+{
+    "description": [],
+    "name": "CommentSort",
+    "source": "https://osu.ppy.sh/docs/index.html#commentsort",
+    "values": [
+        {
+            "description": "Sort Fields: `created_at` (descending), `id` (descending)",
+            "key": "NEW",
+            "value": "new"
+        },
+        {
+            "description": "Sort Fields: `created_at` (ascending), `id` (ascending)",
+            "key": "OLD",
+            "value": "old"
+        },
+        {
+            "description": "Sort Fields: `votes_count` (descending), `created_at` (descending), `id` (descending)",
+            "key": "TOP",
+            "value": "top"
+        }
+    ]
+}

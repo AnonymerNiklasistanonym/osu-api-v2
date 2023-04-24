@@ -1,0 +1,68 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "Osu",
+    "properties": [
+        {
+            "key": "aim_difficulty",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "approach_rate",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "flashlight_difficulty",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "overall_difficulty",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "slider_factor",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "speed_difficulty",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#osu"
+}

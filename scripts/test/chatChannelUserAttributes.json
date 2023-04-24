@@ -1,0 +1,44 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "ChatChannelUserAttributes",
+    "properties": [
+        {
+            "key": "can_message",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ],
+            "description": [
+                "Can send messages to this channel."
+            ]
+        },
+        {
+            "key": "can_message_error",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Reason messages cannot be sent to this channel"
+            ]
+        },
+        {
+            "key": "last_read_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "`message_id` of last message read."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#chatchanneluserattributes"
+}

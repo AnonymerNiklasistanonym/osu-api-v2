@@ -1,0 +1,43 @@
+{
+    "description": [
+        "When a beatmapset in graveyard state is updated."
+    ],
+    "extendsList": [
+        "Event"
+    ],
+    "name": "EventTypeBeatmapsetRevive",
+    "properties": [
+        {
+            "key": "beatmapset",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.Beatmapset`",
+                    "fixed": "EventBeatmapset"
+                }
+            ]
+        },
+        {
+            "key": "user",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.User`",
+                    "fixed": "EventUser"
+                }
+            ],
+            "description": [
+                "Beatmapset owner."
+            ]
+        },
+        {
+            "key": "type",
+            "type": [
+                {
+                    "original": "\"beatmapsetRevive\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#beatmapsetrevive"
+}

@@ -1,0 +1,29 @@
+{
+    "description": [],
+    "extendsList": [],
+    "generic": "T",
+    "name": "SearchResult",
+    "properties": [
+        {
+            "key": "data",
+            "optional": false,
+            "type": [
+                {
+                    "original": "T[]",
+                    "array": true,
+                    "fixed": "T"
+                }
+            ]
+        },
+        {
+            "key": "total",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#searchresult<t>"
+}

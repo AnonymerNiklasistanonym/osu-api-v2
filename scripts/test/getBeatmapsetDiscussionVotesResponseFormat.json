@@ -1,0 +1,49 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "GetBeatmapsetDiscussionVotesResponseFormat",
+    "properties": [
+        {
+            "key": "cursor_string",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`CursorString`",
+                    "fixed": "CursorString"
+                }
+            ]
+        },
+        {
+            "key": "discussions",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`BeatmapsetDiscussion`",
+                    "fixed": "BeatmapsetDiscussion"
+                }
+            ]
+        },
+        {
+            "key": "users",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`UserCompact`",
+                    "fixed": "UserCompact"
+                }
+            ]
+        },
+        {
+            "key": "votes",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`BeatmapsetDiscussionVote`[]",
+                    "array": true,
+                    "fixed": "BeatmapsetDiscussionVote"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+}

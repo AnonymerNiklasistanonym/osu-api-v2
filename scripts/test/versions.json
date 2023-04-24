@@ -1,0 +1,28 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "Versions",
+    "properties": [
+        {
+            "key": "next",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Build`",
+                    "fixed": "Build"
+                }
+            ]
+        },
+        {
+            "key": "previous",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Build`",
+                    "fixed": "Build"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#versions"
+}

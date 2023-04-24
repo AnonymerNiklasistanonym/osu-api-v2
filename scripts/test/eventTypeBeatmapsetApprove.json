@@ -1,0 +1,55 @@
+{
+    "description": [
+        "When a beatmapset changes state."
+    ],
+    "extendsList": [
+        "Event"
+    ],
+    "name": "EventTypeBeatmapsetApprove",
+    "properties": [
+        {
+            "key": "approval",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "`ranked`, `approved`, `qualified`, `loved`."
+            ]
+        },
+        {
+            "key": "beatmapset",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.Beatmapset`",
+                    "fixed": "EventBeatmapset"
+                }
+            ]
+        },
+        {
+            "key": "user",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.User`",
+                    "fixed": "EventUser"
+                }
+            ],
+            "description": [
+                "Beatmapset owner."
+            ]
+        },
+        {
+            "key": "type",
+            "type": [
+                {
+                    "original": "\"beatmapsetApprove\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#beatmapsetapprove"
+}

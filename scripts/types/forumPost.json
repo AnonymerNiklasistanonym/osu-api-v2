@@ -1,0 +1,129 @@
+{
+    "name": "ForumPost",
+    "types": [
+        {
+            "name": "ForumPostBody",
+            "properties": [
+                {
+                    "key": "html",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Post content in HTML format."
+                    ]
+                },
+                {
+                    "key": "raw",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Post content in BBCode format."
+                    ]
+                }
+            ]
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "ForumPost",
+            "properties": [
+                {
+                    "key": "created_at",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Timestamp`",
+                            "fixed": "Timestamp"
+                        }
+                    ]
+                },
+                {
+                    "key": "deleted_at",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`Timestamp`",
+                            "fixed": "Timestamp"
+                        }
+                    ]
+                },
+                {
+                    "key": "edited_at",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`Timestamp`",
+                            "fixed": "Timestamp"
+                        }
+                    ]
+                },
+                {
+                    "key": "edited_by_id",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "forum_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "topic_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "body",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "ForumPostBody"
+                        }
+                    ],
+                    "description": [
+                        "Post content in HTML format."
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#forumpost"
+        }
+    ]
+}

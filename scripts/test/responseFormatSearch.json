@@ -1,0 +1,23 @@
+{
+    "name": "ResponseFormatSearch",
+    "properties": [
+        {
+            "key": "limit",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "sort",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        }
+    ]
+}

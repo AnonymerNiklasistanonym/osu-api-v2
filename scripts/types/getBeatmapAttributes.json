@@ -1,0 +1,23 @@
+{
+    "name": "GetBeatmapAttributes",
+    "types": [
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "ResponseFormat",
+            "properties": [
+                {
+                    "key": "Attributes",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`DifficultyAttributes`",
+                            "fixed": "DifficultyAttributes"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+        }
+    ]
+}

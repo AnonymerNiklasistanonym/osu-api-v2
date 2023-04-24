@@ -1,0 +1,1118 @@
+{
+    "name": "Notification",
+    "types": [
+        {
+            "description": [
+                "@example",
+                "```json",
+                "{",
+                "  \"id\": 1,",
+                "  \"name\": \"channel_message\",",
+                "  \"created_at\": \"2019-04-24T07:12:43+00:00\",",
+                "  \"object_type\": \"channel\",",
+                "  \"object_id\": 1,",
+                "  \"source_user_id\": 1,",
+                "  \"is_read\": true,",
+                "  \"details\": {",
+                "    \"username\": \"someone\",",
+                "    ...",
+                "  }",
+                "}",
+                "```",
+                "Represents a notification object."
+            ],
+            "extendsList": [],
+            "name": "Notification",
+            "properties": [
+                {
+                    "key": "id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "name",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Name of the event"
+                    ]
+                },
+                {
+                    "key": "created_at",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "ISO 8601 date"
+                    ]
+                },
+                {
+                    "key": "object_type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "object_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "source_user_id",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "is_read",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "key": "details",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "object"
+                        }
+                    ],
+                    "description": [
+                        "`message_id` of last known message (only returned in presence responses)"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#notification"
+        },
+        {
+            "description": [],
+            "name": "EventNames",
+            "source": "https://osu.ppy.sh/docs/index.html#eventnames",
+            "values": [
+                {
+                    "description": "Description",
+                    "key": "BEATMAPSET_DISCUSSION_LOCK",
+                    "value": "beatmapset_discussion_lock"
+                },
+                {
+                    "description": "Description",
+                    "key": "BEATMAPSET_DISCUSSION_POST_NEW",
+                    "value": "beatmapset_discussion_post_new"
+                },
+                {
+                    "description": "Description",
+                    "key": "BEATMAPSET_DISCUSSION_UNLOCK",
+                    "value": "beatmapset_discussion_unlock"
+                },
+                {
+                    "description": "Description",
+                    "key": "BEATMAPSET_DISQUALIFY",
+                    "value": "beatmapset_disqualify"
+                },
+                {
+                    "description": "Description",
+                    "key": "BEATMAPSET_LOVE",
+                    "value": "beatmapset_love"
+                },
+                {
+                    "description": "Description",
+                    "key": "BEATMAPSET_NOMINATE",
+                    "value": "beatmapset_nominate"
+                },
+                {
+                    "description": "Description",
+                    "key": "BEATMAPSET_QUALIFY",
+                    "value": "beatmapset_qualify"
+                },
+                {
+                    "description": "Description",
+                    "key": "BEATMAPSET_REMOVE_FROM_LOVED",
+                    "value": "beatmapset_remove_from_loved"
+                },
+                {
+                    "description": "Description",
+                    "key": "BEATMAPSET_RESET_NOMINATIONS",
+                    "value": "beatmapset_reset_nominations"
+                },
+                {
+                    "description": "Description",
+                    "key": "CHANNEL_MESSAGE",
+                    "value": "channel_message"
+                },
+                {
+                    "description": "Description",
+                    "key": "FORUM_TOPIC_REPLY",
+                    "value": "forum_topic_reply"
+                }
+            ]
+        },
+        {
+            "description": [
+                "Details object:"
+            ],
+            "extendsList": [],
+            "name": "Beatmapset_discussion_lock",
+            "properties": [
+                {
+                    "key": "object_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset id"
+                    ]
+                },
+                {
+                    "key": "object_type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`beatmapset`"
+                    ]
+                },
+                {
+                    "key": "source_user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "User who locked discussion"
+                    ]
+                },
+                {
+                    "key": "cover_url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap cover"
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap title"
+                    ]
+                },
+                {
+                    "key": "username",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Username of `source_user_id`"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapset_discussion_lock"
+        },
+        {
+            "description": [
+                "Details object:"
+            ],
+            "extendsList": [],
+            "name": "Beatmapset_discussion_post_new",
+            "properties": [
+                {
+                    "key": "object_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset id"
+                    ]
+                },
+                {
+                    "key": "object_type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`beatmapset`"
+                    ]
+                },
+                {
+                    "key": "source_user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Poster of the discussion"
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap title"
+                    ]
+                },
+                {
+                    "key": "cover_url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap cover"
+                    ]
+                },
+                {
+                    "key": "discussion_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "post_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "beatmap_id",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "`null` if posted to general all"
+                    ]
+                },
+                {
+                    "key": "username",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Username of `source_user_id`"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapset_discussion_post_new"
+        },
+        {
+            "description": [
+                "Details object:"
+            ],
+            "extendsList": [],
+            "name": "Beatmapset_discussion_unlock",
+            "properties": [
+                {
+                    "key": "object_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset id"
+                    ]
+                },
+                {
+                    "key": "object_type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`beatmapset`"
+                    ]
+                },
+                {
+                    "key": "source_user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "User who unlocked discussion"
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap title"
+                    ]
+                },
+                {
+                    "key": "cover_url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap cover"
+                    ]
+                },
+                {
+                    "key": "username",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Username of `source_user_id`"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapset_discussion_unlock"
+        },
+        {
+            "description": [
+                "Details object:"
+            ],
+            "extendsList": [],
+            "name": "Beatmapset_disqualify",
+            "properties": [
+                {
+                    "key": "object_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset id"
+                    ]
+                },
+                {
+                    "key": "object_type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`beatmapset`"
+                    ]
+                },
+                {
+                    "key": "source_user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "User who disqualified beatmapset"
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap title"
+                    ]
+                },
+                {
+                    "key": "cover_url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap cover"
+                    ]
+                },
+                {
+                    "key": "username",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Username of `source_user_id`"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapset_disqualify"
+        },
+        {
+            "description": [
+                "Details object:"
+            ],
+            "extendsList": [],
+            "name": "Beatmapset_love",
+            "properties": [
+                {
+                    "key": "object_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset id"
+                    ]
+                },
+                {
+                    "key": "object_type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`beatmapset`"
+                    ]
+                },
+                {
+                    "key": "source_user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "User who promoted beatmapset to loved"
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap title"
+                    ]
+                },
+                {
+                    "key": "cover_url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap cover"
+                    ]
+                },
+                {
+                    "key": "username",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Username of `source_user_id`"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapset_love"
+        },
+        {
+            "description": [
+                "Details object:"
+            ],
+            "extendsList": [],
+            "name": "Beatmapset_nominate",
+            "properties": [
+                {
+                    "key": "object_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset id"
+                    ]
+                },
+                {
+                    "key": "object_type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`beatmapset`"
+                    ]
+                },
+                {
+                    "key": "source_user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "User who nominated beatmapset"
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap title"
+                    ]
+                },
+                {
+                    "key": "cover_url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap cover"
+                    ]
+                },
+                {
+                    "key": "username",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Username of `source_user_id`"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapset_nominate"
+        },
+        {
+            "description": [
+                "Details object:"
+            ],
+            "extendsList": [],
+            "name": "Beatmapset_qualify",
+            "properties": [
+                {
+                    "key": "object_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset id"
+                    ]
+                },
+                {
+                    "key": "object_type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`beatmapset`"
+                    ]
+                },
+                {
+                    "key": "source_user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "User whom beatmapset nomination triggered qualification"
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap title"
+                    ]
+                },
+                {
+                    "key": "cover_url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap cover"
+                    ]
+                },
+                {
+                    "key": "username",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Username of `source_user_id`"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapset_qualify"
+        },
+        {
+            "description": [
+                "Details object:"
+            ],
+            "extendsList": [],
+            "name": "Beatmapset_remove_from_loved",
+            "properties": [
+                {
+                    "key": "object_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset id"
+                    ]
+                },
+                {
+                    "key": "object_type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`beatmapset`"
+                    ]
+                },
+                {
+                    "key": "source_user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "User who removed beatmapset from Loved"
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap title"
+                    ]
+                },
+                {
+                    "key": "cover_url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap cover"
+                    ]
+                },
+                {
+                    "key": "username",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Username of `source_user_id`"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapset_remove_from_loved"
+        },
+        {
+            "description": [
+                "Details object:"
+            ],
+            "extendsList": [],
+            "name": "Beatmapset_reset_nominations",
+            "properties": [
+                {
+                    "key": "object_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset id"
+                    ]
+                },
+                {
+                    "key": "object_type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`beatmapset`"
+                    ]
+                },
+                {
+                    "key": "source_user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "User who triggered nomination reset"
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap title"
+                    ]
+                },
+                {
+                    "key": "cover_url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Beatmap cover"
+                    ]
+                },
+                {
+                    "key": "username",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Username of `source_user_id`"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapset_reset_nominations"
+        },
+        {
+            "description": [
+                "Details object:"
+            ],
+            "extendsList": [],
+            "name": "Channel_message",
+            "properties": [
+                {
+                    "key": "object_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Channel id"
+                    ]
+                },
+                {
+                    "key": "object_type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`channel`"
+                    ]
+                },
+                {
+                    "key": "source_user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "User who posted message"
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Up to 36 characters of the message (ends with `...` when exceeding 36 characters)"
+                    ]
+                },
+                {
+                    "key": "cover_url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Avatar of `source_user_id`"
+                    ]
+                },
+                {
+                    "key": "username",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Username of `source_user_id`"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#channel_message"
+        },
+        {
+            "description": [
+                "Details object:"
+            ],
+            "extendsList": [],
+            "name": "Forum_topic_reply",
+            "properties": [
+                {
+                    "key": "object_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Topic id"
+                    ]
+                },
+                {
+                    "key": "object_type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`forum_topic`"
+                    ]
+                },
+                {
+                    "key": "source_user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "User who posted message"
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Title of the replied topic"
+                    ]
+                },
+                {
+                    "key": "cover_url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Topic cover"
+                    ]
+                },
+                {
+                    "key": "post_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Post id"
+                    ]
+                },
+                {
+                    "key": "username",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Username of `source_user_id`"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#forum_topic_reply"
+        }
+    ]
+}

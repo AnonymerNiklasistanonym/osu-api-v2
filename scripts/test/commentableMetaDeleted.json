@@ -1,0 +1,22 @@
+{
+    "description": [
+        "Otherwise if object has been deleted:"
+    ],
+    "extendsList": [],
+    "name": "CommentableMetaDeleted",
+    "properties": [
+        {
+            "key": "title",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "display title"
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#commentablemeta"
+}

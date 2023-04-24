@@ -1,0 +1,102 @@
+{
+    "description": [
+        "@example",
+        "```json",
+        "{",
+        "  \"id\": 407,",
+        "  \"title\": \"Clicking circles linked to increased performance\",",
+        "  \"type\": \"news_post\",",
+        "  \"url\": \"https://osu.ppy.sh/home/\"",
+        "}",
+        "```",
+        "Metadata of the object that a comment is attached to.",
+        "If object is available:"
+    ],
+    "extendsList": [],
+    "name": "CommentableMetaAvailable",
+    "properties": [
+        {
+            "key": "current_user_attributes",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`CurrentUserAttributes`",
+                    "fixed": "CurrentUserAttributes"
+                }
+            ]
+        },
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "the ID of the object"
+            ]
+        },
+        {
+            "key": "owner_id",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "User ID which owns the object"
+            ]
+        },
+        {
+            "key": "owner_title",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Object owner type, used for display (`MAPPER` for beatmapset)"
+            ]
+        },
+        {
+            "key": "title",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "display title"
+            ]
+        },
+        {
+            "key": "type",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "the type of the object"
+            ]
+        },
+        {
+            "key": "url",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "url of the object"
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#commentablemeta"
+}

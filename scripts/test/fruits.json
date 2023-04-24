@@ -1,0 +1,18 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "Fruits",
+    "properties": [
+        {
+            "key": "approach_rate",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#fruits"
+}

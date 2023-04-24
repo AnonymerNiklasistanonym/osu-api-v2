@@ -1,0 +1,43 @@
+{
+    "name": "CreateNewPM",
+    "types": [
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "CreateNewPMResponseFormat",
+            "properties": [
+                {
+                    "key": "channel",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "Thenew`ChatChannel`",
+                            "fixed": "henew`ChatChannel"
+                        }
+                    ]
+                },
+                {
+                    "key": "message",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "thesent`ChatMessage`",
+                            "fixed": "hesent`ChatMessage"
+                        }
+                    ]
+                },
+                {
+                    "key": "new_channel_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "Deprecated;`channel_id`ofnewlycreated`ChatChannel`",
+                            "fixed": "eprecated;`channel_id`ofnewlycreated`ChatChannel"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+        }
+    ]
+}

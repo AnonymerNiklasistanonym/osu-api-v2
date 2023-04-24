@@ -1,0 +1,21 @@
+{
+    "name": "UserCompactReplaysWatchedCount",
+    "properties": [
+        {
+            "key": "count",
+            "type": [
+                {
+                    "original": "integer"
+                }
+            ]
+        },
+        {
+            "key": "start_date",
+            "type": [
+                {
+                    "original": "Timestamp"
+                }
+            ]
+        }
+    ]
+}

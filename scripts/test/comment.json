@@ -1,0 +1,223 @@
+{
+    "description": [
+        "@example",
+        "```json",
+        "{",
+        "  \"commentable_id\": 407,",
+        "  \"commentable_type\": \"news_post\",",
+        "  \"created_at\": \"2019-09-05T06:31:20+00:00\",",
+        "  \"deleted_at\": null,",
+        "  \"edited_at\": null,",
+        "  \"edited_by_id\": null,",
+        "  \"id\": 276,",
+        "  \"legacy_name\": null,",
+        "  \"message\": \"yes\",",
+        "  \"message_html\": \"yes\\n\",",
+        "  \"parent_id\": null,",
+        "  \"pinned\": true,",
+        "  \"replies_count\": 0,",
+        "  \"updated_at\": \"2019-09-05T06:31:20+00:00\",",
+        "  \"user_id\": 1,",
+        "  \"votes_count\": 0",
+        "}",
+        "```",
+        "Represents an single comment."
+    ],
+    "extendsList": [],
+    "name": "Comment",
+    "properties": [
+        {
+            "key": "commentable_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "ID of the object the comment is attached to"
+            ]
+        },
+        {
+            "key": "commentable_type",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "type of object the comment is attached to"
+            ]
+        },
+        {
+            "key": "created_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "ISO 8601 date"
+            ]
+        },
+        {
+            "key": "deleted_at",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "ISO 8601 date if the comment was deleted; null, otherwise"
+            ]
+        },
+        {
+            "key": "edited_at",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "ISO 8601 date if the comment was edited; null, otherwise"
+            ]
+        },
+        {
+            "key": "edited_by_id",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "user id of the user that edited the post; null, otherwise"
+            ]
+        },
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "the ID of the comment"
+            ]
+        },
+        {
+            "key": "legacy_name",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "username displayed on legacy comments"
+            ]
+        },
+        {
+            "key": "message",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "markdown of the comment's content"
+            ]
+        },
+        {
+            "key": "message_html",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "html version of the comment's content"
+            ]
+        },
+        {
+            "key": "parent_id",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "ID of the comment's parent"
+            ]
+        },
+        {
+            "key": "pinned",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ],
+            "description": [
+                "Pin status of the comment"
+            ]
+        },
+        {
+            "key": "replies_count",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "number of replies to the comment"
+            ]
+        },
+        {
+            "key": "updated_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "ISO 8601 date"
+            ]
+        },
+        {
+            "key": "user_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "user ID of the poster"
+            ]
+        },
+        {
+            "key": "votes_count",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "number of votes"
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#comment"
+}

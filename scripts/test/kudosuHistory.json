@@ -1,0 +1,83 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "KudosuHistory",
+    "properties": [
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "action",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "One of `give`, `vote.give`, `reset`, `vote.reset`, `revoke`, or `vote.revoke`."
+            ]
+        },
+        {
+            "key": "amount",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "model",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Object type which the exchange happened on (`forum_post`, etc)."
+            ]
+        },
+        {
+            "key": "created_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "giver",
+            "optional": true,
+            "type": [
+                {
+                    "original": "Giver"
+                }
+            ],
+            "description": [
+                "Simple detail of the user who started the exchange."
+            ]
+        },
+        {
+            "key": "post",
+            "optional": false,
+            "type": [
+                {
+                    "original": "Post"
+                }
+            ],
+            "description": [
+                "Simple detail of the object for display."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#kudosuhistory"
+}

@@ -1,0 +1,41 @@
+{
+    "name": "Chat.message.new",
+    "types": [
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "PayloadFormat",
+            "properties": [
+                {
+                    "key": "messages",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`ChatMessage`[]",
+                            "array": true,
+                            "fixed": "ChatMessage"
+                        }
+                    ],
+                    "description": [
+                        "The messages received."
+                    ]
+                },
+                {
+                    "key": "users",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`UserCompact`[]",
+                            "array": true,
+                            "fixed": "UserCompact"
+                        }
+                    ],
+                    "description": [
+                        "The related users who sent the messages."
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#payloadformat"
+        }
+    ]
+}

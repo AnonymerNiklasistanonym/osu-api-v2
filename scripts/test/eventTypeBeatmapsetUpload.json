@@ -1,0 +1,43 @@
+{
+    "description": [
+        "When a new beatmapset is uploaded."
+    ],
+    "extendsList": [
+        "Event"
+    ],
+    "name": "EventTypeBeatmapsetUpload",
+    "properties": [
+        {
+            "key": "beatmapset",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.Beatmapset`",
+                    "fixed": "EventBeatmapset"
+                }
+            ]
+        },
+        {
+            "key": "user",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.User`",
+                    "fixed": "EventUser"
+                }
+            ],
+            "description": [
+                "Beatmapset owner."
+            ]
+        },
+        {
+            "key": "type",
+            "type": [
+                {
+                    "original": "\"beatmapsetUpload\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#beatmapsetupload"
+}

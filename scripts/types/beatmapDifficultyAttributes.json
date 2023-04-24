@@ -1,0 +1,207 @@
+{
+    "name": "BeatmapDifficultyAttributes",
+    "types": [
+        {
+            "description": [
+                "Represent beatmap difficulty attributes. Following fields are always present and then there are additional fields for different rulesets."
+            ],
+            "extendsList": [],
+            "name": "BeatmapDifficultyAttributes",
+            "properties": [
+                {
+                    "key": "max_combo",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "star_rating",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapdifficultyattributes"
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "Osu",
+            "properties": [
+                {
+                    "key": "aim_difficulty",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "approach_rate",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "flashlight_difficulty",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "overall_difficulty",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "slider_factor",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "speed_difficulty",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#osu"
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "Taiko",
+            "properties": [
+                {
+                    "key": "stamina_difficulty",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "rhythm_difficulty",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "colour_difficulty",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "approach_rate",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "great_hit_window",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#taiko"
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "Fruits",
+            "properties": [
+                {
+                    "key": "approach_rate",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#fruits"
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "Mania",
+            "properties": [
+                {
+                    "key": "great_hit_window",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "score_multiplier",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#mania"
+        }
+    ]
+}

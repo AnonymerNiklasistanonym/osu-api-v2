@@ -1,0 +1,30 @@
+{
+    "description": [
+        "Represent beatmap difficulty attributes. Following fields are always present and then there are additional fields for different rulesets."
+    ],
+    "extendsList": [],
+    "name": "BeatmapDifficultyAttributes",
+    "properties": [
+        {
+            "key": "max_combo",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "star_rating",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#beatmapdifficultyattributes"
+}

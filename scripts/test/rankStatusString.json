@@ -1,0 +1,42 @@
+{
+    "description": [],
+    "name": "RankStatusString",
+    "source": "https://osu.ppy.sh/docs/index.html#rankstatus",
+    "values": [
+        {
+            "description": "(-2)",
+            "key": "GRAVEYARD",
+            "value": "graveyard"
+        },
+        {
+            "description": "(-1)",
+            "key": "WIP",
+            "value": "wip"
+        },
+        {
+            "description": "(0)",
+            "key": "PENDING",
+            "value": "pending"
+        },
+        {
+            "description": "(1)",
+            "key": "RANKED",
+            "value": "ranked"
+        },
+        {
+            "description": "(2)",
+            "key": "APPROVED",
+            "value": "approved"
+        },
+        {
+            "description": "(3)",
+            "key": "QUALIFIED",
+            "value": "qualified"
+        },
+        {
+            "description": "(4)",
+            "key": "LOVED",
+            "value": "loved"
+        }
+    ]
+}

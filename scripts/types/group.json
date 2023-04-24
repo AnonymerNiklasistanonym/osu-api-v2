@@ -1,0 +1,139 @@
+{
+    "name": "Group",
+    "types": [
+        {
+            "description": [
+                "This object is not returned by any endpoints yet. It is here only as a reference for UserGroup.",
+                "The following are attributes which may be additionally included in responses. Relevant endpoints should list them if applicable."
+            ],
+            "extendsList": [],
+            "name": "Group",
+            "properties": [
+                {
+                    "key": "colour",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "has_listing",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "boolean"
+                        }
+                    ],
+                    "description": [
+                        "Whether this group displays a listing at `/groups/{id}`."
+                    ]
+                },
+                {
+                    "key": "has_playmodes",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "boolean"
+                        }
+                    ],
+                    "description": [
+                        "Whether this group associates `GameModes` with users' memberships."
+                    ]
+                },
+                {
+                    "key": "id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "identifier",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Unique string to identify the group."
+                    ]
+                },
+                {
+                    "key": "is_probationary",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "boolean"
+                        }
+                    ],
+                    "description": [
+                        "Whether members of this group are considered probationary."
+                    ]
+                },
+                {
+                    "key": "name",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "short_name",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Short name of the group for display."
+                    ]
+                },
+                {
+                    "key": "description",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`Description`",
+                            "fixed": "Description"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#group"
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "Description",
+            "properties": [
+                {
+                    "key": "html",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "markdown",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#description"
+        }
+    ]
+}

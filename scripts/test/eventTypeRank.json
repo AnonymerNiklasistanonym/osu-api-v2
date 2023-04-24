@@ -1,0 +1,70 @@
+{
+    "description": [
+        "When a user achieves a certain rank on a beatmap."
+    ],
+    "extendsList": [
+        "Event"
+    ],
+    "name": "EventTypeRank",
+    "properties": [
+        {
+            "key": "scoreRank",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "(FIXME)"
+            ]
+        },
+        {
+            "key": "rank",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "mode",
+            "optional": false,
+            "type": [
+                {
+                    "original": "GameMode"
+                }
+            ]
+        },
+        {
+            "key": "beatmap",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.Beatmap`",
+                    "fixed": "EventBeatmap"
+                }
+            ]
+        },
+        {
+            "key": "user",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.User`",
+                    "fixed": "EventUser"
+                }
+            ]
+        },
+        {
+            "key": "type",
+            "type": [
+                {
+                    "original": "\"rank\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#rank"
+}

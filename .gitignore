@@ -123,3 +123,4 @@ pages/example_output
 examples/**/package-lock.json
 # Ignore certain example files
 examples/**/node_modules
+scripts/cache.html

@@ -1,0 +1,174 @@
+{
+    "description": [
+        "@example",
+        "```json",
+        "{",
+        "  \"channel_id\": 1337,",
+        "  \"current_user_attributes\": {",
+        "    \"can_message\": true,",
+        "    \"can_message_error\": null,",
+        "    \"last_read_id\": 9150005005,",
+        "  },",
+        "  \"name\": \"test channel\",",
+        "  \"description\": \"wheeeee\",",
+        "  \"icon\": \"/images/layout/avatar-guest@2x.png\",",
+        "  \"type\": \"GROUP\",",
+        "  \"last_read_id\": 9150005005,",
+        "  \"last_message_id\": 9150005005,",
+        "  \"moderated\": false,",
+        "  \"users\": [",
+        "    2,",
+        "    3,",
+        "    102",
+        "  ]",
+        "}",
+        "```",
+        "Represents an individual chat \"channel\" in the game."
+    ],
+    "extendsList": [],
+    "name": "ChatChannel",
+    "properties": [
+        {
+            "key": "channel_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "name",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "description",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "icon",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "display icon for the channel"
+            ]
+        },
+        {
+            "key": "type",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`ChannelType`",
+                    "fixed": "ChannelType"
+                }
+            ],
+            "description": [
+                "type of channel"
+            ]
+        },
+        {
+            "key": "moderated",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ],
+            "description": [
+                "user can't send message when the value is `true`"
+            ]
+        },
+        {
+            "key": "uuid",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "value from requests that is relayed back to the sender."
+            ]
+        },
+        {
+            "key": "current_user_attributes",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`CurrentUserAttributes`",
+                    "fixed": "CurrentUserAttributes"
+                }
+            ],
+            "description": [
+                "only present on some responses"
+            ]
+        },
+        {
+            "key": "last_read_id",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Deprecated; use `current_user_attributes.last_read_id`."
+            ]
+        },
+        {
+            "key": "last_message_id",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "`message_id` of last known message (only returned in presence responses)"
+            ]
+        },
+        {
+            "key": "recent_messages",
+            "optional": true,
+            "type": [
+                {
+                    "original": "ChatMessage[]",
+                    "array": true,
+                    "fixed": "ChatMessage"
+                }
+            ],
+            "description": [
+                "Deprecated; up to 50 most recent messages"
+            ]
+        },
+        {
+            "key": "users",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number[]",
+                    "array": true,
+                    "fixed": "number"
+                }
+            ],
+            "description": [
+                "array of `user_id` that are in the channel (not included for `PUBLIC` channels)"
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#chatchannel"
+}

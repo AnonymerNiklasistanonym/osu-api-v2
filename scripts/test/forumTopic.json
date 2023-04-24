@@ -1,0 +1,138 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "ForumTopic",
+    "properties": [
+        {
+            "key": "created_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "deleted_at",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "first_post_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "forum_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "is_locked",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "last_post_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "poll",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Poll`",
+                    "fixed": "Poll"
+                }
+            ]
+        },
+        {
+            "key": "post_count",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "title",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "type",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`normal`",
+                    "fixed": "\"normal\""
+                },
+                {
+                    "original": "`sticky`",
+                    "fixed": "\"sticky\""
+                },
+                {
+                    "original": "`announcement`",
+                    "fixed": "\"announcement\""
+                }
+            ]
+        },
+        {
+            "key": "updated_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "user_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#forumtopic"
+}

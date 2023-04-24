@@ -1,0 +1,39 @@
+{
+    "description": [
+        "When user obtained an achievement."
+    ],
+    "extendsList": [
+        "Event"
+    ],
+    "name": "EventTypeAchievement",
+    "properties": [
+        {
+            "key": "achievement",
+            "optional": false,
+            "type": [
+                {
+                    "original": "Achievement"
+                }
+            ]
+        },
+        {
+            "key": "user",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.User`",
+                    "fixed": "EventUser"
+                }
+            ]
+        },
+        {
+            "key": "type",
+            "type": [
+                {
+                    "original": "\"achievement\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#achievement"
+}

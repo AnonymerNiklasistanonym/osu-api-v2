@@ -1,0 +1,46 @@
+{
+    "name": "BeatmapUserScore",
+    "types": [
+        {
+            "description": [
+                "@example",
+                "```json",
+                "{",
+                "  \"position\": 1,",
+                "  \"score\": {}",
+                "}",
+                "```"
+            ],
+            "extendsList": [],
+            "name": "BeatmapUserScore",
+            "properties": [
+                {
+                    "key": "position",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "The position of the score within the requested beatmap ranking."
+                    ]
+                },
+                {
+                    "key": "score",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Score`",
+                            "fixed": "Score"
+                        }
+                    ],
+                    "description": [
+                        "The details of the score."
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapuserscore"
+        }
+    ]
+}

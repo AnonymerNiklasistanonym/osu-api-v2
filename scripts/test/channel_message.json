@@ -1,0 +1,82 @@
+{
+    "description": [
+        "Details object:"
+    ],
+    "extendsList": [],
+    "name": "Channel_message",
+    "properties": [
+        {
+            "key": "object_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Channel id"
+            ]
+        },
+        {
+            "key": "object_type",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "`channel`"
+            ]
+        },
+        {
+            "key": "source_user_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "User who posted message"
+            ]
+        },
+        {
+            "key": "title",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Up to 36 characters of the message (ends with `...` when exceeding 36 characters)"
+            ]
+        },
+        {
+            "key": "cover_url",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Avatar of `source_user_id`"
+            ]
+        },
+        {
+            "key": "username",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Username of `source_user_id`"
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#channel_message"
+}

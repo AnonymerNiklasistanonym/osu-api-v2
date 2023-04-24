@@ -1,0 +1,17 @@
+{
+    "name": "ResponseFormatReviewsConfig",
+    "properties": [
+        {
+            "key": "max_blocks",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Maximum number of blocks allowed in a review."
+            ]
+        }
+    ]
+}

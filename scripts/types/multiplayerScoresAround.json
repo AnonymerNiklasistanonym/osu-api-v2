@@ -1,0 +1,33 @@
+{
+    "name": "MultiplayerScoresAround",
+    "types": [
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "MultiplayerScoresAround",
+            "properties": [
+                {
+                    "key": "`higher`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`MultiplayerScores`",
+                            "fixed": "MultiplayerScores"
+                        }
+                    ]
+                },
+                {
+                    "key": "`lower`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`MultiplayerScores`",
+                            "fixed": "MultiplayerScores"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#multiplayerscoresaround"
+        }
+    ]
+}

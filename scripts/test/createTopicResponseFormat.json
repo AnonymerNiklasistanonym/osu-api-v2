@@ -1,0 +1,28 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "CreateTopicResponseFormat",
+    "properties": [
+        {
+            "key": "topic",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`ForumTopic`",
+                    "fixed": "ForumTopic"
+                }
+            ]
+        },
+        {
+            "key": "post",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`ForumPost`",
+                    "fixed": "ForumPost"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+}

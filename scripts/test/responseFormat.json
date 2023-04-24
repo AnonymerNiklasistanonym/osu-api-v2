@@ -1,0 +1,22 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "ResponseFormat",
+    "properties": [
+        {
+            "key": "users",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`UserCompact`[]",
+                    "array": true,
+                    "fixed": "UserCompact"
+                }
+            ],
+            "description": [
+                "Includes: country, cover, groups, statistics_rulesets."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+}

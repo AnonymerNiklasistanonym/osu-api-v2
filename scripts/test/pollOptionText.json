@@ -1,0 +1,23 @@
+{
+    "name": "PollOptionText",
+    "properties": [
+        {
+            "key": "bbcode",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "html",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        }
+    ]
+}

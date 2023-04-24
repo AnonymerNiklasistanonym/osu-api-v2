@@ -1,0 +1,62 @@
+{
+    "description": [],
+    "name": "EventNames",
+    "source": "https://osu.ppy.sh/docs/index.html#eventnames",
+    "values": [
+        {
+            "description": "Description",
+            "key": "BEATMAPSET_DISCUSSION_LOCK",
+            "value": "beatmapset_discussion_lock"
+        },
+        {
+            "description": "Description",
+            "key": "BEATMAPSET_DISCUSSION_POST_NEW",
+            "value": "beatmapset_discussion_post_new"
+        },
+        {
+            "description": "Description",
+            "key": "BEATMAPSET_DISCUSSION_UNLOCK",
+            "value": "beatmapset_discussion_unlock"
+        },
+        {
+            "description": "Description",
+            "key": "BEATMAPSET_DISQUALIFY",
+            "value": "beatmapset_disqualify"
+        },
+        {
+            "description": "Description",
+            "key": "BEATMAPSET_LOVE",
+            "value": "beatmapset_love"
+        },
+        {
+            "description": "Description",
+            "key": "BEATMAPSET_NOMINATE",
+            "value": "beatmapset_nominate"
+        },
+        {
+            "description": "Description",
+            "key": "BEATMAPSET_QUALIFY",
+            "value": "beatmapset_qualify"
+        },
+        {
+            "description": "Description",
+            "key": "BEATMAPSET_REMOVE_FROM_LOVED",
+            "value": "beatmapset_remove_from_loved"
+        },
+        {
+            "description": "Description",
+            "key": "BEATMAPSET_RESET_NOMINATIONS",
+            "value": "beatmapset_reset_nominations"
+        },
+        {
+            "description": "Description",
+            "key": "CHANNEL_MESSAGE",
+            "value": "channel_message"
+        },
+        {
+            "description": "Description",
+            "key": "FORUM_TOPIC_REPLY",
+            "value": "forum_topic_reply"
+        }
+    ]
+}

@@ -1,0 +1,111 @@
+{
+    "name": "GetNewsListing",
+    "types": [
+        {
+            "name": "ResponseFormatNewsSidebar",
+            "properties": [
+                {
+                    "key": "current_year",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "news_posts",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`NewsPost`[]",
+                            "array": true,
+                            "fixed": "NewsPost"
+                        }
+                    ]
+                },
+                {
+                    "key": "years",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number[]",
+                            "array": true,
+                            "fixed": "number"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ResponseFormatSearch",
+            "properties": [
+                {
+                    "key": "limit",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "sort",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "GetNewsListingResponseFormat",
+            "properties": [
+                {
+                    "key": "cursor_string",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`CursorString`",
+                            "fixed": "CursorString"
+                        }
+                    ]
+                },
+                {
+                    "key": "news_posts",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`NewsPost`[]",
+                            "array": true,
+                            "fixed": "NewsPost"
+                        }
+                    ]
+                },
+                {
+                    "key": "news_sidebar",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "ResponseFormatNewsSidebar"
+                        }
+                    ]
+                },
+                {
+                    "key": "search",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "ResponseFormatSearch"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+        }
+    ]
+}

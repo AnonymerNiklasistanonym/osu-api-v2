@@ -1,0 +1,21 @@
+{
+    "name": "UserCompactAchievement",
+    "properties": [
+        {
+            "key": "achieved_at",
+            "type": [
+                {
+                    "original": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "achievement_id",
+            "type": [
+                {
+                    "original": "integer"
+                }
+            ]
+        }
+    ]
+}

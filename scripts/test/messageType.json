@@ -1,0 +1,37 @@
+{
+    "description": [],
+    "name": "MessageType",
+    "source": "https://osu.ppy.sh/docs/index.html#messagetype",
+    "values": [
+        {
+            "description": "Description",
+            "key": "HYPE",
+            "value": "hype"
+        },
+        {
+            "description": "Description",
+            "key": "MAPPER_NOTE",
+            "value": "mapper_note"
+        },
+        {
+            "description": "Description",
+            "key": "PRAISE",
+            "value": "praise"
+        },
+        {
+            "description": "Description",
+            "key": "PROBLEM",
+            "value": "problem"
+        },
+        {
+            "description": "Description",
+            "key": "REVIEW",
+            "value": "review"
+        },
+        {
+            "description": "Description",
+            "key": "SUGGESTION",
+            "value": "suggestion"
+        }
+    ]
+}

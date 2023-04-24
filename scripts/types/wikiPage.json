@@ -1,0 +1,128 @@
+{
+    "name": "WikiPage",
+    "types": [
+        {
+            "description": [
+                "@example",
+                "```json",
+                "{",
+                "    \"available_locales\": [\"en\", \"id\", \"ja\", \"pt-br\"],",
+                "    \"layout\": \"markdown_page\",",
+                "    \"locale\": \"en\",",
+                "    \"markdown\": \"# osu! (game mode)\\n\\n![Gameplay of osu!](/wiki/shared/Interface_osu.jpg \\\"osu! Interface\\\")\\n\\nMarkdownMarkdownTruncated\",",
+                "    \"path\": \"Game_Modes/osu!\",",
+                "    \"subtitle\": \"Game Modes\",",
+                "    \"tags\": [\"tap\", \"circles\"],",
+                "    \"title\": \"osu! (game mode)\"",
+                "}",
+                "```",
+                "Represents a wiki article"
+            ],
+            "extendsList": [],
+            "name": "WikiPage",
+            "properties": [
+                {
+                    "key": "available_locales",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string[]",
+                            "array": true,
+                            "fixed": "string"
+                        }
+                    ],
+                    "description": [
+                        "All available locales for the article."
+                    ]
+                },
+                {
+                    "key": "layout",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "The layout type for the page."
+                    ]
+                },
+                {
+                    "key": "locale",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "All lowercase BCP 47 language tag."
+                    ]
+                },
+                {
+                    "key": "markdown",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Markdown content."
+                    ]
+                },
+                {
+                    "key": "path",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Path of the article."
+                    ]
+                },
+                {
+                    "key": "subtitle",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "The article's subtitle."
+                    ]
+                },
+                {
+                    "key": "tags",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string[]",
+                            "array": true,
+                            "fixed": "string"
+                        }
+                    ],
+                    "description": [
+                        "Associated tags for the article."
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "The article's title."
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#wikipage"
+        }
+    ]
+}

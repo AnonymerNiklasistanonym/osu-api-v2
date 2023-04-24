@@ -1,0 +1,31 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "GetChannelResponseFormat",
+    "properties": [
+        {
+            "key": "channel",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`ChatChannel`",
+                    "fixed": "ChatChannel"
+                }
+            ]
+        },
+        {
+            "key": "users",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`UserCompact`",
+                    "fixed": "UserCompact"
+                }
+            ],
+            "description": [
+                "Users are only visible for PM channels."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+}

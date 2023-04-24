@@ -1,0 +1,54 @@
+{
+    "name": "ChannelType",
+    "types": [
+        {
+            "description": [
+                "For PMs, two factors are taken into account:"
+            ],
+            "name": "ChannelType",
+            "source": "https://osu.ppy.sh/docs/index.html#channeltype",
+            "values": [
+                {
+                    "description": "",
+                    "key": "PUBLIC",
+                    "value": "PUBLIC"
+                },
+                {
+                    "description": "Permission Check for Joining/Messaging: is player in the allowed groups? (channel.allowed_groups)",
+                    "key": "PRIVATE",
+                    "value": "PRIVATE"
+                },
+                {
+                    "description": "Permission Check for Joining/Messaging: is player currently in the mp game?",
+                    "key": "MULTIPLAYER",
+                    "value": "MULTIPLAYER"
+                },
+                {
+                    "description": "",
+                    "key": "SPECTATOR",
+                    "value": "SPECTATOR"
+                },
+                {
+                    "description": "Permission Check for Joining/Messaging: `deprecated`",
+                    "key": "TEMPORARY",
+                    "value": "TEMPORARY"
+                },
+                {
+                    "description": "Permission Check for Joining/Messaging: see below (user_channels)",
+                    "key": "PM",
+                    "value": "PM"
+                },
+                {
+                    "description": "Permission Check for Joining/Messaging: is player in channel? (user_channels)",
+                    "key": "GROUP",
+                    "value": "GROUP"
+                },
+                {
+                    "description": "Permission Check for Joining/Messaging: is user in the `announce` group?",
+                    "key": "ANNOUNCE",
+                    "value": "ANNOUNCE"
+                }
+            ]
+        }
+    ]
+}

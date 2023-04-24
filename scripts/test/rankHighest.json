@@ -1,0 +1,27 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "RankHighest",
+    "properties": [
+        {
+            "key": "rank",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "updated_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#rankhighest"
+}

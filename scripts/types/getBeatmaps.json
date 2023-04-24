@@ -1,0 +1,27 @@
+{
+    "name": "GetBeatmaps",
+    "types": [
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "ResponseFormat",
+            "properties": [
+                {
+                    "key": "beatmaps",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Beatmap`[]",
+                            "array": true,
+                            "fixed": "Beatmap"
+                        }
+                    ],
+                    "description": [
+                        "Includes `beatmapset` (with `ratings`), `failtimes`, and `max_combo`."
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+        }
+    ]
+}

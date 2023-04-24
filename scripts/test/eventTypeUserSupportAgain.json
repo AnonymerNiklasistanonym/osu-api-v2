@@ -1,0 +1,30 @@
+{
+    "description": [
+        "When a user supports osu! for the second and onwards."
+    ],
+    "extendsList": [
+        "Event"
+    ],
+    "name": "EventTypeUserSupportAgain",
+    "properties": [
+        {
+            "key": "user",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.User`",
+                    "fixed": "EventUser"
+                }
+            ]
+        },
+        {
+            "key": "type",
+            "type": [
+                {
+                    "original": "\"userSupportAgain\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#usersupportagain"
+}

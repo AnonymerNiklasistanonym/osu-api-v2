@@ -1,0 +1,42 @@
+{
+    "name": "GetUserBeatmaps",
+    "types": [
+        {
+            "description": [],
+            "name": "GetUserBeatmaps",
+            "source": "https://osu.ppy.sh/docs/index.html#getuserbeatmaps",
+            "values": [
+                {
+                    "description": "",
+                    "key": "FAVOURITE",
+                    "value": "favourite"
+                },
+                {
+                    "description": "",
+                    "key": "GRAVEYARD",
+                    "value": "graveyard"
+                },
+                {
+                    "description": "",
+                    "key": "LOVED",
+                    "value": "loved"
+                },
+                {
+                    "description": "",
+                    "key": "MOST_PLAYED",
+                    "value": "most_played"
+                },
+                {
+                    "description": "Notes: Previously `unranked`",
+                    "key": "PENDING",
+                    "value": "pending"
+                },
+                {
+                    "description": "Notes: Previously `ranked_and_approved`",
+                    "key": "RANKED",
+                    "value": "ranked"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,74 @@
+{
+    "description": [
+        "@example",
+        "```json",
+        "{",
+        "  \"id\": 218,",
+        "  \"display_name\": \"bdach\",",
+        "  \"github_url\": \"https://github.com/bdach\",",
+        "  \"osu_username\": null,",
+        "  \"user_id\": null,",
+        "  \"user_url\": null",
+        "}",
+        "```"
+    ],
+    "extendsList": [],
+    "name": "GithubUser",
+    "properties": [
+        {
+            "key": "display_name",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "github_url",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "id",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "osu_username",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "user_id",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "user_url",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#githubuser"
+}

@@ -1,0 +1,160 @@
+{
+    "name": "ChatMessage",
+    "types": [
+        {
+            "description": [
+                "@example",
+                "```json",
+                "{",
+                "  \"channel_id\": 5,",
+                "  \"content\": \"i am a lazerface\",",
+                "  \"is_action\": false,",
+                "  \"message_id\": 9150005004,",
+                "  \"sender_id\": 2,",
+                "  \"timestamp\": \"2018-07-06T06:33:34+00:00\",",
+                "  \"type\": \"plain\",",
+                "  \"uuid\": \"some-uuid-string\",",
+                "  \"sender\": {",
+                "    \"id\": 2,",
+                "    \"username\": \"peppy\",",
+                "    \"profile_colour\": \"#3366FF\",",
+                "    \"avatar_url\": \"https://a.ppy.sh/2?1519081077.png\",",
+                "    \"country_code\": \"AU\",",
+                "    \"is_active\": true,",
+                "    \"is_bot\": false,",
+                "    \"is_online\": true,",
+                "    \"is_supporter\": true",
+                "  }",
+                "}",
+                "```",
+                "Represents an individual Message within a ChatChannel."
+            ],
+            "extendsList": [],
+            "name": "ChatMessage",
+            "properties": [
+                {
+                    "key": "channel_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "`channel_id` of where the message was sent"
+                    ]
+                },
+                {
+                    "key": "content",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "message content"
+                    ]
+                },
+                {
+                    "key": "content_html",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Deprecated. Markdown message content as HTML"
+                    ]
+                },
+                {
+                    "key": "is_action",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "boolean"
+                        }
+                    ],
+                    "description": [
+                        "was this an action? i.e. `/me dances`"
+                    ]
+                },
+                {
+                    "key": "message_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "unique identifier for message"
+                    ]
+                },
+                {
+                    "key": "sender_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "`user_id` of the sender"
+                    ]
+                },
+                {
+                    "key": "timestamp",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "when the message was sent, ISO-8601"
+                    ]
+                },
+                {
+                    "key": "type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "type of message; 'action', 'markdown' or 'plain'"
+                    ]
+                },
+                {
+                    "key": "uuid",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "message identifier originally sent by client"
+                    ]
+                },
+                {
+                    "key": "sender",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`UserCompact`",
+                            "fixed": "UserCompact"
+                        }
+                    ],
+                    "description": [
+                        "embedded UserCompact object to save additional api lookups"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#chatmessage"
+        }
+    ]
+}

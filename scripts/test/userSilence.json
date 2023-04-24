@@ -1,0 +1,41 @@
+{
+    "description": [
+        "@example",
+        "```json",
+        "{",
+        "  \"id\": 1,",
+        "  \"user_id\": 5",
+        "}",
+        "```",
+        "A record indicating a User was silenced."
+    ],
+    "extendsList": [],
+    "name": "UserSilence",
+    "properties": [
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "id of this object."
+            ]
+        },
+        {
+            "key": "user_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "id of the `User` that was silenced"
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#usersilence"
+}

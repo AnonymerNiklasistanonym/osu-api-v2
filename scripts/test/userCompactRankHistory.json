@@ -1,0 +1,21 @@
+{
+    "name": "UserCompactRankHistory",
+    "properties": [
+        {
+            "key": "data",
+            "type": [
+                {
+                    "original": "integer[]"
+                }
+            ]
+        },
+        {
+            "key": "mode",
+            "type": [
+                {
+                    "original": "GameMode"
+                }
+            ]
+        }
+    ]
+}

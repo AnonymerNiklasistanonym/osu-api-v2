@@ -1,0 +1,44 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "UserBadge",
+    "properties": [
+        {
+            "key": "awarded_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "description",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "image_url",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "url",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#userbadge"
+}

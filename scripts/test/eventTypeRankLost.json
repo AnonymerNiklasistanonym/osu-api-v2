@@ -1,0 +1,50 @@
+{
+    "description": [
+        "When a user loses first place to another user."
+    ],
+    "extendsList": [
+        "Event"
+    ],
+    "name": "EventTypeRankLost",
+    "properties": [
+        {
+            "key": "mode",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`GameMode`",
+                    "fixed": "GameMode"
+                }
+            ]
+        },
+        {
+            "key": "beatmap",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.Beatmap`",
+                    "fixed": "EventBeatmap"
+                }
+            ]
+        },
+        {
+            "key": "user",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.User`",
+                    "fixed": "EventUser"
+                }
+            ]
+        },
+        {
+            "key": "type",
+            "type": [
+                {
+                    "original": "\"rankLost\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#ranklost"
+}

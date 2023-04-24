@@ -1,0 +1,210 @@
+{
+    "description": [
+        "Represents a Beatmapset modding discussion."
+    ],
+    "extendsList": [],
+    "name": "BeatmapsetDiscussion",
+    "properties": [
+        {
+            "key": "beatmap",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`BeatmapCompact`",
+                    "fixed": "BeatmapCompact"
+                }
+            ]
+        },
+        {
+            "key": "beatmap_id",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "beatmapset",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`BeatmapsetCompact`",
+                    "fixed": "BeatmapsetCompact"
+                }
+            ]
+        },
+        {
+            "key": "beatmapset_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "can_be_resolved",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "can_grant_kudosu",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "created_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "current_user_attributes",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`CurrentUserAttributes`",
+                    "fixed": "CurrentUserAttributes"
+                }
+            ]
+        },
+        {
+            "key": "deleted_at",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "deleted_by_id",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "kudosu_denied",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "last_post_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "message_type",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`MessageType`",
+                    "fixed": "MessageType"
+                }
+            ]
+        },
+        {
+            "key": "parent_id",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "posts",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`BeatmapsetDiscussionPost`[]",
+                    "array": true,
+                    "fixed": "BeatmapsetDiscussionPost"
+                }
+            ]
+        },
+        {
+            "key": "resolved",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "starting_post",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`BeatmapsetDiscussionPost`",
+                    "fixed": "BeatmapsetDiscussionPost"
+                }
+            ]
+        },
+        {
+            "key": "timestamp",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "updated_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "user_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#beatmapsetdiscussion"
+}

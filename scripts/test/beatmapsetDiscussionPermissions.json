@@ -1,0 +1,32 @@
+{
+    "description": [],
+    "name": "BeatmapsetDiscussionPermissions",
+    "source": "https://osu.ppy.sh/docs/index.html#beatmapsetdiscussionpermissions",
+    "values": [
+        {
+            "description": "Description",
+            "key": "CAN_DESTROY",
+            "value": "can_destroy"
+        },
+        {
+            "description": "Description",
+            "key": "CAN_REOPEN",
+            "value": "can_reopen"
+        },
+        {
+            "description": "Description",
+            "key": "CAN_MODERATE_KUDOSU",
+            "value": "can_moderate_kudosu"
+        },
+        {
+            "description": "Description",
+            "key": "CAN_RESOLVE",
+            "value": "can_resolve"
+        },
+        {
+            "description": "Description",
+            "key": "VOTE_SCORE",
+            "value": "vote_score"
+        }
+    ]
+}

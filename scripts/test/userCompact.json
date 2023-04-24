@@ -1,0 +1,469 @@
+{
+    "description": [
+        "@example",
+        "```json",
+        "{",
+        "  \"id\": 2,",
+        "  \"username\": \"peppy\",",
+        "  \"profile_colour\": \"#3366FF\",",
+        "  \"avatar_url\": \"https://a.ppy.sh/2?1519081077.png\",",
+        "  \"country_code\": \"AU\",",
+        "  \"is_active\": true,",
+        "  \"is_bot\": false,",
+        "  \"is_deleted\": false,",
+        "  \"is_online\": true,",
+        "  \"is_supporter\": true",
+        "}",
+        "```",
+        "Mainly used for embedding in certain responses to save additional api lookups.",
+        "Following are attributes which may be additionally included in the response. Relevant endpoints should list them if applicable."
+    ],
+    "extendsList": [],
+    "name": "UserCompact",
+    "properties": [
+        {
+            "key": "avatar_url",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "url of user's avatar"
+            ]
+        },
+        {
+            "key": "country_code",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "two-letter code representing user's country"
+            ]
+        },
+        {
+            "key": "default_group",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Identifier of the default `Group` the user belongs to."
+            ]
+        },
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "unique identifier for user"
+            ]
+        },
+        {
+            "key": "is_active",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ],
+            "description": [
+                "has this account been active in the last x months?"
+            ]
+        },
+        {
+            "key": "is_bot",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ],
+            "description": [
+                "is this a bot account?"
+            ]
+        },
+        {
+            "key": "is_deleted",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "is_online",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ],
+            "description": [
+                "is the user currently online? (either on lazer or the new website)"
+            ]
+        },
+        {
+            "key": "is_supporter",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ],
+            "description": [
+                "does this user have supporter?"
+            ]
+        },
+        {
+            "key": "last_visit",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ],
+            "description": [
+                "last access time. `null` if the user hides online presence"
+            ]
+        },
+        {
+            "key": "pm_friends_only",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ],
+            "description": [
+                "whether or not the user allows PM from other than friends"
+            ]
+        },
+        {
+            "key": "profile_colour",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "colour of username/profile highlight, hex code (e.g. `#333333`)"
+            ]
+        },
+        {
+            "key": "username",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "user's display name"
+            ]
+        },
+        {
+            "key": "account_history",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`UserAccountHistory`[]",
+                    "array": true,
+                    "fixed": "UserAccountHistory"
+                }
+            ]
+        },
+        {
+            "key": "active_tournament_banner",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`UserCompact.ProfileBanner`",
+                    "fixed": "UserCompact.ProfileBanner"
+                }
+            ]
+        },
+        {
+            "key": "badges",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`UserBadge`[]",
+                    "array": true,
+                    "fixed": "UserBadge"
+                }
+            ]
+        },
+        {
+            "key": "beatmap_playcounts_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "blocks",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "country",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "cover",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "favourite_beatmapset_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "follower_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "friends",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "graveyard_beatmapset_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "groups",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`UserGroup`[]",
+                    "array": true,
+                    "fixed": "UserGroup"
+                }
+            ]
+        },
+        {
+            "key": "is_restricted",
+            "optional": true,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "loved_beatmapset_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "monthly_playcounts",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`UserMonthlyPlaycount`[]",
+                    "array": true,
+                    "fixed": "UserMonthlyPlaycount"
+                }
+            ]
+        },
+        {
+            "key": "page",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "pending_beatmapset_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "previous_usernames",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "rank_highest",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`RankHighest`",
+                    "fixed": "RankHighest"
+                }
+            ]
+        },
+        {
+            "key": "rank_history",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "ranked_beatmapset_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "replays_watched_counts",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "scores_best_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "scores_first_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "scores_recent_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "statistics",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "statistics_rulesets",
+            "optional": true,
+            "type": [
+                {
+                    "original": "UserStatisticsRulesets"
+                }
+            ]
+        },
+        {
+            "key": "support_level",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "unread_pm_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "user_achievements",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "user_preferences",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#usercompact"
+}

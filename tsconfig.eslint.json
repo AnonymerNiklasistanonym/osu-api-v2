@@ -1,7 +1,15 @@
 {
+    "compilerOptions": {
+        "lib": [
+            "ES2022",
+            "DOM"
+        ],
+        "target": "ES2022"
+    },
     "extends": "./tsconfig.json",
     "include": [
         "examples",
+        "scripts",
         "src",
         "test",
         "pages"

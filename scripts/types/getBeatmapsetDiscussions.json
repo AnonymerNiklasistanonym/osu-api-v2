@@ -1,0 +1,108 @@
+{
+    "name": "GetBeatmapsetDiscussions",
+    "types": [
+        {
+            "name": "ResponseFormatReviewsConfig",
+            "properties": [
+                {
+                    "key": "max_blocks",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ],
+                    "description": [
+                        "Maximum number of blocks allowed in a review."
+                    ]
+                }
+            ]
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "GetBeatmapsetDiscussionsResponseFormat",
+            "properties": [
+                {
+                    "key": "beatmaps",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Beatmap`[]",
+                            "array": true,
+                            "fixed": "Beatmap"
+                        }
+                    ],
+                    "description": [
+                        "List of beatmaps associated with the discussions returned."
+                    ]
+                },
+                {
+                    "key": "cursor_string",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`CursorString`",
+                            "fixed": "CursorString"
+                        }
+                    ]
+                },
+                {
+                    "key": "discussions",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`BeatmapsetDiscussion`[]",
+                            "array": true,
+                            "fixed": "BeatmapsetDiscussion"
+                        }
+                    ],
+                    "description": [
+                        "List of discussions according to `sort` order."
+                    ]
+                },
+                {
+                    "key": "included_discussions",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`BeatmapsetDiscussion`[]",
+                            "array": true,
+                            "fixed": "BeatmapsetDiscussion"
+                        }
+                    ],
+                    "description": [
+                        "Additional discussions related to `discussions`."
+                    ]
+                },
+                {
+                    "key": "reviews_config",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "ResponseFormatReviewsConfig"
+                        }
+                    ],
+                    "description": [
+                        "Maximum number of blocks allowed in a review."
+                    ]
+                },
+                {
+                    "key": "users",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`UserCompact`[]",
+                            "array": true,
+                            "fixed": "UserCompact"
+                        }
+                    ],
+                    "description": [
+                        "List of users associated with the discussions returned."
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+        }
+    ]
+}

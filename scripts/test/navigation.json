@@ -1,0 +1,34 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "Navigation",
+    "properties": [
+        {
+            "key": "newer",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`NewsPost`",
+                    "fixed": "NewsPost"
+                }
+            ],
+            "description": [
+                "Next post."
+            ]
+        },
+        {
+            "key": "older",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`NewsPost`",
+                    "fixed": "NewsPost"
+                }
+            ],
+            "description": [
+                "Previous post."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#navigation"
+}

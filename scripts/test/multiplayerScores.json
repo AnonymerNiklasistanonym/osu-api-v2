@@ -1,0 +1,72 @@
+{
+    "description": [
+        "An object which contains scores and related data for fetching next page of the result."
+    ],
+    "extendsList": [],
+    "name": "MultiplayerScores",
+    "properties": [
+        {
+            "key": "`cursor_string`",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`CursorString`",
+                    "fixed": "CursorString"
+                }
+            ],
+            "description": [
+                "To be used to fetch the next page."
+            ]
+        },
+        {
+            "key": "`params`",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`object`",
+                    "fixed": "\"object\""
+                }
+            ],
+            "description": [
+                "Parameters used for score listing."
+            ]
+        },
+        {
+            "key": "`scores`",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`MultiplayerScore[]`",
+                    "fixed": "MultiplayerScore[]"
+                }
+            ]
+        },
+        {
+            "key": "`total`",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`number?`",
+                    "fixed": "\"number?\""
+                }
+            ],
+            "description": [
+                "Index only. Total scores of the specified playlist item."
+            ]
+        },
+        {
+            "key": "`user_score`",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`MultiplayerScore?`",
+                    "fixed": "MultiplayerScore?"
+                }
+            ],
+            "description": [
+                "Index only. Score of the accessing user if exists."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#multiplayerscores"
+}

@@ -1,0 +1,285 @@
+{
+    "description": [
+        "Represents a beatmapset."
+    ],
+    "extendsList": [],
+    "name": "BeatmapsetCompact",
+    "properties": [
+        {
+            "key": "artist",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "artist_unicode",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "covers",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Covers`",
+                    "fixed": "Covers"
+                }
+            ]
+        },
+        {
+            "key": "creator",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "favourite_count",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "nsfw",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "play_count",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "preview_url",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "source",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "status",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "title",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "title_unicode",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "user_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "video",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "beatmaps",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Beatmap`[]",
+                    "array": true,
+                    "fixed": "Beatmap"
+                }
+            ]
+        },
+        {
+            "key": "converts",
+            "optional": true,
+            "type": [
+                {
+                    "original": "Beatmap[]"
+                }
+            ]
+        },
+        {
+            "key": "current_user_attributes",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "description",
+            "optional": true,
+            "type": [
+                {
+                    "original": "BeatmapsetCompactDescription"
+                }
+            ]
+        },
+        {
+            "key": "discussions",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "events",
+            "optional": true,
+            "type": [
+                {
+                    "original": "unknown"
+                }
+            ]
+        },
+        {
+            "key": "genre",
+            "optional": true,
+            "type": [
+                {
+                    "original": "BeatmapsetCompactGenre"
+                }
+            ]
+        },
+        {
+            "key": "has_favourited",
+            "optional": true,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "language",
+            "optional": true,
+            "type": [
+                {
+                    "original": "BeatmapsetCompactLanguage"
+                }
+            ]
+        },
+        {
+            "key": "nominations",
+            "optional": true,
+            "type": [
+                {
+                    "original": "BeatmapsetCompactNominations"
+                }
+            ]
+        },
+        {
+            "key": "pack_tags",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string[]",
+                    "array": true,
+                    "fixed": "string"
+                }
+            ]
+        },
+        {
+            "key": "ratings",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number[]"
+                }
+            ]
+        },
+        {
+            "key": "recent_favourites",
+            "optional": true,
+            "type": [
+                {
+                    "original": "UserCompact[]"
+                }
+            ]
+        },
+        {
+            "key": "related_users",
+            "optional": true,
+            "type": [
+                {
+                    "original": "UserCompact[]"
+                }
+            ]
+        },
+        {
+            "key": "user",
+            "optional": true,
+            "type": [
+                {
+                    "original": "User"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#beatmapsetcompact"
+}

@@ -1,0 +1,19 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "GetAUserBeatmapScoresResponseFormat",
+    "properties": [
+        {
+            "key": "scores",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Score`[]",
+                    "array": true,
+                    "fixed": "Score"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+}

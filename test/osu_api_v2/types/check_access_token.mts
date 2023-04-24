@@ -1,7 +1,11 @@
 // Package imports
 import { expect } from "chai"
 // Local imports
-import { genericCheckObjectForUncheckedKeys } from "./check_generic.mjs"
+import {
+    genericCheckIfNumber,
+    genericCheckIfString,
+    genericCheckObjectForUncheckedKeys,
+} from "./check_generic.mjs"
 // Type imports
 import type {
     OAuthAccessTokenResponse,
@@ -23,24 +27,31 @@ export const checkAccessTokenWithRefreshTokenObject = (
     // List of all keys that will be checked
     const checkedKeys: string[] = []
 
-    checkedKeys.push("access_token")
-    expect(oauthAccessToken.access_token)
-        .to.be.a("string")
-        .with.a.lengthOf.greaterThan(0)
+    genericCheckIfString(oauthAccessToken.access_token, {
+        checkedKey: "access_token",
+        checkedKeys,
+        notEmpty: true,
+    })
 
-    checkedKeys.push("expires_in")
-    expect(oauthAccessToken.expires_in).to.be.a("number").greaterThan(0)
+    genericCheckIfNumber(oauthAccessToken.expires_in, {
+        checkedKey: "expires_in",
+        checkedKeys,
+        isGreaterThanZero: true,
+    })
 
     if (options?.isNotARefreshToken !== true) {
-        checkedKeys.push("refresh_token")
-        expect(oauthAccessToken.refresh_token)
-            .to.be.a("string")
-            .with.a.lengthOf.greaterThan(0)
+        genericCheckIfString(oauthAccessToken.refresh_token, {
+            checkedKey: "refresh_token",
+            checkedKeys,
+            notEmpty: true,
+        })
     }
 
-    checkedKeys.push("token_type")
-    expect(oauthAccessToken.token_type).to.be.a("string")
-    expect(oauthAccessToken.token_type).to.equal("Bearer")
+    genericCheckIfString(oauthAccessToken.token_type, {
+        checkedKey: "token_type",
+        checkedKeys,
+        value: "Bearer",
+    })
 
     return genericCheckObjectForUncheckedKeys(
         oauthAccessToken,

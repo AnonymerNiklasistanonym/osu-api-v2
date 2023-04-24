@@ -1,0 +1,27 @@
+{
+    "description": [],
+    "name": "RankingType",
+    "source": "https://osu.ppy.sh/docs/index.html#rankingtype",
+    "values": [
+        {
+            "description": "Description",
+            "key": "CHARTS",
+            "value": "charts"
+        },
+        {
+            "description": "Description",
+            "key": "COUNTRY",
+            "value": "country"
+        },
+        {
+            "description": "Description",
+            "key": "PERFORMANCE",
+            "value": "performance"
+        },
+        {
+            "description": "Description",
+            "key": "SCORE",
+            "value": "score"
+        }
+    ]
+}

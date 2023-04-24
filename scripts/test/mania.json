@@ -1,0 +1,28 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "Mania",
+    "properties": [
+        {
+            "key": "great_hit_window",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "score_multiplier",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#mania"
+}

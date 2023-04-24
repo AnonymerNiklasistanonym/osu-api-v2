@@ -1,0 +1,29 @@
+{
+    "name": "UserStatisticsLevel",
+    "properties": [
+        {
+            "key": "current",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Current level."
+            ]
+        },
+        {
+            "key": "progress",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Progress to next level."
+            ]
+        }
+    ]
+}

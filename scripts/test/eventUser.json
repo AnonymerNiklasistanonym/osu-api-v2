@@ -1,0 +1,38 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "EventUser",
+    "properties": [
+        {
+            "key": "username",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "url",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "previousUsername",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Only for `usernameChange` event."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#user"
+}

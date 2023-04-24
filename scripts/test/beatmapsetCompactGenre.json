@@ -1,0 +1,21 @@
+{
+    "name": "BeatmapsetCompactGenre",
+    "properties": [
+        {
+            "key": "id",
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "name",
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        }
+    ]
+}

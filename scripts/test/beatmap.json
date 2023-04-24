@@ -1,0 +1,202 @@
+{
+    "description": [
+        "Represent a beatmap. This extends BeatmapCompact with additional attributes."
+    ],
+    "extendsList": [
+        "BeatmapCompact"
+    ],
+    "name": "Beatmap",
+    "properties": [
+        {
+            "key": "accuracy",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "ar",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "beatmapset_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "bpm",
+            "optional": true,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "convert",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "count_circles",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "count_sliders",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "count_spinners",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "cs",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "deleted_at",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "drain",
+            "optional": false,
+            "type": [
+                {
+                    "original": "float",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "hit_length",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "is_scoreable",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "last_updated",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "mode_int",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "passcount",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "playcount",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "ranked",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ],
+            "description": [
+                "See `Rank status` for list of possible values."
+            ]
+        },
+        {
+            "key": "url",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#beatmap"
+}

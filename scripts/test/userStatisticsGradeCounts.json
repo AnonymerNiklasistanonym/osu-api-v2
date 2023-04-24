@@ -1,0 +1,65 @@
+{
+    "name": "UserStatisticsGradeCounts",
+    "properties": [
+        {
+            "key": "a",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Number of A ranked scores."
+            ]
+        },
+        {
+            "key": "s",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Number of S ranked scores."
+            ]
+        },
+        {
+            "key": "sh",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Number of Silver S ranked scores."
+            ]
+        },
+        {
+            "key": "ss",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Number of SS ranked scores."
+            ]
+        },
+        {
+            "key": "ssh",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Number of Silver SS ranked scores."
+            ]
+        }
+    ]
+}

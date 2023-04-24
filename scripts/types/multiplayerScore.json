@@ -1,0 +1,168 @@
+{
+    "name": "MultiplayerScore",
+    "types": [
+        {
+            "description": [
+                "Score data."
+            ],
+            "extendsList": [],
+            "name": "MultiplayerScore",
+            "properties": [
+                {
+                    "key": "`id`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`number`",
+                            "fixed": "\"number\""
+                        }
+                    ]
+                },
+                {
+                    "key": "`user_id`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`number`",
+                            "fixed": "\"number\""
+                        }
+                    ]
+                },
+                {
+                    "key": "`room_id`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`number`",
+                            "fixed": "\"number\""
+                        }
+                    ]
+                },
+                {
+                    "key": "`playlist_item_id`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`number`",
+                            "fixed": "\"number\""
+                        }
+                    ]
+                },
+                {
+                    "key": "`beatmap_id`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`number`",
+                            "fixed": "\"number\""
+                        }
+                    ]
+                },
+                {
+                    "key": "`rank`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`rank`",
+                            "fixed": "\"rank\""
+                        }
+                    ]
+                },
+                {
+                    "key": "`total_score`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`number`",
+                            "fixed": "\"number\""
+                        }
+                    ]
+                },
+                {
+                    "key": "`accuracy`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`number`",
+                            "fixed": "\"number\""
+                        }
+                    ]
+                },
+                {
+                    "key": "`max_combo`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`number`",
+                            "fixed": "\"number\""
+                        }
+                    ]
+                },
+                {
+                    "key": "`mods`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Mod[]`",
+                            "fixed": "Mod[]"
+                        }
+                    ]
+                },
+                {
+                    "key": "`statistics`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Statistics`",
+                            "fixed": "Statistics"
+                        }
+                    ]
+                },
+                {
+                    "key": "`passed`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`bool`",
+                            "fixed": "\"bool\""
+                        }
+                    ]
+                },
+                {
+                    "key": "`position`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`number?`",
+                            "fixed": "\"number?\""
+                        }
+                    ]
+                },
+                {
+                    "key": "`scores_around`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`MultiplayerScoresAround?`",
+                            "fixed": "MultiplayerScoresAround?"
+                        }
+                    ],
+                    "description": [
+                        "Scores around the specified score."
+                    ]
+                },
+                {
+                    "key": "`user`",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`User`",
+                            "fixed": "User"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#multiplayerscore"
+        }
+    ]
+}

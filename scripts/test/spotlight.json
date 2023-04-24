@@ -1,0 +1,105 @@
+{
+    "description": [
+        "@example",
+        "```json",
+        "{",
+        "  \"end_date\": \"2019-03-22T00:00:00+00:00\",",
+        "  \"id\": 1,",
+        "  \"mode_specific\": false,",
+        "  \"name\": \"Best spinning circles 2019\",",
+        "  \"start_date\": \"2019-02-22T00:00:00+00:00\",",
+        "  \"type\": \"yearly\",",
+        "}",
+        "```",
+        "The details of a spotlight."
+    ],
+    "extendsList": [],
+    "name": "Spotlight",
+    "properties": [
+        {
+            "key": "end_date",
+            "optional": false,
+            "type": [
+                {
+                    "original": "DateTime"
+                }
+            ],
+            "description": [
+                "The end date of the spotlight."
+            ]
+        },
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "The ID of this spotlight."
+            ]
+        },
+        {
+            "key": "mode_specific",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ],
+            "description": [
+                "If the spotlight has different mades specific to each `GameMode`."
+            ]
+        },
+        {
+            "key": "participant_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "The number of users participating in this spotlight. This is only shown when viewing a single spotlight."
+            ]
+        },
+        {
+            "key": "name",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "The name of the spotlight."
+            ]
+        },
+        {
+            "key": "start_date",
+            "optional": false,
+            "type": [
+                {
+                    "original": "DateTime"
+                }
+            ],
+            "description": [
+                "The starting date of the spotlight."
+            ]
+        },
+        {
+            "key": "type",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "The type of spotlight."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#spotlight"
+}

@@ -1,0 +1,24 @@
+{
+    "description": [
+        "Describes a Group membership of a User. It contains all of the attributes of the Group, in addition to what is listed here."
+    ],
+    "extendsList": [],
+    "name": "UserGroup",
+    "properties": [
+        {
+            "key": "playmodes",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string[]",
+                    "array": true,
+                    "fixed": "string"
+                }
+            ],
+            "description": [
+                "`GameModes` associated with this membership (null if `has_playmodes` is unset)."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#usergroup"
+}

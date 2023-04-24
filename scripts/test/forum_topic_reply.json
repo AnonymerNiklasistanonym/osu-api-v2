@@ -1,0 +1,94 @@
+{
+    "description": [
+        "Details object:"
+    ],
+    "extendsList": [],
+    "name": "Forum_topic_reply",
+    "properties": [
+        {
+            "key": "object_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Topic id"
+            ]
+        },
+        {
+            "key": "object_type",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "`forum_topic`"
+            ]
+        },
+        {
+            "key": "source_user_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "User who posted message"
+            ]
+        },
+        {
+            "key": "title",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Title of the replied topic"
+            ]
+        },
+        {
+            "key": "cover_url",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Topic cover"
+            ]
+        },
+        {
+            "key": "post_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Post id"
+            ]
+        },
+        {
+            "key": "username",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Username of `source_user_id`"
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#forum_topic_reply"
+}

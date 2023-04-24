@@ -1,0 +1,33 @@
+{
+    "description": [
+        "When a user is gifted a supporter tag by another user."
+    ],
+    "extendsList": [
+        "Event"
+    ],
+    "name": "EventTypeUserSupportGift",
+    "properties": [
+        {
+            "key": "user",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.User`",
+                    "fixed": "EventUser"
+                }
+            ],
+            "description": [
+                "Recipient user."
+            ]
+        },
+        {
+            "key": "type",
+            "type": [
+                {
+                    "original": "\"userSupportGift\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#usersupportgift"
+}

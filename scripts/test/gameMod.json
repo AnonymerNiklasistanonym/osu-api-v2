@@ -1,0 +1,92 @@
+{
+    "description": [
+        "Available game mods."
+    ],
+    "name": "GameMod",
+    "values": [
+        {
+            "key": "AP",
+            "value": "AP"
+        },
+        {
+            "key": "AT",
+            "value": "AT"
+        },
+        {
+            "key": "CM",
+            "value": "CM"
+        },
+        {
+            "key": "CP",
+            "value": "CP"
+        },
+        {
+            "key": "DT",
+            "value": "DT"
+        },
+        {
+            "key": "EZ",
+            "value": "EZ"
+        },
+        {
+            "key": "FI",
+            "value": "FI"
+        },
+        {
+            "key": "FL",
+            "value": "FL"
+        },
+        {
+            "key": "HD",
+            "value": "HD"
+        },
+        {
+            "key": "HR",
+            "value": "HR"
+        },
+        {
+            "key": "HT",
+            "value": "HT"
+        },
+        {
+            "key": "MR",
+            "value": "MR"
+        },
+        {
+            "key": "NC",
+            "value": "NC"
+        },
+        {
+            "key": "NF",
+            "value": "NF"
+        },
+        {
+            "key": "PF",
+            "value": "PF"
+        },
+        {
+            "key": "RD",
+            "value": "RD"
+        },
+        {
+            "key": "RL",
+            "value": "RL"
+        },
+        {
+            "key": "SD",
+            "value": "SD"
+        },
+        {
+            "key": "SO",
+            "value": "SO"
+        },
+        {
+            "key": "SV2",
+            "value": "SV2"
+        },
+        {
+            "key": "TP",
+            "value": "TP"
+        }
+    ]
+}

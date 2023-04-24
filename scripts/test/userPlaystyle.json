@@ -1,0 +1,21 @@
+{
+    "name": "UserPlaystyle",
+    "values": [
+        {
+            "key": "KEYBOARD",
+            "value": "keyboard"
+        },
+        {
+            "key": "MOUSE",
+            "value": "mouse"
+        },
+        {
+            "key": "TABLET",
+            "value": "tablet"
+        },
+        {
+            "key": "TOUCH",
+            "value": "touch"
+        }
+    ]
+}

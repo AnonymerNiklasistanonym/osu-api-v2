@@ -1,0 +1,68 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "UserAccountHistory",
+    "properties": [
+        {
+            "key": "description",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "length",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "In seconds."
+            ]
+        },
+        {
+            "key": "permanent",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "timestamp",
+            "optional": false,
+            "type": [
+                {
+                    "original": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "type",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "`note`, `restriction`, or `silence`."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#useraccounthistory"
+}

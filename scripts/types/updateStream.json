@@ -1,0 +1,79 @@
+{
+    "name": "UpdateStream",
+    "types": [
+        {
+            "description": [
+                "@example",
+                "```json",
+                "{",
+                "  \"id\": 7,",
+                "  \"name\": \"lazer\",",
+                "  \"display_name\": \"Lazer\",",
+                "  \"is_featured\": false",
+                "}",
+                "```",
+                "The following are attributes which may be additionally included in responses. Relevant endpoints should list them if applicable."
+            ],
+            "extendsList": [],
+            "name": "UpdateStream",
+            "properties": [
+                {
+                    "key": "display_name",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "is_featured",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "key": "name",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "latest_build",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`Build`",
+                            "fixed": "Build"
+                        }
+                    ]
+                },
+                {
+                    "key": "user_count",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#updatestream"
+        }
+    ]
+}

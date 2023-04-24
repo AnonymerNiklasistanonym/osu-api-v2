@@ -1,0 +1,48 @@
+{
+    "name": "BeatmapScores",
+    "types": [
+        {
+            "description": [
+                "@example",
+                "```json",
+                "{",
+                "  \"scores\": [],",
+                "  \"userScore\": {}",
+                "}",
+                "```"
+            ],
+            "extendsList": [],
+            "name": "BeatmapScores",
+            "properties": [
+                {
+                    "key": "scores",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Score`[]",
+                            "array": true,
+                            "fixed": "Score"
+                        }
+                    ],
+                    "description": [
+                        "The list of top scores for the beatmap in descending order."
+                    ]
+                },
+                {
+                    "key": "userScore",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`BeatmapUserScore`",
+                            "fixed": "BeatmapUserScore"
+                        }
+                    ],
+                    "description": [
+                        "The score of the current user. This is not returned if the current user does not have a score. Note: will be moved to `user_score` in the future"
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapscores"
+        }
+    ]
+}

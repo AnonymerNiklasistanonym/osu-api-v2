@@ -1,0 +1,30 @@
+{
+    "description": [
+        "When a beatmapset is deleted."
+    ],
+    "extendsList": [
+        "Event"
+    ],
+    "name": "EventTypeBeatmapsetDelete",
+    "properties": [
+        {
+            "key": "beatmapset",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.Beatmapset`",
+                    "fixed": "EventBeatmapset"
+                }
+            ]
+        },
+        {
+            "key": "type",
+            "type": [
+                {
+                    "original": "\"beatmapsetDelete\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#beatmapsetdelete"
+}

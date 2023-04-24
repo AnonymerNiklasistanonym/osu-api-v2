@@ -1,0 +1,20 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "CurrentUserAttributes",
+    "properties": [
+        {
+            "key": "can_new_comment_reason",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "null if current user can comment on it, reason sentence otherwise"
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#currentuserattributes"
+}

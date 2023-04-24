@@ -1,0 +1,53 @@
+{
+    "name": "GetTopicAndPosts",
+    "types": [
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "GetTopicAndPostsResponseFormat",
+            "properties": [
+                {
+                    "key": "cursor_string",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`CursorString`",
+                            "fixed": "CursorString"
+                        }
+                    ]
+                },
+                {
+                    "key": "posts",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`ForumPost`[]",
+                            "array": true,
+                            "fixed": "ForumPost"
+                        }
+                    ]
+                },
+                {
+                    "key": "search",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "topic",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`ForumTopic`",
+                            "fixed": "ForumTopic"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+        }
+    ]
+}

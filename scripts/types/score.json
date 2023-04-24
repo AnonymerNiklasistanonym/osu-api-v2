@@ -1,0 +1,284 @@
+{
+    "name": "Score",
+    "types": [
+        {
+            "name": "ScoreStatistics",
+            "properties": [
+                {
+                    "key": "count_50",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer"
+                        }
+                    ]
+                },
+                {
+                    "key": "count_100",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer"
+                        }
+                    ]
+                },
+                {
+                    "key": "count_300",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer"
+                        }
+                    ]
+                },
+                {
+                    "key": "count_geki",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer"
+                        }
+                    ]
+                },
+                {
+                    "key": "count_katu",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer"
+                        }
+                    ]
+                },
+                {
+                    "key": "count_miss",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": [
+                "The following is the format returned when API v2 version header is 20220704 or lower."
+            ],
+            "extendsList": [],
+            "name": "Score",
+            "properties": [
+                {
+                    "key": "id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer"
+                        }
+                    ]
+                },
+                {
+                    "key": "best_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer"
+                        },
+                        {
+                            "original": "null"
+                        }
+                    ]
+                },
+                {
+                    "key": "user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer"
+                        }
+                    ]
+                },
+                {
+                    "key": "accuracy",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "mods",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "GameMod[]"
+                        }
+                    ]
+                },
+                {
+                    "key": "score",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer"
+                        }
+                    ]
+                },
+                {
+                    "key": "max_combo",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer"
+                        }
+                    ]
+                },
+                {
+                    "key": "perfect",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "key": "statistics",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "ScoreStatistics"
+                        }
+                    ]
+                },
+                {
+                    "key": "passed",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "key": "pp",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "rank",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "created_at",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "mode",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "mode_int",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "replay",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "beatmap",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "beatmapset",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "rank_country",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "rank_global",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "weight",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "user",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                },
+                {
+                    "key": "match",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "unknown"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#score"
+        }
+    ]
+}

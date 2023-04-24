@@ -1,0 +1,94 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "Poll",
+    "properties": [
+        {
+            "key": "allow_vote_change",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "ended_at",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "hide_incomplete_results",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "last_vote_at",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "max_votes",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "options",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`PollOption`[]",
+                    "array": true,
+                    "fixed": "PollOption"
+                }
+            ]
+        },
+        {
+            "key": "started_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "title",
+            "optional": false,
+            "type": [
+                {
+                    "original": "PollTitle"
+                }
+            ]
+        },
+        {
+            "key": "total_vote_count",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#poll"
+}

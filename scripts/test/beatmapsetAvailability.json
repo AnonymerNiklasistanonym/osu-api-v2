@@ -1,0 +1,23 @@
+{
+    "name": "BeatmapsetAvailability",
+    "properties": [
+        {
+            "key": "download_disabled",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "more_information",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,74 @@
+{
+    "description": [
+        "The object has different attributes depending on its type. Following are attributes available to all types."
+    ],
+    "extendsList": [],
+    "name": "Event",
+    "properties": [
+        {
+            "key": "created_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "type",
+            "optional": false,
+            "type": [
+                {
+                    "original": "\"achievement\""
+                },
+                {
+                    "original": "\"beatmapPlaycount\""
+                },
+                {
+                    "original": "\"beatmapsetApprove\""
+                },
+                {
+                    "original": "\"beatmapsetDelete\""
+                },
+                {
+                    "original": "\"beatmapsetRevive\""
+                },
+                {
+                    "original": "\"beatmapsetUpdate\""
+                },
+                {
+                    "original": "\"beatmapsetUpload\""
+                },
+                {
+                    "original": "\"rank\""
+                },
+                {
+                    "original": "\"rankLost\""
+                },
+                {
+                    "original": "\"userSupportAgain\""
+                },
+                {
+                    "original": "\"userSupportFirst\""
+                },
+                {
+                    "original": "\"userSupportGift\""
+                },
+                {
+                    "original": "\"usernameChange\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#event"
+}

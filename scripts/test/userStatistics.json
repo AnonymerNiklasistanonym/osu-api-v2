@@ -1,0 +1,269 @@
+{
+    "description": [
+        "@example",
+        "```json",
+        "{",
+        "  \"count_100\": 0,",
+        "  \"count_300\": 0,",
+        "  \"count_50\": 0,",
+        "  \"count_miss\": 0,",
+        "  \"grade_counts\": {",
+        "      \"a\": 3,",
+        "      \"s\": 2,",
+        "      \"sh\": 6,",
+        "      \"ss\": 2,",
+        "      \"ssh\": 3",
+        "  },",
+        "  \"hit_accuracy\": 92.19,",
+        "  \"is_ranked\": true,",
+        "  \"level\": {",
+        "      \"current\": 30,",
+        "      \"progress\": 0",
+        "  },",
+        "  \"maximum_combo\": 3948,",
+        "  \"play_count\": 228050,",
+        "  \"play_time\": null,",
+        "  \"pp\": 990,",
+        "  \"global_rank\": 87468,",
+        "  \"ranked_score\": 1502995536,",
+        "  \"replays_watched_by_others\": 0,",
+        "  \"total_hits\": 5856573,",
+        "  \"total_score\": 2104193750,",
+        "  \"user\": {",
+        "      \"avatar_url\": \"https://a.ppy.sh/2?1519081077.png\",",
+        "      \"country\": {",
+        "          \"code\": \"AU\",",
+        "          \"name\": \"Australia\"",
+        "      },",
+        "      \"country_code\": \"AU\",",
+        "      \"cover\": {",
+        "          \"custom_url\": null,",
+        "          \"id\": \"3\",",
+        "          \"url\": \"https://assets.ppy.sh/user-profile-covers/2/baba245ef60834b769694178f8f6d4f6166c5188c740de084656ad2b80f1eea7.jpeg\"",
+        "      },",
+        "      \"default_group\": \"ppy\",",
+        "      \"id\": 2,",
+        "      \"is_active\": false,",
+        "      \"is_bot\": false,",
+        "      \"is_online\": false,",
+        "      \"is_supporter\": true,",
+        "      \"last_visit\": \"2019-02-22T11:07:10+00:00\",",
+        "      \"pm_friends_only\": false,",
+        "      \"profile_colour\": \"#3366FF\",",
+        "      \"username\": \"peppy\"",
+        "  }",
+        "}",
+        "```",
+        "A summary of various gameplay statistics for a User. Specific to a GameMode"
+    ],
+    "extendsList": [],
+    "name": "UserStatistics",
+    "properties": [
+        {
+            "key": "count_100",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "count_300",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "count_50",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "count_miss",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "grade_counts",
+            "optional": false,
+            "type": [
+                {
+                    "original": "UserStatisticsGradeCounts"
+                }
+            ],
+            "description": [
+                "Number of A ranked scores."
+            ]
+        },
+        {
+            "key": "hit_accuracy",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Hit accuracy percentage"
+            ]
+        },
+        {
+            "key": "is_ranked",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ],
+            "description": [
+                "Is actively ranked"
+            ]
+        },
+        {
+            "key": "level",
+            "optional": false,
+            "type": [
+                {
+                    "original": "UserStatisticsLevel"
+                }
+            ],
+            "description": [
+                "Current level."
+            ]
+        },
+        {
+            "key": "maximum_combo",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Highest maximum combo."
+            ]
+        },
+        {
+            "key": "play_count",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Number of maps played."
+            ]
+        },
+        {
+            "key": "play_time",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Cumulative time played."
+            ]
+        },
+        {
+            "key": "pp",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Performance points"
+            ]
+        },
+        {
+            "key": "global_rank",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Current rank according to pp."
+            ]
+        },
+        {
+            "key": "ranked_score",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Current ranked score."
+            ]
+        },
+        {
+            "key": "replays_watched_by_others",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Number of replays watched by other users."
+            ]
+        },
+        {
+            "key": "total_hits",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Total number of hits."
+            ]
+        },
+        {
+            "key": "total_score",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Total score."
+            ]
+        },
+        {
+            "key": "user",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`UserCompact`",
+                    "fixed": "UserCompact"
+                }
+            ],
+            "description": [
+                "The associated user."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#userstatistics"
+}

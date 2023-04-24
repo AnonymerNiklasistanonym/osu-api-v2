@@ -1,0 +1,29 @@
+{
+    "name": "UserCompactPage",
+    "properties": [
+        {
+            "description": [
+                "The me page HTML content.",
+                "Is an empty string if the user has no page."
+            ],
+            "key": "html",
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "description": [
+                "The me page raw text content.",
+                "Is an empty string if the user has no page."
+            ],
+            "key": "raw",
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        }
+    ]
+}

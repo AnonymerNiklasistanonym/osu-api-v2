@@ -1,0 +1,33 @@
+{
+    "description": [
+        "When a user changes their username."
+    ],
+    "extendsList": [
+        "Event"
+    ],
+    "name": "EventTypeUsernameChange",
+    "properties": [
+        {
+            "key": "user",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.User`",
+                    "fixed": "EventUser"
+                }
+            ],
+            "description": [
+                "Includes `previousUsername`."
+            ]
+        },
+        {
+            "key": "type",
+            "type": [
+                {
+                    "original": "\"usernameChange\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#usernamechange"
+}

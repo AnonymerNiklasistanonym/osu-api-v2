@@ -2,8 +2,12 @@
 import { expect } from "chai"
 // Local imports
 import { GameMode, GameModeInt } from "../../../src/types/game_mode.mjs"
+import {
+    genericCheckIfNumber,
+    genericCheckIfString,
+    genericCheckObjectForUncheckedKeys,
+} from "./check_generic.mjs"
 import { RankStatus, RankStatusInt } from "../../../src/types/rank_status.mjs"
-import { genericCheckObjectForUncheckedKeys } from "./check_generic.mjs"
 // Type imports
 import type { Beatmap, BeatmapCompact } from "../../../src/types/beatmap.mjs"
 import type { DefaultCheckResponseOptions } from "../../test_helper.mjs"
@@ -68,20 +72,24 @@ export const checkBeatmapCompactObject = (
         }
     }
 
-    checkedKeys.push("beatmapset_id")
-    expect(beatmapCompact.beatmapset_id).to.be.a("number").greaterThanOrEqual(0)
+    genericCheckIfNumber(beatmapCompact.beatmapset_id, {
+        checkedKey: "beatmapset_id",
+        checkedKeys,
+        isPositive: true,
+    })
 
-    if (beatmapCompact.checksum !== undefined) {
-        checkedKeys.push("checksum")
-        expect(beatmapCompact.checksum)
-            .to.be.a("string")
-            .with.a.lengthOf.greaterThan(0)
-    }
+    genericCheckIfString(beatmapCompact.checksum, {
+        checkedKey: "checksum",
+        checkedKeys,
+        notEmpty: true,
+        orUndef: true,
+    })
 
-    checkedKeys.push("difficulty_rating")
-    expect(beatmapCompact.difficulty_rating)
-        .to.be.a("number")
-        .greaterThanOrEqual(0)
+    genericCheckIfNumber(beatmapCompact.difficulty_rating, {
+        checkedKey: "difficulty_rating",
+        checkedKeys,
+        isPositive: true,
+    })
 
     if (beatmapCompact.failtimes !== undefined) {
         checkedKeys.push("failtimes")

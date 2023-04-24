@@ -1,0 +1,94 @@
+{
+    "name": "GetChangelogListing",
+    "types": [
+        {
+            "name": "ResponseFormatSearch",
+            "properties": [
+                {
+                    "key": "from",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "limit",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "max_id",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "stream",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "to",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "GetChangelogListingResponseFormat",
+            "properties": [
+                {
+                    "key": "builds",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Build`[]",
+                            "array": true,
+                            "fixed": "Build"
+                        }
+                    ]
+                },
+                {
+                    "key": "search",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "ResponseFormatSearch"
+                        }
+                    ]
+                },
+                {
+                    "key": "streams",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`UpdateStream`[]",
+                            "array": true,
+                            "fixed": "UpdateStream"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "description": [
+        "When a user becomes a supporter for the first time."
+    ],
+    "extendsList": [
+        "Event"
+    ],
+    "name": "EventTypeUserSupportFirst",
+    "properties": [
+        {
+            "key": "user",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Event.User`",
+                    "fixed": "EventUser"
+                }
+            ]
+        },
+        {
+            "key": "type",
+            "type": [
+                {
+                    "original": "\"userSupportFirst\""
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#usersupportfirst"
+}

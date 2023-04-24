@@ -1,0 +1,145 @@
+{
+    "description": [
+        "@example",
+        "```json",
+        "{",
+        "  \"id\": null,",
+        "  \"repository\": null,",
+        "  \"github_pull_request_id\": null,",
+        "  \"github_url\": null,",
+        "  \"url\": \"https://osu.ppy.sh/home/news/2021-05-20-spring-fanart-contest-results\",",
+        "  \"type\": \"fix\",",
+        "  \"category\": \"Misc\",",
+        "  \"title\": \"Spring is here!\",",
+        "  \"message_html\": \"New seasonal backgrounds ahoy! Amazing work by the artists.\\n\",",
+        "  \"major\": true,",
+        "  \"created_at\": \"2021-05-20T10:56:49+00:00\"",
+        "}",
+        "```",
+        "The following are attributes which may be additionally included in responses. Relevant endpoints should list them if applicable."
+    ],
+    "extendsList": [],
+    "name": "ChangelogEntry",
+    "properties": [
+        {
+            "key": "category",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "created_at",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "github_pull_request_id",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "github_url",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "id",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "major",
+            "optional": false,
+            "type": [
+                {
+                    "original": "boolean"
+                }
+            ]
+        },
+        {
+            "key": "repository",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "title",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "type",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "url",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "github_user",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`GithubUser`",
+                    "fixed": "GithubUser"
+                }
+            ]
+        },
+        {
+            "key": "message",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "message_html",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#changelogentry"
+}

@@ -1,0 +1,21 @@
+{
+    "name": "BeatmapsetCompactNominations",
+    "properties": [
+        {
+            "key": "current",
+            "type": [
+                {
+                    "original": "integer"
+                }
+            ]
+        },
+        {
+            "key": "required",
+            "type": [
+                {
+                    "original": "integer"
+                }
+            ]
+        }
+    ]
+}

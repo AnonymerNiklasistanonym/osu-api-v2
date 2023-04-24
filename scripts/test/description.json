@@ -1,0 +1,26 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "Description",
+    "properties": [
+        {
+            "key": "html",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "markdown",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#description"
+}

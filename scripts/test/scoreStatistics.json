@@ -1,0 +1,59 @@
+{
+    "name": "ScoreStatistics",
+    "properties": [
+        {
+            "key": "count_50",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer"
+                }
+            ]
+        },
+        {
+            "key": "count_100",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer"
+                }
+            ]
+        },
+        {
+            "key": "count_300",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer"
+                }
+            ]
+        },
+        {
+            "key": "count_geki",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer"
+                }
+            ]
+        },
+        {
+            "key": "count_katu",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer"
+                }
+            ]
+        },
+        {
+            "key": "count_miss",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer"
+                }
+            ]
+        }
+    ]
+}

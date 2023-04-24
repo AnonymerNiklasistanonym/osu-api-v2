@@ -1,0 +1,82 @@
+{
+    "description": [
+        "Details object:"
+    ],
+    "extendsList": [],
+    "name": "Beatmapset_qualify",
+    "properties": [
+        {
+            "key": "object_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "Beatmapset id"
+            ]
+        },
+        {
+            "key": "object_type",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "`beatmapset`"
+            ]
+        },
+        {
+            "key": "source_user_id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ],
+            "description": [
+                "User whom beatmapset nomination triggered qualification"
+            ]
+        },
+        {
+            "key": "title",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Beatmap title"
+            ]
+        },
+        {
+            "key": "cover_url",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Beatmap cover"
+            ]
+        },
+        {
+            "key": "username",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Username of `source_user_id`"
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#beatmapset_qualify"
+}

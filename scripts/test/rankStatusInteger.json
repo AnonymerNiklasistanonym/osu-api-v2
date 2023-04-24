@@ -1,0 +1,35 @@
+{
+    "description": [],
+    "name": "RankStatusInteger",
+    "source": "https://osu.ppy.sh/docs/index.html#rankstatus",
+    "values": [
+        {
+            "key": "GRAVEYARD",
+            "value": -2
+        },
+        {
+            "key": "WIP",
+            "value": -1
+        },
+        {
+            "key": "PENDING",
+            "value": 0
+        },
+        {
+            "key": "RANKED",
+            "value": 1
+        },
+        {
+            "key": "APPROVED",
+            "value": 2
+        },
+        {
+            "key": "QUALIFIED",
+            "value": 3
+        },
+        {
+            "key": "LOVED",
+            "value": 4
+        }
+    ]
+}

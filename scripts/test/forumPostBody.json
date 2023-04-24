@@ -1,0 +1,29 @@
+{
+    "name": "ForumPostBody",
+    "properties": [
+        {
+            "key": "html",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Post content in HTML format."
+            ]
+        },
+        {
+            "key": "raw",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Post content in BBCode format."
+            ]
+        }
+    ]
+}

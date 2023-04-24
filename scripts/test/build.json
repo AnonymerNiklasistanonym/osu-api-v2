@@ -1,0 +1,103 @@
+{
+    "description": [
+        "@example",
+        "```json",
+        "{",
+        "  \"id\": 5778,",
+        "  \"version\": \"20210520.2\",",
+        "  \"display_version\": \"20210520.2\",",
+        "  \"users\": 22059,",
+        "  \"created_at\": \"2021-05-20T14:28:04+00:00\",",
+        "  \"update_stream\": {",
+        "    \"id\": 5,",
+        "    \"name\": \"stable40\",",
+        "    \"display_name\": \"Stable\",",
+        "    \"is_featured\": true",
+        "  }",
+        "}",
+        "```",
+        "The following are attributes which may be additionally included in responses. Relevant endpoints should list them if applicable."
+    ],
+    "extendsList": [],
+    "name": "Build",
+    "properties": [
+        {
+            "key": "created_at",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`Timestamp`",
+                    "fixed": "Timestamp"
+                }
+            ]
+        },
+        {
+            "key": "display_version",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "update_stream",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`UpdateStream`",
+                    "fixed": "UpdateStream"
+                }
+            ]
+        },
+        {
+            "key": "users",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "version",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "changelog_entries",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`ChangelogEntry`[]",
+                    "array": true,
+                    "fixed": "ChangelogEntry"
+                }
+            ]
+        },
+        {
+            "key": "versions",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`Versions`",
+                    "fixed": "Versions"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#build"
+}

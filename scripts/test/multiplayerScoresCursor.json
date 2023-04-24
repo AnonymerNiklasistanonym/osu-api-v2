@@ -1,0 +1,36 @@
+{
+    "description": [
+        "An object which contains pointer for fetching further results of a request. It depends on the sort option."
+    ],
+    "extendsList": [],
+    "name": "MultiplayerScoresCursor",
+    "properties": [
+        {
+            "key": "`score_id`",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`number`",
+                    "fixed": "\"number\""
+                }
+            ],
+            "description": [
+                "Last score id of current result (`score_asc`, `score_desc`)."
+            ]
+        },
+        {
+            "key": "`total_score`",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`number`",
+                    "fixed": "\"number\""
+                }
+            ],
+            "description": [
+                "Last score's total score of current result (`score_asc`, `score_desc`)."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#multiplayerscorescursor"
+}

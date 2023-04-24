@@ -1,0 +1,27 @@
+{
+    "description": [],
+    "name": "GameMode",
+    "source": "https://osu.ppy.sh/docs/index.html#gamemode",
+    "values": [
+        {
+            "description": "Description",
+            "key": "FRUITS",
+            "value": "fruits"
+        },
+        {
+            "description": "Description",
+            "key": "MANIA",
+            "value": "mania"
+        },
+        {
+            "description": "Description",
+            "key": "OSU",
+            "value": "osu"
+        },
+        {
+            "description": "Description",
+            "key": "TAIKO",
+            "value": "taiko"
+        }
+    ]
+}

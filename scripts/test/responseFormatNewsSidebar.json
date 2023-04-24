@@ -1,0 +1,36 @@
+{
+    "name": "ResponseFormatNewsSidebar",
+    "properties": [
+        {
+            "key": "current_year",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "news_posts",
+            "optional": false,
+            "type": [
+                {
+                    "original": "`NewsPost`[]",
+                    "array": true,
+                    "fixed": "NewsPost"
+                }
+            ]
+        },
+        {
+            "key": "years",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number[]",
+                    "array": true,
+                    "fixed": "number"
+                }
+            ]
+        }
+    ]
+}

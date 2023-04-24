@@ -1,0 +1,167 @@
+{
+    "name": "NewsPost",
+    "types": [
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "NewsPost",
+            "properties": [
+                {
+                    "key": "author",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "edit_url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Link to the file view on GitHub."
+                    ]
+                },
+                {
+                    "key": "first_image",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Link to the first image in the document."
+                    ]
+                },
+                {
+                    "key": "id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "published_at",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Timestamp`",
+                            "fixed": "Timestamp"
+                        }
+                    ]
+                },
+                {
+                    "key": "slug",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Filename without the extension, used in URLs."
+                    ]
+                },
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "updated_at",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Timestamp`",
+                            "fixed": "Timestamp"
+                        }
+                    ]
+                },
+                {
+                    "key": "content",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "HTML post content."
+                    ]
+                },
+                {
+                    "key": "navigation",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`Navigation`",
+                            "fixed": "Navigation"
+                        }
+                    ],
+                    "description": [
+                        "Navigation metadata."
+                    ]
+                },
+                {
+                    "key": "preview",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "First paragraph of `content` with HTML markup stripped."
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#newspost"
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "Navigation",
+            "properties": [
+                {
+                    "key": "newer",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`NewsPost`",
+                            "fixed": "NewsPost"
+                        }
+                    ],
+                    "description": [
+                        "Next post."
+                    ]
+                },
+                {
+                    "key": "older",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`NewsPost`",
+                            "fixed": "NewsPost"
+                        }
+                    ],
+                    "description": [
+                        "Previous post."
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#navigation"
+        }
+    ]
+}

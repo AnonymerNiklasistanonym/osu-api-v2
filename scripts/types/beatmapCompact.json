@@ -1,0 +1,183 @@
+{
+    "name": "BeatmapCompact",
+    "types": [
+        {
+            "description": [
+                "Represent a beatmap."
+            ],
+            "extendsList": [],
+            "name": "BeatmapCompact",
+            "properties": [
+                {
+                    "key": "beatmapset_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "difficulty_rating",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "float",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "mode",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`GameMode`",
+                            "fixed": "GameMode"
+                        }
+                    ]
+                },
+                {
+                    "key": "status",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "See `Rank status` for list of possible values."
+                    ]
+                },
+                {
+                    "key": "total_length",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "user_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "integer",
+                            "fixed": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "version",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "beatmapset",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`Beatmapset`",
+                            "fixed": "Beatmapset"
+                        },
+                        {
+                            "original": "`BeatmapsetCompact`",
+                            "fixed": "BeatmapsetCompact"
+                        },
+                        {
+                            "original": "null"
+                        }
+                    ],
+                    "description": [
+                        "`Beatmapset` for `Beatmap` object, `BeatmapsetCompact` for `BeatmapCompact` object. `null` if the beatmap doesn't have associated beatmapset (e.g. deleted)."
+                    ]
+                },
+                {
+                    "key": "checksum",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "failtimes",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`Failtimes`",
+                            "fixed": "Failtimes"
+                        }
+                    ]
+                },
+                {
+                    "key": "max_combo",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "integer",
+                            "fixed": "number"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapcompact"
+        },
+        {
+            "description": [
+                "All fields are optional but there's always at least one field returned."
+            ],
+            "extendsList": [],
+            "name": "Failtimes",
+            "properties": [
+                {
+                    "key": "exit",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "integer[]",
+                            "array": true,
+                            "fixed": "number"
+                        }
+                    ],
+                    "description": [
+                        "Array of length 100."
+                    ]
+                },
+                {
+                    "key": "fail",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "integer[]",
+                            "array": true,
+                            "fixed": "number"
+                        }
+                    ],
+                    "description": [
+                        "Array of length 100."
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#failtimes"
+        }
+    ]
+}

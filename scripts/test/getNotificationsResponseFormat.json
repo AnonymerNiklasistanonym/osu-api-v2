@@ -1,0 +1,47 @@
+{
+    "description": [
+        "Returns an object containing Notification and other related attributes."
+    ],
+    "extendsList": [],
+    "name": "GetNotificationsResponseFormat",
+    "properties": [
+        {
+            "key": "has_more",
+            "optional": false,
+            "type": [
+                {
+                    "original": "booleanwhetherornottherearemorenotifications"
+                }
+            ]
+        },
+        {
+            "key": "notifications",
+            "optional": false,
+            "type": [
+                {
+                    "original": "arrayof`Notification`",
+                    "fixed": "rrayof`Notification"
+                }
+            ]
+        },
+        {
+            "key": "unread_count",
+            "optional": false,
+            "type": [
+                {
+                    "original": "totalunreadnotifications"
+                }
+            ]
+        },
+        {
+            "key": "notification_endpoint",
+            "optional": false,
+            "type": [
+                {
+                    "original": "urltoconnecttowebsocketserver"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+}

@@ -1,0 +1,32 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "Post",
+    "properties": [
+        {
+            "key": "url",
+            "optional": true,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Url of the object."
+            ]
+        },
+        {
+            "key": "title",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ],
+            "description": [
+                "Title of the object. It'll be \"[deleted beatmap]\" for deleted beatmaps."
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#post"
+}

@@ -1,0 +1,13 @@
+{
+    "name": "BeatmapsetCompactDescription",
+    "properties": [
+        {
+            "key": "description",
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        }
+    ]
+}

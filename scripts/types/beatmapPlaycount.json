@@ -1,0 +1,53 @@
+{
+    "name": "BeatmapPlaycount",
+    "types": [
+        {
+            "description": [
+                "Represent the playcount of a beatmap."
+            ],
+            "extendsList": [],
+            "name": "BeatmapPlaycount",
+            "properties": [
+                {
+                    "key": "beatmap_id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "beatmap",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`BeatmapCompact`",
+                            "fixed": "BeatmapCompact"
+                        }
+                    ]
+                },
+                {
+                    "key": "beatmapset",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "`BeatmapsetCompact`",
+                            "fixed": "BeatmapsetCompact"
+                        }
+                    ]
+                },
+                {
+                    "key": "count",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapplaycount"
+        }
+    ]
+}

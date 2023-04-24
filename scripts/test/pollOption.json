@@ -1,0 +1,35 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "PollOption",
+    "properties": [
+        {
+            "key": "id",
+            "optional": false,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        },
+        {
+            "key": "text",
+            "optional": false,
+            "type": [
+                {
+                    "original": "PollOptionText"
+                }
+            ]
+        },
+        {
+            "key": "vote_count",
+            "optional": true,
+            "type": [
+                {
+                    "original": "number"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#polloption"
+}

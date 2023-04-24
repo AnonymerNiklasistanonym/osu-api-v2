@@ -1,0 +1,707 @@
+{
+    "name": "Event",
+    "types": [
+        {
+            "description": [
+                "The object has different attributes depending on its type. Following are attributes available to all types."
+            ],
+            "extendsList": [],
+            "name": "Event",
+            "properties": [
+                {
+                    "key": "created_at",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Timestamp`",
+                            "fixed": "Timestamp"
+                        }
+                    ]
+                },
+                {
+                    "key": "id",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "type",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "\"achievement\""
+                        },
+                        {
+                            "original": "\"beatmapPlaycount\""
+                        },
+                        {
+                            "original": "\"beatmapsetApprove\""
+                        },
+                        {
+                            "original": "\"beatmapsetDelete\""
+                        },
+                        {
+                            "original": "\"beatmapsetRevive\""
+                        },
+                        {
+                            "original": "\"beatmapsetUpdate\""
+                        },
+                        {
+                            "original": "\"beatmapsetUpload\""
+                        },
+                        {
+                            "original": "\"rank\""
+                        },
+                        {
+                            "original": "\"rankLost\""
+                        },
+                        {
+                            "original": "\"userSupportAgain\""
+                        },
+                        {
+                            "original": "\"userSupportFirst\""
+                        },
+                        {
+                            "original": "\"userSupportGift\""
+                        },
+                        {
+                            "original": "\"usernameChange\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#event"
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "EventBeatmap",
+            "properties": [
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmap"
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "EventBeatmapset",
+            "properties": [
+                {
+                    "key": "title",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapset"
+        },
+        {
+            "description": [],
+            "extendsList": [],
+            "name": "EventUser",
+            "properties": [
+                {
+                    "key": "username",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "url",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "previousUsername",
+                    "optional": true,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "Only for `usernameChange` event."
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#user"
+        },
+        {
+            "description": [
+                "When user obtained an achievement."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeAchievement",
+            "properties": [
+                {
+                    "key": "achievement",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "Achievement"
+                        }
+                    ]
+                },
+                {
+                    "key": "user",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.User`",
+                            "fixed": "EventUser"
+                        }
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"achievement\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#achievement"
+        },
+        {
+            "description": [
+                "When a beatmap has been played for certain number of times."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeBeatmapPlaycount",
+            "properties": [
+                {
+                    "key": "beatmap",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.Beatmap`",
+                            "fixed": "EventBeatmap"
+                        }
+                    ]
+                },
+                {
+                    "key": "count",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"beatmapPlaycount\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapplaycount"
+        },
+        {
+            "description": [
+                "When a beatmapset changes state."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeBeatmapsetApprove",
+            "properties": [
+                {
+                    "key": "approval",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "`ranked`, `approved`, `qualified`, `loved`."
+                    ]
+                },
+                {
+                    "key": "beatmapset",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.Beatmapset`",
+                            "fixed": "EventBeatmapset"
+                        }
+                    ]
+                },
+                {
+                    "key": "user",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.User`",
+                            "fixed": "EventUser"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset owner."
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"beatmapsetApprove\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapsetapprove"
+        },
+        {
+            "description": [
+                "When a beatmapset is deleted."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeBeatmapsetDelete",
+            "properties": [
+                {
+                    "key": "beatmapset",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.Beatmapset`",
+                            "fixed": "EventBeatmapset"
+                        }
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"beatmapsetDelete\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapsetdelete"
+        },
+        {
+            "description": [
+                "When a beatmapset in graveyard state is updated."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeBeatmapsetRevive",
+            "properties": [
+                {
+                    "key": "beatmapset",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.Beatmapset`",
+                            "fixed": "EventBeatmapset"
+                        }
+                    ]
+                },
+                {
+                    "key": "user",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.User`",
+                            "fixed": "EventUser"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset owner."
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"beatmapsetRevive\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapsetrevive"
+        },
+        {
+            "description": [
+                "When a beatmapset is updated."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeBeatmapsetUpdate",
+            "properties": [
+                {
+                    "key": "beatmapset",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.Beatmapset`",
+                            "fixed": "EventBeatmapset"
+                        }
+                    ]
+                },
+                {
+                    "key": "user",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.User`",
+                            "fixed": "EventUser"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset owner."
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"beatmapsetUpdate\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapsetupdate"
+        },
+        {
+            "description": [
+                "When a new beatmapset is uploaded."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeBeatmapsetUpload",
+            "properties": [
+                {
+                    "key": "beatmapset",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.Beatmapset`",
+                            "fixed": "EventBeatmapset"
+                        }
+                    ]
+                },
+                {
+                    "key": "user",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.User`",
+                            "fixed": "EventUser"
+                        }
+                    ],
+                    "description": [
+                        "Beatmapset owner."
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"beatmapsetUpload\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#beatmapsetupload"
+        },
+        {
+            "description": [
+                "When a user achieves a certain rank on a beatmap."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeRank",
+            "properties": [
+                {
+                    "key": "scoreRank",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "string"
+                        }
+                    ],
+                    "description": [
+                        "(FIXME)"
+                    ]
+                },
+                {
+                    "key": "rank",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "number"
+                        }
+                    ]
+                },
+                {
+                    "key": "mode",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "GameMode"
+                        }
+                    ]
+                },
+                {
+                    "key": "beatmap",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.Beatmap`",
+                            "fixed": "EventBeatmap"
+                        }
+                    ]
+                },
+                {
+                    "key": "user",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.User`",
+                            "fixed": "EventUser"
+                        }
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"rank\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#rank"
+        },
+        {
+            "description": [
+                "When a user loses first place to another user."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeRankLost",
+            "properties": [
+                {
+                    "key": "mode",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`GameMode`",
+                            "fixed": "GameMode"
+                        }
+                    ]
+                },
+                {
+                    "key": "beatmap",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.Beatmap`",
+                            "fixed": "EventBeatmap"
+                        }
+                    ]
+                },
+                {
+                    "key": "user",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.User`",
+                            "fixed": "EventUser"
+                        }
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"rankLost\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#ranklost"
+        },
+        {
+            "description": [
+                "When a user supports osu! for the second and onwards."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeUserSupportAgain",
+            "properties": [
+                {
+                    "key": "user",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.User`",
+                            "fixed": "EventUser"
+                        }
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"userSupportAgain\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#usersupportagain"
+        },
+        {
+            "description": [
+                "When a user becomes a supporter for the first time."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeUserSupportFirst",
+            "properties": [
+                {
+                    "key": "user",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.User`",
+                            "fixed": "EventUser"
+                        }
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"userSupportFirst\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#usersupportfirst"
+        },
+        {
+            "description": [
+                "When a user is gifted a supporter tag by another user."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeUserSupportGift",
+            "properties": [
+                {
+                    "key": "user",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.User`",
+                            "fixed": "EventUser"
+                        }
+                    ],
+                    "description": [
+                        "Recipient user."
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"userSupportGift\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#usersupportgift"
+        },
+        {
+            "description": [
+                "When a user changes their username."
+            ],
+            "extendsList": [
+                "Event"
+            ],
+            "name": "EventTypeUsernameChange",
+            "properties": [
+                {
+                    "key": "user",
+                    "optional": false,
+                    "type": [
+                        {
+                            "original": "`Event.User`",
+                            "fixed": "EventUser"
+                        }
+                    ],
+                    "description": [
+                        "Includes `previousUsername`."
+                    ]
+                },
+                {
+                    "key": "type",
+                    "type": [
+                        {
+                            "original": "\"usernameChange\""
+                        }
+                    ]
+                }
+            ],
+            "source": "https://osu.ppy.sh/docs/index.html#usernamechange"
+        }
+    ]
+}

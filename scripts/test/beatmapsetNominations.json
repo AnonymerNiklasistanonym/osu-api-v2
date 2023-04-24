@@ -1,0 +1,25 @@
+{
+    "name": "BeatmapsetNominations",
+    "properties": [
+        {
+            "key": "current",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ]
+        },
+        {
+            "key": "required",
+            "optional": false,
+            "type": [
+                {
+                    "original": "integer",
+                    "fixed": "number"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "Giver",
+    "properties": [
+        {
+            "key": "url",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        },
+        {
+            "key": "username",
+            "optional": false,
+            "type": [
+                {
+                    "original": "string"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#giver"
+}

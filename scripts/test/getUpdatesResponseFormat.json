@@ -1,0 +1,39 @@
+{
+    "description": [],
+    "extendsList": [],
+    "name": "GetUpdatesResponseFormat",
+    "properties": [
+        {
+            "key": "messages",
+            "optional": false,
+            "type": [
+                {
+                    "original": "Thisfieldisnotusedandwillberemoved."
+                }
+            ]
+        },
+        {
+            "key": "presence",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`ChatChannel`[]",
+                    "array": true,
+                    "fixed": "ChatChannel"
+                }
+            ]
+        },
+        {
+            "key": "silences",
+            "optional": true,
+            "type": [
+                {
+                    "original": "`UserSilence`[]",
+                    "array": true,
+                    "fixed": "UserSilence"
+                }
+            ]
+        }
+    ],
+    "source": "https://osu.ppy.sh/docs/index.html#responseformat"
+}

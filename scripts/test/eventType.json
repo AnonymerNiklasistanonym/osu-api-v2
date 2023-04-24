@@ -1,0 +1,47 @@
+{
+    "description": [
+        "All Event types"
+    ],
+    "name": "EventType",
+    "type": [
+        {
+            "original": "EventTypeAchievement"
+        },
+        {
+            "original": "EventTypeBeatmapPlaycount"
+        },
+        {
+            "original": "EventTypeBeatmapsetApprove"
+        },
+        {
+            "original": "EventTypeBeatmapsetDelete"
+        },
+        {
+            "original": "EventTypeBeatmapsetRevive"
+        },
+        {
+            "original": "EventTypeBeatmapsetUpdate"
+        },
+        {
+            "original": "EventTypeBeatmapsetUpload"
+        },
+        {
+            "original": "EventTypeRank"
+        },
+        {
+            "original": "EventTypeRankLost"
+        },
+        {
+            "original": "EventTypeUserSupportAgain"
+        },
+        {
+            "original": "EventTypeUserSupportFirst"
+        },
+        {
+            "original": "EventTypeUserSupportGift"
+        },
+        {
+            "original": "EventTypeUsernameChange"
+        }
+    ]
+}
